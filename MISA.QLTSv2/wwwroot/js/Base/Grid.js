@@ -9,6 +9,7 @@ var conFigColum = [
     {
         dataType: "number",
         width: "55px",
+        css: "text-align: center",
         height: "",
         field: "STT",
         FieldText: "STT",
@@ -19,15 +20,16 @@ var conFigColum = [
         width: "250px",
         height: "",
         field: "name",
-        FieldText: "name",
+        FieldText: "Họ và tên",
         INDEX: 2
     },
     {
         dataType: "datetime",
         width: "100px",
         height: "",
+        css: "text-align: center",
         field: "dateofbirth",
-        FieldText: "dateofbirth",
+        FieldText: "Ngày sinh",
         INDEX: 3
     },
     {
@@ -35,15 +37,16 @@ var conFigColum = [
         width: "100px",
         height: "",
         field: "school",
-        FieldText: "school",
+        FieldText: "Trường học",
         INDEX: 4
     },
     {
         dataType: "money",
         width: "100px",
         height: "",
+        css: "text-align: right",
         field: "salary",
-        FieldText: "salary",
+        FieldText: "Lương",
         INDEX: 4
     }
 ];
@@ -79,7 +82,7 @@ class Grid {
             $.each(conFigColum, function (index, col) {
                 // i=0 đang ở cột một, cần tìm thằng col có INDEX = 1
                 if (i == col.INDEX) {
-                    var th = $(`<th fieldName="` + col.field + `" style="width:` + col.width + `;">` + col.FieldText + `</th>`);
+                    var th = $(`<th fieldName="` + col.field + `" dataType="` + col.dataType + `" style="width:` + col.width + `;` + col.css + `">` + col.FieldText + `</th>`);
                     tr.append(th);
                 }
             });
@@ -100,11 +103,24 @@ class Grid {
                 grid.find('th').each(function () {
                     var fieldName = $(this).attr('fieldName');
                     dataType = $(this).attr('dataType');
-
                     var value = obj[fieldName];
-
-
-                    var td = $(`<td>` + value + `</td>`);
+                    var td;
+                    switch (dataType) {
+                        case "datetime":
+                            value = formatDate(value);
+                            td = $(`<td style="text-align: center">` + value + `</td>`);
+                            break;
+                        case "money":
+                            value = formatMoney(value);
+                            td = $(`<td style="text-align: right">` + value + `</td>`);
+                            break;
+                        case "number":
+                            td = $(`<td style="text-align: center">` + value + `</td>`);
+                            break;
+                        default:
+                            td = $(`<td>` + value + `</td>`);
+                            break;
+                    } 
                     tr.append(td);
                 });
                 grid.find('tbody').append(tr);

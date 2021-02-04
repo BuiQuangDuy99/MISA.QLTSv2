@@ -21,6 +21,29 @@ var callAjax = function (url, method, data, functionCallBack, async = true) {
 }
 
 /**
+ * Format dữ liệu ngày tháng sang ngày/tháng/năm
+ * @param {any} date tham số có kiểu dữ liệu bất kỳ
+ * CreateBy: BQDUY(04/02/2021)
+ */
+function formatDate(date) {
+    try {
+        var date = new Date(date);
+        if (Number.isNaN(date.getTime())) {
+            return "";
+        } else {
+            var day = date.getDate(),
+                month = date.getMonth() + 1,
+                year = date.getFullYear();
+            day = day < 10 ? '0' + day : day;
+            month = month < 10 ? '0' + month : month;
+            return day + '/' + month + '/' + year;
+        }
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+/**
  * Chuyển đổi dữ liệu từ dd/mm/yyyy lên form
  * CreatBy: NDTUNG (4/2/2021)
 */
