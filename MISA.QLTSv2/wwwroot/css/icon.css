@@ -1,0 +1,41 @@
+﻿.icon-search {
+    background-image: url('/Icons/search-eye-line.svg');
+    background-repeat: no-repeat;
+    background-position:14px center;
+    background-position:right;
+    background-color: #7b7a8d;
+    padding-right:9px;
+}
+.icon-refresh {
+    background-image: url('/Icons/refresh.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 18px;
+    height: 18px;
+    margin-top:4px;
+}
+.icon-remove {
+    background-image: url('/Icons/trash.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width:14px;
+    height:14px;
+    margin-top:6px;
+    margin-left:3px;
+}
+.icon-add {
+    width: 14px;
+    height: 14px;
+    background-image: url('/Icons/');
+    background-position: center;
+}
+.icon-remove-second {
+    background-image: url('/Icons/trash.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 14px;
+    height: 14px;
+    margin-right:9px;
+}
