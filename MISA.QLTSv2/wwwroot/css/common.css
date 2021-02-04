@@ -1,0 +1,9 @@
+﻿.border-red {
+    border: 1px solid red;
+}
+input{
+    outline:none;
+}
+button{
+    outline:none;
+}
