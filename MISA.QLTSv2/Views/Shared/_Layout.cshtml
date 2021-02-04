@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MISA.QLTSv2</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet" />
     <link href="~/css/common/common.css" rel="stylesheet" />
     <link href="~/css/common/main.css" rel="stylesheet" />
     <link href="~/css/common/navbar.css" rel="stylesheet" />
@@ -33,13 +34,16 @@
                             <div class="navbar-item">
                                 <div class="navbar-item-icon m-background-image navbar-item-community"></div>
                                 <div class="navbar-item-text">Tài sản</div>
+                                <div class="navbar-item-direct">
+                                    <i class="fi-sr-caret-right"></i>
+                                </div>
                             </div>
-                            @*<ul class="submenu">
+                            <ul class="submenu">
                                 <li><a href="#">Ghi tăng</a></li>
                                 <li><a href="#">Điều chuyển</a></li>
                                 <li><a href="#">Tính hao mòn</a></li>
                                 <li><a href="#">Ghi giảm</a></li>
-                            </ul>*@
+                            </ul>
                         </div>
                         <div class="navbar-item-box">
                             <a class="navbar-item" href="/#">
@@ -47,11 +51,18 @@
                                 <div class="navbar-item-text">Công cụ dụng cụ</div>
                             </a>
                         </div>
-                        <div class="navbar-item-box">
-                            <a class="navbar-item" href="/#">
+                        <div class="navbar-item-box has-submenu">
+                            <div class="navbar-item" href="/#">
                                 <div class="navbar-item-icon m-background-image navbar-item-common"></div>
                                 <div class="navbar-item-text">Danh mục</div>
-                            </a>
+                                <div class="navbar-item-direct">
+                                    <i class="fi-sr-caret-right"></i>
+                                </div>
+                            </div>
+                            <ul class="submenu">
+                                <li><a href="#">Loại tài sản</a></li>
+                                <li><a href="#">Bộ phận sử dụng TS</a></li>
+                            </ul>
                         </div>
                         <div class="navbar-item-box">
                             <a class="navbar-item" href="/#">

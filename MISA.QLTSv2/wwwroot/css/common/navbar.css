@@ -52,8 +52,9 @@
         width: 100%;
     }
 
-.navbar-item-box {
+.navbar-content .navbar-item-box {
     width: 100%;
+    position: relative;
 }
 
 .navbar .navbar-content .navbar-item {
@@ -72,10 +73,19 @@
         padding-left: 22px;
     }
 
+        .navbar .navbar-content .navbar-item:hover .navbar-item-direct i {
+            color: #00abfe;
+        }
+
 .navbar-item .navbar-item-icon {
     width: 24px;
     height: 24px;
     margin-right: 7px;
+}
+
+.navbar-item .navbar-item-direct {
+    position: absolute;
+    right: 16px;
 }
 
 .navbar-item-computer {
@@ -106,13 +116,38 @@
     background-image: url('/icon/pie-chart-line.svg');
 }
 
-.has-submenu{
+.has-submenu {
     position: relative;
 }
+
 .submenu {
     position: absolute;
     top: 0;
     left: 100%;
     width: 160px;
-    box-shadow: 10px 10px 5px #aaaaaa;
+    box-shadow: 2px 2px 2px 2px #EBEBEB;
+    z-index: 999;
+    display: none;
+}
+
+    .submenu li {
+        height: 35px;
+        width: 100%;
+        display: inline-block;
+    }
+
+        .submenu li a {
+            padding-left: 24px;
+            line-height: 35px;
+            display: block;
+            font-size: 13px;
+            color: #011239;
+        }
+
+            .submenu li a:hover {
+                background-color: #f0f8ff;
+            }
+
+.has-submenu:hover .submenu {
+    display: block;
 }

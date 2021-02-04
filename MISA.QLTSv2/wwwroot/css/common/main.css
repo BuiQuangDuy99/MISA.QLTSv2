@@ -24,6 +24,9 @@ ul, li{
     list-style: none;
 }
 
+a {
+    text-decoration: none !important;
+}
 
 @font-face {
     font-family: 'CustomForm1';
