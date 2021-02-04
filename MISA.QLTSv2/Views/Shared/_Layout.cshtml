@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/css/common.css" rel="stylesheet" />
+    <link href="~/css/warring.css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -36,7 +37,23 @@
             @RenderBody()
         </main>
     </div>
-
+    <div class="warring">
+        <div class="warring-title">
+            <div class="title-warring">Quản lý tài sản - v2</div>
+            <button class="close" type="submit"></button>
+        </div>
+        <div class="warring-bode">
+            <div class="warring-content">
+                <div class="warring-icon"></div>
+                <div class="warring-notify"></div>
+            </div>
+            <div class="warring-button">
+                <button id="btn-no-warring">Hủy</button>
+                <button id="btn-yes-warring">Xóa</button>
+                <button id="btn-ok-warring">Đóng</button>
+            </div>
+        </div>
+    </div>
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - MISA.QLTSv2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -44,8 +61,8 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-    <script src="~/js/Base/baseForm.js"></script>
     <script src="~/js/Base/common.js"></script>
+    <script src="~/js/Base/baseForm.js"></script>
     <script src="~/js/Base/grid.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
