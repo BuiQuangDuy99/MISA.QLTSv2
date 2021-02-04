@@ -1,0 +1,50 @@
+﻿[
+  {
+    "STT": 1,
+    "name": "Trần Thị Hương Lan",
+    "age": 12,
+    "school": "UTC",
+    "dateofbirth": "1999-12-11",
+    "salary": null
+  },
+  {
+    "STT": 2,
+    "name": "Nguyễn Đăng Tùng",
+    "age": 222,
+    "school": "HaUI",
+    "dateofbirth": "1999-01-31",
+    "salary": 9500000
+  },
+  {
+    "STT": 3,
+    "name": "Nguyễn Văn Tuyên",
+    "age": 12,
+    "school": "HaUI",
+    "dateofbirth": "1999-12-11",
+    "salary": 9500000
+  },
+  {
+    "STT": 4,
+    "name": "Dương Văn Vương",
+    "age": 12,
+    "school": "PITTI",
+    "dateofbirth": "1999-12-11",
+    "salary": 9500000
+  },
+  {
+    "STT": 5,
+    "name": "Bùi Quang Duy",
+    "age": 22,
+    "school": "UTC",
+    "dateofbirth": "1999-12-11",
+    "salary": 9500000
+  },
+  {
+    "STT": 6,
+    "name": "Nguyễn Đức Cảnh",
+    "age": 22,
+    "school": "KTV",
+    "dateofbirth": "2002-02-02",
+    "salary": 0
+  }
+]
