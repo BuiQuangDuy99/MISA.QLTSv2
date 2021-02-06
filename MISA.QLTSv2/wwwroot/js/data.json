@@ -1,14 +1,16 @@
 ﻿[
   {
     "STT": 1,
+    "Id": "1a",
     "name": "Trần Thị Hương Lan",
     "age": 12,
     "school": "UTC",
-    "dateofbirth": "1999-12-11",
+    "dateofbirth": null,
     "salary": null
   },
   {
     "STT": 2,
+    "Id": "1b",
     "name": "Nguyễn Đăng Tùng",
     "age": 222,
     "school": "HaUI",
@@ -17,6 +19,7 @@
   },
   {
     "STT": 3,
+    "Id": "2a",
     "name": "Nguyễn Văn Tuyên",
     "age": 12,
     "school": "HaUI",
@@ -25,6 +28,7 @@
   },
   {
     "STT": 4,
+    "Id": "2b",
     "name": "Dương Văn Vương",
     "age": 12,
     "school": "PITTI",
@@ -33,6 +37,7 @@
   },
   {
     "STT": 5,
+    "Id": "2c",
     "name": "Bùi Quang Duy",
     "age": 22,
     "school": "UTC",
@@ -41,6 +46,7 @@
   },
   {
     "STT": 6,
+    "Id": "3a",
     "name": "Nguyễn Đức Cảnh",
     "age": 22,
     "school": "KTV",

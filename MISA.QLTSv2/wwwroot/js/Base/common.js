@@ -27,10 +27,10 @@ var callAjax = function (url, method, data, functionCallBack, async = true) {
  */
 function formatDate(date) {
     try {
-        var date = new Date(date);
-        if (Number.isNaN(date.getTime())) {
+        if (!date) {
             return "";
         } else {
+            var date = new Date(date);
             var day = date.getDate(),
                 month = date.getMonth() + 1,
                 year = date.getFullYear();
