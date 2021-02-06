@@ -1,0 +1,63 @@
+.grid {
+    position: relative;
+    height: calc(100vh - 164px)
+}
+
+    .grid .grid-default {
+        width: 100%;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: scroll;
+        padding-right: 21px;
+        padding-left: 21px;
+    }
+
+
+/****
+    định dạng danh sách bảng
+
+*/
+
+table th, td {
+    padding: 11px 16px;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+table {
+    border-bottom: none;
+    width: 100%;
+}
+
+    table th {
+        position: sticky;
+        top: 0;
+        background-color: #ffffff;
+        padding-top: 0;
+        font-size: 12px;
+    }
+
+    table td {
+        font-size: 13px;
+        border-right: 1px solid #bbbbbb;
+    }
+
+        table td:last-child {
+            border: none;
+        }
+
+    table tr {
+        border-bottom: 1px solid #bbbbbb;
+    }
+/*::-webkit-scrollbar{
+    width:5px;
+}
+::-webkit-scrollbar-thumb{
+    background-color:#454545;
+}*/

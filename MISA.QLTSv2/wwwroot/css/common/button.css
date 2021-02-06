@@ -1,28 +1,25 @@
-﻿.button {
-    font-size: 13px;
-    text-align: center;
-    color:#fff;
-    float:right;
-}
+
 .btn-add {
     display: flex;
     background-color: #00abfe;
-    align-items:center;
+    align-items: center;
     border-radius: 4px;
-    width: 96px;
+    min-width: 96px;
     height: 32px;
     overflow: hidden;
     cursor: pointer;
-    border:none;
-    margin-left:10px;
-    justify-content:center;
+    border: none;
+    margin-left: 10px;
+    justify-content: center;
+    font-size: 13px;
+    color: #fff;
 }
-.btn-refresh {
+ .btn-refresh {
     display:flex;
     border-radius: 2.5px;
     border: 1px solid #e0e0e0;
     width: 31px;
-    height: 31px;
+    height: 32px;
     overflow: hidden;
     margin-left:10px;
     background-color:#fff;
@@ -33,7 +30,7 @@
     border-radius: 2.5px;
     border: 1px solid #e0e0e0;
     width: 31px;
-    height: 31px;
+    height: 32px;
     overflow: hidden;
     margin-left:10px;
     background-color:#fff;

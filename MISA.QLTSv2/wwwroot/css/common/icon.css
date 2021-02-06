@@ -1,10 +1,12 @@
-﻿.icon-search {
+.icon-search {
     background-image: url('/Icons/search-eye-line.svg');
     background-repeat: no-repeat;
-    background-position:14px center;
-    background-position:right;
+    background-position: 14px center;
+    background-position: right;
     background-color: #7b7a8d;
-    padding-right:9px;
+    padding-right: 9px;
+    color: #7b7a8d;
+    margin-right:9px;
 }
 .icon-refresh {
     background-image: url('/Icons/refresh.svg');
@@ -23,7 +25,7 @@
     width:14px;
     height:14px;
     margin-top:6px;
-    margin-left:3px;
+    margin-left: 1px;
 }
 .icon-add {
     width: 14px;

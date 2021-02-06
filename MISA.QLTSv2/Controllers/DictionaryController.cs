@@ -21,5 +21,13 @@ namespace MISA.QLTSv2.Controllers
         {
             return View("_DepartmentPartial");
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult LayoutView()
+        {
+            return View();
+        }
     }
 }
