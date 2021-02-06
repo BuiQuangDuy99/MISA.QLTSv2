@@ -46,7 +46,8 @@ namespace MISA.QLTSv2
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
