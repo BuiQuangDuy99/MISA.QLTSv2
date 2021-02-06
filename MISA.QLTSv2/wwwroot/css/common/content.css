@@ -1,3 +1,4 @@
 ﻿.content{
-    height: calc(100% - 50px);
+    flex-grow: 1;
+    position: relative;
 }

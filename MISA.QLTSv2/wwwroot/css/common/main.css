@@ -1,24 +1,32 @@
-﻿body{
+﻿body {
     margin: 0;
     padding: 0;
     background-color: #fff;
     font-size: 13px;
 }
+
 html, body {
     height: 100%;
 }
+
 .container-fluid, .row, .col, [class*="col-"] {
     padding: 0;
     margin: 0;
 }
+
 .wrapper {
-    
-}
-.wrapper .left{
-    width: 200px;
 }
 
-ul, li{
+    .wrapper .left {
+        width: 200px;
+    }
+
+    .wrapper .right {
+        display: flex;
+        flex-direction: column;
+    }
+
+ul, li {
     padding: 0;
     margin: 0;
     list-style: none;
