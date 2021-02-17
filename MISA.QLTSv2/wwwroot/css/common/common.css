@@ -1,0 +1,17 @@
+﻿.m-background-image {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.m-button-clear {
+    outline: none;
+    border: none;
+    background-color: #fff;
+}
+.m-button-clear:focus{
+    outline: none;
+}
+
+.display-none{
+    display: none;
+}

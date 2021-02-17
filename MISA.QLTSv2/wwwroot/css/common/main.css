@@ -1,0 +1,48 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    font-size: 13px;
+}
+
+html, body {
+    height: 100%;
+}
+
+.container-fluid, .row, .col, [class*="col-"] {
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper {
+}
+
+    .wrapper .left {
+        width: 200px;
+        transition: width .25s ease;
+    }
+
+    .wrapper .right {
+        display: flex;
+        flex-direction: column;
+    }
+
+ul, li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+@font-face {
+    font-family: 'CustomForm1';
+    src: url('/font/05a65153efe56028d343c10b53faa583.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'CustomForm2';
+    src: url('/font/29c95c2d68c76de3ee30f7b2c0220da9.ttf') format('truetype');
+}
