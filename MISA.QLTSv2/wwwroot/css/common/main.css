@@ -19,6 +19,7 @@ html, body {
 
     .wrapper .left {
         width: 200px;
+        transition: width .25s ease;
     }
 
     .wrapper .right {

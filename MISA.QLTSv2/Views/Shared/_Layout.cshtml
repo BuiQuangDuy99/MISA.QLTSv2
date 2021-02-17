@@ -11,6 +11,7 @@
     <link href="~/css/common/navbar.css" rel="stylesheet" />
     <link href="~/css/common/header.css" rel="stylesheet" />
     <link href="~/css/common/content.css" rel="stylesheet" />
+    <link href="~/css/common/responsive.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -19,7 +20,7 @@
             <div class="left col-auto ">
                 <div class="navbar">
                     <div class="logo-site">
-                        <div class="qlts-logo"></div>
+                        <button class="qlts-logo m-button-clear m-background-image"></button>
                         <div class="qlts-text">QLTS.VN</div>
                         <button class="toggle-icon m-background-image"></button>
                     </div>
@@ -117,6 +118,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/navigation.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
