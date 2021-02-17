@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Asset\" />
+    <Folder Include="wwwroot\content\images\" />
+    <Folder Include="wwwroot\js\views\Account\" />
+    <Folder Include="wwwroot\js\views\Asset\" />
+    <Folder Include="wwwroot\js\views\Dictionary\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+</Project>
