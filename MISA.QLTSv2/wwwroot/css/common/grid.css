@@ -55,6 +55,9 @@ table {
     table tr {
         border-bottom: 1px solid #bbbbbb;
     }
+        table tr:hover {
+        background-color: #e9ebee;
+        }
 /*::-webkit-scrollbar{
     width:5px;
 }
