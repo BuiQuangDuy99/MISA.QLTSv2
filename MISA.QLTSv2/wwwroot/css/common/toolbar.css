@@ -1,0 +1,16 @@
+.tool-bar {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    background-color: #fff;
+    width: 100%;
+    padding: 32px 21px;
+}
+
+    .tool-bar .filter-bar {
+    }
+    .tool-bar .tool-bar-right{
+        display:flex;
+        position:absolute;
+        right:21px;
+    }
