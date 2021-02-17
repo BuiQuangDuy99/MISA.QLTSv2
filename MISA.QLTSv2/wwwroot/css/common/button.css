@@ -1,3 +1,9 @@
+.button {
+    display: flex;
+    height: 32px;
+    justify-content: center;
+    font-size: 13px;
+}
 
 .btn-add {
     display: flex;
@@ -14,27 +20,45 @@
     font-size: 13px;
     color: #fff;
 }
- .btn-refresh {
-    display:flex;
+
+    .btn-add:hover {
+        background-color: #57c7fd;
+        cursor: pointer;
+    }
+
+.btn-refresh {
+    display: flex;
     border-radius: 2.5px;
     border: 1px solid #e0e0e0;
     width: 31px;
     height: 32px;
     overflow: hidden;
-    margin-left:10px;
-    background-color:#fff;
+    margin-left: 10px;
+    background-color: #fff;
 }
+
+    .btn-refresh:hover {
+        background-color: #e9ebee;
+        cursor: pointer;
+    }
+
 .btn-remove {
-    display:flex;
+    display: flex;
     background-color: #ffffff;
     border-radius: 2.5px;
     border: 1px solid #e0e0e0;
     width: 31px;
     height: 32px;
     overflow: hidden;
-    margin-left:10px;
-    background-color:#fff;
+    margin-left: 10px;
+    background-color: #fff;
 }
+
+    .btn-remove:hover {
+        background-color: #e9ebee;
+        cursor: pointer;
+    }
+
 .btn-cancel {
     display: flex;
     background-color: #fff;
@@ -47,9 +71,10 @@
     cursor: pointer;
     padding: 9px 31px;
     margin-left: 10px;
-    color:black;
-    justify-content:center;
+    color: black;
+    justify-content: center;
 }
+
 .btn-add-second {
     display: flex;
     align-items: center;
@@ -66,6 +91,7 @@
     min-width: 120px;
     justify-content: center;
 }
+
 .btn-remove-second {
     display: flex;
     align-items: center;
@@ -81,5 +107,5 @@
     cursor: pointer;
     min-width: 120px;
     justify-content: center;
-    margin-left:10px;
+    margin-left: 10px;
 }
