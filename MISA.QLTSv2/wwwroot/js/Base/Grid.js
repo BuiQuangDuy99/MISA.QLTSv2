@@ -8,6 +8,7 @@
         modal: true,
     });
     new grid("#dialog");
+
 })
 class grid extends baseForm {
     constructor(formId) {
