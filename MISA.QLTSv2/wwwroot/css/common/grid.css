@@ -55,6 +55,14 @@ table {
     table tr {
         border-bottom: 1px solid #bbbbbb;
     }
+
+.selected-row {
+    background-color: #2bff29 !important;
+}
+
+    .selected-row:hover {
+        background-color: #2bff29 !important;
+    }
 /*::-webkit-scrollbar{
     width:5px;
 }

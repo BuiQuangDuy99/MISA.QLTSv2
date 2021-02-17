@@ -15,10 +15,10 @@
         right: 137px;
     }
 
-text-right {
+.text-right {
     text-align: right;
 }
 
-text-center {
+.text-center {
     text-align: center;
 }

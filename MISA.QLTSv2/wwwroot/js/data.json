@@ -2,55 +2,73 @@
   {
     "STT": 1,
     "Id": "1a",
-    "name": "Trần Thị Hương Lan",
-    "age": 12,
-    "school": "UTC",
-    "dateofbirth": null,
-    "salary": null
+    "AssetCode": "TS09211",
+    "AssetName": "Tài Sản Nội Vụ",
+    "AssetGroupId": "AG98232",
+    "AssetGroupName": "Tài Sản Văn Phòng",
+    "WearPercent": "10%",
+    "Price": 555666777,
+    "YearOfUse": 15,
+    "Note": "Đây là ghi chú tự động" 
   },
   {
     "STT": 2,
     "Id": "1b",
-    "name": "Nguyễn Đăng Tùng",
-    "age": 222,
-    "school": "HaUI",
-    "dateofbirth": "1999-01-31",
-    "salary": 9500000
+    "AssetCode": "TS09544",
+    "AssetName": "Tài Sản Công Vụ",
+    "AssetGroupId": "AG13423",
+    "AssetGroupName": "Tài Sản Cá Nhân",
+    "WearPercent": "45%",
+    "Price": 1241344,
+    "YearOfUse": 10,
+    "Note": "Đây là ghi chú tự động"
   },
   {
     "STT": 3,
     "Id": "2a",
-    "name": "Nguyễn Văn Tuyên",
-    "age": 12,
-    "school": "HaUI",
-    "dateofbirth": "1999-12-11",
-    "salary": 9500000
+    "AssetCode": "TS43532",
+    "AssetName": "Tài Sản Cố Định",
+    "AssetGroupId": "AG98232",
+    "AssetGroupName": "Tài Sản Nhà Nước",
+    "WearPercent": "30%",
+    "Price": 652345233,
+    "YearOfUse": 20,
+    "Note": ""
   },
   {
     "STT": 4,
     "Id": "2b",
-    "name": "Dương Văn Vương",
-    "age": 12,
-    "school": "PITTI",
-    "dateofbirth": "1999-12-11",
-    "salary": 9500000
+    "AssetCode": "TS85462",
+    "AssetName": "Tài Sản Nội Vụ",
+    "AssetGroupId": "AG98232",
+    "AssetGroupName": "Tài Sản Văn Phòng",
+    "WearPercent": "20%",
+    "Price": 352342444,
+    "YearOfUse": 5,
+    "Note": "Đây là ghi chú tự động"
   },
   {
     "STT": 5,
     "Id": "2c",
-    "name": "Bùi Quang Duy",
-    "age": 22,
-    "school": "UTC",
-    "dateofbirth": "1999-12-11",
-    "salary": 9500000
+    "AssetCode": "TS87646",
+    "AssetName": "Tài Sản Hữu Hình",
+    "AssetGroupId": "AG98232",
+    "AssetGroupName": "Tài Sản Văn Phòng",
+    "WearPercent": "50%",
+    "Price": 342342553,
+    "YearOfUse": 3,
+    "Note": ""
   },
   {
     "STT": 6,
     "Id": "3a",
-    "name": "Nguyễn Đức Cảnh",
-    "age": 22,
-    "school": "KTV",
-    "dateofbirth": "2002-02-02",
-    "salary": 0
+    "AssetCode": "TS09543",
+    "AssetName": "Tài Sản",
+    "AssetGroupId": "AG13423",
+    "AssetGroupName": "Tài Sản Cá Nhân",
+    "WearPercent": "9%",
+    "Price": 999999999,
+    "YearOfUse": 9,
+    "Note": "Đây là ghi chú tự động"
   }
 ]

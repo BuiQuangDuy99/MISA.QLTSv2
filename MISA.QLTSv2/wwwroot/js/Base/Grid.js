@@ -1,5 +1,16 @@
 ﻿$(document).ready(function () {
-    new Grid('#test');
+    new Grid('#gridTest');
+    $('tbody tr').contextMenu({
+        selector: 'tbody tr',
+        items: {
+            "edit": { name: "Edit", icon: "edit" },
+            "cut": { name: "Cut", icon: "cut" },
+            copy: { name: "Copy", icon: "copy" },
+            "paste": { name: "Paste", icon: "paste" },
+            "delete": { name: "Delete", icon: "delete" },
+            "sep1": "---------",
+        }
+    });
 })
 
 // Biến config cho từng column trong bảng
@@ -12,27 +23,45 @@ var conFigColum = [
     },
     {
         DataType: "text",
-        Field: "name",
-        FieldText: "Họ và tên",
+        Field: "AssetCode",
+        FieldText: "Mã Loại Tài Sản",
         Index: 2
     },
     {
-        DataType: "datetime",
-        Field: "dateofbirth",
-        FieldText: "Ngày sinh",
+        DataType: "text",
+        Field: "AssetName",
+        FieldText: "Tên Loại Tài Sản",
         Index: 3
     },
     {
         DataType: "text",
-        Field: "school",
-        FieldText: "Trường học",
+        Field: "AssetGroupName",
+        FieldText: "Nhóm Tài Sản",
         Index: 4
     },
     {
-        DataType: "money",
-        Field: "salary",
-        FieldText: "Lương",
+        DataType: "percent",
+        Field: "WearPercent",
+        FieldText: "Tỷ Lệ Hao Mòn (%)",
         Index: 5
+    },
+    {
+        DataType: "money",
+        Field: "Price",
+        FieldText: "Nguyên Giá",
+        Index: 6
+    },
+    {
+        DataType: "year",
+        Field: "YearOfUse",
+        FieldText: "Số Năm Sử Dụng",
+        Index: 7
+    },
+    {
+        DataType: "text",
+        Field: "Note",
+        FieldText: "Ghi Chú",
+        Index: 8
     }
 ];
 
@@ -42,10 +71,19 @@ class Grid {
     // Hàm khởi tạo, truyền vào id của bảng
     constructor(tableId) {
         this.grid = $(tableId);
+        this.conFigColum;
         this.renderColumn();
         this.renderBody();
         this.initEvent();
     }
+
+    /**
+     * Hàm set config column
+     * CreatedBY: BQDUY(06/02/2021)
+     * */
+    setConFigColum() {
+
+    };
 
     /**
      * Hàm khởi tạo các sự kiện trong grid 
@@ -78,6 +116,9 @@ class Grid {
                 }
             }
         })
+
+        // Sự kiện click chuột phải vào một dòng show menu context
+        
     }
 
     /**
@@ -162,14 +203,19 @@ class Grid {
     addClassFormat(element, dataType) {
         switch (dataType) {
             case "number":
-                element.addClass("text-align-center");
-                element.addClass("th-number");
+                element.addClass("text-center");
+                break;
+            case "datetime":
+                element.addClass("text-center");
                 break;
             case "money":
-                element.addClass("text-align-right");
+                element.addClass("text-right");
                 break;
-            case 'datetime':
-                element.addClass("text-align-center");
+            case 'percent':
+                element.addClass("text-right");
+                break;
+            case 'year':
+                element.addClass("text-right");
                 break;
             default:
                 break;
@@ -194,12 +240,20 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
+            case "year":
+                td = $(`<td>` + value + `</td>`);
+                td = me.addClassFormat(td, dataType);
+                break;
             case "money":
                 value = formatMoney(value);
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
             case "number":
+                td = $(`<td>` + value + `</td>`);
+                td = me.addClassFormat(td, dataType);
+                break;
+            case "percent":
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
