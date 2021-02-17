@@ -107,7 +107,18 @@ class Grid {
         })
 
         // Sự kiện click chuột phải vào một dòng show menu context
-        
+        grid.find('tbody').on('contextmenu', function (e) {
+            var menu = $('.menu');//get the menu
+            e.preventDefault();//Prevent the default action: the normal right-click-menu to show
+            menu.css({
+                display: 'block',//show the menu
+                top: e.pageY,//make the menu be where you click (y)
+                left: e.pageX//make the menu be where you click (x)
+            });
+            $(document).click(function () { //When you left-click
+                menu.css({ display: 'none' });//Hide the menu
+            });
+        })
     }
 
     /**
