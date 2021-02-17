@@ -106,7 +106,7 @@ class Grid {
             }
         })
 
-        // Sự kiện click chuột phải vào một dòng show menu context
+        // Sự kiện click chuột phải vào một dòng show menu context (chưa hoàn thiện)
         grid.find('tbody').on('contextmenu', function (e) {
             var menu = $('.menu');//get the menu
             e.preventDefault();//Prevent the default action: the normal right-click-menu to show
