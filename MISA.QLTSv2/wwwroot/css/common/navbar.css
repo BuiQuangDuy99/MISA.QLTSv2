@@ -127,8 +127,9 @@
     left: 100%;
     width: 160px;
     box-shadow: 2px 2px 2px 2px #EBEBEB;
-    z-index: 999;
     display: none;
+    z-index:9999;
+    background-color:#fff;
 }
 
     .submenu li {
