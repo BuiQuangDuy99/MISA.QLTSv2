@@ -3,34 +3,56 @@
 class baseForm {
     ///constructor
     constructor(Idform) {
-
+        this.formMode = Enum.FormMode.Add;
         this.form = $(Idform);
         this.setApiUrl();
         this.getApiUrl = null;
         this.initEvent();
     };
-    initEvent() {
 
+    /**
+     * Hàm khởi tạo các sự kiện trong Form
+     * CreatedBy : NDTUNG (4/2/2021)
+     */
+    initEvent() {
+        //var data = this.getJson();
         this.form.find("#btn-cancel").off("click");
         this.form.find("#btn-save").off("click");
-        this.form.find("#btn-cancel").on("click", this.closeForm);
-
-        this.form.find(input).on("Click", "this.select()");
-        this.form.find("input[required]").on("blur", this.checkInputRequired);
-        this.form.find("input[required]").on("keyup", this.checkInputRequired);
-        this.form.find("input[DataType='Number']").on("blur", this.checkInputNumber);
-        this.form.find("input[DataType='Number']").on("keyup", this.checkInputNumber);
-        this.form.find('#txtPrice').on("keypress", function () {
+        //this.form.find("#btn-save").on("click", this.getJson());
+        this.form.find("#btn-cancel").on("click", this.closeForm.bind(this));
+        this.form.find("#btn-save").on("click", this.saveData.bind(this));
+        this.form.find('input').click(function () { $(this).select(); });
+        this.form.find("input").blur(this.checkStatusInput);
+        this.form.find("input").keyup(this.checkStatusInput);
+        //this.form.find("input").blur(this.checkInputNumber.bind(this));
+        //this.form.find("input").keyup(this.checkInputNumber.bind(this));
+        this.form.find("input[DataType='Money']").on("keypress", function () {
             if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
                 event.preventDefault();
             }
             else {
-                $('#txtPrice').keyup(this.formatPrice)
+                $("input[DataType='Money']").keyup(this.formatPrice)
             }
         }.bind(this));
+
+
     }
     setApiUrl() {
 
+    }
+    /**
+     *Kiểm tra xem đã đúng validate chưa
+     * CreatedBy : NDTUNG (4/2/2021)
+     */ 
+    checkStatusInput() {
+        var value = $(this).val(),
+            require = $(this).attr("required");
+        if (value.trim() == "" && require) {
+            $(this).addClass("border-red");
+            $(this).attr("title", "Trường này không được để trống!");
+        } else {
+            $(this).removeClass("border-red");
+        }
     }
 
     /**
@@ -39,10 +61,10 @@ class baseForm {
      */
     formatPrice() {
         try {
-            if (isNaN($("#txtPrice").val()) != null) {
-                var value = $("#txtPrice").val().split(".").join("");
+            if (isNaN($("input[DataType='Money']").val()) != null) {
+                var value = $("input[DataType='Money']").val().split(".").join("");
                 var formated = formatMoney(value);
-                $("#txtPrice").val(formated);
+                $("input[DataType='Money']").val(formated);
             }
         } catch (e) {
             alert(e);
@@ -54,18 +76,21 @@ class baseForm {
      * CreatedBy : NDTUNG (3/2/2021)
      */
     checkInputRequired() {
-        var val = $(this).val();
+        var isValid = true;
+        this.form.find("input[required]").each(function () {
+            var val = $(this).val();
 
-        if (val.trim() == "") {
-            $(this).addClass('border-red');
-            $(this).attr('title', 'Trường này không được để trống');
-            $(this).attr('Validate', false);
-        }
-        else {
-            $(this).removeClass('border-red');
-            $(this).removeAttr('title');
-            $(this).attr('Validate', true);
-        }
+            if (val.trim() == "") {
+                $(this).addClass('border-red');
+                $(this).attr('title', 'Trường này không được để trống');
+                isValid = false;
+            }
+            else {
+                $(this).removeClass('border-red');
+                $(this).removeAttr('title');
+            }
+        });
+        return isValid;
 
     }
     /**
@@ -73,23 +98,42 @@ class baseForm {
      * CreatedBy : NDTUNG (4/2/2021)
      */
     checkInputNumber() {
-        var val = $(this).val();
-        var test = /^[0-9]+$/i;
-        if (!test.test(val)) {
-            $(this).addClass('border-red');
-            $(this).attr('title', 'Càn nhập đúng định dạng số!');
-            $(this).attr('Validate', false);
+        var isValid = true;
+        this.form.find("input[DataType='Number']").each(function () {
+            var val = $(this).val();
+            var test = /^[0-9]+$/i;
+            if (!test.test(val)) {
+                $(this).addClass('border-red');
+                $(this).attr('title', 'Càn nhập đúng định dạng số!');
+                isValid = false;
 
-        }
-        else {
-            $(this).removeClass('border-red');
-            $(this).removeAttr('title');
-            $(this).attr('Validate', true);
+            }
+            else {
+                $(this).removeClass('border-red');
+                $(this).removeAttr('title');
 
-        }
-
+            }
+        });
+        return isValid;
     }
 
+    /**
+     * Validate form
+     * CreatedBy : NDTUNG (4/2/2021)
+     */
+    validateForm() {
+        var me = this;
+
+        var isValid = me.checkInputRequired(); //Validate các trường Required
+
+        if (isValid) {
+            isValid = me.checkInputNumber(); //Validate các ô nhập số
+        }
+
+        return isValid;
+
+
+    }
 
     /**
          * Reset lại form
@@ -111,23 +155,7 @@ class baseForm {
         dialog.dialog('close');
     }
 
-    /**
-     * Lấy dữ liệu trong form
-     * CreatedBy : NDTUNG (3/2/2021)
-     */
-    getData() {
-        var data = {};
-        var inputs = this.form.find("[fieldName]");
-        $.each(inputs, function (index, input) {
-            var propertyName = $(this).attr("fieldName");
-            var value = $(this).val();
-            if (propertyName == "Price") {
-                value = $(this).val().split(".").join("");
-            }
-            data[propertyName] = value;
-        });
-        return data;
-    }
+
 
 
     /**
@@ -136,12 +164,12 @@ class baseForm {
     */
     bindingData(data) {
         this.form.find("[fieldName]").each(function () {
-            var propertyName = this.attr('fieldName');
+            var propertyName = $(this).attr('fieldName');
             var propertyValue = data[propertyName];
-            if ($(this).attr('type') == 'date') {
+            if ($(this).attr('DataType') == 'date') {
                 propertyvalue = formatStringDate(propertyvalue);
             }
-            if ($(this).attr('fieldname') == "price") {
+            if ($(this).attr('DataType') == "Money") {
                 var money = formatMoney(propertyvalue);
                 propertyvalue = money;
             }
@@ -155,14 +183,15 @@ class baseForm {
      */
     saveChangeData(data) {
         var url = this.getApiUrl;
-        if (formMode == "Add") {
+        var formMode = this.formMode;
+        if (formMode == 1) {
             callAjax(url, "Post", data, function (res) {
                 if (res.MISACode == Enum.StatusResponse.Success) {
                     showAlertWarring("Cất dữ liệu thành công!")
                 }
             });
         }
-        if (formMode == "Edit") {
+        else if (formMode == 2) {
             callAjax(url, "Put", data, function (res) {
                 if (res.MISACode == Enum.StatusResponse.Success) {
                     showAlertWarring("Cất dữ liệu thành công!")
@@ -170,22 +199,60 @@ class baseForm {
             });
         }
     }
-    saveData() {
-        var inputValadate = $('input[required]');
-        $.each(inputValadate, function (index, input) {
-            $(input).trigger('blur');
-        });
-        var inputNotValidate = $('input[Validate="false"]')
-        if (inputValadate && inputNotValidate.length > 0) {
-            showAlertWarring("Vui lòng nhập đầy đủ các trường dữ liệu thông tin bắt buôc!");
-            inputNotValidate[0].focus();
-            return;
+
+    /**
+  * Lấy dữ liệu từ các ô input
+  * CreatedBy : NDTUNG (3/2/2021)
+  */
+    getDataInput(input, dataType) {
+        let value = input.val();
+
+        if (value) {
+            switch (dataType) {
+                case "Date":
+                    value += " 00:00:00";
+                    break;
+                case "Number":
+                    value = parseInt(value);
+                    break;
+                case "Money":
+                    value = parseInt(value.split(".").join(""));
+                    break;
+                default:
+                    value = value.trim();
+            }
         }
-        if (inputNotValidate.length == 0) {
-            var data = this.getData();
+
+        return value;
+    }
+    /**
+     * Lấy dữ liệu trong form
+     * CreatedBy : NDTUNG (3/2/2021)
+     */
+    getData() {
+        var me = this;
+        var data = {};
+        this.form.find("[fieldName]").each(function () {
+            var fieldName = $(this).attr("fieldName"),
+                dataType = $(this).attr("DataType");
+
+            data[fieldName] = me.getDataInput($(this), dataType);
+
+        });
+        return data;
+    }
+    /**
+     * Sự kiện click nút Lưu
+     * CreatedBy : NDTUNG (4/2/2021)
+     */
+    saveData() {
+        var me = this;
+        var isValid = me.validateForm();
+        if (isValid) {
+            var data = me.getData();
             this.saveChangeData(data);
             this.closeForm();
         }
-
     }
+
 }
