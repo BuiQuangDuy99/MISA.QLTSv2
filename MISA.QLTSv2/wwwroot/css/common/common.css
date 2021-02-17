@@ -11,3 +11,7 @@
 .m-button-clear:focus{
     outline: none;
 }
+
+.display-none{
+    display: none;
+}
