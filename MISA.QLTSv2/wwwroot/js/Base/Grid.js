@@ -1,16 +1,5 @@
 ﻿$(document).ready(function () {
     new Grid('#gridTest');
-    $('tbody tr').contextMenu({
-        selector: 'tbody tr',
-        items: {
-            "edit": { name: "Edit", icon: "edit" },
-            "cut": { name: "Cut", icon: "cut" },
-            copy: { name: "Copy", icon: "copy" },
-            "paste": { name: "Paste", icon: "paste" },
-            "delete": { name: "Delete", icon: "delete" },
-            "sep1": "---------",
-        }
-    });
 })
 
 // Biến config cho từng column trong bảng
