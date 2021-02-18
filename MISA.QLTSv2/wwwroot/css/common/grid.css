@@ -58,9 +58,28 @@ table {
         table tr:hover {
         background-color: #e9ebee;
         }
+
+.selected-row {
+    background-color: #2bff29 !important;
+}
+
+    .selected-row:hover {
+        background-color: #2bff29 !important;
+    }
 /*::-webkit-scrollbar{
     width:5px;
 }
 ::-webkit-scrollbar-thumb{
     background-color:#454545;
 }*/
+
+/*css cho context menu*/
+.menu {
+    background: #fff;
+    width: 60px;
+    padding: 3px 10px;
+    box-shadow: 0 0 10px -3px rgba(0, 0, 0, .3);
+    border: 1px solid #ccc;
+    display: none;
+    position: absolute;
+}
