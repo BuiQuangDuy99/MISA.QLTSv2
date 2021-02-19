@@ -6,6 +6,7 @@
     height: 32px;
     padding-left: 17px;
     padding-right: 9px;
+    outline:none;
 }
 
 .input-text {
@@ -17,6 +18,7 @@
     font-size: 13px;
     color: #373737;
     text-align: justify;
+    outline:none;
 }
 .input-detail {
     height: 63px;
@@ -32,4 +34,5 @@
     min-width: 149px;
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
+    outline:none;
 }

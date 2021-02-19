@@ -6,14 +6,13 @@
 
   <ItemGroup>
     <Folder Include="Views\Account\" />
-    <Folder Include="Views\Asset\" />
     <Folder Include="wwwroot\content\images\" />
     <Folder Include="wwwroot\js\views\Account\" />
     <Folder Include="wwwroot\js\views\Asset\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
 </Project>

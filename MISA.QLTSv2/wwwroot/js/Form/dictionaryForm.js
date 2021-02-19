@@ -11,7 +11,7 @@
 
     new dictionaryForm("#dialog_dictionary");
 
-    $(".btn-add").click(function() {
+    $("#add-demo").click(function() {
         dialog.dialog('open');
 
     })

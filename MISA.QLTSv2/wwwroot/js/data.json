@@ -23,7 +23,11 @@
     "AssetGroupName": "Tài Sản Cá Nhân",
     "WearPercent": "45%",
     "YearOfUse": 10,
-    "Note": "Đây là ghi chú tự động"
+    "Note": "Đây là ghi chú tự động",
+    "DateTime": "21/04/2021",
+    "Department": "Phòng công nghệ thông tin",
+    "Function": ""
+
   },
   {
     "STT": 3,
@@ -36,7 +40,11 @@
     "AssetGroupName": "Tài Sản Nhà Nước",
     "WearPercent": "30%",
     "YearOfUse": 20,
-    "Note": ""
+    "Note": "",
+    "DateTime": "21/04/2021",
+    "Department": "Phòng công nghệ thông tin",
+    "Function": ""
+
   },
   {
     "STT": 4,
@@ -49,7 +57,11 @@
     "AssetGroupName": "Tài Sản Văn Phòng",
     "WearPercent": "20%",
     "YearOfUse": 5,
-    "Note": "Đây là ghi chú tự động"
+    "Note": "Đây là ghi chú tự động",
+    "DateTime": "21/04/2021",
+    "Department": "Phòng công nghệ thông tin",
+    "Function": ""
+
   },
   {
     "STT": 5,
@@ -62,7 +74,11 @@
     "AssetGroupName": "Tài Sản Văn Phòng",
     "WearPercent": "50%",
     "YearOfUse": 3,
-    "Note": ""
+    "Note": "",
+    "DateTime": "21/04/2021",
+    "Department": "Phòng công nghệ thông tin",
+    "Function": ""
+
   },
   {
     "STT": 6,
@@ -75,6 +91,9 @@
     "AssetGroupName": "Tài Sản Cá Nhân",
     "WearPercent": "9%",
     "YearOfUse": 9,
-    "Note": "Đây là ghi chú tự động"
+    "Note": "Đây là ghi chú tự động",
+    "DateTime": "21/04/2021",
+    "Department": "Phòng công nghệ thông tin",
+    "Function": ""
   }
 ]

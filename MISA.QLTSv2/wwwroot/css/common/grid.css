@@ -43,6 +43,7 @@ table {
         background-color: #ffffff;
         padding-top: 0;
         font-size: 12px;
+        font-weight:600;
     }
 
     table td {
@@ -60,11 +61,11 @@ table {
         }
 
 .selected-row {
-    background-color: #2bff29 !important;
+    background-color: #f0f8ff !important;
 }
 
     .selected-row:hover {
-        background-color: #2bff29 !important;
+        background-color: #f0f8ff !important;
     }
 /*::-webkit-scrollbar{
     width:5px;
