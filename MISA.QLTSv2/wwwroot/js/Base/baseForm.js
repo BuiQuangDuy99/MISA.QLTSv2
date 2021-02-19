@@ -18,7 +18,7 @@ class baseForm {
         //var data = this.getJson();
         this.form.find("#btn-cancel").off("click");
         this.form.find("#btn-save").off("click");
-        //this.form.find("#btn-save").on("click", this.getJson());
+        //this.form.find("#btn-save").on("click", this.getJson()); 
         this.form.find("#btn-cancel").on("click", this.closeForm.bind(this));
         this.form.find("#btn-save").on("click", this.saveData.bind(this));
         this.form.find('input').click(function () { $(this).select(); });

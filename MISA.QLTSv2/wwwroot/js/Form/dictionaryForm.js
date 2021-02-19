@@ -2,7 +2,7 @@
 
     //Định nghĩa Dialog
     dialog = $(".dialog_dictionary").dialog({
-        autoOpen: false,
+        autoOpen: true,
         height: 717,
         width: 360,
         title: 'Thêm mới loại tài sản',
