@@ -3,22 +3,18 @@
     height: 32px;
     justify-content: center;
     font-size: 13px;
-    outline: none;
+    outline: none !important;
+    cursor: pointer;
+    overflow: hidden;
 }
 
 .btn-add {
-    display: flex;
     background-color: #00abfe;
     align-items: center;
     border-radius: 4px;
     min-width: 96px;
-    height: 32px;
-    overflow: hidden;
-    cursor: pointer;
     border: none;
     margin-left: 10px;
-    justify-content: center;
-    font-size: 13px;
     color: #fff;
 }
 
@@ -28,12 +24,9 @@
     }
 
 .btn-refresh {
-    display: flex;
     border-radius: 2.5px;
     border: 1px solid #e0e0e0;
     width: 31px;
-    height: 32px;
-    overflow: hidden;
     margin-left: 10px;
     background-color: #fff;
 }
@@ -44,13 +37,10 @@
     }
 
 .btn-remove {
-    display: flex;
     background-color: #ffffff;
     border-radius: 2.5px;
     border: 1px solid #e0e0e0;
     width: 31px;
-    height: 32px;
-    overflow: hidden;
     margin-left: 10px;
     background-color: #fff;
 }
@@ -61,24 +51,17 @@
     }
 
 .btn-cancel {
-    display: flex;
     background-color: #fff;
-    align-items: center;
     border-radius: 4px;
     border: 1px solid #e0e0e0;
     width: 96px;
-    height: 32px;
-    overflow: hidden;
-    cursor: pointer;
     padding: 9px 31px;
     margin-left: 10px;
     color: black;
-    justify-content: center;
+    align-items: center;
 }
 
 .btn-add-second {
-    display: flex;
-    align-items: center;
     background-color: #fff;
     border-radius: 4px;
     height: 32px;
@@ -87,26 +70,25 @@
     padding-left: 16px;
     padding-right: 16px;
     border: 1px solid #00abfe;
-    outline: none;
-    cursor: pointer;
     min-width: 120px;
-    justify-content: center;
 }
 
 .btn-remove-second {
-    display: flex;
-    align-items: center;
     background-color: #fff;
     border-radius: 4px;
     height: 32px;
-    font-size: 13px;
     color: #212121;
     padding-left: 16px;
     padding-right: 16px;
     border: 1px solid #e0e0e0;
-    outline: none;
-    cursor: pointer;
     min-width: 120px;
-    justify-content: center;
     margin-left: 10px;
+}
+.btn-help{
+    border:none;
+    background-color:#fff;
+}
+.btn-close {
+    border: none;
+    background-color: #fff;
 }

@@ -14,7 +14,7 @@ var conFigColum = [
         DataType: "text",
         Field: "AssetCode",
         FieldText: "Mã Loại Tài Sản",
-        Index: 2
+        Index: 2 
     },
     {
         DataType: "text",
@@ -36,7 +36,7 @@ var conFigColum = [
     },
     {
         DataType: "money",
-        Field: "Price",
+        Field: "Price", 
         FieldText: "Nguyên Giá",
         Index: 6
     },
@@ -60,7 +60,8 @@ class Grid {
     // Hàm khởi tạo, truyền vào id của bảng
     constructor(tableId) {
         this.grid = $(tableId);
-        this.conFigColum;
+        this.conFigColum = null;
+        this.setConFigColum();
         this.renderColumn();
         this.renderBody();
         this.initEvent();
@@ -131,12 +132,12 @@ class Grid {
         var th;
 
         // Sort lại mảng cho đúng thứ tự cột tăng dần:
-        conFigColum.sort(function (a, b) {
+        this.conFigColum.sort(function (a, b) {
             return parseInt(a.Index) - parseInt(b.Index);
         });
 
         // Build thẻ th
-        $.each(conFigColum, function (index, col) {
+        $.each(this.conFigColum, function (index, col) {
             th = $(`<th>` + col.FieldText + `</th>`);
             th = me.addAttribute(th, 'fieldName', col.Field);
             th = me.addAttribute(th, 'dataType', col.DataType);

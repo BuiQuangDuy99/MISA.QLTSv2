@@ -7,9 +7,13 @@
     "AssetGroupId": "AG98232",
     "AssetGroupName": "Tài Sản Văn Phòng",
     "WearPercent": "10%",
+    "DateTime": "21/04/2021",
     "Price": 555666777,
     "YearOfUse": 15,
-    "Note": "Đây là ghi chú tự động" 
+    "Note": "Đây là ghi chú tự động",
+    "Department": "Phòng công nghệ thông tin",
+    "Function": ""
+
   },
   {
     "STT": 2,
@@ -21,7 +25,11 @@
     "WearPercent": "45%",
     "Price": 1241344,
     "YearOfUse": 10,
-    "Note": "Đây là ghi chú tự động"
+    "Note": "Đây là ghi chú tự động",
+    "DateTime": "21/04/2021",
+    "Department": "Phòng công nghệ thông tin",
+    "Function": ""
+
   },
   {
     "STT": 3,
@@ -33,7 +41,11 @@
     "WearPercent": "30%",
     "Price": 652345233,
     "YearOfUse": 20,
-    "Note": ""
+    "Note": "",
+    "DateTime": "21/04/2021",
+    "Department": "Phòng công nghệ thông tin",
+    "Function": ""
+
   },
   {
     "STT": 4,
@@ -45,7 +57,11 @@
     "WearPercent": "20%",
     "Price": 352342444,
     "YearOfUse": 5,
-    "Note": "Đây là ghi chú tự động"
+    "Note": "Đây là ghi chú tự động",
+    "DateTime": "21/04/2021",
+    "Department": "Phòng công nghệ thông tin",
+    "Function": ""
+
   },
   {
     "STT": 5,
@@ -57,7 +73,11 @@
     "WearPercent": "50%",
     "Price": 342342553,
     "YearOfUse": 3,
-    "Note": ""
+    "Note": "",
+    "DateTime": "21/04/2021",
+    "Department": "Phòng công nghệ thông tin",
+    "Function": ""
+
   },
   {
     "STT": 6,
@@ -69,6 +89,9 @@
     "WearPercent": "9%",
     "Price": 999999999,
     "YearOfUse": 9,
-    "Note": "Đây là ghi chú tự động"
+    "Note": "Đây là ghi chú tự động",
+    "DateTime": "21/04/2021",
+    "Department": "Phòng công nghệ thông tin",
+    "Function": ""
   }
 ]

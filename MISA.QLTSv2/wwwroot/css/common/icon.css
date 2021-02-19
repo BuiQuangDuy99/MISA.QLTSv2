@@ -41,3 +41,23 @@
     height: 14px;
     margin-right:9px;
 }
+.icon-close {
+    background-image: url('/Icons/cancel.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 14px;
+    height: 14px;
+    margin-top: 4px;
+    outline:none;
+}
+.icon-help {
+    background-image: url('/Icons/help.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+    outline:none;
+}
