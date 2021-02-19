@@ -11,10 +11,10 @@
 
     new dictionaryForm("#dialog_dictionary");
 
-    $("#add-demo").click(function() {
+    $("#add-demo").click(function () {
         dialog.dialog('open');
 
-    })
+    });
 
 })
 class dictionaryForm extends baseForm {
