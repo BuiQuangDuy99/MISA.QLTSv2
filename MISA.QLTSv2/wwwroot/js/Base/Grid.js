@@ -1,66 +1,10 @@
-﻿$(document).ready(function () {
-    new Grid('#gridTest');
-})
-
-// Biến config cho từng column trong bảng
-var conFigColum = [
-    {
-        DataType: "number",
-        Field: "STT",
-        FieldText: "STT",
-        Index: 1
-    },
-    {
-        DataType: "text",
-        Field: "AssetCode",
-        FieldText: "Mã Loại Tài Sản",
-        Index: 2
-    },
-    {
-        DataType: "text",
-        Field: "AssetName",
-        FieldText: "Tên Loại Tài Sản",
-        Index: 3
-    },
-    {
-        DataType: "text",
-        Field: "AssetGroupName",
-        FieldText: "Nhóm Tài Sản",
-        Index: 4
-    },
-    {
-        DataType: "percent",
-        Field: "WearPercent",
-        FieldText: "Tỷ Lệ Hao Mòn (%)",
-        Index: 5
-    },
-    {
-        DataType: "money",
-        Field: "Price",
-        FieldText: "Nguyên Giá",
-        Index: 6
-    },
-    {
-        DataType: "year",
-        Field: "YearOfUse",
-        FieldText: "Số Năm Sử Dụng",
-        Index: 7
-    },
-    {
-        DataType: "text",
-        Field: "Note",
-        FieldText: "Ghi Chú",
-        Index: 8
-    }
-];
-
-
-// Lớp dùng để render ra các bảng
+﻿// Lớp dùng để render ra các bảng
 class Grid {
     // Hàm khởi tạo, truyền vào id của bảng
     constructor(tableId) {
         this.grid = $(tableId);
-        this.conFigColum;
+        this.conFigColum = null;
+        this.setConFigColum();
         this.renderColumn();
         this.renderBody();
         this.initEvent();
@@ -113,7 +57,8 @@ class Grid {
             menu.css({
                 display: 'block',//show the menu
                 top: e.pageY,//make the menu be where you click (y)
-                left: e.pageX//make the menu be where you click (x)
+                left: e.pageX,//make the menu be where you click (x)
+                position: 'fixed'
             });
             $(document).click(function () { //When you left-click
                 menu.css({ display: 'none' });//Hide the menu
@@ -131,14 +76,14 @@ class Grid {
         var th;
 
         // Sort lại mảng cho đúng thứ tự cột tăng dần:
-        conFigColum.sort(function (a, b) {
+        me.conFigColum.sort(function (a, b) {
             return parseInt(a.Index) - parseInt(b.Index);
         });
 
         // Build thẻ th
-        $.each(conFigColum, function (index, col) {
+        $.each(me.conFigColum, function (index, col) {
             th = $(`<th>` + col.FieldText + `</th>`);
-            th = me.addAttribute(th, 'fieldName', col.Field);
+            th = me.addAttribute(th, 'fieldName', col.FieldName);
             th = me.addAttribute(th, 'dataType', col.DataType);
             th = me.addClassFormat(th, col.DataType);
             tr.append(th);
@@ -256,6 +201,9 @@ class Grid {
             case "percent":
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
+                break;
+            case "action":
+                td = $(`<td></td>`);
                 break;
             default:
                 td = $(`<td>` + value + `</td>`);

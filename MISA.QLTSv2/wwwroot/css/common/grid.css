@@ -19,7 +19,6 @@
 
 /****
     định dạng danh sách bảng
-
 */
 
 table th, td {
@@ -31,9 +30,12 @@ table th, td {
 }
 
 table {
-    border-bottom: none;
     width: 100%;
 }
+
+    table thead {
+        border-bottom: solid 1px #bbb;
+    }
 
     table th {
         position: sticky;
@@ -45,7 +47,6 @@ table {
 
     table td {
         font-size: 13px;
-        border-right: 1px solid #bbbbbb;
     }
 
         table td:last-child {
@@ -53,7 +54,6 @@ table {
         }
 
     table tr {
-        border-bottom: 1px solid #bbbbbb;
     }
         table tr:hover {
         background-color: #e9ebee;

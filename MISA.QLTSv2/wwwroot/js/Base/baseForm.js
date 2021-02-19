@@ -90,6 +90,8 @@ class baseForm {
                 $(this).removeAttr('title');
             }
         });
+        var inputRequire = this.form.find(".border-red");
+        inputRequire.first().focus();
         return isValid;
 
     }
@@ -114,6 +116,8 @@ class baseForm {
 
             }
         });
+        var inputRequire = this.form.find(".border-red");
+        inputRequire.first().focus();
         return isValid;
     }
 
@@ -143,7 +147,7 @@ class baseForm {
         this.form.find("[fieldName]").each(function () {
             $(this).val("");
         });
-        this.form.find(".border-red").removeClass(".border-red");
+        this.form.find(".border-red").removeClass("border-red");
     }
 
     /**
@@ -151,7 +155,7 @@ class baseForm {
      * CreatedBy : NDTUNG (3/2/2021)
      */
     closeForm() {
-        this.resetForm;
+        this.resetForm();
         dialog.dialog('close');
     }
 

@@ -1,0 +1,13 @@
+﻿.ui-dialog .ui-dialog-content {
+    padding: 0px 0px 0px 20px !important;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+    padding: 11.5px 0px 0px 20px !important;
+    text-transform: inherit !important;
+    font-weight: normal !important;
+}
+
+.ui-dialog-titlebar-close{
+    display: none;
+}

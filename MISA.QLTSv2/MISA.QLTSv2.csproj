@@ -10,7 +10,6 @@
     <Folder Include="wwwroot\content\images\" />
     <Folder Include="wwwroot\js\views\Account\" />
     <Folder Include="wwwroot\js\views\Asset\" />
-    <Folder Include="wwwroot\js\views\Dictionary\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,8 +3,9 @@
     //Định nghĩa Dialog
     dialog = $(".dialog_dictionary").dialog({
         autoOpen: false,
-        height: 600,
-        width: 800,
+        height: 717,
+        width: 360,
+        title: 'Thêm mới loại tài sản',
         modal: true,
     });
 
