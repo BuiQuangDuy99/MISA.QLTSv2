@@ -61,4 +61,10 @@ class Dictionary extends Grid {
         ];
         this.conFigColum = conFigColum;
     }
+
+    dbClickRow() {
+        var id = $(this).data('recordId');
+        console.log(id);
+        
+    }
 }

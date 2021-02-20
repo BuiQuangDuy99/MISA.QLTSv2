@@ -2,11 +2,12 @@
 //-----------------Form-----------------------------
 class baseForm {
     ///constructor
-    constructor(Idform) {
+    constructor(Idform, data) {
         this.formMode = Enum.FormMode.Add;
         this.form = $(Idform);
         this.setApiUrl();
         this.getApiUrl = null;
+        //this.bindingData(data);
         this.initEvent();
     };
 
@@ -187,21 +188,22 @@ class baseForm {
      */
     saveChangeData(data) {
         var url = this.getApiUrl;
-        var formMode = this.formMode;
-        if (formMode == 1) {
-            callAjax(url, "Post", data, function (res) {
-                if (res.MISACode == Enum.StatusResponse.Success) {
-                    showAlertWarring("Cất dữ liệu thành công!")
-                }
-            });
-        }
-        else if (formMode == 2) {
-            callAjax(url, "Put", data, function (res) {
-                if (res.MISACode == Enum.StatusResponse.Success) {
-                    showAlertWarring("Cất dữ liệu thành công!")
-                }
-            });
-        }
+        console.log(data);
+        //var formMode = this.formMode;
+        //if (formMode == 1) {
+        //    callAjax(url, "Post", data, function (res) {
+        //        if (res.MISACode == Enum.StatusResponse.Success) {
+        //            showAlertWarring("Cất dữ liệu thành công!")
+        //        }
+        //    });
+        //}
+        //else if (formMode == 2) {
+        //    callAjax(url, "Put", data, function (res) {
+        //        if (res.MISACode == Enum.StatusResponse.Success) {
+        //            showAlertWarring("Cất dữ liệu thành công!")
+        //        }
+        //    });
+        //}
     }
 
     /**

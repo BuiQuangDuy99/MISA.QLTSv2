@@ -18,6 +18,10 @@ class Grid {
 
     };
 
+    dbClickRow() {
+        
+    };
+
     /**
      * Hàm khởi tạo các sự kiện trong grid 
      * CreatedBY: BQDUY(04/02/2021)
@@ -25,11 +29,22 @@ class Grid {
     initEvent() {
         var grid = this.grid;
 
-        // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit
-        this.grid.find('tbody').on('dblclick', 'tr', function () {
-            formMode = 'Edit';
-            console.log(formMode);
-        })
+        // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit, và binding dữ liệu của row lên form
+        this.grid.find('tbody').on('dblclick', 'tr', this.dbClickRow);
+
+        //this.grid.find('tbody').on('dblclick', 'tr', function () {
+        //    formMode = 'Edit';
+        //    var id = $(this).data('recordId');
+        //    var formInfo = new baseForm('#dialog_dictionary');
+        //    $.getJSON("/js/data.json", function (data) {
+        //        console.log(id);
+        //        $.each(data, function (index, obj) {
+        //            if (id == obj['id']) {
+        //                formInfo.bindingData(obj);
+        //            }
+        //        })
+        //    })
+        //})
 
         // Sự kiện click một dòng, hoặc giữ ctrl để click được nhiều dòng
         grid.find('tbody').on('click', 'tr', function (event) {
@@ -97,7 +112,7 @@ class Grid {
      * Hàm render dữ liệu vào bảng
      * CreatedBY: BQDUY(04/02/2021)
      * */
-    renderBody() {
+    renderBody(obj) {
         try {
             var me = this;
             var grid = this.grid;
