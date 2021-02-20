@@ -3,6 +3,14 @@
     border-radius: 0;
 }
 
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-left-radius: 0;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-right-radius: 0;
+}
+
 .dialog-header {
     display: flex;
     font-size: 18px;
@@ -13,9 +21,9 @@
 }
 
     .dialog-header .header-toolbar {
-        position:absolute;
-        right:21px;
-        display:flex;
+        position: absolute;
+        right: 21px;
+        display: flex;
     }
 
 .dialog-content {

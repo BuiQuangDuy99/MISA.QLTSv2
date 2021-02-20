@@ -143,7 +143,7 @@ class baseForm {
         this.form.find("[fieldName]").each(function () {
             $(this).val("");
         });
-        this.form.find(".border-red").removeClass(".border-red");
+        this.form.find(".border-red").removeClass("border-red");
     }
 
     /**
@@ -151,7 +151,7 @@ class baseForm {
      * CreatedBy : NDTUNG (3/2/2021)
      */
     closeForm() {
-        this.resetForm;
+        this.resetForm();
         dialog.dialog('close');
     }
 
@@ -183,21 +183,22 @@ class baseForm {
      */
     saveChangeData(data) {
         var url = this.getApiUrl;
-        var formMode = this.formMode;
-        if (formMode == 1) {
-            callAjax(url, "Post", data, function (res) {
-                if (res.MISACode == Enum.StatusResponse.Success) {
-                    showAlertWarring("Cất dữ liệu thành công!")
-                }
-            });
-        }
-        else if (formMode == 2) {
-            callAjax(url, "Put", data, function (res) {
-                if (res.MISACode == Enum.StatusResponse.Success) {
-                    showAlertWarring("Cất dữ liệu thành công!")
-                }
-            });
-        }
+        console.log(data);
+        //var formMode = this.formMode;
+        //if (formMode == 1) {
+        //    callAjax(url, "Post", data, function (res) {
+        //        if (res.MISACode == Enum.StatusResponse.Success) {
+        //            showAlertWarring("Cất dữ liệu thành công!")
+        //        }
+        //    });
+        //}
+        //else if (formMode == 2) {
+        //    callAjax(url, "Put", data, function (res) {
+        //        if (res.MISACode == Enum.StatusResponse.Success) {
+        //            showAlertWarring("Cất dữ liệu thành công!")
+        //        }
+        //    });
+        //}
     }
 
     /**

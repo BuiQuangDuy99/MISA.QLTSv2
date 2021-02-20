@@ -12,7 +12,6 @@
 
     $("#btn-add").click(function () {
         dialog.dialog('open');
-
     })
 
 })  
