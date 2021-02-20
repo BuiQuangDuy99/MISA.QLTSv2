@@ -90,6 +90,8 @@ class baseForm {
                 $(this).removeAttr('title');
             }
         });
+        var inputRequire = this.form.find(".border-red");
+        inputRequire.first().focus();
         return isValid;
 
     }
@@ -114,6 +116,8 @@ class baseForm {
 
             }
         });
+        var inputRequire = this.form.find(".border-red");
+        inputRequire.first().focus();
         return isValid;
     }
 
@@ -143,7 +147,7 @@ class baseForm {
         this.form.find("[fieldName]").each(function () {
             $(this).val("");
         });
-        this.form.find(".border-red").removeClass(".border-red");
+        this.form.find(".border-red").removeClass("border-red");
     }
 
     /**
@@ -151,7 +155,7 @@ class baseForm {
      * CreatedBy : NDTUNG (3/2/2021)
      */
     closeForm() {
-        this.resetForm;
+        this.resetForm();
         dialog.dialog('close');
     }
 
@@ -182,8 +186,8 @@ class baseForm {
      * CreatedBy : NDTUNG (4/2/2021)
      */
     saveChangeData(data) {
-        var url = this.getApiUrl;
-        var formMode = this.formMode;
+        //var url = this.getApiUrl;
+        //var formMode = this.formMode;
         if (formMode == 1) {
             callAjax(url, "Post", data, function (res) {
                 if (res.MISACode == Enum.StatusResponse.Success) {
@@ -236,6 +240,9 @@ class baseForm {
             var fieldName = $(this).attr("fieldName"),
                 dataType = $(this).attr("DataType");
 
+            if (dataType == "Combobox") {
+                fieldName = $(this).attr("fieldValue");
+            }
             data[fieldName] = me.getDataInput($(this), dataType);
 
         });

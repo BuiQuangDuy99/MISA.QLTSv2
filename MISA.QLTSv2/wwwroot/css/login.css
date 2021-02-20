@@ -1,0 +1,107 @@
+
+html {
+    height: 100%;
+}
+a {
+    font-size: 13px;
+    color: #00abfe;
+    text-decoration:none;
+    margin-left:154px;
+}
+body {
+    background-image: url("../content/images/photo-1477959858617-67f85cf4f1df.jfif");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin: 0;
+    padding: 0;   
+}
+.login {
+    background-color: #ffffff;
+    border-radius: 6px;
+    width: 400px;
+    height: 440px;
+    overflow: hidden;
+    position: absolute;
+    top: calc(50% - 220px);
+    left: calc(50% - 200px);
+}
+.logo_login {
+    color: #00abfe;
+    width: 56px;
+    height: 57px;
+    margin-top:34px;
+    margin-left:172px;
+    background-image: url('../icon/logo-qlts.svg');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+.title_1 {
+    font-size: 24px;
+    font-weight: 700;
+/*    letter-spacing: .48px;
+*/    color: #011239;
+    margin-left: 137px;
+    margin-top: 21px;
+}
+.title_2 {
+    margin-top: 8px;
+    margin-left: 136px;
+    font-size: 13px;
+    color: #011239;
+}
+.login input:first-child {
+    margin-top: 32px;
+}
+input {
+    margin-top: 15px;
+    margin-left: 51px;
+    background-color: #ffffff;
+    border: 1px solid #dedede;
+    width: 299px;
+    height: 31px;
+    padding-left:12px;
+    box-sizing:border-box;
+    font-size: 13px;
+}
+button {
+    margin-top:20px;
+    margin-left: 50px;
+    background-color: #00abfe;
+    border:none;
+    color:white;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
+    width: 300px;
+    height: 32px;
+    overflow: hidden;
+    outline: none;
+    font-size: 13px;
+}
+.login>div:last-child {
+    margin-top: 19px;
+}
+input,button:hover{
+    cursor:pointer;
+}
+button:hover {
+    background-color: #047c9b;
+}
+.copyright {
+    font-size: 13px;
+    color: white;
+    position: absolute;
+    top: calc(50% + 260px);
+    left: calc(50% - 75.25px);
+    width: 155px;
+    height: 15px;
+}
+.border-red {
+    border: 1px solid red !important;
+}
+.ui-tooltip{
+    background-color:#e41d1d;
+    color:white;
+    top:0;
+    min-width:150px;
+}
