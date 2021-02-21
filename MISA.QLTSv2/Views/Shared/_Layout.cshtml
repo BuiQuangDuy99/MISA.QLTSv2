@@ -19,6 +19,7 @@
     <link href="~/css/common/layout.css" rel="stylesheet" />
     <link href="~/css/common/toolbar.css" rel="stylesheet" />
     <link href="~/css/common/responsive.css" rel="stylesheet" />
+    <link href="~/css/custom/department.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -69,7 +70,7 @@
                             </div>
                             <ul class="submenu">
                                 <li><a href="#">Loại tài sản</a></li>
-                                <li><a href="#">Bộ phận sử dụng TS</a></li>
+                                <li><a href="/dictionary/departments">Bộ phận sử dụng TS</a></li>
                             </ul>
                         </div>
                         <div class="navbar-item-box">
@@ -122,8 +123,7 @@
             </div>
         </div>
     </div>
-        </div>
-    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="~/js/Base/enum.js"></script>
@@ -134,9 +134,12 @@
     @*Script validate, xử lý sự kiện của form*@
     <script src="~/js/Base/baseForm.js"></script>
     <script src="~/js/Form/dictionaryForm.js"></script>
+    <script src="~/js/Form/departmentForm.js"></script>
     @*Script render dữ liệu vào bảng*@
     <script src="~/js/Base/grid.js"></script>
+    <script src="~/js/views/Dictionary/department.js"></script>
     <script src="~/js/navigation.js"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

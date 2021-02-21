@@ -1,20 +1,21 @@
 ﻿$(document).ready(function () {
-
     //Định nghĩa Dialog
-    dialog = $("#dialog_dictionary").dialog({
+    dialog = $(".department_dialog").dialog({
         autoOpen: false,
-        height: 600,
-        width: 800,
+        //height: 400,
+        width: 480,
         modal: true,
     });
 
-    new dictionaryForm("#dialog_dictionary");
-    $(".btn-add").click(function() {
+    new departmentForm('#department_dialog');
+
+    $(".btn-add").click(function () {
         dialog.dialog('open');
     })
 
 })
-class dictionaryForm extends baseForm {
+
+class departmentForm extends baseForm {
     constructor(formId) {
         super(formId);
     }

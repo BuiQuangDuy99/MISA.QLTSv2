@@ -1,0 +1,52 @@
+#gridDepartment tbody tr, #gridDepartment tbody td {
+    border: none;
+}
+
+.department_dialog .m-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: #454f63;
+    padding-left: 21px;
+    margin-bottom: 5px;
+}
+.department_dialog .top {
+    padding: 0 21px;
+}
+.department_dialog .bottom {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 56px;
+    background-color: #f5f5f5;
+}
+    .department_dialog .bottom .btn-cancel{
+        position: absolute;
+        left: 10px;
+    }
+
+    .department_dialog .bottom .btn-add{
+        position: absolute;
+        right: 20px;
+    }
+
+.department_dialog .top .sub-title{
+    padding-bottom: 3px;
+}
+.department_dialog .top .sub-content{
+    margin-bottom: 14px;
+}
+.department_dialog input, .department_dialog select, .department_dialog textarea{
+    width: 100%;
+    outline: none;
+}
+
+.department_dialog{
+    position: relative;
+}
+    .department_dialog .top .sub-content textarea{
+        resize: none;
+        outline: none;
+    }
+.ui-dialog .ui-dialog-title{
+    display: none;
+}

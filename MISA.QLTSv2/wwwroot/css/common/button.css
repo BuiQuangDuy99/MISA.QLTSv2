@@ -3,6 +3,7 @@
     height: 32px;
     justify-content: center;
     font-size: 13px;
+    outline: none !important;
 }
 
 .btn-add {
