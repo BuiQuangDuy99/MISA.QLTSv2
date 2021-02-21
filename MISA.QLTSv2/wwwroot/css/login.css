@@ -2,19 +2,26 @@
 html {
     height: 100%;
 }
+
 a {
     font-size: 13px;
     color: #00abfe;
-    text-decoration:none;
-    margin-left:154px;
+    text-decoration: none;
+    margin: auto !important;
 }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
 body {
     background-image: url("../content/images/photo-1477959858617-67f85cf4f1df.jfif");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     margin: 0;
-    padding: 0;   
+    padding: 0;
 }
+
 .login {
     background-color: #ffffff;
     border-radius: 6px;
@@ -25,51 +32,60 @@ body {
     top: calc(50% - 220px);
     left: calc(50% - 200px);
 }
+
 .logo_login {
     color: #00abfe;
     width: 56px;
     height: 57px;
-    margin-top:34px;
-    margin-left:172px;
+    margin: 34px auto 0 auto;
     background-image: url('../icon/logo-qlts.svg');
-    background-position:center;
-    background-repeat:no-repeat;
-    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
 .title_1 {
     font-size: 24px;
     font-weight: 700;
-/*    letter-spacing: .48px;
-*/    color: #011239;
-    margin-left: 137px;
+    /*    letter-spacing: .48px;
+*/
+    color: #011239;
     margin-top: 21px;
+    text-align: center;
 }
+
 .title_2 {
     margin-top: 8px;
-    margin-left: 136px;
     font-size: 13px;
     color: #011239;
+    text-align: center;
 }
-.login input:first-child {
-    margin-top: 32px;
+
+.input div {
+    display: flex;
 }
+
+    .input div:first-child {
+        margin-top: 17px;
+    }
+
 input {
-    margin-top: 15px;
-    margin-left: 51px;
+    margin: 15px auto 0 auto;
     background-color: #ffffff;
     border: 1px solid #dedede;
     width: 299px;
     height: 31px;
-    padding-left:12px;
-    box-sizing:border-box;
+    padding-left: 12px;
+    box-sizing: border-box;
     font-size: 13px;
+    outline: none;
 }
+
 button {
-    margin-top:20px;
-    margin-left: 50px;
+    margin: 20px auto 0 auto;
     background-color: #00abfe;
-    border:none;
-    color:white;
+    border: none;
+    color: white;
     border-radius: 4px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
     width: 300px;
@@ -78,15 +94,21 @@ button {
     outline: none;
     font-size: 13px;
 }
-.login>div:last-child {
+
+.login > div:last-child {
+    display: flex;
     margin-top: 19px;
+    align-items: center !important;
 }
-input,button:hover{
-    cursor:pointer;
+
+input, button:hover {
+    cursor: pointer;
 }
+
 button:hover {
     background-color: #047c9b;
 }
+
 .copyright {
     font-size: 13px;
     color: white;
@@ -96,12 +118,14 @@ button:hover {
     width: 155px;
     height: 15px;
 }
+
 .border-red {
     border: 1px solid red !important;
 }
-.ui-tooltip{
-    background-color:#e41d1d;
-    color:white;
-    top:0;
-    min-width:150px;
+
+.ui-tooltip {
+    background-color: #e41d1d;
+    color: white;
+    top: 0;
+    min-width: 150px;
 }

@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('#btn-login').off('click');
-    $('.login input[required]').blur(checkInput);
+    $('input[required]').on("blur keyup", checkInput);
     $('input').click(function () { $(this).select(); });
     $('#btn-login').on('click', (loginOnClick));
     $(document).keypress(function (event) {
@@ -49,18 +49,30 @@ function checkInput() {
         if (val == "") {
             $(this).attr('title', 'Trường này không được để trống');
             $(this).tooltip({
+                items: $(this),
                 track: true,
                 content: $(this).attr('title'),
+                position: {
+                    my: "left+10 top",
+                    at: "right+5 top",
+                    collision: "none"
+                },
                 disabled: false
             });
         }
         else {
             $(this).attr('title', 'Không được dài quá 20 ký tự');
             $(this).tooltip({
+                items: $(this),
                 track: true,
                 content: $(this).attr('title'),
-                disabled: false
-            })  
+                position: {
+                    my: "left+10 top",
+                    at: "right+5 top",
+                    collision: "none"
+                },
+                disabled: false 
+            });
         }
         //isValid = false;
     }
@@ -68,6 +80,7 @@ function checkInput() {
         $(this).removeClass('border-red');
         $(this).removeAttr('title');
         $(this).tooltip({
+            items: $(this),
             disabled: true
         });
     }
@@ -143,6 +156,7 @@ function getAccount() {
         var fieldName = $(this).attr('fieldName');
         data[fieldName] = $(this).val().trim();
     });
+    return data;
     console.log(data);
 }
 /**
@@ -164,14 +178,50 @@ function validateLogin() {
     if (isValid) { isValid = checkLength() }
     return isValid;
 }
+
+/** 
+ * Thông báo lỗi nếu như đăng nhập không thành công
+ * CreatedBy: NDTUNG (21/2/2021)
+ */
+function errorAcount(account) {
+    $('input').each(function () {
+        var fieldName = $(this).attr('fieldName');
+        if ($(this).val() != account[fieldName]) {
+            $(this).attr('title', 'Thông tin đăng nhập không chính xác.');
+            $(this).addClass('border-red');
+            $(this).tooltip({
+                items: $(this),
+                content: $(this).attr('title'),
+                track: true,
+                position: {
+                    my: "left+10 top",
+                    at: "right+5 top",
+                    collision: "none"
+                },
+                disabled: false
+            }).tooltip('open');
+        }
+    })
+}
 /**
  * Sự kiện kích nút đăng nhập
  * CreatedBy: NDTUNG (18/2/2021)
  */
 function loginOnClick() {
+    var accountTest = {
+        UnitBudgetCode: "Misa",
+        UserName: "12345678",
+        Password: "12345678"
+    }
     var isValid = validateLogin();
     if (isValid) {
-        getAccount();
-        resetLogin();
+        var account = getAccount();
+        if ((JSON.stringify(account) === JSON.stringify(accountTest))) {
+            window.location.href = "https://localhost:44363";
+            resetLogin();
+        }
+        else {
+            errorAcount(accountTest);
+        }
     }
 }

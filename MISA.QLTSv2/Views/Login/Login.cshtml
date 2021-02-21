@@ -1,4 +1,4 @@
-﻿@{
+@{
     Layout = null;
 }
 
@@ -7,7 +7,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
+    <title>Đăng Nhập</title>
     <link rel="icon" href="~/icon/logo-qlts.svg" />
     <link href="~/lib/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
     <link href="~/css/login.css" rel="stylesheet" />
@@ -19,12 +19,18 @@
             <div class="title_1">MISA QLTS</div>
             <div class="title_2">Phần mềm quản lý tài sản</div>
         </div>
-        <div>
-            <input tabindex="1" type="text" placeholder="Mã ngân sách đơn vị" fieldName="UnitBudgetCode"  autofocus required />
-            <input tabindex="2" type="text" placeholder="Số điện thoại Email" fieldName="UserName" required />
-            <input tabindex="3" type="password" placeholder="Mật khẩu" fieldName="Password" required />
+        <div class="input">
+            <div>
+                <input tabindex="1" type="text" placeholder="Mã ngân sách đơn vị" fieldName="UnitBudgetCode" autofocus required />
+            </div>
+            <div>
+                <input tabindex="2" type="text" placeholder="Số điện thoại/email" fieldName="UserName" required />
+            </div>
+            <div>
+                <input tabindex="3" type="password" placeholder="Mật khẩu" fieldName="Password" required />
+            </div>
         </div>
-        <div>
+        <div style="display:flex;align-items:center">
             <button type="submit" tabindex="4" id="btn-login">Đăng nhập</button>
         </div>
         <div>
