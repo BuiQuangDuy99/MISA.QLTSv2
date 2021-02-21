@@ -22,7 +22,7 @@
 //        FieldText: "Tên Loại Tài Sản",
 //        Index: 3
 //    },
-//    {
+//    { 
 //        DataType: "text",
 //        Field: "AssetGroupName",
 //        FieldText: "Nhóm Tài Sản",
@@ -105,6 +105,8 @@ class Grid {
                     $(this).siblings().removeClass('selected-row');
                 }
             }
+            $('#function').addClass('show-dialog');
+            $('#function').removeClass('hide-dialog');
         })
 
         // Sự kiện click chuột phải vào một dòng show menu context (chưa hoàn thiện)
@@ -216,8 +218,8 @@ class Grid {
             case 'year':
                 element.addClass("text-right");
                 break;
-            case 'Function':
-                element.addClass("text-center");
+            case 'function':
+                element.addClass("function-content");
             default:
                 break;
         }
@@ -258,7 +260,24 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
-           
+            case "function":
+                td = $(`<td>` + 
+                `<div id="function" style="display:flex; justify-content:center;" class="hide-dialog">
+                    <button class="button btn-refresh">
+                        <div class="icon-refresh">
+                        </div>
+                    </button>
+                    <button class="button btn-refresh">
+                        <div class="icon-refresh">
+                        </div>
+                    </button>
+                    <button class="button btn-refresh">
+                        <div class="icon-refresh">
+                        </div>
+                    </button>
+                    </button></div>` + `</td>`);
+                td = me.addClassFormat(td, dataType);
+                break;
             default:
                 td = $(`<td>` + value + `</td>`);
                 break;

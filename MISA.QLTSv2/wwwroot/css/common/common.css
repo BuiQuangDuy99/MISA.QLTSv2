@@ -18,3 +18,12 @@
 .border-red {
     border: 1px solid red !important;
 }
+.show-dialog {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hide-dialog {
+    opacity: 0;
+    visibility: hidden;
+}

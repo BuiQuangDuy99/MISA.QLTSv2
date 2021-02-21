@@ -51,7 +51,7 @@ class assetIncreased extends Grid {
                 Index: 7
             },
             {
-                DataType: "Function",
+                DataType: "function",
                 Field: "Function",
                 FieldText: "Chức năng",
                 Index: 8
