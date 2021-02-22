@@ -1,6 +1,11 @@
 $(document).ready(function () {
     $('#btn-login').off('click');
-    $('input[required]').on("blur keyup", checkInput);
+    $('input[required]').on("blur", checkInput);
+    $('input[required]').on("keyup", function () {
+        if ($(this).val().trim() != "") {
+            hideTooltip($(this));
+        }
+    });
     $('input').click(function () { $(this).select(); });
     $('#btn-login').on('click', (loginOnClick));
     $(document).keypress(function (event) {
@@ -24,40 +29,17 @@ function checkInput() {
         $(this).addClass('border-red');
         if (val == "") {
             $(this).attr('title', 'Trường này không được để trống');
-            $(this).tooltip({
-                items: $(this),
-                track: true,
-                content: $(this).attr('title'),
-                position: {
-                    my: "left+10 top",
-                    at: "right+5 top",
-                    collision: "none"
-                },
-                disabled: false
-            });
+            showTooltip($(this));
+            $(this).tooltip("close");
         }
         else {
             $(this).attr('title', 'Không được dài quá 20 ký tự');
-            $(this).tooltip({
-                items: $(this),
-                track: true,
-                content: $(this).attr('title'),
-                position: {
-                    my: "left+10 top",
-                    at: "right+5 top",
-                    collision: "none"
-                },
-                disabled: false 
-            });
+            showTooltip($(this));
+            $(this).tooltip("close");
         }
     }
     else {
-        $(this).removeClass('border-red');
-        $(this).removeAttr('title');
-        $(this).tooltip({
-            items: $(this),
-            disabled: true
-        });
+        hideTooltip($(this))
     }
 }
 
@@ -72,30 +54,15 @@ function checkRequired() {
         if (val == "") {
             $(this).addClass('border-red');
             $(this).attr('title', 'Trường này không được để trống');
-            $(this).tooltip({
-                items: $(this),
-                track: true,
-                content: $(this).attr('title'),
-                position: {
-                    my: "left+10 top",
-                    at: "right+5 top",
-                    collision: "none"
-                },
-                disabled: false
-            });
+            showTooltip($(this));   
             isValid = false;
         }
         else {
-            $(this).removeClass('border-red');
-            $(this).removeAttr('title');
-            $(this).tooltip({
-                items: $(this),
-                disabled: true
-            });
+            hideTooltip($(this))
         }
     });
-    //var inputRequire = $(".border-red");
-    //inputRequire.first().focus();
+    var inputRequire = $(".border-red");
+    inputRequire.first().focus();
     return isValid;
 }
 
@@ -111,30 +78,15 @@ function checkLength() {
         if (val.length > maxLength) {
             $(this).addClass('border-red');
             $(this).attr('title', 'Không được dài quá 20 ký tự');
-            $(this).tooltip({
-                items: $(this),
-                track: true,
-                content: $(this).attr('title'),
-                position: {
-                    my: "left+10 top",
-                    at: "right+5 top",
-                    collision: "none"
-                },
-                disabled: false
-            });
+            showTooltip($(this));
             isValid = false;
         }
         else {
-            $(this).removeClass('border-red');
-            $(this).removeAttr('title');
-            $(this).tooltip({
-                items: $(this),
-                disabled: true
-            });
+            hideTooltip($(this))
         }
     });
-    //var inputRequire = $(".border-red");
-    //inputRequire.first().focus();
+    var inputRequire = $(".border-red");
+    inputRequire.first().focus();
     return isValid;
 }
 /**
@@ -180,19 +132,12 @@ function errorAcount(account) {
         if ($(this).val() != account[fieldName]) {
             $(this).attr('title', 'Thông tin đăng nhập không chính xác.');
             $(this).addClass('border-red');
-            $(this).tooltip({
-                items: $(this),
-                content: $(this).attr('title'),
-                track: true,
-                position: {
-                    my: "left+10 top",
-                    at: "right+5 top",
-                    collision: "none"
-                },
-                disabled: false
-            }).tooltip('open');
+            showTooltip($(this));
+            $(this).tooltip('open');
         }
     })
+    //var inputRequire = $(".border-red");
+    //inputRequire.first().focus();
 }
 /**
  * Sự kiện kích nút đăng nhập
@@ -215,4 +160,33 @@ function loginOnClick() {
             errorAcount(accountTest);
         }
     }
+}
+/**
+ * Ẩn Tooltip
+ * CreatedBy: NDTUNG (22/2/2021)
+ */
+function hideTooltip(input) {
+    input.removeClass('border-red');
+    input.removeAttr('title');
+    input.tooltip({
+        items: input,
+        disabled: true
+    });
+}
+/**
+ * Hiển thị Tooltip
+ * CreatedBy: NDTUNG (22/2/2021)
+ */
+function showTooltip(input) {
+    input.tooltip({
+        items: input,
+        content: input.attr('title'),
+        track: true,
+        position: {
+            my: "left+10 top",
+            at: "right+5 top",
+            collision: "none"
+        },
+        disabled: false
+    })
 }
