@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
     //Định nghĩa Dialog
     dialog = $(".department_dialog").dialog({
         autoOpen: false,

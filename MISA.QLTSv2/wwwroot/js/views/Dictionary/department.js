@@ -7,7 +7,7 @@ $(document).ready(function () {
 var conFigColum = [
     {
         DataType: "number",
-        Field: "STT",
+        Field: "STT",   
         FieldText: "STT",
         Index: 1
     },
@@ -71,5 +71,40 @@ class DepartmentJS extends Grid {
             console.log(e);
         }
 
+    }
+
+    setConFigColum() {
+        this.conFigColum = [
+            {
+                DataType: "number",
+                Field: "STT",
+                FieldText: "STT",
+                Index: 1
+            },
+            {
+                DataType: "text",
+                Field: "DepartmentCode",
+                FieldText: "Mã bộ phận",
+                Index: 2
+            },
+            {
+                DataType: "text",
+                Field: "DepartmentName",
+                FieldText: "Tên bộ phận",
+                Index: 3
+            },
+            {
+                DataType: "text",
+                Field: "DepartmentGroupName",
+                FieldText: "Trực thuộc",
+                Index: 4
+            },
+            {
+                DataType: "text",
+                Field: "Note",
+                FieldText: "Ghi chú",
+                Index: 5
+            }
+        ];
     }
 }
