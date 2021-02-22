@@ -93,6 +93,7 @@ class Grid {
             if (event.ctrlKey) {
                 if ($(this).hasClass('selected-row')) {
                     $(this).removeClass('selected-row');
+                    $(this).find('#function').addClass('show-dialog');
                 } else {
                     $(this).addClass('selected-row');
                     console.log($(this).data('recordId'));
@@ -105,8 +106,8 @@ class Grid {
                     $(this).siblings().removeClass('selected-row');
                 }
             }
-            $('#function').addClass('show-dialog');
-            $('#function').removeClass('hide-dialog');
+            //$('#function').addClass('show-dialog');
+            //$('#function').removeClass('hide-dialog');
         })
 
         // Sự kiện click chuột phải vào một dòng show menu context (chưa hoàn thiện)
@@ -260,24 +261,24 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
-            case "function":
-                td = $(`<td>` + 
-                `<div id="function" style="display:flex; justify-content:center;" class="hide-dialog">
-                    <button class="button btn-refresh">
-                        <div class="icon-refresh">
-                        </div>
-                    </button>
-                    <button class="button btn-refresh">
-                        <div class="icon-refresh">
-                        </div>
-                    </button>
-                    <button class="button btn-refresh">
-                        <div class="icon-refresh">
-                        </div>
-                    </button>
-                    </button></div>` + `</td>`);
-                td = me.addClassFormat(td, dataType);
-                break;
+            //case "function":
+            //    td = $(`<td id="function" style="display:flex" class="hide-dialog">` +
+            //        `<button class="btn-function">
+            //                <div class="icon-refresh">
+            //                </div>
+            //            </button>
+            //            <button class="btn-function">
+            //                <div class="icon-remove">
+            //                </div>
+            //            </button>
+            //            <button class="btn-function">
+            //                <div class="icon-refresh">
+            //                </div>
+            //            </button>
+            //            </button>`
+            //        + `</td>`);
+            //    td = me.addClassFormat(td, dataType);
+            //    break;
             default:
                 td = $(`<td>` + value + `</td>`);
                 break;

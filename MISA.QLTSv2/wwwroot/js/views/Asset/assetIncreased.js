@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
     new assetIncreased();
 })
 
@@ -58,4 +58,5 @@ class assetIncreased extends Grid {
             }
         ];
     }
+    
 }
