@@ -19,4 +19,6 @@ class departmentForm extends baseForm {
     constructor(formId) {
         super(formId);
     }
+
+   
 }

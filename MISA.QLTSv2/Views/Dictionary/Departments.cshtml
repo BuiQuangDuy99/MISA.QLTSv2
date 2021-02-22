@@ -50,42 +50,41 @@
     </div>
 </div>
 <div id="department_dialog" class="department_dialog" style="display:block">
-    <div class="m-title">
-        Thêm mới bộ phận sử dụng tài sản
+    <div class="container-fluid">
+        <div class="row">
+            <div class="m-title col-12">
+                <div>Thêm mới bộ phận sử dụng tài sản</div>
+                <button class="v-cancel button" id="btn-close"></button>
+            </div>
+            <div class="top col-12">
+                <div class="sub-content">
+                    <div class="sub-title">Mã bộ phận (*)</div>
+                    <input class="input-text" fieldname="departmentcode" required tabindex="1" />
+                </div>
+                <div class="sub-content">
+                    <div class="sub-title">Tên bộ phận (*)</div>
+                    <input class="input-text" fieldname="departmentname" required tabindex="2" />
+                </div>
+                <div class="sub-content">
+                    <div class="sub-title">Trực thuộc (*)</div>
+                    <select class="input-text" fieldname="departmentgroupname" tabindex="3">
+                        <option value="phòng công nghệ thông tin">Phòng công nghệ thông tin</option>
+                        <option value="phòng hành chính tổng hợp">Phòng hành chính tổng hợp</option>
+                        <option value="phòng kế toán">Phòng kế toán</option>
+                        <option value="phòng thanh tra">Phòng thanh tra</option>
+                    </select>
+                </div>
+                <div class="sub-content">
+                    <div class="sub-title">Ghi chú</div>
+                    <textarea fieldname="note" tabindex="4" rows="6" required></textarea>
+                </div>
+            </div>
+            <div class="bottom col-12">
+                <button class="button btn-cancel" id="btn-cancel">Hủy</button>
+                <button class="btn-add button" id="btn-save">Lưu</button>
+            </div>
+        </div>
     </div>
-    <div class="top">
-        <div class="sub-content">
-            <div class="sub-title">Mã bộ phận (*)</div>
-            <input class="input-text" fieldName="DepartmentCode" required tabindex="1"/>
-        </div>
-        <div class="sub-content">
-            <div class="sub-title">Tên bộ phận (*)</div>
-            <input class="input-text" fieldName="DepartmentName" required tabindex="2"/>
-        </div>
-        <div class="sub-content">
-            <div class="sub-title">Trực thuộc (*)</div>
-            <select class="input-text" fieldName="DepartmentGroupName" tabindex="3">
-                <option value="Phòng công nghệ thông tin">Phòng Công nghệ thông tin</option>
-                <option value="Phòng hành chính tổng hợp">Phòng hành chính tổng hợp</option>
-                <option value="Phòng kế toán">Phòng kế toán</option>
-                <option value="Phòng thanh tra">Phòng thanh tra</option>
-            </select>
-        </div>
-        <div class="sub-content">
-            <div class="sub-title">Ghi chú</div>
-            <textarea fieldName="Note" tabindex="4" required></textarea>
-        </div>
-    </div>
-    
-    <div class="bottom">
-        <button class="button btn-cancel" id="btn-cancel">Hủy</button>
-        <button class="btn-add button" id="btn-save">Lưu</button>
-    </div>
-    @*<input fieldName="STT" DataType="Number" />
-        <input fieldName="Name" required />
-        <input id="txtPrice" fieldName="Price" required DataType="Money" />
-        <input id="" type="date" fieldName="Date" DataType="Date" />
-        <button id="btn-cancel">Hủy</button>
-        <button id="btn-save">Lưu</button>*@
+
 </div>
 

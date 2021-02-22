@@ -1325,12 +1325,14 @@ a.ui-button:active,
 }
 
 	.ui-dialog .ui-dialog-titlebar {
-		/* padding: 24px 24px 0px 24px; */
-		/* font-size: 20px; */
+		padding: 24px 24px 0px 24px;
+		font-size: 20px;
 		text-transform: uppercase;
 		font-weight: bold;
 		background-color: #ffffff;
 		border: none;
+		display: none;
+		/* overflow: hidden; */
 	}
 
 	.ui-dialog .ui-dialog-titlebar-close {
@@ -1378,4 +1380,6 @@ a.ui-button:active,
 .ui-widget-overlay {
 	background-color: #000;
 	opacity: .5;
+}.5;
+}.5;
 }
