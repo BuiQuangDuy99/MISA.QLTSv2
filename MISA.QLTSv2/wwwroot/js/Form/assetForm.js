@@ -10,7 +10,7 @@
 
     new assetIncreasedForm("#dialog_asset");
 
-    $("#btn-add").click(function () {
+    $(".btn-add").click(function () {
         dialog.dialog('open');
     })
 

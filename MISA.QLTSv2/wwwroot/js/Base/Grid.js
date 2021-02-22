@@ -2,7 +2,7 @@
 //    new Grid('#gridTest');
 //})
 
-//// Biến config cho từng column trong bảng
+// Biến config cho từng column trong bảng
 //var conFigColum = [
 //    {
 //        DataType: "number",
