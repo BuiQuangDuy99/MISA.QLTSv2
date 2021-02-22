@@ -1,4 +1,7 @@
-﻿
+﻿input{
+    outline: none !important;
+}
+
 .input-search {
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
@@ -17,6 +20,7 @@
     font-size: 13px;
     color: #373737;
     text-align: justify;
+    font-family: Roboto-Regular;
 }
 .input-detail {
     height: 63px;
