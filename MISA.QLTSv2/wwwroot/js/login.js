@@ -153,8 +153,10 @@ function loginOnClick() {
     if (isValid) {
         var account = getAccount();
         if ((JSON.stringify(account) === JSON.stringify(accountTest))) {
+            $('.loading').show();
             window.location.href = "https://localhost:44363";
             resetLogin();
+            //$('.loading').hide();
         }
         else {
             errorAcount(accountTest);
