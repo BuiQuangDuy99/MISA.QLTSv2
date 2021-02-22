@@ -1,3 +1,6 @@
+input{
+    outline: none !important;
+}
 
 .input-search {
     background-color: #ffffff;
