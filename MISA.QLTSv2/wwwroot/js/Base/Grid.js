@@ -1,58 +1,58 @@
-﻿$(document).ready(function () {
-    new Grid('#gridTest');
-})
+﻿//$(document).ready(function () {
+//    new Grid('#gridTest');
+//})
 
-// Biến config cho từng column trong bảng
-var conFigColum = [
-    {
-        DataType: "number",
-        Field: "STT",
-        FieldText: "STT",
-        Index: 1
-    },
-    {
-        DataType: "text",
-        Field: "AssetCode",
-        FieldText: "Mã Loại Tài Sản",
-        Index: 2
-    },
-    {
-        DataType: "text",
-        Field: "AssetName",
-        FieldText: "Tên Loại Tài Sản",
-        Index: 3
-    },
-    {
-        DataType: "text",
-        Field: "AssetGroupName",
-        FieldText: "Nhóm Tài Sản",
-        Index: 4
-    },
-    {
-        DataType: "percent",
-        Field: "WearPercent",
-        FieldText: "Tỷ Lệ Hao Mòn (%)",
-        Index: 5
-    },
-    {
-        DataType: "money",
-        Field: "Price",
-        FieldText: "Nguyên Giá",
-        Index: 6
-    },
-    {
-        DataType: "year",
-        Field: "YearOfUse",
-        FieldText: "Số Năm Sử Dụng",
-        Index: 7
-    },
-    {
-        DataType: "text",
-        Field: "Note",
-        FieldText: "Ghi Chú",
-        Index: 8
-    }
-];
+//// Biến config cho từng column trong bảng
+//var conFigColum = [
+//    {
+//        DataType: "number",
+//        Field: "STT",
+//        FieldText: "STT",
+//        Index: 1
+//    },
+//    {
+//        DataType: "text",
+//        Field: "AssetCode",
+//        FieldText: "Mã Loại Tài Sản",
+//        Index: 2 
+//    },
+//    {
+//        DataType: "text",
+//        Field: "AssetName",
+//        FieldText: "Tên Loại Tài Sản",
+//        Index: 3
+//    },
+//    { 
+//        DataType: "text",
+//        Field: "AssetGroupName",
+//        FieldText: "Nhóm Tài Sản",
+//        Index: 4
+//    },
+//    {
+//        DataType: "percent",
+//        Field: "WearPercent",
+//        FieldText: "Tỷ Lệ Hao Mòn (%)",
+//        Index: 5
+//    },
+//    {
+//        DataType: "money",
+//        Field: "Price", 
+//        FieldText: "Nguyên Giá",
+//        Index: 6
+//    },
+//    {
+//        DataType: "year",
+//        Field: "YearOfUse",
+//        FieldText: "Số Năm Sử Dụng",
+//        Index: 7
+//    },
+//    {
+//        DataType: "text",
+//        Field: "Note",
+//        FieldText: "Ghi Chú",
+//        Index: 8
+//    }
+//];
 
 
 // Lớp dùng để render ra các bảng
@@ -60,7 +60,8 @@ class Grid {
     // Hàm khởi tạo, truyền vào id của bảng
     constructor(tableId) {
         this.grid = $(tableId);
-        this.conFigColum;
+        this.conFigColum = null;
+        this.setConFigColum();
         this.renderColumn();
         this.renderBody();
         this.initEvent();
@@ -92,6 +93,7 @@ class Grid {
             if (event.ctrlKey) {
                 if ($(this).hasClass('selected-row')) {
                     $(this).removeClass('selected-row');
+                    $(this).find('#function').addClass('show-dialog');
                 } else {
                     $(this).addClass('selected-row');
                     console.log($(this).data('recordId'));
@@ -104,6 +106,8 @@ class Grid {
                     $(this).siblings().removeClass('selected-row');
                 }
             }
+            //$('#function').addClass('show-dialog');
+            //$('#function').removeClass('hide-dialog');
         })
 
         // Sự kiện click chuột phải vào một dòng show menu context (chưa hoàn thiện)
@@ -131,12 +135,12 @@ class Grid {
         var th;
 
         // Sort lại mảng cho đúng thứ tự cột tăng dần:
-        conFigColum.sort(function (a, b) {
+        me.conFigColum.sort(function (a, b) {
             return parseInt(a.Index) - parseInt(b.Index);
         });
 
         // Build thẻ th
-        $.each(conFigColum, function (index, col) {
+        $.each(this.conFigColum, function (index, col) {
             th = $(`<th>` + col.FieldText + `</th>`);
             th = me.addAttribute(th, 'fieldName', col.Field);
             th = me.addAttribute(th, 'dataType', col.DataType);
@@ -156,7 +160,6 @@ class Grid {
         try {
             var me = this;
             var grid = this.grid;
-
             $.getJSON("/js/data.json", function (data) {
                 var tr;
                 var dataType;
@@ -179,7 +182,6 @@ class Grid {
         } catch (e) {
             console.log(e);
         }
-        
     }
 
     /**
@@ -217,6 +219,8 @@ class Grid {
             case 'year':
                 element.addClass("text-right");
                 break;
+            case 'function':
+                element.addClass("function-content");
             default:
                 break;
         }
@@ -257,6 +261,24 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
+            //case "function":
+            //    td = $(`<td id="function" style="display:flex" class="hide-dialog">` +
+            //        `<button class="btn-function">
+            //                <div class="icon-refresh">
+            //                </div>
+            //            </button>
+            //            <button class="btn-function">
+            //                <div class="icon-remove">
+            //                </div>
+            //            </button>
+            //            <button class="btn-function">
+            //                <div class="icon-refresh">
+            //                </div>
+            //            </button>
+            //            </button>`
+            //        + `</td>`);
+            //    td = me.addClassFormat(td, dataType);
+            //    break;
             default:
                 td = $(`<td>` + value + `</td>`);
                 break;

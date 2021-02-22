@@ -13,7 +13,7 @@ class baseForm {
     /**
      * Hàm khởi tạo các sự kiện trong Form
      * CreatedBy : NDTUNG (4/2/2021)
-     */
+     */ 
     initEvent() {
         //var data = this.getJson();
         this.form.find("#btn-cancel").off("click");

@@ -1,0 +1,225 @@
+﻿
+
+<div class="tool-bar">
+    <div class="filter-bar">
+        <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
+    </div>
+    <div class="tool-bar-right">
+        <div>
+            <button id="btn-add" class="button btn-add">Thêm</button>
+        </div>
+        <div>
+            <button class="button btn-refresh">
+                <div class="icon-refresh">
+
+                </div>
+            </button>
+        </div>
+        <div>
+            <button class="button btn-remove">
+                <div class="icon-remove ">
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="grid">
+    <div class="grid-default">
+        <table cellspacing="0" id="asset-grid">
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="menu">
+    <p>Option 1</p>
+    <p>Option 2</p>
+</div>
+<div class="footer-layout">
+    <div>
+        Tổng số tài sản: 1.015
+    </div>
+    <div class="footer-right">
+        Tổng nguyên giá: 1.546.354.789
+    </div>
+</div>
+
+<div id="dialog_asset" class="dialog_asset" title="Ghi tăng tài sản" style="display:none">
+    <div class="container-fluid">
+        <div class="row dialog-header">
+            <div class="col-8">
+                Ghi tăng tài sản
+            </div>
+            <div class="col-4 header-toolbar">
+                <button class="btn-help button">
+                    <div class="icon-help">
+
+                    </div>
+                </button>
+                <button class="btn-close button">
+                    <div class="icon-close">
+
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-5 m-col-5">
+                <div class="content-items">
+                    <div class="text-header">
+                        Mã tài sản(*)
+                    </div>
+                    <div>
+                        <input fieldName="AssetCode" class="input-text input-asset" required />
+                    </div>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="content-items">
+                    <div class="text-header">
+                        Tên tài sản(*)
+                    </div>
+                    <div>
+                        <input fieldName="AssetName" class="input-text input-asset" required />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-5 m-col-5">
+                <div class="content-items">
+                    <div class="text-header ">
+                        Mã phòng ban
+                    </div>
+                    <div>
+                        <select class="input-text input-asset" fieldname="departmentgroupname" tabindex="3">
+                            <option value="phòng công nghệ thông tin">Phòng công nghệ thông tin</option>
+                            <option value="phòng hành chính tổng hợp">Phòng hành chính tổng hợp</option>
+                            <option value="phòng kế toán">Phòng kế toán</option>
+                            <option value="phòng thanh tra">Phòng thanh tra</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="content-items">
+                    <div class="text-header">
+                        Tên phòng ban
+                    </div>
+                    <div>
+                        <input fieldName="Department" class="input-text input-asset2" disabled />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-5 m-col-5">
+                <div class="content-items">
+                    <div class="text-header">
+                        Mã loại tài sản
+                    </div>
+                    <div>
+                        <select class="input-text input-asset" fieldname="departmentgroupname" tabindex="3">
+                            <option value="phòng công nghệ thông tin">Phòng công nghệ thông tin</option>
+                            <option value="phòng hành chính tổng hợp">Phòng hành chính tổng hợp</option>
+                            <option value="phòng kế toán">Phòng kế toán</option>
+                            <option value="phòng thanh tra">Phòng thanh tra</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="content-items">
+                    <div class="text-header">
+                        Tên loại tài sản
+                    </div>
+                    <div>
+                        <input fieldName="AssetGroupName" class="input-text input-asset2" disabled/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-5 m-col-5">
+                <div class="content-items">
+                    <div class="text-header">
+                        Ngày ghi tăng
+                    </div>
+                    <div>
+                        <input fieldName="DateTime" class="input-date input-asset" type="date" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-6" style="padding-right:15px">
+                            <div>
+                                <div class="text-header">
+                                    Thời gian sử dụng(Năm)
+                                </div>
+                                <div>
+                                    <input fieldName="YearOfUse" class="input-text input-asset3" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6" style="padding-left:15px">
+                            <div>
+                                <div class="text-header">
+                                    Tỷ lệ hao mòn(%)
+                                </div>
+                                <div>
+                                    <input fieldName="WearPercent" class="input-text input-asset3" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-5 m-col-5">
+                <div class="content-items">
+                    <div class="text-header">
+                        Nguyên giá
+                    </div>
+                    <div>
+                        <input fieldName="Price" class="input-text input-asset" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-6" style="padding-right:15px">
+                            <div>
+                                <div class="text-header">
+                                    Giá trị hao mòn năm
+                                </div>
+                                <div>
+                                    <input fieldName="ValueYear" class="input-text input-asset3" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6" style="padding-left:15px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="dialog-footer">
+        <div class="footer-left">
+            <button class="button btn-cancel" id="btn-cancel">Hủy</button>
+        </div>
+        <div class="footer-right">
+            <button id="btn-save" class="button btn-add">Lưu</button>
+        </div>
+    </div>
+
+</div>
