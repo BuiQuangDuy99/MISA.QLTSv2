@@ -14,30 +14,6 @@ $(document).ready(function () {
 });
 
 /**
- * Hàm kiểm tra bắt buộc nhập từng input
- * CreatedBy: NDTUNG (18/2/2021)
- */
-//function checkRequiredInput() {
-//    var val = $(this).val();
-//    if (val.trim() == "") {
-//        $(this).addClass('border-red');
-//        $(this).attr('title', 'Trường này không được để trống');
-//        $(this).tooltip({
-//            content: $(this).attr('title'),
-//            track: true
-//        });
-//        isValid = false;
-//    }
-//    else {
-//        $(this).removeClass('border-red');
-//        $(this).removeAttr('title');
-//        $(this).tooltip({
-//            disabled: true
-//        });
-//    }
-//}
-
-/**
  * Hàm kiểm tra bắt buộc nhập và độ dài input
  * CreatedBy: NDTUNG (18/2/2021)
  */
@@ -74,7 +50,6 @@ function checkInput() {
                 disabled: false 
             });
         }
-        //isValid = false;
     }
     else {
         $(this).removeClass('border-red');
@@ -97,18 +72,26 @@ function checkRequired() {
         if (val == "") {
             $(this).addClass('border-red');
             $(this).attr('title', 'Trường này không được để trống');
-            //$(this).tooltip({
-            //    content: $(this).attr('title'),
-            //    track: true
-            //});
+            $(this).tooltip({
+                items: $(this),
+                track: true,
+                content: $(this).attr('title'),
+                position: {
+                    my: "left+10 top",
+                    at: "right+5 top",
+                    collision: "none"
+                },
+                disabled: false
+            });
             isValid = false;
         }
         else {
             $(this).removeClass('border-red');
             $(this).removeAttr('title');
-            //$(this).tooltip({
-            //    disabled: true
-            //});
+            $(this).tooltip({
+                items: $(this),
+                disabled: true
+            });
         }
     });
     //var inputRequire = $(".border-red");
@@ -128,18 +111,26 @@ function checkLength() {
         if (val.length > maxLength) {
             $(this).addClass('border-red');
             $(this).attr('title', 'Không được dài quá 20 ký tự');
-            //$(this).tooltip({
-            //   content: $(this).attr('title'),
-            //   track: true
-            //});
+            $(this).tooltip({
+                items: $(this),
+                track: true,
+                content: $(this).attr('title'),
+                position: {
+                    my: "left+10 top",
+                    at: "right+5 top",
+                    collision: "none"
+                },
+                disabled: false
+            });
             isValid = false;
         }
         else {
             $(this).removeClass('border-red');
             $(this).removeAttr('title');
-            //$(this).tooltip({
-            //    disabled: true
-            //});
+            $(this).tooltip({
+                items: $(this),
+                disabled: true
+            });
         }
     });
     //var inputRequire = $(".border-red");
