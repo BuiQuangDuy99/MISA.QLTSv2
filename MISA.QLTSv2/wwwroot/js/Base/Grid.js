@@ -29,7 +29,7 @@
 //        Index: 4
 //    },
 //    {
-//        DataType: "percent",
+//        DataType: "percent", 
 //        Field: "WearPercent",
 //        FieldText: "Tỷ Lệ Hao Mòn (%)",
 //        Index: 5
@@ -93,7 +93,6 @@ class Grid {
             if (event.ctrlKey) {
                 if ($(this).hasClass('selected-row')) {
                     $(this).removeClass('selected-row');
-                    $(this).find('#function').addClass('show-dialog');
                 } else {
                     $(this).addClass('selected-row');
                     console.log($(this).data('recordId'));
@@ -261,24 +260,24 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
-            //case "function":
-            //    td = $(`<td id="function" style="display:flex" class="hide-dialog">` +
-            //        `<button class="btn-function">
-            //                <div class="icon-refresh">
-            //                </div>
-            //            </button>
-            //            <button class="btn-function">
-            //                <div class="icon-remove">
-            //                </div>
-            //            </button>
-            //            <button class="btn-function">
-            //                <div class="icon-refresh">
-            //                </div>
-            //            </button>
-            //            </button>`
-            //        + `</td>`);
-            //    td = me.addClassFormat(td, dataType);
-            //    break;
+            case "function":
+                td = $(`<td style="display:flex">` +
+                    `<button class="btn-function hide">
+                            <div class="icon-refresh">
+                            </div>
+                        </button>
+                        <button class="btn-function hide">
+                            <div class="icon-remove">
+                            </div>
+                        </button>
+                        <button class="btn-function hide">
+                            <div class="icon-refresh">
+                            </div>
+                        </button>
+                        </button>`
+                    + `</td>`);
+                td = me.addClassFormat(td, dataType);
+                break;
             default:
                 td = $(`<td>` + value + `</td>`);
                 break;
