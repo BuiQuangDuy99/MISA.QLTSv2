@@ -21,6 +21,7 @@
     <link href="~/css/common/responsive.css" rel="stylesheet" />
     <link href="~/css/custom/department.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/asset.css" rel="stylesheet" />
 </head>
 <body>
     <div class="wrapper container-fluid h-100">
@@ -48,7 +49,7 @@
                                 </div>
                             </div>
                             <ul class="submenu">
-                                <li><a href="#">Ghi tăng</a></li>
+                                <li><a href="/Asset/AssetIncreased">Ghi tăng</a></li>
                                 <li><a href="#">Điều chuyển</a></li>
                                 <li><a href="#">Tính hao mòn</a></li>
                                 <li><a href="#">Ghi giảm</a></li>
@@ -141,5 +142,7 @@
     <script src="~/js/navigation.js"></script>
 
     @RenderSection("Scripts", required: false)
+    <script src="~/js/views/Asset/assetIncreased.js"></script>
+    <script src="~/js/Form/assetForm.js"></script>
 </body>
 </html>

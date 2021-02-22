@@ -1,4 +1,4 @@
-﻿input{
+input{
     outline: none !important;
 }
 
@@ -9,6 +9,7 @@
     height: 32px;
     padding-left: 17px;
     padding-right: 9px;
+    outline:none;
 }
 
 .input-text {
@@ -20,7 +21,8 @@
     font-size: 13px;
     color: #373737;
     text-align: justify;
-    font-family: Roboto-Regular;
+    outline: none;
+    font-family: Roboto-Regular !important;
 }
 .input-detail {
     height: 63px;
@@ -29,11 +31,25 @@
     border: 1px solid #e0e0e0;
 }
 .input-date {
-    padding-left: 11px;
+    padding-left: 15px;
     padding-top: 7px;
     padding-bottom: 10px;
     height: 32px;
     min-width: 149px;
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
+    outline: none;
+    font-family: Roboto-Regular !important;
+}
+.input-select {
+    height: 32px;
+    min-width: 150px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding-left: 12px;
+    font-size: 13px;
+    color: #373737;
+    text-align: justify;
+    outline: none;
+    font-family: Roboto-Regular !important;
 }
