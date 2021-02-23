@@ -12,7 +12,7 @@
         right: 0;
         bottom: 0;
         overflow: scroll;
-        padding-right: 21px;
+        /*padding-right: 21px;*/
         padding-left: 21px;
     }
 
@@ -57,11 +57,12 @@ table {
     table tr {
     }
         table tr:hover {
-        background-color: #e9ebee;
+            background-color: #f0f8ff;
         }
 
 .selected-row {
     background-color: #f0f8ff !important;
+
 }
 
     .selected-row:hover {

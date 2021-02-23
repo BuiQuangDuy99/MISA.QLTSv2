@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
     new assetIncreased();
 })
 
@@ -51,11 +51,12 @@ class assetIncreased extends Grid {
                 Index: 7
             },
             {
-                DataType: "number",
+                DataType: "function",
                 Field: "Function",
                 FieldText: "Chức năng",
                 Index: 8
             }
         ];
     }
+    
 }

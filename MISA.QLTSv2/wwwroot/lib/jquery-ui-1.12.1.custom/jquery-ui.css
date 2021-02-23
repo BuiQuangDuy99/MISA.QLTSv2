@@ -592,6 +592,7 @@ button.ui-button::-moz-focus-inner {
 	width: 90%;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	display: none;
 }
 .ui-dialog .ui-dialog-titlebar-close {
 	position: absolute;
@@ -875,8 +876,8 @@ button.ui-button::-moz-focus-inner {
 	padding: 8px;
 	position: absolute;
 	z-index: 9999;
-	max-width: 300px;
-}
+/*	max-width: 300px;
+*/}
 body .ui-tooltip {
 	border-width: 2px;
 }
@@ -1330,6 +1331,8 @@ a.ui-button:active,
 		font-weight: bold;
 		background-color: #ffffff;
 		border: none;
+		display: none;
+		/* overflow: hidden; */
 	}
 
 	.ui-dialog .ui-dialog-titlebar-close {
@@ -1377,4 +1380,6 @@ a.ui-button:active,
 .ui-widget-overlay {
 	background-color: #000;
 	opacity: .5;
+}.5;
+}.5;
 }

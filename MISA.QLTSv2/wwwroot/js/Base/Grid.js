@@ -53,6 +53,8 @@ class Grid {
                     $(this).siblings().removeClass('selected-row');
                 }
             }
+            //$('#function').addClass('show-dialog');
+            //$('#function').removeClass('hide-dialog');
         })
 
         // Sự kiện click chuột phải vào một dòng show menu context (chưa hoàn thiện)
@@ -106,7 +108,6 @@ class Grid {
         try {
             var me = this;
             var grid = this.grid;
-
             $.getJSON("/js/data.json", function (data) {
                 var tr;
                 var dataType;
@@ -125,11 +126,11 @@ class Grid {
                     });
                     grid.find('tbody').append(tr);
                 });
+
             })
         } catch (e) {
             console.log(e);
         }
-        
     }
 
     /**
@@ -167,6 +168,8 @@ class Grid {
             case 'year':
                 element.addClass("text-right");
                 break;
+            case 'function':
+                element.addClass("function-content");
             default:
                 break;
         }
@@ -207,8 +210,23 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
-            case "action":
-                td = $(`<td></td>`);
+            case "function":
+                td = $(`<td style="display:flex; padding: 8px 16px;">` +
+                    `<button class="btn-function hide">
+                            <div class="icon-pencil">
+                            </div>
+                        </button>
+                        <button class="btn-function hide">
+                            <div class="icon-remove-function">
+                            </div>
+                        </button>
+                        <button class="btn-function hide">
+                            <div class="icon-pie">
+                            </div>
+                        </button>
+                        </button>`
+                    + `</td>`);
+                td = me.addClassFormat(td, dataType);
                 break;
             default:
                 td = $(`<td>` + value + `</td>`);

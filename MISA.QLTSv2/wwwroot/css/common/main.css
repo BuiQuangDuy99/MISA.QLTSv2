@@ -3,15 +3,29 @@
     padding: 0;
     background-color: #fff;
     font-size: 13px;
-    font-family: Roboto-Regular !important;
+    font-family:Roboto-Regular !important;
 }
 
 .ui-widget {
     font-family: Roboto-Regular !important;
 }
 
+
+
 html, body {
     height: 100%;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-left-radius: 0;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-right-radius: 0;
+}
+
+.ui-widget {
+    font-family: Roboto-Regular !important;
 }
 
 .container-fluid, .row, .col, [class*="col-"] {
@@ -51,7 +65,6 @@ a {
     font-family: 'CustomForm2';
     src: url('/font/29c95c2d68c76de3ee30f7b2c0220da9.ttf') format('truetype');
 }
-
 @font-face {
     font-family: 'Roboto-Regular';
     src: url('/font/Roboto-Regular.ttf') format('truetype');

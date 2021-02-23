@@ -19,3 +19,10 @@
 .border-red {
     border: 1px solid red !important;
 }
+.hide {
+    visibility: hidden;
+}
+tr:hover .hide {
+    visibility: visible;
+    background-color: #f0f8ff;
+}

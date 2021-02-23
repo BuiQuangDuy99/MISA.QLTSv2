@@ -29,5 +29,10 @@ namespace MISA.QLTSv2.Controllers
         {
             return View();
         }
+
+        public IActionResult Departments()
+        {
+            return View();
+        }
     }
 }

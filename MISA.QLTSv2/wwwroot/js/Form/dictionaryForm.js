@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     //Định nghĩa Dialog
-    dialog = $(".dialog_dictionary").dialog({
+    dialog = $("#dialog_dictionary").dialog({
         autoOpen: false,
         height: 500,
         width: 360,
