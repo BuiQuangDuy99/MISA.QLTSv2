@@ -5,6 +5,7 @@ $(document).ready(function () {
         //height: 400,
         width: 480,
         modal: true,
+        draggable: true
     });
 
     new departmentForm('#department_dialog');

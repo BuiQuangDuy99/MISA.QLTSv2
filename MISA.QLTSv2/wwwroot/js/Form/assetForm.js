@@ -6,6 +6,7 @@
         width: 700,
         height: 525,
         modal: true,
+        draggable: true
     });
 
     new assetIncreasedForm("#dialog_asset");
