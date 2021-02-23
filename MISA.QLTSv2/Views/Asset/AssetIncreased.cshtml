@@ -1,5 +1,9 @@
 ﻿
-
+@{
+    ViewData["ParentTitle"] = "Tài sản";
+    ViewData["ChildTitle"] = "Ghi tăng tài sản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <div class="tool-bar">
     <div class="filter-bar">
         <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
@@ -138,7 +142,7 @@
                         Tên loại tài sản
                     </div>
                     <div>
-                        <input fieldName="AssetGroupName" class="input-text input-asset2" disabled/>
+                        <input fieldName="AssetGroupName" class="input-text input-asset2" disabled />
                     </div>
                 </div>
             </div>
@@ -212,7 +216,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="dialog-footer">
         <div class="footer-left">
             <button class="button btn-cancel" id="btn-cancel">Hủy</button>
