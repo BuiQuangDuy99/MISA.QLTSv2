@@ -3,7 +3,7 @@
     .navbar .logo-site .qlts-text, .navbar .logo-site .toggle-icon{
         display: none;
     }
-    .navbar .navbar-content .navbar-item-text, .navbar .navbar-content .navbar-item-direct {
+    .navbar .navbar-content .navbar-item-text, .navbar i{
         display: none;
     }
     .wrapper .row .left {

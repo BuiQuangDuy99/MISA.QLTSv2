@@ -11,7 +11,7 @@
         $(".navbar-item-box .navbar-item-text").removeClass("display-none");
         $(".logo-site .qlts-text").removeClass("display-none");
         $(".logo-site .toggle-icon").removeClass("display-none");
-        $(".wrapper .row .left").attr("style", "width: 200px !important;");
+        $(".wrapper .row .left").attr("style", "width: 200px;");
         $(".navbar-item-box .navbar-item-direct").attr("style", "display: block;");
     });
 });
