@@ -154,7 +154,7 @@ function loginOnClick() {
         var account = getAccount();
         if ((JSON.stringify(account) === JSON.stringify(accountTest))) {
             $('.loading').show();
-            window.location.href = "https://localhost:44363";
+            window.location.href = "https://localhost:44363/Asset/AssetIncreased";
             resetLogin();
             //$('.loading').hide();
         }

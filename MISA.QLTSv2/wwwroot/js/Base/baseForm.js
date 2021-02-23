@@ -155,8 +155,8 @@ class baseForm {
      * CreatedBy : NDTUNG (3/2/2021)
      */
     closeForm() {
-        this.resetForm();
-        dialog.dialog('close');
+        //this.resetForm();
+        //dialog.dialog('close');
     }
 
 
