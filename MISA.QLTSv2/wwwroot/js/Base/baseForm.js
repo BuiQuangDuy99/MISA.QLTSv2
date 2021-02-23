@@ -52,6 +52,7 @@ class baseForm {
             $(this).attr("title", "Trường này không được để trống!");
         } else {
             $(this).removeClass("border-red");
+            $(this).attr("title", "");
         }
     }
 
@@ -102,18 +103,19 @@ class baseForm {
     checkInputNumber() {
         var isValid = true;
         this.form.find("input[DataType='Number']").each(function () {
-            var val = $(this).val();
-            var test = /^[0-9]+$/i;
-            if (!test.test(val)) {
-                $(this).addClass('border-red');
-                $(this).attr('title', 'Càn nhập đúng định dạng số!');
-                isValid = false;
+            var val = $(this).val().trim();
+            if (val != "") {
+                var test = /^[0-9]+$/i;
+                if (!test.test(val)) {
+                    $(this).addClass('border-red');
+                    $(this).attr('title', 'Càn nhập đúng định dạng số!');
+                    isValid = false;
+                }
+                else {
+                    $(this).removeClass('border-red');
+                    $(this).removeAttr('title');
 
-            }
-            else {
-                $(this).removeClass('border-red');
-                $(this).removeAttr('title');
-
+                }
             }
         });
         var inputRequire = this.form.find(".border-red");
