@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     new Dictionary('#gridTest');
+    //Sự kiện khi click vào nút thêm mới
     $("#add-demo").click(function () {
         formDetail.showForm();
     });
@@ -9,7 +10,10 @@ class Dictionary extends Grid {
     constructor(gridId) {
         super(gridId);
     }
-
+    /**
+     * Hàm cấu hình các cột cho bảng ở màn dictionary
+     * CreatedBY: BQDUY(23/02/2021)
+     * */
     setConFigColum() {
         // Biến config cho từng column trong bảng
         var conFigColum = [
@@ -64,11 +68,23 @@ class Dictionary extends Grid {
         ];
         this.conFigColum = conFigColum;
     }
-
+    /**
+     * Hàm sự kiện xảy ra khi double click vào 1 hàng trong bảng 
+     * CreatedBY: BQDUY(23/02/2021)
+     * */
     dbClickRow() {
         var id = $(this).data('recordId');
         console.log(id);
-        formDetail.showForm();
-        formDetail.bindingData();
+        
+        $.getJSON("/js/data.json", function (data) {
+            $.each(data, function (index, obj) {
+                console.log("dang doc json");
+                if (id == obj['Id']) {
+                    formDetail.bindingData(obj);
+                }
+            })
+        })
+        formDetail.showForm();    
     }
+    
 }
