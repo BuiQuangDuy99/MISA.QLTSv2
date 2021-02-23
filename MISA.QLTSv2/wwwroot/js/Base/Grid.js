@@ -177,6 +177,7 @@ class Grid {
                     });
                     grid.find('tbody').append(tr);
                 });
+
             })
         } catch (e) {
             console.log(e);
@@ -263,7 +264,7 @@ class Grid {
             case "function":
                 td = $(`<td style="display:flex; padding: 8px 16px;">` +
                     `<button class="btn-function hide">
-                            <div class="icon-remove-function">
+                            <div class="icon-pencil">
                             </div>
                         </button>
                         <button class="btn-function hide">
@@ -271,7 +272,7 @@ class Grid {
                             </div>
                         </button>
                         <button class="btn-function hide">
-                            <div class="icon-remove-function">
+                            <div class="icon-pie">
                             </div>
                         </button>
                         </button>`

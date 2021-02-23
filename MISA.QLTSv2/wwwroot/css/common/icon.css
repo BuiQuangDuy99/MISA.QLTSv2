@@ -62,13 +62,13 @@
     outline:none;
 }
 .icon-pie {
-    background-image: url('/Icons/pie-chart-line.svg');
+    background-image: url('/Icons/svg/fi-rr-time-past.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     width: 18px;
     height: 18px;
-    color: #7b7a8d;
+    opacity: 0.5;
 }
 .icon-remove-function {
     background-image: url('/Icons/trash.svg');
@@ -77,4 +77,13 @@
     background-position: center;
     width: 18px;
     height: 18px;
+}
+.icon-pencil {
+    background-image: url('/Icons/svg/fi-rr-pencil.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 18px;
+    height: 18px;
+    opacity: 0.5;
 }
