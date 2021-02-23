@@ -174,7 +174,7 @@ class baseForm {
             if ($(this).attr('DataType') == 'date') {
                 propertyvalue = formatStringDate(propertyvalue);
             }
-            if ($(this).attr('DataType') == "Money") {
+            else if ($(this).attr('DataType') == "Money") {
                 var money = formatMoney(propertyvalue);
                 propertyvalue = money;
             }
