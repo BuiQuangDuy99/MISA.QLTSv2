@@ -112,7 +112,7 @@ class Grid {
      * Hàm render dữ liệu vào bảng
      * CreatedBY: BQDUY(04/02/2021)
      * */
-    renderBody(obj) {
+    renderBody() {
         try {
             var me = this;
             var grid = this.grid;

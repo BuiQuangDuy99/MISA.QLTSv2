@@ -1,7 +1,10 @@
 ﻿$(document).ready(function () {
     new Dictionary('#gridTest');
+    $("#add-demo").click(function () {
+        formDetail.showForm();
+    });
 })
-
+var formDetail = new dictionaryForm("#dialog_dictionary");
 class Dictionary extends Grid {
     constructor(gridId) {
         super(gridId);
@@ -65,6 +68,7 @@ class Dictionary extends Grid {
     dbClickRow() {
         var id = $(this).data('recordId');
         console.log(id);
-        
+        formDetail.showForm();
+        formDetail.bindingData();
     }
 }

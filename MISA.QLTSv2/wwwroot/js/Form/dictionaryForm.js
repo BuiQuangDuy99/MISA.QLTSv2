@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-
     //Định nghĩa Dialog
     dialog = $(".dialog_dictionary").dialog({
         autoOpen: false,
@@ -9,18 +8,16 @@
         modal: true,
     });
 
-    var fromDictionary = new dictionaryForm("#dialog_dictionary");
-
-    $("#add-demo").click(function () {
-        fromDictionary.closeForm();
-        dialog.dialog('open');
-    });
+    //var formDictionary = new dictionaryForm("#dialog_dictionary");
 
 })
 class dictionaryForm extends baseForm {
     constructor(formId) {
         super(formId);
-        //fromDictionary.loadFormData(data);
-        //window['dictionaryForm'].loadFormData(data);
+    }
+
+    showForm() {
+        this.closeForm();
+        dialog.dialog('open');
     }
 }
