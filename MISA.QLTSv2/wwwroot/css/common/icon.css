@@ -1,5 +1,5 @@
 .icon-search {
-    background-image: url('/Icons/search-eye-line.svg');
+    background-image: url('/icon/search-eye-line.svg');
     background-repeat: no-repeat;
     background-position: 14px center;
     background-position: right;
@@ -9,7 +9,7 @@
     margin-right:9px;
 }
 .icon-refresh {
-    background-image: url('/Icons/refresh.svg');
+    background-image: url('/icon/refresh.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -18,7 +18,7 @@
     margin-top:4px;
 }
 .icon-remove {
-    background-image: url('/Icons/trash.svg');
+    background-image: url('/icon/trash.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -30,11 +30,11 @@
 .icon-add {
     width: 14px;
     height: 14px;
-    background-image: url('/Icons/');
+    background-image: url('/icon/');
     background-position: center;
 }
 .icon-remove-second {
-    background-image: url('/Icons/trash.svg');
+    background-image: url('/icon/trash.svg');
     background-repeat: no-repeat;
     background-position: center;
     width: 14px;
@@ -42,7 +42,7 @@
     margin-right:9px;
 }
 .icon-close {
-    background-image: url('/Icons/cancel.svg');
+    background-image: url('/icon/cancel.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -52,7 +52,7 @@
     outline:none;
 }
 .icon-help {
-    background-image: url('/Icons/help.svg');
+    background-image: url('/icon/help.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -62,19 +62,28 @@
     outline:none;
 }
 .icon-pie {
-    background-image: url('/Icons/pie-chart-line.svg');
+    background-image: url('/icon/svg/fi-rr-time-past.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     width: 18px;
     height: 18px;
-    color: #7b7a8d;
+    opacity: 0.5;
 }
 .icon-remove-function {
-    background-image: url('/Icons/trash.svg');
+    background-image: url('/icon/trash.svg');
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
     width: 18px;
     height: 18px;
+}
+.icon-pencil {
+    background-image: url('/icon/svg/fi-rr-pencil.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 18px;
+    height: 18px;
+    opacity: 0.5;
 }

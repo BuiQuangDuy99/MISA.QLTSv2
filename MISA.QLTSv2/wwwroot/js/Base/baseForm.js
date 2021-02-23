@@ -149,7 +149,6 @@ class baseForm {
         });
         this.form.find(".border-red").removeClass("border-red");
     }
-
     /**
      * Đóng form
      * CreatedBy : NDTUNG (3/2/2021)
