@@ -13,13 +13,13 @@ class baseForm {
     /**
      * Hàm khởi tạo các sự kiện trong Form
      * CreatedBy : NDTUNG (4/2/2021)
-     */ 
+     */
     initEvent() {
         //var data = this.getJson();
         this.form.find("#btn-cancel").off("click");
         this.form.find("#btn-save").off("click");
         //this.form.find("#btn-save").on("click", this.getJson());
-        this.form.find("#btn-cancel, #btn-close").on("click", this.closeForm.bind(this));
+        this.form.find("#btn-cancel,#btn-close").on("click", this.closeForm.bind(this));
         this.form.find("#btn-save").on("click", this.saveData.bind(this));
         this.form.find('input').click(function () { $(this).select(); });
         this.form.find("input").blur(this.checkStatusInput);
@@ -43,7 +43,7 @@ class baseForm {
     /**
      *Kiểm tra xem đã đúng validate chưa
      * CreatedBy : NDTUNG (4/2/2021)
-     */ 
+     */
     checkStatusInput() {
         var value = $(this).val(),
             require = $(this).attr("required");
@@ -257,6 +257,7 @@ class baseForm {
         var isValid = me.validateForm();
         if (isValid) {
             var data = me.getData();
+            console.log(data);
             this.saveChangeData(data);
             this.closeForm();
         }

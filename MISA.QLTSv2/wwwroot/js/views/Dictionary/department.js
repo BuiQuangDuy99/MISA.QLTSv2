@@ -1,6 +1,5 @@
-﻿
-$(document).ready(function () {
-    new DepartmentJS('#gridDepartment');
+﻿$(document).ready(function () {
+    new DepartmentJS();
 })
 
 // Biến config cho từng column trong bảng
@@ -39,8 +38,8 @@ var conFigColum = [
 
 // Class quản lý sự kiện cho trang Departments
 class DepartmentJS extends Grid {
-    constructor(tableId) {
-        super(tableId);
+    constructor() {
+        super('#gridDepartment');
     }
 
     renderBody() {

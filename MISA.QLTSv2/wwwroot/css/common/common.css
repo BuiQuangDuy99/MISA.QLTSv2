@@ -18,12 +18,10 @@
 .border-red {
     border: 1px solid red !important;
 }
-.show-dialog {
-    opacity: 1;
-    visibility: visible;
-}
-
-.hide-dialog {
-    opacity: 0;
+.hide {
     visibility: hidden;
+}
+tr:hover .hide {
+    visibility: visible;
+    background-color: #f0f8ff;
 }
