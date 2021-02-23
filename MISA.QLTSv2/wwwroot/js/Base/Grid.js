@@ -87,7 +87,7 @@ class Grid {
             formMode = 'Edit';
             console.log(formMode);
         })
-
+         
         // Sự kiện click một dòng, hoặc giữ ctrl để click được nhiều dòng
         grid.find('tbody').on('click', 'tr', function (event) {
             if (event.ctrlKey) {
@@ -261,17 +261,17 @@ class Grid {
                 td = me.addClassFormat(td, dataType);
                 break;
             case "function":
-                td = $(`<td style="display:flex">` +
+                td = $(`<td style="display:flex; padding: 8px 16px;">` +
                     `<button class="btn-function hide">
-                            <div class="icon-refresh">
+                            <div class="icon-remove-function">
                             </div>
                         </button>
                         <button class="btn-function hide">
-                            <div class="icon-remove">
+                            <div class="icon-remove-function">
                             </div>
                         </button>
                         <button class="btn-function hide">
-                            <div class="icon-refresh">
+                            <div class="icon-remove-function">
                             </div>
                         </button>
                         </button>`

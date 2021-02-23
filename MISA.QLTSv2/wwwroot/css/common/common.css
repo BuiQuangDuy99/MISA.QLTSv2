@@ -21,6 +21,7 @@
 .hide {
     visibility: hidden;
 }
-tr:hover .hide{
+tr:hover .hide {
     visibility: visible;
+    background-color: #f0f8ff;
 }
