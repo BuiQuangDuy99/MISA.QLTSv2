@@ -26,7 +26,7 @@ class baseForm {
         this.form.find("input").keyup(this.checkStatusInput);
         //this.form.find("input").blur(this.checkInputNumber.bind(this));
         //this.form.find("input").keyup(this.checkInputNumber.bind(this));
-        this.form.find("input[DataType='Money']").on("keypress", function () {
+        this.form.find("input[DataType='Money'],input[DataType='Number']").on("keypress", function () {
             if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
                 event.preventDefault();
             }
