@@ -70,3 +70,11 @@
 .ui-dialog .ui-dialog-title{
     display: none;
 }
+
+.v-grid {
+    height: calc(100vh - 114px) !important;
+}
+
+.v-grid-overflow{
+    overflow: unset !important;
+}
