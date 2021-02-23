@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MISA.QLTSv2</title>
+    <title>@ViewData["ChildTitle"] - MISA.QLTSv2</title>
     <link href="~/lib/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet" />
@@ -98,9 +98,9 @@
             <div class="right col">
                 <div class="header">
                     <div class="header-left">
-                        <div class="parent-title">Tài sản</div>
+                        <div class="parent-title">@ViewData["ParentTitle"]</div>
                         <div class="m-seperator m-background-image"></div>
-                        <div class="child-title">Danh sách tài sản</div>
+                        <div class="child-title">@ViewData["ChildTitle"]</div>
                     </div>
                     <div class="header-right">
                         <div class="department">Sở tài chính</div>
