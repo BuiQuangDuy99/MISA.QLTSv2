@@ -1,24 +1,27 @@
-//$(document).ready(function () {
-//    //Định nghĩa Dialog
-//    dialog = $(".department_dialog").dialog({
-//        autoOpen: false,
-//        //height: 400,
-//        width: 480,
-//        modal: true,
-//    });
+$(document).ready(function () {
+    //Định nghĩa Dialog
+    dialogs = $(".department_dialog").dialog({
+        autoOpen: false,
+        //height: 400,
+        width: 480,
+        modal: true,
+        draggable: true
+    });
 
-//    new departmentForm('#department_dialog');
+    new departmentForm('#department_dialog');
+    $("#btn-add-depatment").click(function () {
+        dialogs.dialog('open');
+    })
 
-//    $(".btn-add").click(function () {
-//        dialog.dialog('open');
-//    })
+})
 
-//})
-
-//class departmentForm extends baseForm {
-//    constructor(formId) {
-//        super(formId);
-//    }
-
-   
-//}
+class departmentForm extends baseForm {
+    constructor(formId) {
+        super(formId);
+    }
+        
+    closeForm() {
+        this.resetForm();
+        dialogs.dialog('close');
+    }
+}
