@@ -4,6 +4,8 @@
     $("#add-demo").click(function () {
         formDetail.showForm();
     });
+
+    showTooltipElement($('button'));
 })
 var formDetail = new dictionaryForm("#dialog_dictionary");
 class Dictionary extends Grid {
