@@ -1,4 +1,4 @@
-﻿.m-background-image {
+.m-background-image {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -25,4 +25,17 @@
 tr:hover .hide {
     visibility: visible;
     background-color: #f0f8ff;
+}
+.width-stt{
+    width: 40px !important;
+}
+.width-datetime{
+    width: 107px !important;
+}
+.width-price{
+    width: 115px !important;
+}
+.padding-stt{
+    padding-left: 0;
+    padding-right: 0;
 }

@@ -93,11 +93,39 @@ class Grid {
             th = me.addAttribute(th, 'fieldName', col.FieldName);
             th = me.addAttribute(th, 'dataType', col.DataType);
             th = me.addClassFormat(th, col.DataType);
+            th = me.addWithForTh(th, col.FieldName, col.DataType);
             tr.append(th);
         }
         );
 
         this.grid.find('thead').append(tr);
+    }
+
+    /**
+     * Hàm xét độ rộng cho từng th trong grid
+     * 
+     * */
+    addWithForTh(element, FieldName, DataType) {
+        try {
+            switch (FieldName) {
+                case "STT":
+                    element.addClass("width-stt");
+                    element.addClass("padding-stt");
+                    break;
+                case "DateTime":
+                    element.addClass("width-datetime");
+                    break;
+                case "Price":
+                    element.addClass("width-price");
+                    break;
+                default:
+                    break;
+            }
+            return element;
+        } catch (e) {
+            console.log(e);
+        }
+      
     }
 
     /**
