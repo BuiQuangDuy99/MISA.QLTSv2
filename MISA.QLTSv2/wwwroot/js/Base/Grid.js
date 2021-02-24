@@ -177,11 +177,13 @@ class Grid {
                         value = obj[fieldName];
                         td = me.addValueInTd(td, value, dataType);
                         td = me.addFormatTd(td, dataType);
+                        td = td.attr("title", value);
                         tr.append(td);
                     });
                     grid.find('tbody').append(tr);
                 });
                 showTooltipElement($('button'));
+                showTooltipElement($('td'));
             })
         } catch (e) {
             console.log(e);
