@@ -184,6 +184,7 @@ class Grid {
                 });
                 showTooltipElement($('button'));
                 showTooltipElement($('td'));
+                showTooltipElement($('td'));
             })
         } catch (e) {
             console.log(e);
