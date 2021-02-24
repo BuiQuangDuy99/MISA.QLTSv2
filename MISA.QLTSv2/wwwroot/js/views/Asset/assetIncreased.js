@@ -6,6 +6,7 @@ class assetIncreased extends Grid {
     constructor() {
         super('#asset-grid', "data");
     }
+
     setConFigColum() {
         this.conFigColum = [
             {
