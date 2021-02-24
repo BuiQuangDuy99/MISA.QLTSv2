@@ -11,16 +11,18 @@ class Login {
      * */
     initEvent() {
         $('#btn-login').off('click');
-        $('input[required]').on("blur", this.checkInput);
-        $('input[required]').on("keyup", function () {
+        $('input[required]').on("blur", this.checkInput); //Sự kiện khi blur qua input
+        $('input[required]').on("keyup", function () {    //Sự kiện khi nhập tại input
             let input = $(this);
             if ($(this).val().trim() != "") {
                 input.removeClass('border-red');
-                input.removeAttr('title');            }
+                input.removeAttr('title');
+                //$(this).tooltip("close");
+            }
         });
-        $('input').click(function () { $(this).select(); });
-        $('#btn-login').on('click', this.loginOnClick.bind(this));
-        $('.login').keypress(function (event) {
+        $('input').click(function () { $(this).select(); });//Sự kiện khi click qua input
+        $('#btn-login').on('click', this.loginOnClick.bind(this)); //Sự kiện khi click qua Đăng nhập
+        $('.login').keypress(function (event) {                    //Sự kiện khi nhấn qua enter
             if (event.which == 13) {
                 $('[required]').trigger('blur');
                 $('#btn-login').trigger('click');
@@ -33,45 +35,45 @@ class Login {
  * CreatedBy: NDTUNG (18/2/2021)
  */
     checkInput() {
-        var maxLength = 20, val = $(this).val().trim(),input=$(this);
-
-        if (val.length > maxLength || val == "") {
+        var maxLength, val = $(this).val().trim(), input = $(this);
+        maxLength = parseInt($(this).attr('maxlength'));
+        if (val == "") {
             $(this).addClass('border-red');
-            if (val == "") {
-                $(this).attr('title', 'Trường này không được để trống');
+            $(this).attr('title', 'Trường này không được để trống');
 
-                this.showTooltip(input).bind(this,input);
+            this.showTooltip.bind(this, input);
 
-                $(this).tooltip({
-                    items: $(this),
-                    content: $(this).attr('title'),
-                    track: true,
-                    position: {
-                        my: "left+10 top",
-                        at: "right+5 top",
-                        collision: "none"
-                    },
-                    disabled: false
-                })
-                $(this).tooltip("close");
-            }
-            else {
-                $(this).attr('title', 'Không được dài quá 20 ký tự');
-                //showTooltip($(this));
-                $(this).tooltip({
-                    items: input,
-                    content: $(this).attr('title'),
-                    track: true,
-                    position: {
-                        my: "left+10 top",
-                        at: "right+5 top",
-                        collision: "none"
-                    },
-                    disabled: false
-                })
-                $(this).tooltip("close");
-            }
+            //$(this).tooltip({
+            //    items: $(this),
+            //    content: $(this).attr('title'),
+            //    track: true,
+            //    position: {
+            //        my: "left+10 top",
+            //        at: "right+5 top",
+            //        collision: "none"
+            //    },
+            //    disabled: false
+            //})
+            $(this).tooltip("close");
         }
+        else if (val.length > maxLength) {
+            $(this).addClass('border-red');
+            $(this).attr('title', 'Không được dài quá ' + maxLength + ' ký tự');
+            //showTooltip($(this));
+            $(this).tooltip({
+                items: $(this),
+                content: $(this).attr('title'),
+                track: true,
+                position: {
+                    my: "left+10 top",
+                    at: "right+5 top",
+                    collision: "none"
+                },
+                disabled: false
+            })
+            $(this).tooltip("close");
+        }
+
         else {
             $(this).removeClass('border-red');
             $(this).removeAttr('title');
@@ -125,12 +127,13 @@ class Login {
  * CreatedBy: NDTUNG (18/2/2021)
  */
     checkLength() {
-        var maxLength = 20, isValid = true;
-        $("input[required]").each(function () {
+        var isValid = true;
+        $("input[maxlength]").each(function () {
+            var maxlength = parseInt($(this).attr('maxlength'));
             var val = $(this).val().trim();
-            if (val.length > maxLength) {
+            if (val.length > maxlength) {
                 $(this).addClass('border-red');
-                $(this).attr('title', 'Không được dài quá 20 ký tự');
+                $(this).attr('title', 'Không được dài quá ' + maxlength + ' ký tự');
                 //this.showTooltip($(this));
                 $(this).tooltip({
                     items: $(this),
@@ -189,6 +192,7 @@ class Login {
     * CreatedBy : NDTUNG (17/2/2021)
     */
     validateLogin() {
+        this.delayLoading();
         var isValid = this.checkRequired();
         if (isValid) { isValid = this.checkLength() }
         return isValid;
@@ -232,17 +236,23 @@ class Login {
             UnitBudgetCode: "Misa",
             UserName: "12345678",
             Password: "12345678"
-        }
+        }, check = 0;
+        $('.loading').show();
         var isValid = this.validateLogin();
         if (isValid) {
-            var account = this.getAccount();
-            if ((JSON.stringify(account) === JSON.stringify(accountTest))) {
-                $('.loading').show();
+            $('input[fieldName]').each(function () {
+                var feildName = $(this).attr('fieldName');
+                if ($(this).val() == accountTest[feildName]) {
+                    check++;
+                }
+            });
+            if (check == $('input').length) {
                 window.location.href = "https://localhost:44363/Asset/AssetIncreased";
                 this.resetLogin();
-                //$('.loading').hide();
+                this.delayLoading();
             }
             else {
+                this.delayLoading();
                 this.errorAcount(accountTest);
             }
         }
@@ -276,11 +286,10 @@ class Login {
             disabled: false
         })
     }
+
+    delayLoading() {
+        setTimeout(function () {
+            $('.loading').hide();
+        }, 3000)
+    }
 }
-
-
-
-
-
-
-
