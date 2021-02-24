@@ -17,6 +17,10 @@ class Login {
             if ($(this).val().trim() != "") {
                 input.removeClass('border-red');
                 input.removeAttr('title');
+                $(this).tooltip({
+                    items: $(this),
+                    disabled: true,
+                })
                 //$(this).tooltip("close");
             }
         });
@@ -41,7 +45,7 @@ class Login {
             $(this).addClass('border-red');
             $(this).attr('title', 'Trường này không được để trống');
 
-            this.showTooltip.bind(this, input);
+            this.showTooltip.bind(this);
 
             //$(this).tooltip({
             //    items: $(this),
@@ -54,7 +58,7 @@ class Login {
             //    },
             //    disabled: false
             //})
-            $(this).tooltip("close");
+            //$(this).tooltip("close");
         }
         else if (val.length > maxLength) {
             $(this).addClass('border-red');
@@ -290,6 +294,6 @@ class Login {
     delayLoading() {
         setTimeout(function () {
             $('.loading').hide();
-        }, 3000)
+        }, 2000)
     }
 }
