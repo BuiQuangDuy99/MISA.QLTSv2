@@ -1,6 +1,6 @@
-﻿$(function () {
-    $('select').combobox();
-});
+﻿//$(document).ready(function () {
+//    $('#cbx-test').combobox();
+//});
 
 /* 
     Combobox widget 
