@@ -2,31 +2,32 @@
 //-----------------Form-----------------------------
 class baseForm {
     ///constructor
-    constructor(Idform) {
+    constructor(Idform, data) {
         this.formMode = Enum.FormMode.Add;
         this.form = $(Idform);
         this.setApiUrl();
         this.getApiUrl = null;
+        //this.bindingData(data);
         this.initEvent();
     };
 
     /**
      * Hàm khởi tạo các sự kiện trong Form
      * CreatedBy : NDTUNG (4/2/2021)
-     */ 
+     */
     initEvent() {
         //var data = this.getJson();
         this.form.find("#btn-cancel").off("click");
         this.form.find("#btn-save").off("click");
-        //this.form.find("#btn-save").on("click", this.getJson()); 
-        this.form.find("#btn-cancel").on("click", this.closeForm.bind(this));
+        //this.form.find("#btn-save").on("click", this.getJson());
+        this.form.find("#btn-cancel,#btn-close").on("click", this.closeForm.bind(this));
         this.form.find("#btn-save").on("click", this.saveData.bind(this));
         this.form.find('input').click(function () { $(this).select(); });
         this.form.find("input").blur(this.checkStatusInput);
         this.form.find("input").keyup(this.checkStatusInput);
         //this.form.find("input").blur(this.checkInputNumber.bind(this));
         //this.form.find("input").keyup(this.checkInputNumber.bind(this));
-        this.form.find("input[DataType='Money']").on("keypress", function () {
+        this.form.find("input[DataType='Money'],input[DataType='Number']").on("keypress", function () {
             if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
                 event.preventDefault();
             }
@@ -43,7 +44,7 @@ class baseForm {
     /**
      *Kiểm tra xem đã đúng validate chưa
      * CreatedBy : NDTUNG (4/2/2021)
-     */ 
+     */
     checkStatusInput() {
         var value = $(this).val(),
             require = $(this).attr("required");
@@ -52,6 +53,7 @@ class baseForm {
             $(this).attr("title", "Trường này không được để trống!");
         } else {
             $(this).removeClass("border-red");
+            $(this).attr("title", "");
         }
     }
 
@@ -102,18 +104,19 @@ class baseForm {
     checkInputNumber() {
         var isValid = true;
         this.form.find("input[DataType='Number']").each(function () {
-            var val = $(this).val();
-            var test = /^[0-9]+$/i;
-            if (!test.test(val)) {
-                $(this).addClass('border-red');
-                $(this).attr('title', 'Càn nhập đúng định dạng số!');
-                isValid = false;
+            var val = $(this).val().trim();
+            if (val != "") {
+                var test = /^[0-9]+$/i;
+                if (!test.test(val)) {
+                    $(this).addClass('border-red');
+                    $(this).attr('title', 'Càn nhập đúng định dạng số!');
+                    isValid = false;
+                }
+                else {
+                    $(this).removeClass('border-red');
+                    $(this).removeAttr('title');
 
-            }
-            else {
-                $(this).removeClass('border-red');
-                $(this).removeAttr('title');
-
+                }
             }
         });
         var inputRequire = this.form.find(".border-red");
@@ -149,14 +152,13 @@ class baseForm {
         });
         this.form.find(".border-red").removeClass("border-red");
     }
-
     /**
      * Đóng form
      * CreatedBy : NDTUNG (3/2/2021)
      */
     closeForm() {
-        this.resetForm();
-        dialog.dialog('close');
+        //this.resetForm();
+        //dialog.dialog('close');
     }
 
 
@@ -173,7 +175,7 @@ class baseForm {
             if ($(this).attr('DataType') == 'date') {
                 propertyvalue = formatStringDate(propertyvalue);
             }
-            if ($(this).attr('DataType') == "Money") {
+            else if ($(this).attr('DataType') == "Money") {
                 var money = formatMoney(propertyvalue);
                 propertyvalue = money;
             }
@@ -186,8 +188,8 @@ class baseForm {
      * CreatedBy : NDTUNG (4/2/2021)
      */
     saveChangeData(data) {
-        var url = this.getApiUrl;
-        var formMode = this.formMode;
+        //var url = this.getApiUrl;
+        //var formMode = this.formMode;
         if (formMode == 1) {
             callAjax(url, "Post", data, function (res) {
                 if (res.MISACode == Enum.StatusResponse.Success) {
@@ -240,6 +242,9 @@ class baseForm {
             var fieldName = $(this).attr("fieldName"),
                 dataType = $(this).attr("DataType");
 
+            if (dataType == "Combobox") {
+                fieldName = $(this).attr("fieldValue");
+            }
             data[fieldName] = me.getDataInput($(this), dataType);
 
         });

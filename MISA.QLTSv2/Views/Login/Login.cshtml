@@ -1,0 +1,51 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Đăng Nhập</title>
+    <link rel="icon" href="~/icon/logo-qlts.svg" />
+    <link href="~/lib/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
+    <link href="~/css/login.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="form-login">
+        <div class="login">
+            <div>
+                <div class="logo_login"></div>
+                <div class="title_1">MISA QLTS</div>
+                <div class="title_2">Phần mềm quản lý tài sản</div>
+            </div>
+            <div class="input">
+                <div>
+                    <input tabindex="1" type="text" placeholder="Mã ngân sách đơn vị" fieldName="UnitBudgetCode"  autofocus required />
+                </div>
+                <div>
+                    <input tabindex="2" type="text" placeholder="Số điện thoại/email" fieldName="UserName" maxlength="50" required />
+                </div>
+                <div>
+                    <input tabindex="3" type="password" placeholder="Mật khẩu" fieldName="Password" required />
+                </div>
+            </div>
+            <div style="display:flex;align-items:center">
+                <button type="submit" tabindex="4" id="btn-login">Đăng nhập</button>
+            </div>
+            <div>
+                <a tabindex="5" href="#" title="Quên mật khẩu">Quên mật khẩu?</a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">Copyright © 2020 MISA JSC</div>
+    <div class="loading">
+        <div class="loading-modal"></div>
+        <div class="loading-icon"></div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    <script src="~/js/login.js"></script>
+</body>
+</html>

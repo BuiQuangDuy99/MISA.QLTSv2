@@ -1,61 +1,63 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
     new assetIncreased();
 })
 
 class assetIncreased extends Grid {
     constructor() {
-        super('#asset-grid');
+        super('#asset-grid', "data");
     }
+
     setConFigColum() {
         this.conFigColum = [
             {
                 DataType: "number",
-                Field: "STT",
+                FieldName: "STT",
                 FieldText: "STT",
                 Index: 1
             },
             {
                 DataType: "datetime",
-                Field: "DateTime",
+                FieldName: "DateTime",
                 FieldText: "Ngày ghi tăng",
                 Index: 2
             },
             {
                 DataType: "text",
-                Field: "AssetCode",
+                FieldName: "AssetCode",
                 FieldText: "Mã tài sản",
                 Index: 3
             },
             {
                 DataType: "text",
-                Field: "AssetName",
+                FieldName: "AssetName",
                 FieldText: "Tên tài sản",
                 Index: 4
             },
             {
                 DataType: "text",
-                Field: "AssetGroupName",
+                FieldName: "AssetGroupName",
                 FieldText: "Loại tài sản",
                 Index: 5
             },
             {
                 DataType: "text",
-                Field: "Department",
+                FieldName: "Department",
                 FieldText: "Phòng ban",
                 Index: 6
             },
             {
                 DataType: "money",
-                Field: "Price",
+                FieldName: "Price",
                 FieldText: "Nguyên giá",
                 Index: 7
             },
             {
-                DataType: "number",
-                Field: "Function",
+                DataType: "function",
+                FieldName: "Function",
                 FieldText: "Chức năng",
                 Index: 8
             }
         ];
     }
+    
 }

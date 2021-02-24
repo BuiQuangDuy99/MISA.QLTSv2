@@ -47,9 +47,18 @@
         }
 
         .header .header-right .year {
+            display: flex;
+            align-items: center;
+            position: relative;
+            
         }
+            .header .header-right .year .text-year {
+                position: absolute;
+                left: 15px;
+                font-family: Roboto-Regular !important;
+            }
 
-            .header .header-right .year > select {
+            .header .header-right .year > input {
                 background-color: #ffffff;
                 border-radius: 3.5px;
                 border: 1px solid #e0e0e0;
@@ -61,19 +70,22 @@
                 padding-bottom: 1px;
                 font-size: 13px;
                 color: #212121;
+                padding-left: 50px;
+                font-family: Roboto-Regular !important;
             }
 
-                .header .header-right .year > select:focus {
-                    outline: none;
+                .header .header-right .year > input:focus{
+                    box-shadow: none;
                 }
 
-        .header .header-right .help {
-            background-image: url('/icon/help.svg');
-            width: 16px;
-            height: 16px;
-            overflow: hidden;
-            margin-left: 24px;
-        }
+
+                .header .header-right .help {
+                    background-image: url('/icon/help.svg');
+                    width: 16px;
+                    height: 16px;
+                    overflow: hidden;
+                    margin-left: 24px;
+                }
 
         .header .header-right .notification {
             background-image: url('/icon/bell.svg');

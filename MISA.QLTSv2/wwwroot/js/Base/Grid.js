@@ -1,12 +1,12 @@
 ﻿// Lớp dùng để render ra các bảng
 class Grid {
     // Hàm khởi tạo, truyền vào id của bảng
-    constructor(tableId) {
+    constructor(tableId, filename) {
         this.grid = $(tableId);
         this.conFigColum = null;
         this.setConFigColum();
         this.renderColumn();
-        this.renderBody();
+        this.renderBody(filename);
         this.initEvent();
     }
 
@@ -19,17 +19,22 @@ class Grid {
     };
 
     /**
+     * Hàm khi xảy ra sự kiện double click vào 1 dòng
+     * CreatedBY: BQDUY(23/02/2021)
+     * */
+    dbClickRow() {
+        
+    };
+
+    /**
      * Hàm khởi tạo các sự kiện trong grid 
      * CreatedBY: BQDUY(04/02/2021)
      * */
     initEvent() {
         var grid = this.grid;
 
-        // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit
-        this.grid.find('tbody').on('dblclick', 'tr', function () {
-            formMode = 'Edit';
-            console.log(formMode);
-        })
+        // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit, và binding dữ liệu của row lên form
+        this.grid.find('tbody').on('dblclick', 'tr', this.dbClickRow);
 
         // Sự kiện click một dòng, hoặc giữ ctrl để click được nhiều dòng
         grid.find('tbody').on('click', 'tr', function (event) {
@@ -48,22 +53,24 @@ class Grid {
                     $(this).siblings().removeClass('selected-row');
                 }
             }
+            //$('#function').addClass('show-dialog');
+            //$('#function').removeClass('hide-dialog');
         })
 
         // Sự kiện click chuột phải vào một dòng show menu context (chưa hoàn thiện)
-        grid.find('tbody').on('contextmenu', function (e) {
-            var menu = $('.menu');//get the menu
-            e.preventDefault();//Prevent the default action: the normal right-click-menu to show
-            menu.css({
-                display: 'block',//show the menu
-                top: e.pageY,//make the menu be where you click (y)
-                left: e.pageX,//make the menu be where you click (x)
-                position: 'fixed'
-            });
-            $(document).click(function () { //When you left-click
-                menu.css({ display: 'none' });//Hide the menu
-            });
-        })
+        //grid.find('tbody').on('contextmenu', function (e) {
+        //    var menu = $('.menu');//get the menu
+        //    e.preventDefault();//Prevent the default action: the normal right-click-menu to show
+        //    menu.css({
+        //        display: 'block',//show the menu
+        //        top: e.pageY,//make the menu be where you click (y)
+        //        left: e.pageX,//make the menu be where you click (x)
+        //        position: 'fixed'
+        //    });
+        //    $(document).click(function () { //When you left-click
+        //        menu.css({ display: 'none' });//Hide the menu
+        //    });
+        //})
     }
 
     /**
@@ -86,6 +93,7 @@ class Grid {
             th = me.addAttribute(th, 'fieldName', col.FieldName);
             th = me.addAttribute(th, 'dataType', col.DataType);
             th = me.addClassFormat(th, col.DataType);
+            th = me.addWithForTh(th, col.FieldName, col.DataType);
             tr.append(th);
         }
         );
@@ -94,15 +102,67 @@ class Grid {
     }
 
     /**
+     * Hàm xét độ rộng cho td trong grind
+     * @param {any} element đối tượng cần định dạng độ rộng
+     * @param {any} FieldName fileName của đối tượng 
+     * @param {any} DataType kiểu dữ liệu của đối tượng
+     * CreatedBy: DVVUONG (24/04/2021)
+     */
+    addWithForTh(element, FieldName, DataType) {
+        try {
+            let strEqual = "Code";
+            if (String(FieldName).includes(strEqual) && DataType == "text") {
+                element.addClass("width-code");
+                return element;
+            }
+
+            switch (FieldName) {
+                case "STT":
+                    element.addClass("width-stt");
+                    element.addClass("padding-stt");
+                    break;
+                case "DateTime":
+                    element.addClass("width-datetime");
+                    break;
+                case "Price":
+                    element.addClass("width-price");
+                    break;
+                default:
+                    break;
+            }
+            return element;
+        } catch (e) {
+            console.log(e);
+        }
+      
+    }
+
+    /**
+     * @param {any} element đối tượng cần đinh dạng format
+     * @param {any} DataType kiểu của đói tượng
+     * Hàm format ẩn text khi độ dài vượt quá quy định
+     * CreatedBy: DVVUONG (24/04/2021)
+     */
+    addFormatTd(element, DataType) {
+        try {
+            if (DataType == "text") {
+                element.addClass("hidden-text");
+            }
+            return element;
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    /**
      * Hàm render dữ liệu vào bảng
      * CreatedBY: BQDUY(04/02/2021)
      * */
-    renderBody() {
+    renderBody(filename) {
         try {
             var me = this;
             var grid = this.grid;
-
-            $.getJSON("/js/data.json", function (data) {
+            $.getJSON("/js/" + filename+".json", function (data) {
                 var tr;
                 var dataType;
                 var fieldName;
@@ -116,15 +176,18 @@ class Grid {
                         fieldName = $(this).attr('fieldName');
                         value = obj[fieldName];
                         td = me.addValueInTd(td, value, dataType);
+                        td = me.addFormatTd(td, dataType);
+                        td = td.attr("title", value);
                         tr.append(td);
                     });
                     grid.find('tbody').append(tr);
                 });
+                showTooltipElement($('button'));
+                showTooltipElement($('td'));
             })
         } catch (e) {
             console.log(e);
         }
-        
     }
 
     /**
@@ -162,6 +225,8 @@ class Grid {
             case 'year':
                 element.addClass("text-right");
                 break;
+            case 'function':
+                element.addClass("function-content");
             default:
                 break;
         }
@@ -202,8 +267,23 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
-            case "action":
-                td = $(`<td></td>`);
+            case "function":
+                td = $(`<td style="display:flex; padding: 8px 16px;">` +
+                    `<button class="btn-function hide" title="Chỉnh sửa">
+                            <div class="icon-pencil">
+                            </div>
+                        </button>
+                        <button class="btn-function hide" title="Xóa">
+                            <div class="icon-remove-function">
+                            </div>
+                        </button>
+                        <button class="btn-function hide" title="Lịch sử">
+                            <div class="icon-pie">
+                            </div>
+                        </button>
+                        </button>`
+                    + `</td>`);
+                td = me.addClassFormat(td, dataType);
                 break;
             default:
                 td = $(`<td>` + value + `</td>`);

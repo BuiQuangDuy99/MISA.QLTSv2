@@ -1,4 +1,7 @@
-﻿
+input{
+    outline: none !important;
+}
+
 .input-search {
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
@@ -18,21 +21,40 @@
     font-size: 13px;
     color: #373737;
     text-align: justify;
-    outline:none;
+    outline: none;
+    font-family: Roboto-Regular !important;
 }
 .input-detail {
-    height: 63px;
-    min-width: 750px;
+    min-height: 64px;
+    min-width: 150px;
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
+    padding-left: 15px;
+    font-size: 13px;
+    color: #373737;
+    text-align: justify;
+    outline: none;
 }
 .input-date {
-    padding-left: 11px;
+    padding-left: 15px;
     padding-top: 7px;
     padding-bottom: 10px;
     height: 32px;
     min-width: 149px;
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
-    outline:none;
+    outline: none;
+    font-family: Roboto-Regular !important;
+}
+.input-select {
+    height: 32px;
+    min-width: 150px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding-left: 10px;
+    font-size: 13px;
+    color: #373737;
+    text-align: justify;
+    outline: none;
+    font-family: Roboto-Regular !important;
 }

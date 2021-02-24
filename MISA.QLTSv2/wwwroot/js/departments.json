@@ -1,0 +1,34 @@
+﻿[
+  {
+    "STT": 1,
+    "Id": "1a",
+    "DepartmentCode": "PCNTT",
+    "DepartmentName": "Phòng Công nghệ thông tin",
+    "DepartmentGroupName": "Phòng CNTT",
+    "Note": "Đây là phòng CNTT"
+  },
+  {
+    "STT": 2,
+    "Id": "1b",
+    "DepartmentCode": "PHCTH",
+    "DepartmentName": "Phòng Hành chính tổng hợp",
+    "DepartmentGroupName": "Phòng HCTH",
+    "Note": "Đây là phòng HCTH"
+  },
+  {
+    "STT": 3,
+    "Id": "1c",
+    "DepartmentCode": "PKT",
+    "DepartmentName": "Phòng Kế toán",
+    "DepartmentGroupName": "Phòng Kế toán",
+    "Note": "Đây là phòng kế toán"
+  },
+  {
+    "STT": 4,
+    "Id": "1d",
+    "DepartmentCode": "PTT",
+    "DepartmentName": "Phòng Thanh Tra",
+    "DepartmentGroupName": "Phòng Thanh tra",
+    "Note": "Đây là phòng thanh tra"
+  }
+]
