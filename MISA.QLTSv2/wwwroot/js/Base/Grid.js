@@ -93,11 +93,65 @@ class Grid {
             th = me.addAttribute(th, 'fieldName', col.FieldName);
             th = me.addAttribute(th, 'dataType', col.DataType);
             th = me.addClassFormat(th, col.DataType);
+            th = me.addWithForTh(th, col.FieldName, col.DataType);
             tr.append(th);
         }
         );
 
         this.grid.find('thead').append(tr);
+    }
+
+    /**
+     * Hàm xét độ rộng cho td trong grind
+     * @param {any} element đối tượng cần định dạng độ rộng
+     * @param {any} FieldName fileName của đối tượng 
+     * @param {any} DataType kiểu dữ liệu của đối tượng
+     * CreatedBy: DVVUONG (24/04/2021)
+     */
+    addWithForTh(element, FieldName, DataType) {
+        try {
+            let strEqual = "Code";
+            if (String(FieldName).includes(strEqual) && DataType == "text") {
+                element.addClass("width-code");
+                return element;
+            }
+
+            switch (FieldName) {
+                case "STT":
+                    element.addClass("width-stt");
+                    element.addClass("padding-stt");
+                    break;
+                case "DateTime":
+                    element.addClass("width-datetime");
+                    break;
+                case "Price":
+                    element.addClass("width-price");
+                    break;
+                default:
+                    break;
+            }
+            return element;
+        } catch (e) {
+            console.log(e);
+        }
+      
+    }
+
+    /**
+     * @param {any} element đối tượng cần đinh dạng format
+     * @param {any} DataType kiểu của đói tượng
+     * Hàm format ẩn text khi độ dài vượt quá quy định
+     * CreatedBy: DVVUONG (24/04/2021)
+     */
+    addFormatTd(element, DataType) {
+        try {
+            if (DataType == "text") {
+                element.addClass("hidden-text");
+            }
+            return element;
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     /**
@@ -122,11 +176,14 @@ class Grid {
                         fieldName = $(this).attr('fieldName');
                         value = obj[fieldName];
                         td = me.addValueInTd(td, value, dataType);
+                        td = me.addFormatTd(td, dataType);
+                        td = td.attr("title", value);
                         tr.append(td);
                     });
                     grid.find('tbody').append(tr);
                 });
                 showTooltipElement($('button'));
+                showTooltipElement($('td'));
             })
         } catch (e) {
             console.log(e);
