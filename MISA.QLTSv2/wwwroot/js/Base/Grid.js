@@ -102,9 +102,12 @@ class Grid {
     }
 
     /**
-     * Hàm xét độ rộng cho từng th trong grid
-     * CreatedBy: DVVUONG (24/02/2021)
-     * */
+     * Hàm xét độ rộng cho td trong grind
+     * @param {any} element đối tượng cần định dạng độ rộng
+     * @param {any} FieldName fileName của đối tượng 
+     * @param {any} DataType kiểu dữ liệu của đối tượng
+     * CreatedBy: DVVUONG (24/04/2021)
+     */
     addWithForTh(element, FieldName, DataType) {
         try {
             let strEqual = "Code";
@@ -127,12 +130,28 @@ class Grid {
                 default:
                     break;
             }
-
             return element;
         } catch (e) {
             console.log(e);
         }
       
+    }
+
+    /**
+     * @param {any} element đối tượng cần đinh dạng format
+     * @param {any} DataType kiểu của đói tượng
+     * Hàm format ẩn text khi độ dài vượt quá quy định
+     * CreatedBy: DVVUONG (24/04/2021)
+     */
+    addFormatTd(element, DataType) {
+        try {
+            if (DataType == "text") {
+                element.addClass("hidden-text");
+            }
+            return element;
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     /**
@@ -157,6 +176,7 @@ class Grid {
                         fieldName = $(this).attr('fieldName');
                         value = obj[fieldName];
                         td = me.addValueInTd(td, value, dataType);
+                        td = me.addFormatTd(td, dataType);
                         tr.append(td);
                     });
                     grid.find('tbody').append(tr);
