@@ -8,18 +8,18 @@
         <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
     </div>
     <div class="tool-bar-right">
-        <div>
+        <div class="test-tooltip">
             <button id="btn-add-dictionary" class="button btn-add">Thêm</button>
         </div>
         <div>
-            <button class="button btn-refresh">
+            <button class="button btn-refresh" title="Làm mới">
                 <div class="icon-refresh">
 
                 </div>
             </button>
         </div>
         <div>
-            <button  class="button btn-remove">
+            <button  class="button btn-remove" title="Xóa">
                 <div class="icon-remove ">
                 </div>
             </button>
@@ -28,7 +28,7 @@
 </div>
 <div class="grid">
     <div class="grid-default">
-        <table border="0" cellspacing="0" id="gridTest">
+        <table cellspacing="0" id="gridTest">
             <thead>
                 <tr>
                 </tr>
@@ -42,7 +42,7 @@
     <div class="container-fluid">
         <div class="row dialog-header">
             <div class="col-8">
-                Ghi tăng tài sản
+                Loại tài sản
             </div>
             <div class="col-4 header-toolbar">
                 <button class="btn-close button" id="btn-close">
@@ -69,7 +69,7 @@
                         Tên loại tài sản (*)
                     </div>
                     <div>
-                        <input class="input-text input-dictionary" fieldName="AssetTypeName" required />
+                        <input class="input-text input-dictionary" fieldName="AssetTypeName" required /> 
                     </div>
                 </div>
             </div>
@@ -91,7 +91,19 @@
                         Nhóm tài sản
                     </div>
                     <div>
-                        <input class="input-text input-dictionary" fieldName="AssetGroupName" />
+                        <select style="width:300px">
+                            <option value="">-Select a number-</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="4">Four</option>
+                            <option value="5">Five</option>
+                            <option value="6">Six</option>
+                            <option value="7">Seven</option>
+                            <option value="8">Eight</option>
+                            <option value="9">Nine</option>
+                            <option value="10">Ten</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -125,35 +137,6 @@
             </div>
         </div>
     </div>
-
-    @*<div>
-        <div>Mã loại tài sản (*)</div>
-        <input class="input-text" fieldName="AssetTypeCode" required />
-    </div>
-    <div>
-        <div>Tên loại tài sản (*)</div>
-        <input class="input-text" fieldName="AssetTypeName" required />
-    </div>
-    <div>
-        <div>Thuộc loại (*)</div>
-        <input class="input-text" fieldName="AssetClassName" required />
-    </div>
-    <div>
-        <div>Nhóm tài sản</div>
-        <input class="input-text" fieldName="AssetGroupName" />
-    </div>
-    <div>
-        <div>Tỷ lệ hao mòn</div>
-        <input class="input-text" fieldName="WearPercent" />
-    </div>
-    <div>
-        <div>Số năm sử dụng</div>
-        <input class="input-text" fieldName="YearOfUse" dataType="Number" />
-    </div>
-    <div>
-        <div>Ghi chú</div>
-        <textarea class="input-detail" fieldName="Note"></textarea>
-    </div>*@
     <div class="dialog-footer">
         <div class="footer-left">
             <button class="button btn-cancel" id="btn-cancel">Hủy</button>

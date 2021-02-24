@@ -17,7 +17,7 @@ namespace MISA.QLTSv2.Controllers
         /// </summary>
         /// <returns></returns>
         /// CreatedBy NDTUNG (1/2/2021)
-        public IActionResult Department()
+        public IActionResult _Department()
         {
             return View("_DepartmentPartial");
         }

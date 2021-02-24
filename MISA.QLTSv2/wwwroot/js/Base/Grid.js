@@ -58,19 +58,19 @@ class Grid {
         })
 
         // Sự kiện click chuột phải vào một dòng show menu context (chưa hoàn thiện)
-        grid.find('tbody').on('contextmenu', function (e) {
-            var menu = $('.menu');//get the menu
-            e.preventDefault();//Prevent the default action: the normal right-click-menu to show
-            menu.css({
-                display: 'block',//show the menu
-                top: e.pageY,//make the menu be where you click (y)
-                left: e.pageX,//make the menu be where you click (x)
-                position: 'fixed'
-            });
-            $(document).click(function () { //When you left-click
-                menu.css({ display: 'none' });//Hide the menu
-            });
-        })
+        //grid.find('tbody').on('contextmenu', function (e) {
+        //    var menu = $('.menu');//get the menu
+        //    e.preventDefault();//Prevent the default action: the normal right-click-menu to show
+        //    menu.css({
+        //        display: 'block',//show the menu
+        //        top: e.pageY,//make the menu be where you click (y)
+        //        left: e.pageX,//make the menu be where you click (x)
+        //        position: 'fixed'
+        //    });
+        //    $(document).click(function () { //When you left-click
+        //        menu.css({ display: 'none' });//Hide the menu
+        //    });
+        //})
     }
 
     /**
@@ -154,7 +154,7 @@ class Grid {
                     });
                     grid.find('tbody').append(tr);
                 });
-
+                showTooltipElement($('button'));
             })
         } catch (e) {
             console.log(e);
@@ -240,15 +240,15 @@ class Grid {
                 break;
             case "function":
                 td = $(`<td style="display:flex; padding: 8px 16px;">` +
-                    `<button class="btn-function hide">
+                    `<button class="btn-function hide" title="Chỉnh sửa">
                             <div class="icon-pencil">
                             </div>
                         </button>
-                        <button class="btn-function hide">
+                        <button class="btn-function hide" title="Xóa">
                             <div class="icon-remove-function">
                             </div>
                         </button>
-                        <button class="btn-function hide">
+                        <button class="btn-function hide" title="Lịch sử">
                             <div class="icon-pie">
                             </div>
                         </button>
