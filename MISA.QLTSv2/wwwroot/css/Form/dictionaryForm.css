@@ -1,0 +1,40 @@
+﻿.ui-dialog .ui-dialog-titlebar {
+    display: none;
+    border-radius: 0;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-left-radius: 0;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-right-radius: 0;
+}
+
+.input-text, .input-detail {
+    width: 319px;
+}
+
+.dialog-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+}
+
+    .dialog-footer .footer-left {
+        position: absolute;
+        left: 21px;
+    }
+
+    .dialog-footer .footer-right {
+        position: absolute;
+        right: 21px;
+    }
+.input-dictionary{
+    width:100%;
+}

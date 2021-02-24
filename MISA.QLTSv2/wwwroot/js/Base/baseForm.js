@@ -2,11 +2,12 @@
 //-----------------Form-----------------------------
 class baseForm {
     ///constructor
-    constructor(Idform) {
+    constructor(Idform, data) {
         this.formMode = Enum.FormMode.Add;
         this.form = $(Idform);
         this.setApiUrl();
         this.getApiUrl = null;
+        //this.bindingData(data);
         this.initEvent();
     };
 

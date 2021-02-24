@@ -1,12 +1,12 @@
 ﻿// Lớp dùng để render ra các bảng
 class Grid {
     // Hàm khởi tạo, truyền vào id của bảng
-    constructor(tableId) {
+    constructor(tableId, filename) {
         this.grid = $(tableId);
         this.conFigColum = null;
         this.setConFigColum();
         this.renderColumn();
-        this.renderBody();
+        this.renderBody(filename);
         this.initEvent();
     }
 
@@ -19,18 +19,23 @@ class Grid {
     };
 
     /**
+     * Hàm khi xảy ra sự kiện double click vào 1 dòng
+     * CreatedBY: BQDUY(23/02/2021)
+     * */
+    dbClickRow() {
+        
+    };
+
+    /**
      * Hàm khởi tạo các sự kiện trong grid 
      * CreatedBY: BQDUY(04/02/2021)
      * */
     initEvent() {
         var grid = this.grid;
 
-        // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit
-        this.grid.find('tbody').on('dblclick', 'tr', function () {
-            formMode = 'Edit';
-            console.log(formMode);
-        })
-         
+        // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit, và binding dữ liệu của row lên form
+        this.grid.find('tbody').on('dblclick', 'tr', this.dbClickRow);
+
         // Sự kiện click một dòng, hoặc giữ ctrl để click được nhiều dòng
         grid.find('tbody').on('click', 'tr', function (event) {
             if (event.ctrlKey) {
@@ -59,7 +64,8 @@ class Grid {
             menu.css({
                 display: 'block',//show the menu
                 top: e.pageY,//make the menu be where you click (y)
-                left: e.pageX//make the menu be where you click (x)
+                left: e.pageX,//make the menu be where you click (x)
+                position: 'fixed'
             });
             $(document).click(function () { //When you left-click
                 menu.css({ display: 'none' });//Hide the menu
@@ -82,9 +88,9 @@ class Grid {
         });
 
         // Build thẻ th
-        $.each(this.conFigColum, function (index, col) {
+        $.each(me.conFigColum, function (index, col) {
             th = $(`<th>` + col.FieldText + `</th>`);
-            th = me.addAttribute(th, 'fieldName', col.Field);
+            th = me.addAttribute(th, 'fieldName', col.FieldName);
             th = me.addAttribute(th, 'dataType', col.DataType);
             th = me.addClassFormat(th, col.DataType);
             tr.append(th);
@@ -98,11 +104,11 @@ class Grid {
      * Hàm render dữ liệu vào bảng
      * CreatedBY: BQDUY(04/02/2021)
      * */
-    renderBody() {
+    renderBody(filename) {
         try {
             var me = this;
             var grid = this.grid;
-            $.getJSON("/js/data.json", function (data) {
+            $.getJSON("/js/" + filename+".json", function (data) {
                 var tr;
                 var dataType;
                 var fieldName;
