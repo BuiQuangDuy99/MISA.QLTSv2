@@ -9,7 +9,7 @@
     </div>
     <div class="tool-bar-right">
         <div>
-            <button id="add-demo" class="button btn-add">Thêm</button>
+            <button id="btn-add-dictionary" class="button btn-add">Thêm</button>
         </div>
         <div>
             <button class="button btn-refresh">
@@ -19,7 +19,7 @@
             </button>
         </div>
         <div>
-            <button class="button btn-remove">
+            <button  class="button btn-remove">
                 <div class="icon-remove ">
                 </div>
             </button>
@@ -28,7 +28,7 @@
 </div>
 <div class="grid">
     <div class="grid-default">
-        <table cellspacing="0" id="gridTest">
+        <table border="0" cellspacing="0" id="gridTest">
             <thead>
                 <tr>
                 </tr>
@@ -36,6 +36,131 @@
             <tbody>
             </tbody>
         </table>
+    </div>
+</div>
+<div id="dialog_dictionary" class="dialog_dictionary" style="display:block">
+    <div class="container-fluid">
+        <div class="row dialog-header">
+            <div class="col-8">
+                Ghi tăng tài sản
+            </div>
+            <div class="col-4 header-toolbar">
+                <button class="btn-close button" id="btn-close">
+                    <div class="icon-close">
+
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-6 m-col-5">
+                <div class="content-items">
+                    <div class="text-header">
+                        Mã loại tài sản (*)
+                    </div>
+                    <div>
+                        <input class="input-text input-dictionary" fieldName="AssetTypeCode" required />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="content-items">
+                    <div class="text-header">
+                        Tên loại tài sản (*)
+                    </div>
+                    <div>
+                        <input class="input-text input-dictionary" fieldName="AssetTypeName" required />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-6 m-col-5">
+                <div class="content-items">
+                    <div class="text-header">
+                        Thuộc loại (*)
+                    </div>
+                    <div>
+                        <input class="input-text input-dictionary" fieldName="AssetClassName" required />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="content-items">
+                    <div class="text-header">
+                        Nhóm tài sản
+                    </div>
+                    <div>
+                        <input class="input-text input-dictionary" fieldName="AssetGroupName" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-6 m-col-5">
+                <div class="content-items">
+                    <div class="text-header">
+                        Tỷ lệ hao mòn
+                    </div>
+                    <div>
+                        <input class="input-text input-dictionary" fieldName="WearPercent" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="content-items">
+                    <div class="text-header">
+                        Số năm sử dụng
+                    </div>
+                    <div>
+                        <input class="input-text input-dictionary" fieldName="YearOfUse" dataType="Number" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-12">
+                <div>Ghi chú</div>
+                <textarea class="input-detail input-dictionary" fieldName="Note"></textarea>
+            </div>
+        </div>
+    </div>
+
+    @*<div>
+        <div>Mã loại tài sản (*)</div>
+        <input class="input-text" fieldName="AssetTypeCode" required />
+    </div>
+    <div>
+        <div>Tên loại tài sản (*)</div>
+        <input class="input-text" fieldName="AssetTypeName" required />
+    </div>
+    <div>
+        <div>Thuộc loại (*)</div>
+        <input class="input-text" fieldName="AssetClassName" required />
+    </div>
+    <div>
+        <div>Nhóm tài sản</div>
+        <input class="input-text" fieldName="AssetGroupName" />
+    </div>
+    <div>
+        <div>Tỷ lệ hao mòn</div>
+        <input class="input-text" fieldName="WearPercent" />
+    </div>
+    <div>
+        <div>Số năm sử dụng</div>
+        <input class="input-text" fieldName="YearOfUse" dataType="Number" />
+    </div>
+    <div>
+        <div>Ghi chú</div>
+        <textarea class="input-detail" fieldName="Note"></textarea>
+    </div>*@
+    <div class="dialog-footer">
+        <div class="footer-left">
+            <button class="button btn-cancel" id="btn-cancel">Hủy</button>
+        </div>
+        <div class="footer-right">
+            <button class="button btn-add" id="btn-save">Lưu</button>
+        </div>
     </div>
 </div>
 <div class="menu">
@@ -51,46 +176,7 @@
     </div>
 </div>
 
-<div id="dialog_dictionary" class="dialog_dictionary" title="Thêm mới loại tài sản"  style="display:block" >
-    <div>
-        <div>Mã loại tài sản (*)</div>
-        <input fieldName="AssetCode" required  />
-    </div>
-    <div>
-        <div>Tên loại tài sản (*)</div>
-        <input fieldName="AssetName" required  />
-    </div>
-    <div>
-        <div>Thuộc loại (*)</div>
-        <input fieldName="CategoryDictionary" required  />
-    </div>
-    <div>
-        <div>Nhóm tài sản</div>
-        <input fieldName="AssetGroupName"   />
-    </div>
-    <div>
-        <div>Tỷ lệ hao mòn</div>
-        <input fieldName="WearPercent"   />
-    </div>
-    <div>
-        <div>Số năm sử dụng</div>
-        <input fieldName="YearOfUse"   />
-    </div>
-    <div>
-        <div>Ghi chú</div>
-        <input fieldName="Note"   />
-    </div>
-    <div>
-        <button class="button btn-cancel" id="btn-cancel">Hủy</button>
-        <button class="btn-add" id="btn-save">Lưu</button>
-    </div>
-    @*<input fieldName="STT" DataType="Number" />
-    <input fieldName="Name" required />
-    <input id="txtPrice" fieldName="Price" required DataType="Money" />
-    <input id="" type="date" fieldName="Date" DataType="Date" />
-    <button id="btn-cancel">Hủy</button>
-    <button id="btn-save">Lưu</button>*@
-</div>
+
 
 
 
