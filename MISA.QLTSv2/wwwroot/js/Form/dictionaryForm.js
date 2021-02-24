@@ -3,8 +3,7 @@
     dictionary_Form = $("#dialog_dictionary").dialog({
         autoOpen: false,
         height: 500,
-        width: 360,
-        title: 'Thêm mới loại tài sản',
+        width: 700,
         modal: true,
     });
     new dictionaryForm("#dialog_dictionary");

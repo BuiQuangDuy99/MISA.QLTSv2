@@ -39,24 +39,94 @@
     </div>
 </div>
 <div id="dialog_dictionary" class="dialog_dictionary" style="display:block">
-    <div class="dialog-header">
-        <div>
-            Ghi tăng tài sản
+    <div class="container-fluid">
+        <div class="row dialog-header">
+            <div class="col-8">
+                Ghi tăng tài sản
+            </div>
+            <div class="col-4 header-toolbar">
+                <button class="btn-close button" id="btn-close">
+                    <div class="icon-close">
+
+                    </div>
+                </button>
+            </div>
         </div>
-        <div class="header-toolbar">
-            <button class="btn-help button">
-                <div class="icon-help">
-
+        <div class="row m-row-content">
+            <div class="col-6 m-col-5">
+                <div class="content-items">
+                    <div class="text-header">
+                        Mã loại tài sản (*)
+                    </div>
+                    <div>
+                        <input class="input-text input-dictionary" fieldName="AssetTypeCode" required />
+                    </div>
                 </div>
-            </button>
-            <button class="btn-close button">
-                <div id="btn-close" class="icon-close">
-
+            </div>
+            <div class="col-6">
+                <div class="content-items">
+                    <div class="text-header">
+                        Tên loại tài sản (*)
+                    </div>
+                    <div>
+                        <input class="input-text input-dictionary" fieldName="AssetTypeName" required />
+                    </div>
                 </div>
-            </button>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-6 m-col-5">
+                <div class="content-items">
+                    <div class="text-header">
+                        Thuộc loại (*)
+                    </div>
+                    <div>
+                        <input class="input-text input-dictionary" fieldName="AssetClassName" required />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="content-items">
+                    <div class="text-header">
+                        Nhóm tài sản
+                    </div>
+                    <div>
+                        <input class="input-text input-dictionary" fieldName="AssetGroupName" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-6 m-col-5">
+                <div class="content-items">
+                    <div class="text-header">
+                        Tỷ lệ hao mòn
+                    </div>
+                    <div>
+                        <input class="input-text input-dictionary" fieldName="WearPercent" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="content-items">
+                    <div class="text-header">
+                        Số năm sử dụng
+                    </div>
+                    <div>
+                        <input class="input-text input-dictionary" fieldName="YearOfUse" dataType="Number" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-12">
+                <div>Ghi chú</div>
+                <textarea class="input-detail input-dictionary" fieldName="Note"></textarea>
+            </div>
         </div>
     </div>
-    <div>
+
+    @*<div>
         <div>Mã loại tài sản (*)</div>
         <input class="input-text" fieldName="AssetTypeCode" required />
     </div>
@@ -83,7 +153,7 @@
     <div>
         <div>Ghi chú</div>
         <textarea class="input-detail" fieldName="Note"></textarea>
-    </div>
+    </div>*@
     <div class="dialog-footer">
         <div class="footer-left">
             <button class="button btn-cancel" id="btn-cancel">Hủy</button>
