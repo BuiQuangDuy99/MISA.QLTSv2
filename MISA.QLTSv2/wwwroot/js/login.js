@@ -39,6 +39,9 @@ class Login {
             $(this).addClass('border-red');
             if (val == "") {
                 $(this).attr('title', 'Trường này không được để trống');
+
+                this.showTooltip(input).bind(this,input);
+
                 $(this).tooltip({
                     items: $(this),
                     content: $(this).attr('title'),
@@ -55,11 +58,27 @@ class Login {
             else {
                 $(this).attr('title', 'Không được dài quá 20 ký tự');
                 //showTooltip($(this));
-                //$(this).tooltip("close");
+                $(this).tooltip({
+                    items: input,
+                    content: $(this).attr('title'),
+                    track: true,
+                    position: {
+                        my: "left+10 top",
+                        at: "right+5 top",
+                        collision: "none"
+                    },
+                    disabled: false
+                })
+                $(this).tooltip("close");
             }
         }
         else {
-            //hideTooltip($(this))
+            $(this).removeClass('border-red');
+            $(this).removeAttr('title');
+            $(this).tooltip({
+                items: $(this),
+                disabled: true
+            });
         }
     }
     /**
@@ -74,10 +93,27 @@ class Login {
                 $(this).addClass('border-red');
                 $(this).attr('title', 'Trường này không được để trống');
                 //showTooltip($(this));
+                $(this).tooltip({
+                    items: $(this),
+                    content: $(this).attr('title'),
+                    track: true,
+                    position: {
+                        my: "left+10 top",
+                        at: "right+5 top",
+                        collision: "none"
+                    },
+                    disabled: false
+                })
                 isValid = false;
             }
             else {
                 //hideTooltip($(this))
+                $(this).removeClass('border-red');
+                $(this).removeAttr('title');
+                $(this).tooltip({
+                    items: $(this),
+                    disabled: true
+                });
             }
         });
         var inputRequire = $(".border-red");
@@ -96,10 +132,27 @@ class Login {
                 $(this).addClass('border-red');
                 $(this).attr('title', 'Không được dài quá 20 ký tự');
                 //this.showTooltip($(this));
+                $(this).tooltip({
+                    items: $(this),
+                    content: $(this).attr('title'),
+                    track: true,
+                    position: {
+                        my: "left+10 top",
+                        at: "right+5 top",
+                        collision: "none"
+                    },
+                    disabled: false
+                })
                 isValid = false;
             }
             else {
                 //hideTooltip($(this))
+                $(this).removeClass('border-red');
+                $(this).removeAttr('title');
+                $(this).tooltip({
+                    items: $(this),
+                    disabled: true
+                });
             }
         });
         var inputRequire = $(".border-red");
@@ -151,6 +204,18 @@ class Login {
             if ($(this).val() != account[fieldName]) {
                 $(this).attr('title', 'Thông tin đăng nhập không chính xác.');
                 $(this).addClass('border-red');
+                $(this).tooltip({
+                    items: $(this),
+                    content: $(this).attr('title'),
+                    track: true,
+                    position: {
+                        my: "left+10 top",
+                        at: "right+5 top",
+                        collision: "none"
+                    },
+                    disabled: false
+                })
+                $(this).tooltip("open");
                 //showTooltip($(this));
                 //$(this).tooltip('open');
             }
@@ -174,7 +239,7 @@ class Login {
             if ((JSON.stringify(account) === JSON.stringify(accountTest))) {
                 $('.loading').show();
                 window.location.href = "https://localhost:44363/Asset/AssetIncreased";
-                resetLogin();
+                this.resetLogin();
                 //$('.loading').hide();
             }
             else {

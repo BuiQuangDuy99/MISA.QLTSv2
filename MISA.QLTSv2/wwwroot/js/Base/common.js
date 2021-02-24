@@ -119,3 +119,17 @@ function closeWarring() {
     $('.warring').hide();
     $('#tbListData tbody tr').removeClass("row-selected");
 }
+
+/**
+ * Hàm hiện thị gợi ý chức năng cho button
+ * @param {any} element đối tượng cần hiện thị
+ * CreatedBy: BQDUY(24/02/2021)
+ */
+function showTooltipElement(elements) {
+    $.each(elements, function (index, element) {
+        $(element).tooltip({
+            content: $(this).attr('title'),
+            track: true
+        })
+    }) 
+}

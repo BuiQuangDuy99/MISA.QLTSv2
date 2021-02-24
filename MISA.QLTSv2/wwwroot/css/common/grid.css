@@ -30,12 +30,9 @@ table th, td {
 }
 
 table {
+    border-bottom: none;
     width: 100%;
 }
-
-    table thead {
-        border-bottom: solid 1px #bbb;
-    }
 
     table th {
         position: sticky;
@@ -43,11 +40,12 @@ table {
         background-color: #ffffff;
         padding-top: 0;
         font-size: 12px;
-        font-weight:600;
+        font-weight: 600;
     }
 
     table td {
         font-size: 13px;
+        border-right: 1px solid #bbbbbb;
     }
 
         table td:last-child {
@@ -55,14 +53,15 @@ table {
         }
 
     table tr {
+        border-bottom: 1px solid #bbbbbb;
     }
+
         table tr:hover {
             background-color: #f0f8ff;
         }
 
 .selected-row {
     background-color: #f0f8ff !important;
-
 }
 
     .selected-row:hover {
