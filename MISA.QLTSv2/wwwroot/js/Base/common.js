@@ -121,7 +121,7 @@ function closeWarring() {
 }
 
 /**
- * Hàm hiện thị gợi ý chức năng cho button
+ * Hàm hiện thị tooltip
  * @param {any} element đối tượng cần hiện thị
  * CreatedBy: BQDUY(24/02/2021)
  */
@@ -131,5 +131,20 @@ function showTooltipElement(elements) {
             content: $(this).attr('title'),
             track: true
         })
-    }) 
+    })
+}
+/**
+ * Hàm ẩn thị tooltip
+ * @param {any} element đối tượng cần ẩn
+ * CreatedBy: BQDUY(24/02/2021)
+ */
+function hideTooltipElement(elements) {
+    $.each(elements, function (index, element) {
+        $(element).removeClass('border-red');
+        $(element).removeAttr('title');
+        $(element).tooltip({
+                items: $(this),
+                disabled: true,
+            })
+        })
 }
