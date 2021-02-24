@@ -1,12 +1,12 @@
 ﻿// Lớp dùng để render ra các bảng
 class Grid {
     // Hàm khởi tạo, truyền vào id của bảng
-    constructor(tableId) {
+    constructor(tableId, filename) {
         this.grid = $(tableId);
         this.conFigColum = null;
         this.setConFigColum();
         this.renderColumn();
-        this.renderBody();
+        this.renderBody(filename);
         this.initEvent();
     }
 
@@ -104,11 +104,11 @@ class Grid {
      * Hàm render dữ liệu vào bảng
      * CreatedBY: BQDUY(04/02/2021)
      * */
-    renderBody() {
+    renderBody(filename) {
         try {
             var me = this;
             var grid = this.grid;
-            $.getJSON("/js/data.json", function (data) {
+            $.getJSON("/js/" + filename+".json", function (data) {
                 var tr;
                 var dataType;
                 var fieldName;

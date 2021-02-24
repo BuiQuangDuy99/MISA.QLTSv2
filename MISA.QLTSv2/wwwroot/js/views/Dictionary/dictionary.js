@@ -8,7 +8,7 @@
 var formDetail = new dictionaryForm("#dialog_dictionary");
 class Dictionary extends Grid {
     constructor(gridId) {
-        super(gridId);
+        super(gridId, "dictionary");
     }
     /**
      * Hàm cấu hình các cột cho bảng ở màn dictionary
