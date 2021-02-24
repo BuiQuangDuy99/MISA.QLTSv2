@@ -103,10 +103,16 @@ class Grid {
 
     /**
      * Hàm xét độ rộng cho từng th trong grid
-     * 
+     * CreatedBy: DVVUONG (24/02/2021)
      * */
     addWithForTh(element, FieldName, DataType) {
         try {
+            let strEqual = "Code";
+            if (String(FieldName).includes(strEqual) && DataType == "text") {
+                element.addClass("width-code");
+                return element;
+            }
+
             switch (FieldName) {
                 case "STT":
                     element.addClass("width-stt");
@@ -121,6 +127,7 @@ class Grid {
                 default:
                     break;
             }
+
             return element;
         } catch (e) {
             console.log(e);

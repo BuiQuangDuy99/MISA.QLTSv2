@@ -26,6 +26,10 @@ tr:hover .hide {
     visibility: visible;
     background-color: #f0f8ff;
 }
+
+/**
+   Xét độ rộng cho th, td trong grid
+*/
 .width-stt{
     width: 40px !important;
 }
@@ -38,4 +42,11 @@ tr:hover .hide {
 .padding-stt{
     padding-left: 0;
     padding-right: 0;
+}
+.max-width-text{
+    max-width: 150px!important;
+    overflow: hidden;
+}
+.width-code{
+    width: 95px !important;
 }
