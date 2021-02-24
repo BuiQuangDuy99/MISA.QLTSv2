@@ -3,7 +3,7 @@ $(document).ready(function () {
     dialogs = $(".department_dialog").dialog({
         autoOpen: false,
         //height: 400,
-        width: 480,
+        width: 360,
         modal: true,
         draggable: true
     });

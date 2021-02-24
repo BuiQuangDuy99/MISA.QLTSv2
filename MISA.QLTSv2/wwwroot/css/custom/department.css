@@ -2,6 +2,7 @@
     border: none;
 }
 
+
 .department_dialog .m-title {
     font-size: 18px;
     font-weight: 700;
@@ -9,7 +10,8 @@
     padding-left: 21px;
     margin-bottom: 5px;
     position: relative;
-    margin-top: 15px;
+    margin-top: 21px;
+    margin-bottom: 21px;
     display: flex;
     align-items: center;
 }
@@ -29,7 +31,9 @@
 
     .department_dialog .top {
         padding: 0 21px;
+        margin-bottom: 21px;
     }
+
 .department_dialog .bottom {
     position: relative;
     display: flex;
@@ -48,10 +52,10 @@
     }
 
 .department_dialog .top .sub-title{
-    padding-bottom: 3px;
+    padding-bottom: 5px;
 }
 .department_dialog .top .sub-content{
-    margin-bottom: 14px;
+    margin-bottom: 18px;
 }
 .department_dialog input, .department_dialog select, .department_dialog textarea{
     width: 100%;
@@ -61,6 +65,7 @@
 
 .department_dialog{
     position: relative;
+    /* width: 120px; */
 }
     .department_dialog .top .sub-content textarea{
         resize: none;
