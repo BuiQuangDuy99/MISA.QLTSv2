@@ -16,7 +16,7 @@ class Grid {
     }
 
     /**
-     * Hàm khởi tạo các sự kiện trong grid 
+     * Hàm khởi tạo các sự kiện trong grid  
      * CreatedBY: BQDUY(04/02/2021)
      * */
     initEvents() {

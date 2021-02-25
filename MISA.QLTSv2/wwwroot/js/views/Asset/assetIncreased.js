@@ -1,10 +1,13 @@
 $(document).ready(function () {
     new assetIncreased();
+    $('')
 })
 
-class assetIncreased extends Grid {
-    constructor() {
+class assetIncreased extends BaseGrid {
+    constructor(gridId) {
         super('#asset-grid', "data");
+        super(gridId);
+        this.initEvents();
     }
 
     setConFigColum() {
