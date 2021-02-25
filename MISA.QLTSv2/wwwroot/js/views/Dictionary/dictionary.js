@@ -6,6 +6,8 @@
     });
 
     showTooltipElement($('button'));
+
+    $('#cbx-test').combobox();
 })
 var formDetail = new dictionaryForm("#dialog_dictionary");
 class Dictionary extends Grid {

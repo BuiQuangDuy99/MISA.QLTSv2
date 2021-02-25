@@ -57,4 +57,52 @@
 .ui-combobox-input {
     margin: 0;
     padding: 0.3em;
-}*/
+}
+
+.ui-icon {
+    background-image: url('/icon/svg/fi-rr-caret-down.svg') !important;
+    background-size: contain !important;
+}
+
+.ui-widget.ui-widget-content {
+    border: 1px solid #e0e0e0 !important;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius: 0 !important;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius: 0 !important;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+    border-radius: 0 !important;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+     border-radius: 0 !important; 
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+    border-bottom-right-radius: 0 !important;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-right-radius: 0 !important;
+}
+
+.ui-menu-item, .ui-menu-item > a{
+    display: block;
+}
+
+
+/*    .ui-menu-item:hover a {
+        background-color: gray !important;
+    }*/
+
+    .ui-menu-item .ui-menu-item-wrapper.ui-state-active {
+        background: #808080 !important;
+        border: solid 1px transparent;
+        color: black;
+    }
