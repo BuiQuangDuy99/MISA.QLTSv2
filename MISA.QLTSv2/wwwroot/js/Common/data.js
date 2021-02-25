@@ -1,0 +1,110 @@
+﻿var listStudent =
+    [
+        {
+            "STT": 1,
+            "Id": "1a",
+            "AssetCode": "TS09211",
+            "AssetName": "Tài Sản Nội Vụ",
+            "AssetGroupId": "AG98232",
+            "AssetGroupName": "Tài Sản Văn Phòng",
+            "WearPercent": "10%",
+            "DateTime": "04-04-2021",
+            "Price": 555666777,
+            "YearOfUse": 15,
+            "DepartmentId": "561561",
+            "Note": "Đây là ghi chú tự động",
+            "Department": "Phòng công nghệ thông tin",
+            "ValueYear": "5%",
+            "Function": ""
+
+        },
+        {
+            "STT": 2,
+            "Id": "1b",
+            "AssetCode": "TS09544",
+            "AssetName": "Tài Sản Công Vụ",
+            "AssetGroupId": "AG13423",
+            "AssetGroupName": "Tài Sản Cá Nhân",
+            "WearPercent": "45%",
+            "Price": 1241344,
+            "YearOfUse": 10,
+            "Note": "Đây là ghi chú tự động",
+            "DateTime": "04-04-2021",
+            "DepartmentId": "5615",
+            "Department": "Phòng công nghệ thông tin",
+            "ValueYear": "5%",
+            "Function": ""
+
+        },
+        {
+            "STT": 3,
+            "Id": "2a",
+            "AssetCode": "TS43532",
+            "AssetName": "Tài Sản Cố Định",
+            "AssetGroupId": "AG98232",
+            "AssetGroupName": "Tài Sản Nhà Nước",
+            "WearPercent": "30%",
+            "Price": 652345233,
+            "YearOfUse": 20,
+            "Note": "",
+            "DateTime": "04-04-2021",
+            "DepartmentId": "5615",
+            "Department": "Phòng công nghệ thông tin",
+            "ValueYear": "5%",
+            "Function": ""
+
+        },
+        {
+            "STT": 4,
+            "Id": "2b",
+            "AssetCode": "TS85462",
+            "AssetName": "Tài Sản Nội Vụ",
+            "AssetGroupId": "AG98232",
+            "AssetGroupName": "Tài Sản Văn Phòng",
+            "WearPercent": "20%",
+            "Price": 352342444,
+            "YearOfUse": 5,
+            "Note": "Đây là ghi chú tự động",
+            "DateTime": "04-04-2021",
+            "DepartmentId": "5615",
+            "Department": "Phòng công nghệ thông tin",
+            "ValueYear": "5%",
+            "Function": ""
+
+        },
+        {
+            "STT": 5,
+            "Id": "2c",
+            "AssetCode": "TS87646",
+            "AssetName": "Tài Sản Hữu Hình",
+            "AssetGroupId": "AG98232",
+            "AssetGroupName": "Tài Sản Văn Phòng",
+            "WearPercent": "50%",
+            "Price": 342342553,
+            "YearOfUse": 3,
+            "Note": "",
+            "DateTime": "04-04-2021",
+            "DepartmentId": "5615",
+            "Department": "Phòng công nghệ thông tin",
+            "ValueYear": "5%",
+            "Function": ""
+
+        },
+        {
+            "STT": 6,
+            "Id": "3a",
+            "AssetCode": "TS09543",
+            "AssetName": "Tài Sản",
+            "AssetGroupId": "AG13423",
+            "AssetGroupName": "Tài Sản Cá Nhân",
+            "WearPercent": "9%",
+            "Price": 999999999,
+            "YearOfUse": 9,
+            "Note": "Đây là ghi chú tự động",
+            "DateTime": "04-04-2021",
+            "DepartmentId": "5615",
+            "Department": "Phòng công nghệ thông tin",
+            "ValueYear": "5%",
+            "Function": ""
+        }
+    ];
