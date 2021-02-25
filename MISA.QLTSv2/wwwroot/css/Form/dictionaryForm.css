@@ -38,7 +38,7 @@
 .input-dictionary{
     width:100%;
 }
-/*.ui-combobox {
+.ui-combobox {
     position: relative;
     display: inline-block;
 }
@@ -48,10 +48,9 @@
     top: 0;
     bottom: 0;
     margin-left: -1px;
-    padding: 0;*/
-    /* support: IE7 */
-    /**height: 1.7em;
-    *top: 0.1em;
+    padding: 0;
+    height: 1.7em;
+    top: 0.1em;
 }
 
 .ui-combobox-input {
@@ -97,9 +96,9 @@
 }
 
 
-/*    .ui-menu-item:hover a {
+    .ui-menu-item:hover a {
         background-color: gray !important;
-    }*/
+    }
 
     .ui-menu-item .ui-menu-item-wrapper.ui-state-active {
         background: #808080 !important;

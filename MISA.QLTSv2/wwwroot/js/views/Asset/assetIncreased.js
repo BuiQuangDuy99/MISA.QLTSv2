@@ -1,5 +1,6 @@
 $(document).ready(function () {
     new assetIncreased();
+    $('#cbxdepartment').combobox();
 })
 
 class assetIncreased extends Grid {

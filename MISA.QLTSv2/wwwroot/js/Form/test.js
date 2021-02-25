@@ -15,7 +15,7 @@
 */
 (function ($) {
     $.widget("ui.combobox", {
-        _create: function () {
+        _create: function () { 
             var input,
                 that = this,
                 wasOpen = false,
