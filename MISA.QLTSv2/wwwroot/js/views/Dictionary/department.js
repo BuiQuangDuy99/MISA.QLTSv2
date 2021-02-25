@@ -65,7 +65,7 @@ var conFigColum = [
 
 
 //Khởi tạo form danh sách phòng ban
-departmentGrid.createFormDetail("#department_dialog", 360, 488);
+departmentGrid.createFormDetail("#department_dialog", 360);
 
 // THiết lập config header
 departmentGrid.setConFigColum(conFigColum);
