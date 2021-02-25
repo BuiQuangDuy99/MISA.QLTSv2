@@ -2,12 +2,14 @@ $(document).ready(function () {
     new assetIncreased();
     $('#cbxdepartment').combobox();
     $('#cbxasset').combobox();
-    
+
+
 })
 
 class assetIncreased extends Grid {
     constructor() {
         super('#asset-grid', "data");
+        this.bindingDataForInput();
     }
 
     setConFigColum() {
@@ -62,5 +64,15 @@ class assetIncreased extends Grid {
             }
         ];
     }
-    
+    bindingDataForInput() {
+        //this.on(this.input, {
+        //    select: function (event, ui) {
+        //        alert(ui.item.value);
+        //        ui.item.option.selected = true;
+        //        this._trigger("select", event, {
+        //            item: ui.item.option
+        //        });
+        //    }
+        //})
+    }
 }
