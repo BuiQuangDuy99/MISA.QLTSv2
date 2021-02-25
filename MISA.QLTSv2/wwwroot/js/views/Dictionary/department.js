@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     new DepartmentJS();
+    $('#v-cbxdepartment').combobox();
 })
 
 // Class quản lý sự kiện cho trang Departments

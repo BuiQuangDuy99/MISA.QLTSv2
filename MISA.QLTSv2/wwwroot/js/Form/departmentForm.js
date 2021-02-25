@@ -19,6 +19,10 @@ class departmentForm extends baseForm {
     constructor(formId) {
         super(formId);
     }
+
+    setUrlJsonFile() {
+        this.urlJsonFile = "/wwwroot/js/departments.json";
+    }
         
     closeForm() {
         this.resetForm();
