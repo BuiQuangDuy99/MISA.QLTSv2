@@ -1,6 +1,18 @@
 $(document).ready(function () {
     $('#cbxdepartment').combobox();
+    $('#cbxdepartment').combobox().autocomplete({
+        select: function (event, ui) {
+            ui.item.option.selected = true;
+                $('#txtdepartment').val(ui.item.option.value);
+            that._trigger("selected", event, {
+                item: ui.item.option
+            });
+        }
+    });
+     
+    
     $('#cbxasset').combobox();
+
 })
 
 class assetIncreased extends BaseGrid {

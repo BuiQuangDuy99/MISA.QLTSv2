@@ -73,8 +73,12 @@
                         }));
                     },
                     select: function (event, ui) {
+                        console.log(ui);
                         ui.item.option.selected = true;
-                        $('#txtdepartment').val(ui.item.option.value);
+                        alert(ui.item.option.value);
+                        //if ($('#ui-id-2').item.option.selected == true) {
+                        //    $('#txtdepartment').val(ui.item.option.value);
+                        //}
                         that._trigger("selected", event, {
                             item: ui.item.option
                         });
