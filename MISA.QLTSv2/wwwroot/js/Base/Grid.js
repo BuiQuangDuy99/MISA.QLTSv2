@@ -9,6 +9,7 @@ class Grid {
         me.grid = $(tableId);
         // Danh sách config cho các cột
         me.conFigColum = null;
+
         me.formDetail = null;
 
         // Khởi tạo các sự kiện cho grid

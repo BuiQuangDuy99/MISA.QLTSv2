@@ -38,7 +38,7 @@ var conFigColum = [
     {
         DataType: "number",
         FieldName: "STT",
-        FieldText: "STT",
+        FieldText: "STT",   
         Index: 1
     },
     {
