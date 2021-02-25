@@ -15,7 +15,7 @@
         dialog.dialog('open');
     })
 
-})  
+})
 
 class assetIncreasedForm extends baseForm {
     constructor(formId) {
@@ -25,4 +25,5 @@ class assetIncreasedForm extends baseForm {
         this.resetForm();
         dialog.dialog('close');
     }
+
 }

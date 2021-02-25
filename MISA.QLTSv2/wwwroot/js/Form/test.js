@@ -15,7 +15,7 @@
 */
 (function ($) {
     $.widget("ui.combobox", {
-        _create: function () {
+        _create: function () { 
             var input,
                 that = this,
                 wasOpen = false,
@@ -74,6 +74,7 @@
                     },
                     select: function (event, ui) {
                         ui.item.option.selected = true;
+                        $('#txtdepartment').val(ui.item.option.value);
                         that._trigger("selected", event, {
                             item: ui.item.option
                         });

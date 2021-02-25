@@ -1,13 +1,15 @@
 $(document).ready(function () {
     new assetIncreased();
-    $('')
+    $('#cbxdepartment').combobox();
+    $('#cbxasset').combobox();
+
+
 })
 
 class assetIncreased extends BaseGrid {
     constructor(gridId) {
         super('#asset-grid', "data");
-        super(gridId);
-        this.initEvents();
+        this.bindingDataForInput();
     }
 
     setConFigColum() {
@@ -62,5 +64,15 @@ class assetIncreased extends BaseGrid {
             }
         ];
     }
-    
+    bindingDataForInput() {
+        //this.on(this.input, {
+        //    select: function (event, ui) {
+        //        alert(ui.item.value);
+        //        ui.item.option.selected = true;
+        //        this._trigger("select", event, {
+        //            item: ui.item.option
+        //        });
+        //    }
+        //})
+    }
 }
