@@ -11,18 +11,8 @@ class Grid {
         me.conFigColum = null;
         me.formDetail = null;
 
-        // Hàm thiết lập các cột cho grid
-        // me.setConFigColum();
-        // Render các header grid
-        // me.renderColumn();
-        // Render body của grid
-        // me.renderBody();
         // Khởi tạo các sự kiện cho grid
         me.initEvents();
-    }
-
-    initFormDetail() {
-        //this.formDetail = new dictionaryForm(formId);
     }
 
     /**
@@ -35,7 +25,7 @@ class Grid {
 
         // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit, và binding dữ liệu của row lên form
         grid.find('tbody').off('dblclick', 'tr');
-        grid.find('tbody').on('dblclick', 'tr', me.dbClickRow);
+        grid.find('tbody').on('dblclick', 'tr', me.dbClickRow.bind(this));
 
         // Sự kiện click một dòng, hoặc giữ ctrl để click được nhiều dòng
         grid.find('tbody').off('click', 'tr');
@@ -186,9 +176,10 @@ class Grid {
                 td = td.attr("title", value);
                 $(row).append(td);
             });
-            return row;
-            showTooltipElement($('button'));
-            showTooltipElement($('td'));
+
+            $(row).data("value", object);
+
+            return row;  
         } catch (e) {
             console.log(e);
         }
@@ -246,7 +237,7 @@ class Grid {
      * CreatedBY: BQDUY(05/02/2021)
      */
     addValueInTd(td, value, dataType) {
-        var me = this;
+        let me = this;
 
         switch (dataType) {
             case "datetime":
@@ -309,10 +300,28 @@ class Grid {
     };
 
     /**
+     * Hàm lấy giá trị của 1 hàng đang được selected
+     * CreatedBY: BQDUY(23/02/2021)
+     * */
+    getDataSelected() {
+        let data = [],
+            id = this.grid.find(".selected-row").data('recordId');
+
+        console.log(id);    
+
+        this.grid.find(".selected-row").each(function () {
+            let item = $(this).data("value");
+            data.push(item);
+        });
+
+        return data;
+    }
+
+    /**
      * Hàm khi xảy ra sự kiện double click vào 1 dòng
      * CreatedBY: BQDUY(23/02/2021)
      * */
-    dbClickRow() { };
+    dbClickRow() {
+
+    };
 }
-// Biến thay đổi giá trị của form khi ấn nút Thêm mới, hoặc Double Click vào 1 dòng trong bảng
-var formMode = null;

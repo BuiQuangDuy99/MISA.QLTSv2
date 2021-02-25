@@ -1,11 +1,9 @@
 ﻿$(document).ready(function () {
-    //Sự kiện khi click vào nút thêm mới
-    $("#add-demo").click(function () {
-        formDetail.showForm();
-    });
     $('#cbx-test').combobox();
-    
-    
+    var day = new Date("2021-09-12");
+    console.log(day);
+    var date = moment(day).format("DD-MM-YYYY");
+    console.log(date);
 })
 
 
@@ -15,32 +13,19 @@ class Dictionary extends BaseGrid {
 
     constructor(gridId) {
         super(gridId);
+        this.initEvents();
     }
 
     initEvents() {
         super.initEvents();
         showTooltipElement($('button'));
+        showTooltipElement($('td'));
+       
     }
 
-    /**
-     * Hàm sự kiện xảy ra khi double click vào 1 hàng trong bảng 
-     * CreatedBY: BQDUY(23/02/2021)
-     * */
-    dbClickRow() {
-        var id = $(this).data('recordId');
-        console.log(id);
-        
-        //$.getJSON("/js/data.json", function (data) {
-        //    $.each(data, function (index, obj) {
-        //        console.log("dang doc json");
-        //        if (id == obj['Id']) {
-        //            formDetail.bindingData(obj);
-        //        }
-        //    })
-        //})
-        //formDetail.showForm();    
+    createFormDetail(formID, width, height) {
+        this.formDetail = new dictionaryForm(formID, width, height);
     }
-    
 }
 
 var dictionaryGrid = new Dictionary('#gridTest');
@@ -97,10 +82,12 @@ var conFigColum = [
     }
 ];
 
+//Khởi tạo form loại tài sản:
+dictionaryGrid.createFormDetail("#dialog_dictionary", 700, 500);
+
 // THiết lập config header
 dictionaryGrid.setConFigColum(conFigColum);
 
-dictionaryGrid.initFormDetail("#idForm");
-
 // Load dữ liệu grid
 dictionaryGrid.loadData(dictionary);
+
