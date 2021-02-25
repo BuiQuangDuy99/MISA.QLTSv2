@@ -1,76 +1,53 @@
 ﻿// Lớp dùng để render ra các bảng
 class Grid {
+
     // Hàm khởi tạo, truyền vào id của bảng
-    constructor(tableId, filename) {
-        this.grid = $(tableId);
-        this.conFigColum = null;
-        this.setConFigColum();
-        this.renderColumn();
-        this.renderBody(filename);
-        this.initEvent();
+    constructor(tableId) {
+        var me = this;
+
+        // Biến lưu grid
+        me.grid = $(tableId);
+        // Danh sách config cho các cột
+        me.conFigColum = null;
+        me.formDetail = null;
+
+        // Khởi tạo các sự kiện cho grid
+        me.initEvents();
     }
-
-    /**
-     * Hàm set config column
-     * CreatedBY: BQDUY(06/02/2021)
-     * */
-    setConFigColum() {
-
-    };
-
-    /**
-     * Hàm khi xảy ra sự kiện double click vào 1 dòng
-     * CreatedBY: BQDUY(23/02/2021)
-     * */
-    dbClickRow() {
-        
-    };
 
     /**
      * Hàm khởi tạo các sự kiện trong grid 
      * CreatedBY: BQDUY(04/02/2021)
      * */
-    initEvent() {
-        var grid = this.grid;
+    initEvents() {
+        var me = this,
+            grid = me.grid;
 
         // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit, và binding dữ liệu của row lên form
-        this.grid.find('tbody').on('dblclick', 'tr', this.dbClickRow);
+        grid.find('tbody').off('dblclick', 'tr');
+        grid.find('tbody').on('dblclick', 'tr', me.dbClickRow.bind(this));
 
         // Sự kiện click một dòng, hoặc giữ ctrl để click được nhiều dòng
-        grid.find('tbody').on('click', 'tr', function (event) {
-            if (event.ctrlKey) {
-                if ($(this).hasClass('selected-row')) {
-                    $(this).removeClass('selected-row');
-                } else {
-                    $(this).addClass('selected-row');
-                    console.log($(this).data('recordId'));
-                }
-            } else {
-                if ($(this).hasClass('selected-row')) {
-                    $(this).removeClass('selected-row');
-                } else {
-                    $(this).addClass('selected-row');
-                    $(this).siblings().removeClass('selected-row');
-                }
-            }
-            //$('#function').addClass('show-dialog');
-            //$('#function').removeClass('hide-dialog');
-        })
+        grid.find('tbody').off('click', 'tr');
+        grid.find('tbody').on('click', 'tr', me.gridRowOnClick);
+    }
 
-        // Sự kiện click chuột phải vào một dòng show menu context (chưa hoàn thiện)
-        //grid.find('tbody').on('contextmenu', function (e) {
-        //    var menu = $('.menu');//get the menu
-        //    e.preventDefault();//Prevent the default action: the normal right-click-menu to show
-        //    menu.css({
-        //        display: 'block',//show the menu
-        //        top: e.pageY,//make the menu be where you click (y)
-        //        left: e.pageX,//make the menu be where you click (x)
-        //        position: 'fixed'
-        //    });
-        //    $(document).click(function () { //When you left-click
-        //        menu.css({ display: 'none' });//Hide the menu
-        //    });
-        //})
+    /**
+    * Sự kiện click một dòng, hoặc giữ ctrl để click được nhiều dòng
+    * CreatedBY: BQDUY(04/02/2021)
+    * */
+    gridRowOnClick(event) {
+        if (event.ctrlKey) {
+            if ($(this).hasClass('selected-row')) {
+                $(this).removeClass('selected-row');
+            } else {
+                $(this).addClass('selected-row');
+                console.log($(this).data('recordId'));
+            }
+        } else {
+            $(this).addClass('selected-row');
+            $(this).siblings().removeClass('selected-row');
+        }
     }
 
     /**
@@ -93,13 +70,15 @@ class Grid {
             th = me.addAttribute(th, 'fieldName', col.FieldName);
             th = me.addAttribute(th, 'dataType', col.DataType);
             th = me.addClassFormat(th, col.DataType);
-            th = me.addWithForTh(th, col.FieldName, col.DataType);
+            th = me.addWidthForTh(th, col.FieldName, col.DataType);
             tr.append(th);
         }
         );
 
-        this.grid.find('thead').append(tr);
+        me.grid.find('thead').append(tr);
     }
+
+
 
     /**
      * Hàm xét độ rộng cho td trong grind
@@ -108,15 +87,16 @@ class Grid {
      * @param {any} DataType kiểu dữ liệu của đối tượng
      * CreatedBy: DVVUONG (24/04/2021)
      */
-    addWithForTh(element, FieldName, DataType) {
+    addWidthForTh(element, fieldName, dataType) {
         try {
             let strEqual = "Code";
-            if (String(FieldName).includes(strEqual) && DataType == "text") {
+
+            if (String(fieldName).includes(strEqual) && dataType == "text") {
                 element.addClass("width-code");
                 return element;
             }
 
-            switch (FieldName) {
+            switch (fieldName) {
                 case "STT":
                     element.addClass("width-stt");
                     element.addClass("padding-stt");
@@ -134,7 +114,7 @@ class Grid {
         } catch (e) {
             console.log(e);
         }
-      
+
     }
 
     /**
@@ -155,36 +135,51 @@ class Grid {
     }
 
     /**
+     * Hàm load data vào bảng
+     * @param {any} data dữ liệu cần add vào bảng
+     * CreatedBY: BQDUY(25/02/2021)
+     */
+    loadData(data) {
+        let me = this,
+            grid = this.grid;
+
+        if (data) {
+            $.each(data, function (index, obj) {
+                $(grid).find('tbody').append(me.renderBody(obj));
+            })
+        }
+    }
+
+    /**
      * Hàm render dữ liệu vào bảng
      * CreatedBY: BQDUY(04/02/2021)
      * */
-    renderBody(filename) {
+    renderBody(object) {
         try {
-            var me = this;
-            var grid = this.grid;
-            $.getJSON("/js/" + filename+".json", function (data) {
-                var tr;
-                var dataType;
-                var fieldName;
-                var value;
-                var td;
-                $.each(data, function (index, obj) {
-                    tr = $(`<tr></tr>`);
-                    $(tr).data('recordId', obj['Id']);
-                    grid.find('th').each(function () {
-                        dataType = $(this).attr('dataType');
-                        fieldName = $(this).attr('fieldName');
-                        value = obj[fieldName];
-                        td = me.addValueInTd(td, value, dataType);
-                        td = me.addFormatTd(td, dataType);
-                        td = td.attr("title", value);
-                        tr.append(td);
-                    });
-                    grid.find('tbody').append(tr);
-                });
-                showTooltipElement($('button'));
-                showTooltipElement($('td'));
-            })
+            let me = this,
+                grid = this.grid,
+                column = $(grid).find('th'),
+                row,
+                dataType,
+                fieldName,
+                value,
+                td;
+
+            row = $(`<tr></tr>`);
+            $(row).data('recordId', object['Id']);
+            column.each(function () {
+                dataType = $(this).attr('dataType');
+                fieldName = $(this).attr('fieldName');
+                value = object[fieldName];
+                td = me.addValueInTd(td, value, dataType);
+                td = me.addFormatTd(td, dataType);
+                td = td.attr("title", value);
+                $(row).append(td);
+            });
+
+            $(row).data("value", object);
+
+            return row;  
         } catch (e) {
             console.log(e);
         }
@@ -242,7 +237,7 @@ class Grid {
      * CreatedBY: BQDUY(05/02/2021)
      */
     addValueInTd(td, value, dataType) {
-        var me = this;
+        let me = this;
 
         switch (dataType) {
             case "datetime":
@@ -289,9 +284,44 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 break;
         }
-
         return td;
     }
+
+    /**
+     * Hàm set config column
+     * CreatedBY: BQDUY(06/02/2021)
+     * */
+    setConFigColum(conFigColum) {
+        this.conFigColum = conFigColum;
+
+        if (this.conFigColum) {
+            this.renderColumn();
+        }
+    };
+
+    /**
+     * Hàm lấy giá trị của 1 hàng đang được selected
+     * CreatedBY: BQDUY(23/02/2021)
+     * */
+    getDataSelected() {
+        let data = [],
+            id = this.grid.find(".selected-row").data('recordId');
+
+        console.log(id);    
+
+        this.grid.find(".selected-row").each(function () {
+            let item = $(this).data("value");
+            data.push(item);
+        });
+
+        return data;
+    }
+
+    /**
+     * Hàm khi xảy ra sự kiện double click vào 1 dòng
+     * CreatedBY: BQDUY(23/02/2021)
+     * */
+    dbClickRow() {
+
+    };
 }
-// Biến thay đổi giá trị của form khi ấn nút Thêm mới, hoặc Double Click vào 1 dòng trong bảng
-var formMode = null;

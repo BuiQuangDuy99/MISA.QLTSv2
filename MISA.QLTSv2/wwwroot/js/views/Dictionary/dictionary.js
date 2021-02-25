@@ -1,94 +1,96 @@
 ﻿$(document).ready(function () {
-    new Dictionary('#gridTest');
-    //Sự kiện khi click vào nút thêm mới
-    $("#add-demo").click(function () {
-        formDetail.showForm();
-    });
-
-    showTooltipElement($('button'));
-
     $('#cbx-test').combobox();
+    var day = new Date("2021-09-12");
+    console.log(day);
+    var date = moment(day).format("DD-MM-YYYY");
+    console.log(date);
 })
-var formDetail = new dictionaryForm("#dialog_dictionary");
-class Dictionary extends Grid {
+
+
+//var formDetail = new dictionaryForm("#dialog_dictionary");
+//Khởi tạo bảng và form màn loại tài sản
+class Dictionary extends BaseGrid {
+
     constructor(gridId) {
-        super(gridId, "dictionary");
+        super(gridId);
+        this.initEvents();
     }
-    /**
-     * Hàm cấu hình các cột cho bảng ở màn dictionary
-     * CreatedBY: BQDUY(23/02/2021)
-     * */
-    setConFigColum() {
-        // Biến config cho từng column trong bảng
-        var conFigColum = [
-            {
-                DataType: "number",
-                FieldName: "STT",
-                FieldText: "STT",
-                Index: 1
-            },
-            {
-                DataType: "text",
-                FieldName: "AssetTypeCode",
-                FieldText: "Mã Loại Tài Sản",
-                Index: 2
-            },
-            {
-                DataType: "text",
-                FieldName: "AssetTypeName",
-                FieldText: "Tên Loại Tài Sản",
-                Index: 3
-            },
-            {
-                DataType: "text",
-                FieldName: "AssetClassName",
-                FieldText: "Thuộc loại",
-                Index: 4
-            },
-            {
-                DataType: "text",
-                FieldName: "AssetGroupName",
-                FieldText: "Nhóm Tài Sản",
-                Index: 5
-            },
-            {
-                DataType: "percent",
-                FieldName: "WearPercent",
-                FieldText: "Tỷ Lệ Hao Mòn (%)",
-                Index: 6
-            },
-            {
-                DataType: "year",
-                FieldName: "YearOfUse",
-                FieldText: "Số Năm Sử Dụng",
-                Index: 7
-            },
-            {
-                DataType: "text",
-                FieldName: "Note",
-                FieldText: "Ghi Chú",
-                Index: 8
-            }
-        ];
-        this.conFigColum = conFigColum;
-    }
-    /**
-     * Hàm sự kiện xảy ra khi double click vào 1 hàng trong bảng 
-     * CreatedBY: BQDUY(23/02/2021)
-     * */
-    dbClickRow() {
-        var id = $(this).data('recordId');
-        console.log(id);
-        
-        $.getJSON("/js/data.json", function (data) {
-            $.each(data, function (index, obj) {
-                console.log("dang doc json");
-                if (id == obj['Id']) {
-                    formDetail.bindingData(obj);
-                }
-            })
+
+    initEvents() {
+        let me = this;
+        super.initEvents();
+        showTooltipElement($('button'));
+        showTooltipElement($('td'));
+        $('#btn-add-dictionary').click(function () {
+            me.formDetail.show();
         })
-        formDetail.showForm();    
     }
-    
+
+    createFormDetail(formID, width, height) {
+        this.formDetail = new dictionaryForm(formID, width, height);
+    }
 }
+
+var dictionaryGrid = new Dictionary('#gridTest');
+
+// Biến config cho từng column trong bảng
+var conFigColum = [
+    {
+        DataType: "number",
+        FieldName: "STT",
+        FieldText: "STT",
+        Index: 1
+    },
+    {
+        DataType: "text",
+        FieldName: "AssetTypeCode",
+        FieldText: "Mã Loại Tài Sản",
+        Index: 2
+    },
+    {
+        DataType: "text",
+        FieldName: "AssetTypeName",
+        FieldText: "Tên Loại Tài Sản",
+        Index: 3
+    },
+    {
+        DataType: "text",
+        FieldName: "AssetClassName",
+        FieldText: "Thuộc loại",
+        Index: 4
+    },
+    {
+        DataType: "text",
+        FieldName: "AssetGroupName",
+        FieldText: "Nhóm Tài Sản",
+        Index: 5
+    },
+    {
+        DataType: "percent",
+        FieldName: "WearPercent",
+        FieldText: "Tỷ Lệ Hao Mòn (%)",
+        Index: 6
+    },
+    {
+        DataType: "year",
+        FieldName: "YearOfUse",
+        FieldText: "Số Năm Sử Dụng",
+        Index: 7
+    },
+    {
+        DataType: "text",
+        FieldName: "Note",
+        FieldText: "Ghi Chú",
+        Index: 8
+    }
+];
+
+//Khởi tạo form loại tài sản:
+dictionaryGrid.createFormDetail("#dialog_dictionary", 700, 500);
+
+// THiết lập config header
+dictionaryGrid.setConFigColum(conFigColum);
+
+// Load dữ liệu grid
+dictionaryGrid.loadData(dictionary);
+
