@@ -21,8 +21,8 @@ class Grid {
         me.initEvents();
     }
 
-    initFormDetail(formId) {
-        this.formDetail = new dictionaryForm(formId);
+    initFormDetail() {
+        //this.formDetail = new dictionaryForm(formId);
     }
 
     /**
@@ -88,6 +88,8 @@ class Grid {
         me.grid.find('thead').append(tr);
     }
 
+
+
     /**
      * Hàm xét độ rộng cho td trong grind
      * @param {any} element đối tượng cần định dạng độ rộng
@@ -122,7 +124,7 @@ class Grid {
         } catch (e) {
             console.log(e);
         }
-      
+
     }
 
     /**
@@ -143,37 +145,50 @@ class Grid {
     }
 
     /**
+     * Hàm load data vào bảng
+     * @param {any} data dữ liệu cần add vào bảng
+     * CreatedBY: BQDUY(25/02/2021)
+     */
+    loadData(data) {
+        let me = this,
+            grid = this.grid;
+
+        if (data) {
+            $.each(data, function (index, obj) {
+                $(grid).find('tbody').append(me.renderBody(obj));
+            })
+        }
+    }
+
+    /**
      * Hàm render dữ liệu vào bảng
      * CreatedBY: BQDUY(04/02/2021)
      * */
-    renderBody(filename) {
+    renderBody(object) {
         try {
-            var me = this,
-                grid = this.grid;
+            let me = this,
+                grid = this.grid,
+                column = $(grid).find('th'),
+                row,
+                dataType,
+                fieldName,
+                value,
+                td;
 
-            $.getJSON("/js/" + filename+".json", function (data) {
-                var tr;
-                var dataType;
-                var fieldName;
-                var value;
-                var td;
-                $.each(data, function (index, obj) {
-                    tr = $(`<tr></tr>`);
-                    $(tr).data('recordId', obj['Id']);
-                    grid.find('th').each(function () {
-                        dataType = $(this).attr('dataType');
-                        fieldName = $(this).attr('fieldName');
-                        value = obj[fieldName];
-                        td = me.addValueInTd(td, value, dataType);
-                        td = me.addFormatTd(td, dataType);
-                        td = td.attr("title", value);
-                        tr.append(td);
-                    });
-                    grid.find('tbody').append(tr);
-                });
-                showTooltipElement($('button'));
-                showTooltipElement($('td'));
-            })
+            row = $(`<tr></tr>`);
+            $(row).data('recordId', object['Id']);
+            column.each(function () {
+                dataType = $(this).attr('dataType');
+                fieldName = $(this).attr('fieldName');
+                value = object[fieldName];
+                td = me.addValueInTd(td, value, dataType);
+                td = me.addFormatTd(td, dataType);
+                td = td.attr("title", value);
+                $(row).append(td);
+            });
+            return row;
+            showTooltipElement($('button'));
+            showTooltipElement($('td'));
         } catch (e) {
             console.log(e);
         }
@@ -278,9 +293,6 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 break;
         }
-
-
-
         return td;
     }
 

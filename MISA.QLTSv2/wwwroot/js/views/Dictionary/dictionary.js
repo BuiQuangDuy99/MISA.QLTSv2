@@ -1,27 +1,25 @@
 ﻿$(document).ready(function () {
-    
     //Sự kiện khi click vào nút thêm mới
     $("#add-demo").click(function () {
         formDetail.showForm();
     });
-
-    showTooltipElement($('button'));
-
     $('#cbx-test').combobox();
+    
+    
 })
 
 
 //var formDetail = new dictionaryForm("#dialog_dictionary");
-class Dictionary extends Grid {
+//Khởi tạo bảng và form màn loại tài sản
+class Dictionary extends BaseGrid {
 
     constructor(gridId) {
-        super(gridId, "dictionary");
+        super(gridId);
     }
 
     initEvents() {
         super.initEvents();
-
-        
+        showTooltipElement($('button'));
     }
 
     /**
@@ -32,20 +30,20 @@ class Dictionary extends Grid {
         var id = $(this).data('recordId');
         console.log(id);
         
-        $.getJSON("/js/data.json", function (data) {
-            $.each(data, function (index, obj) {
-                console.log("dang doc json");
-                if (id == obj['Id']) {
-                    formDetail.bindingData(obj);
-                }
-            })
-        })
-        formDetail.showForm();    
+        //$.getJSON("/js/data.json", function (data) {
+        //    $.each(data, function (index, obj) {
+        //        console.log("dang doc json");
+        //        if (id == obj['Id']) {
+        //            formDetail.bindingData(obj);
+        //        }
+        //    })
+        //})
+        //formDetail.showForm();    
     }
     
 }
 
-var dictionary = new Dictionary('#gridTest');
+var dictionaryGrid = new Dictionary('#gridTest');
 
 // Biến config cho từng column trong bảng
 var conFigColum = [
@@ -100,9 +98,9 @@ var conFigColum = [
 ];
 
 // THiết lập config header
-dictionary.setConFigColum(conFigColum);
+dictionaryGrid.setConFigColum(conFigColum);
 
-dictionary.initFormDetail("#fffff");
+dictionaryGrid.initFormDetail("#idForm");
 
 // Load dữ liệu grid
-dictionary.loadData(listStudent);
+dictionaryGrid.loadData(dictionary);

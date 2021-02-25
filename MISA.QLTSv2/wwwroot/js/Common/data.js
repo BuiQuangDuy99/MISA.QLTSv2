@@ -1,8 +1,8 @@
-﻿var listStudent =
+﻿var asset =
     [
         {
             "STT": 1,
-            "Id": "1a",
+            "Id": "6c2a6d5e-1d33-4635-8c1d-ee428499c376",
             "AssetCode": "TS09211",
             "AssetName": "Tài Sản Nội Vụ",
             "AssetGroupId": "AG98232",
@@ -20,7 +20,7 @@
         },
         {
             "STT": 2,
-            "Id": "1b",
+            "Id": "28f0250c-06c5-468e-aff6-0c8ae4becac1",
             "AssetCode": "TS09544",
             "AssetName": "Tài Sản Công Vụ",
             "AssetGroupId": "AG13423",
@@ -38,7 +38,7 @@
         },
         {
             "STT": 3,
-            "Id": "2a",
+            "Id": "17727901-637e-4ef2-b973-7c1da9cd666f",
             "AssetCode": "TS43532",
             "AssetName": "Tài Sản Cố Định",
             "AssetGroupId": "AG98232",
@@ -56,7 +56,7 @@
         },
         {
             "STT": 4,
-            "Id": "2b",
+            "Id": "93e6c1b2-87de-45a1-aa61-f6389ef803a9",
             "AssetCode": "TS85462",
             "AssetName": "Tài Sản Nội Vụ",
             "AssetGroupId": "AG98232",
@@ -74,7 +74,7 @@
         },
         {
             "STT": 5,
-            "Id": "2c",
+            "Id": "8fc39711-c574-4c08-a888-0f12b46e83ee",
             "AssetCode": "TS87646",
             "AssetName": "Tài Sản Hữu Hình",
             "AssetGroupId": "AG98232",
@@ -92,7 +92,7 @@
         },
         {
             "STT": 6,
-            "Id": "3a",
+            "Id": "f39a8804-963c-4278-8d81-843321fffa63",
             "AssetCode": "TS09543",
             "AssetName": "Tài Sản",
             "AssetGroupId": "AG13423",
@@ -106,5 +106,142 @@
             "Department": "Phòng công nghệ thông tin",
             "ValueYear": "5%",
             "Function": ""
+        }
+    ];
+
+var dictionary =
+    [
+        {
+            "STT": 1,
+            "Id": "f2114a8b-7f7b-46cd-8dab-1168254da450",
+            "AssetTypeCode": "TS09211",
+            "AssetTypeName": "Tài Sản Nội Vụ",
+            "AssetClassId": "AC13122",
+            "AssetClassName": "Tài sản cố định vô hình",
+            "AssetGroupId": "AG98232",
+            "AssetGroupName": "Tài Sản Văn Phòng",
+            "WearPercent": "10%",
+            "YearOfUse": 15,
+            "Note": "Đây là ghi chú tự động"
+        },
+        {
+            "STT": 2,
+            "Id": "cd1e88f7-c131-4b71-aafc-6b0ee02255af",
+            "AssetTypeCode": "TS09544",
+            "AssetTypeName": "Tài Sản Công Vụ",
+            "AssetClassId": "AC13122",
+            "AssetClassName": "Tài sản cố định vô hình",
+            "AssetGroupId": "AG13423",
+            "AssetGroupName": "Tài Sản Cá Nhân",
+            "WearPercent": "45%",
+            "YearOfUse": 10,
+            "Note": "Đây là ghi chú tự động",
+            "DateTime": "21/04/2021",
+            "Department": "Phòng công nghệ thông tin",
+            "Function": ""
+
+        },
+        {
+            "STT": 3,
+            "Id": "6db3fe09-fabe-4263-a9ec-c297f8500dfc",
+            "AssetTypeCode": "TS43532",
+            "AssetTypeName": "Tài Sản Cố Định",
+            "AssetClassId": "AC46634",
+            "AssetClassName": "Tài sản cố định hữu hình",
+            "AssetGroupId": "AG98232",
+            "AssetGroupName": "Tài Sản Nhà Nước",
+            "WearPercent": "30%",
+            "YearOfUse": 20,
+            "Note": "",
+            "DateTime": "21/04/2021",
+            "Department": "Phòng công nghệ thông tin",
+            "Function": ""
+
+        },
+        {
+            "STT": 4,
+            "Id": "74539575-83b9-46c4-97b1-b015dc44f62c",
+            "AssetTypeCode": "TS85462",
+            "AssetTypeName": "Tài Sản Nội Vụ",
+            "AssetClassId": "AC46634",
+            "AssetClassName": "Tài sản cố định hữu hình",
+            "AssetGroupId": "AG98232",
+            "AssetGroupName": "Tài Sản Văn Phòng",
+            "WearPercent": "20%",
+            "YearOfUse": 5,
+            "Note": "Đây là ghi chú tự động",
+            "DateTime": "21/04/2021",
+            "Department": "Phòng công nghệ thông tin",
+            "Function": ""
+
+        },
+        {
+            "STT": 5,
+            "Id": "cdb32b16-a7a5-4510-b42f-540b1012838b",
+            "AssetTypeCode": "TS87646",
+            "AssetTypeName": "Tài Sản Hữu Hình",
+            "AssetClassId": "AC72323",
+            "AssetClassName": "Tài sản cố định thuộc phạm vi quản lý của Bộ, Tỉnh",
+            "AssetGroupId": "AG98232",
+            "AssetGroupName": "Tài Sản Văn Phòng",
+            "WearPercent": "50%",
+            "YearOfUse": 3,
+            "Note": "",
+            "DateTime": "21/04/2021",
+            "Department": "Phòng công nghệ thông tin",
+            "Function": ""
+
+        },
+        {
+            "STT": 6,
+            "Id": "a350429a-dfb4-4a6c-999a-d354396248e0",
+            "AssetTypeCode": "TS09543",
+            "AssetTypeName": "Tài Sản",
+            "AssetClassId": "AC23134",
+            "AssetClassName": "Tài sản cố định đặc thù",
+            "AssetGroupId": "AG13423",
+            "AssetGroupName": "Tài Sản Cá Nhân",
+            "WearPercent": "9%",
+            "YearOfUse": 9,
+            "Note": "Đây là ghi chú tự động",
+            "DateTime": "21/04/2021",
+            "Department": "Phòng công nghệ thông tin",
+            "Function": ""
+        }
+    ];
+
+var departments =
+    [
+        {
+            "STT": 1,
+            "Id": "c75d5492-c08a-4105-a3f1-b7c1cd2c3e59",
+            "DepartmentCode": "PCNTT",
+            "DepartmentName": "Phòng Công nghệ thông tin",
+            "DepartmentGroupName": "Phòng CNTT",
+            "Note": "Đây là phòng CNTT"
+        },
+        {
+            "STT": 2,
+            "Id": "772cbaa3-f9e4-4ae2-9cad-71770287c7ad",
+            "DepartmentCode": "PHCTH",
+            "DepartmentName": "Phòng Hành chính tổng hợp",
+            "DepartmentGroupName": "Phòng HCTH",
+            "Note": "Đây là phòng HCTH"
+        },
+        {
+            "STT": 3,
+            "Id": "d6858599-bede-40a5-804e-0ac035e413aa",
+            "DepartmentCode": "PKT",
+            "DepartmentName": "Phòng Kế toán",
+            "DepartmentGroupName": "Phòng Kế toán",
+            "Note": "Đây là phòng kế toán"
+        },
+        {
+            "STT": 4,
+            "Id": "f09e3e27-bc29-48d4-8967-03b64bfc0900",
+            "DepartmentCode": "PTT",
+            "DepartmentName": "Phòng Thanh Tra",
+            "DepartmentGroupName": "Phòng Thanh tra",
+            "Note": "Đây là phòng thanh tra"
         }
     ];
