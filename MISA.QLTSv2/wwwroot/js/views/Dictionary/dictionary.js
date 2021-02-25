@@ -17,10 +17,13 @@ class Dictionary extends BaseGrid {
     }
 
     initEvents() {
+        let me = this;
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-       
+        $('#btn-add-dictionary').click(function () {
+            me.formDetail.show();
+        })
     }
 
     createFormDetail(formID, width, height) {

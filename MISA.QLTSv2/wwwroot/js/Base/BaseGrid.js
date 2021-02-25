@@ -11,9 +11,6 @@
      * */
     initEvents() {
         super.initEvents();
-        $('#btn-add-dictionary').click(function () {
-            this.formDetail.show();
-        })
     }
 
     /**
