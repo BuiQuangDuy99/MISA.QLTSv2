@@ -282,7 +282,7 @@ class baseForm {
         var isValid = me.validateForm();
         if (isValid) {
             var data = me.getData();
-            this.saveChangeData_(data);
+            this.saveChangeData(data);
             this.closeForm();
         }
     }
