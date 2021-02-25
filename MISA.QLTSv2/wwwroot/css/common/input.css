@@ -17,9 +17,9 @@ input{
     min-width: 150px;
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
+    color: #373737;
     padding-left: 15px;
     font-size: 13px;
-    color: #373737;
     text-align: justify;
     outline: none;
     font-family: Roboto-Regular !important;
