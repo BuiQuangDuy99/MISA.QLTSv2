@@ -11,8 +11,20 @@ class dictionaryForm extends baseForm {
         });
     }
 
-    show() {
+    /**
+     * load combobox khi khởi tạo form
+     * CreatedBY: BQDUY(25/02/2021)
+     * */
+    initLoadComboBox(entity, dataCbx) {
+        this.loadComboBox(entity, dataCbx);
+    }
+
+    show(data) {
         let me = this;
+        if (data) {
+            me.bindingData(data);
+            me.dictionary_Form.dialog('open');
+        }
         me.dictionary_Form.dialog('open');
     }
 

@@ -6,8 +6,6 @@
     console.log(date);
 })
 
-
-//var formDetail = new dictionaryForm("#dialog_dictionary");
 //Khởi tạo bảng và form màn loại tài sản
 class Dictionary extends BaseGrid {
 
@@ -28,6 +26,8 @@ class Dictionary extends BaseGrid {
 
     createFormDetail(formID, width, height) {
         this.formDetail = new dictionaryForm(formID, width, height);
+        this.formDetail.initLoadComboBox("AssetGroup", dictionary);
+        this.formDetail.initLoadComboBox("AssetClass", dictionary);
     }
 }
 

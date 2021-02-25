@@ -7,7 +7,6 @@ class baseForm {
         this.form = $(Idform);
         this.setApiUrl();
         this.getApiUrl = null;
-        //this.bindingData(data);
         this.initEvent();
     };
 
@@ -171,16 +170,31 @@ class baseForm {
     bindingData(data) {
         this.form.find("[fieldName]").each(function () {
             var propertyName = $(this).attr('fieldName');
-            var propertyValue = data[propertyName];
-            if ($(this).attr('DataType') == 'date') {
+            var propertyValue = data[0][propertyName];
+            if ($(this).attr('dataType') == 'date') {
                 propertyvalue = formatStringDate(propertyvalue);
             }
-            else if ($(this).attr('DataType') == "Money") {
+            else if ($(this).attr('dataType') == "Money") {
                 var money = formatMoney(propertyvalue);
                 propertyvalue = money;
             }
             this.value = propertyValue;
         });
+    }
+
+    /**
+     * Load data combobox từ dữ liệu giả
+     * CreatedBY: BQDUY(25/02/2021)
+     * */
+    loadComboBox(entity, data) {
+        let fieldValue = entity + "Id",
+            fieldName = entity + "Name",
+            me = this;
+        $.each(data, function (index, element) {
+            let select = me.form.find("select"),
+                option = `<option fieldValue="` + element[fieldValue] + `">` + element[fieldName] + `</option>`;
+            $(select).append(option);
+        })
     }
 
     /**
