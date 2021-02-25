@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
     $('#cbx-test').combobox();
-    var day = new Date("2021-09-12");
+    var day = new Date("2020-10-01");
     console.log(day);
-    var date = moment(day).format("DD-MM-YYYY");
+    var date = formatDate(day, 'DD/MM/YYYY');
     console.log(date);
 })
 

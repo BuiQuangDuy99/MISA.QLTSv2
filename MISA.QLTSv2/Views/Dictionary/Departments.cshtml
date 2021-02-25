@@ -10,7 +10,7 @@
     </div>
     <div class="tool-bar-right">
         <div>
-            <button class="button btn-add" id="btn-add-depatment">Thêm</button>
+            <button class="button btn-add" id="btn-add-department">Thêm</button>
         </div>
         <div>
             <button class="button btn-refresh" title="Làm mới">
@@ -54,24 +54,24 @@
             <div class="top col-12">
                 <div class="sub-content">
                     <div class="sub-title">Mã bộ phận (*)</div>
-                    <input class="input-text" fieldname="departmentcode" required tabindex="1" />
+                    <input class="input-text" fieldName="DepartmentCode" required tabindex="1" />
                 </div>
                 <div class="sub-content">
                     <div class="sub-title">Tên bộ phận (*)</div>
-                    <input class="input-text" fieldname="departmentname" required tabindex="2" />
+                    <input class="input-text" fieldName="DepartmentName" required tabindex="2" />
                 </div>
                 <div class="sub-content">
                     <div class="sub-title">Trực thuộc (*)</div>
-                    <select class="input-text" fieldname="departmentgroupname" tabindex="3">
-                        <option value="phòng công nghệ thông tin">Phòng công nghệ thông tin</option>
+                    <select class="input-text" tabindex="3" id="cbxDepartment" style="width: 300px;">
+                        @*<option value="phòng công nghệ thông tin">Phòng công nghệ thông tin</option>
                         <option value="phòng hành chính tổng hợp">Phòng hành chính tổng hợp</option>
                         <option value="phòng kế toán">Phòng kế toán</option>
-                        <option value="phòng thanh tra">Phòng thanh tra</option>
+                        <option value="phòng thanh tra">Phòng thanh tra</option>*@
                     </select>
                 </div>
                 <div class="sub-content">
                     <div class="sub-title">Ghi chú</div>
-                    <textarea fieldname="note" tabindex="4" rows="3"></textarea>
+                    <textarea fieldName="Note" tabindex="4" rows="3"></textarea>
                 </div>
             </div>
             <div class="bottom col-12">

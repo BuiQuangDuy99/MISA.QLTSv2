@@ -20,7 +20,7 @@
     dbClickRow() {
         var data = this.getDataSelected();
         console.log(data);
-        this.formDetail.show();
+        this.formDetail.show(data);
     }
 
     /**
