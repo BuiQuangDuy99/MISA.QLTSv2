@@ -9,6 +9,14 @@ $(document).ready(function () {
     //        });
     //    }
     //});
+    $('#cbxdepartment').autocomplete({
+        select: function (event, ui) {
+        alert(ui.item.option.value);
+        $('#txtdepartment').val(ui.item.option.value);
+        $('#txtAssetGroupName').val(ui.item.option.value);
+
+        }
+    })
     $('#cbxasset').combobox();
 
 })

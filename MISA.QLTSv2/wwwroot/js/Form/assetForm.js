@@ -10,6 +10,21 @@
         });
     }
 
+    initEvent() {
+        super.initEvent();
+        $('#cbxdepartment').change(function () {
+            $('#txtdepartment').val($(this).val());
+        })
+    }
+
+    /**
+     * Hàm xử lý sự kiện thay đổi selection
+     * CretedBY: NVTUYEN(26/02/2021)
+     * */
+    changeValueSelection() {
+       
+    }
+
     show(data) {
         let me = this;
         if (data) {

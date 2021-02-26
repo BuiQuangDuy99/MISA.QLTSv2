@@ -175,7 +175,7 @@ class baseForm {
             var propertyName = $(this).attr('fieldName');
             var propertyValue = data[0][propertyName];
             if ($(this).attr('dataType') == 'date') {
-                propertyValue = formatStringDate(propertyValue);
+                propertyValue = formatDate(propertyValue,"YYYY-MM-DD");
             }
             else if ($(this).attr('dataType') == "Money") {
                 var money = formatMoney(propertyValue);
@@ -254,6 +254,7 @@ class baseForm {
                         if (check) {
                             value = $(option).prop("label");
                         }
+                        
                     })
                     break;
                 default:
@@ -263,6 +264,7 @@ class baseForm {
 
         return value;
     }
+
     /**
      * Lấy dữ liệu trong form
      * CreatedBy : NDTUNG (3/2/2021)
