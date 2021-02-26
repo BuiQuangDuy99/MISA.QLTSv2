@@ -249,3 +249,19 @@ var department =
             "Note": "Đây là phòng thanh tra"
         }
     ];
+
+var assetGroup =
+    [
+        {
+            "AssetGroupId": "AG98232",
+            "AssetGroupName": "Tài Sản Văn Phòng"
+        },
+        {
+            "AssetGroupId": "AG13423",
+            "AssetGroupName": "Tài Sản Cá Nhân"
+        },
+        {
+            "AssetGroupId": "AG98777",
+            "AssetGroupName": "Tài Sản Nhà Nước"
+        }
+    ];

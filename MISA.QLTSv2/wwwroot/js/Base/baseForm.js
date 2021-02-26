@@ -39,10 +39,6 @@ class baseForm {
 
     }
 
-    setUrlJsonFile() {
-
-    }
-
 
     setApiUrl() {
 
@@ -249,6 +245,15 @@ class baseForm {
                 case "Money":
                     value = parseInt(value.split(".").join(""));
                     break;
+                case "Combobox":
+                    var test = input.children();
+                    $.each(test, function (index, option) {
+                        var check = $(option).prop("selected");
+                        if (check) {
+                            value = $(option).prop("label");
+                        }
+                    })
+                    break;
                 default:
                     value = value.trim();
             }
@@ -263,13 +268,15 @@ class baseForm {
     getData() {
         var me = this;
         var data = {};
-        this.form.find("[fieldName]").each(function () {
+        this.form.find("[fieldName], select").each(function () {
             var fieldName = $(this).attr("fieldName"),
                 dataType = $(this).attr("DataType");
 
-            if (dataType == "Combobox") {
-                fieldName = $(this).attr("fieldValue");
-            }
+            //if (dataType == "Combobox") {
+            //    fieldName = $(this).attr("fieldValue");
+
+            //}
+
             data[fieldName] = me.getDataInput($(this), dataType);
 
         });

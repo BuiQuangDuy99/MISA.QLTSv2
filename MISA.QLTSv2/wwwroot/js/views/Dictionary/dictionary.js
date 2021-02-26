@@ -24,7 +24,7 @@ class Dictionary extends BaseGrid {
     createFormDetail(formID, width, height) {
         var me = this;
         this.formDetail = new dictionaryForm(formID, width, height, me);
-        this.formDetail.initLoadComboBox("AssetGroup", dictionary);
+        this.formDetail.initLoadComboBox("AssetGroup", assetGroup);
         //this.formDetail.initLoadComboBox("AssetClass", dictionary);
     }
 }
