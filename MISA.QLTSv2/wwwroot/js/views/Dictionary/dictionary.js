@@ -2,7 +2,7 @@
     $('#cbx-test').combobox();
     var day = new Date("2020-10-01");
     console.log(day);
-    var date = formatDate(day, 'DD/MM/YYYY');
+    var date = formatDate("29-02-2020", 'DD/MM/YYYY');
     console.log(date);
 })
 

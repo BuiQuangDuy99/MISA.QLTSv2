@@ -30,7 +30,7 @@ function formatDate(date, formatDate) {
         if (!date) {
             return "";
         } else {
-            date = moment(date, ["dd-mm-yyyy", "mm-dd-yyyy", "dd-mmm-yyyy", "mmm-dd-yyyy"]).format("yyyy-mm-dd");
+            date = moment(date, ["DD-MM-YYYY", "MM-DD-YYYY", "DD-MMM-YYYY", "MMM-DD-YYYY"]).format("YYYY-MM-DD");
             return moment(new Date(date)).format(formatDate);
         }
     } catch (e) {
