@@ -228,6 +228,8 @@ class baseForm {
         let me = this;
         if (me.jsCaller.formMode == "Add") {
             me.jsCaller.loadData(data);
+        } else {
+
         }
     }
 

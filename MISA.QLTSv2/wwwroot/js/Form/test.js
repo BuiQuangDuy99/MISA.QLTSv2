@@ -73,9 +73,8 @@
                     },
                     select: function (event, ui) {
                         ui.item.option.selected = true;
-                        //if ($('#ui-id-2').item.option.selected == true) {
-                        //    $('#txtdepartment').val(ui.item.option.value);
-                        //}
+                        $('#txtAssetGroupName').val(ui.item.option.value);
+                        $('#txtdepartment').val(ui.item.option.value);
                         that._trigger("selected", event, {
                             item: ui.item.option
                         });

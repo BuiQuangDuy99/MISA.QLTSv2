@@ -1,6 +1,6 @@
 ﻿class assetIncreasedForm extends baseForm {
-    constructor(formId, width, height) {
-        super(formId);
+    constructor(formId, width, height, jsCaller) {
+        super(formId, jsCaller);
         //Định nghĩa Dialog
         this.assetIncreasedForm = $(formId).dialog({
             autoOpen: false,

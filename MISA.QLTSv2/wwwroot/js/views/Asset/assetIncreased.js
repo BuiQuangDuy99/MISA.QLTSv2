@@ -23,12 +23,10 @@ class assetIncreased extends BaseGrid {
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-        $('#btn-add-assetincreased').click(function () {
-            me.formDetail.show();
-        })
     }
     createFormDetail(formID, width, height) {
-        this.formDetail = new assetIncreasedForm(formID, width, height);
+        var me = this;
+        this.formDetail = new assetIncreasedForm(formID, width, height, me);
     }
 }
 
