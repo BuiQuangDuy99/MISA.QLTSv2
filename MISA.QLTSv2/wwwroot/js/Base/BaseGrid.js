@@ -4,6 +4,7 @@
 
         this.formDetail = null;
         this.formMode = null;
+        this.listData = [];
     }
 
     /**
@@ -20,7 +21,7 @@
             }
         })
 
-        $('#btn-remove-dictionary').on('click', me.deleteRow.bind(me));
+        $('#btn-remove-dictionary').off('click').on('click', me.deleteRow.bind(me));
     }
 
     /**
@@ -30,14 +31,15 @@
     deleteRow() {
         let me = this;
         var data = me.getAllRecord();
-        $.each(data, function (index, obj) {
-            if ($("#gridTest tbody tr").find(".selected-row").data("recordId") == obj["Id"]) {
-                data = data.filter(item => item !== obj);
-            }
-        })
-        $("#gridTest tbody").empty();
-        me.loadData(data);
-        
+        let selectedRow = $("#gridTest tbody").find(".selected-row");
+        debugger;
+        if (selectedRow.length>0) {
+            data = data.filter(item => item["Id"] !== selectedRow.data("recordId"));
+            $("#gridTest tbody").empty();
+            me.loadData(data);
+        } else {
+            alert("Vui lòng chọn bản ghi để xóa!");
+        }
     }
 
 
@@ -77,6 +79,8 @@
      * CreatedBY: BQDUY(25/02/2021)
      */
     loadData(data) {
+        
         super.loadData(data);
+        this.listData = data;
     }
 }

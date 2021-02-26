@@ -25,7 +25,7 @@ namespace MISA.QLTSv2.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        public IActionResult LayoutView()
+        public IActionResult AssetCategoryPartial()
         {
             return View();
         }

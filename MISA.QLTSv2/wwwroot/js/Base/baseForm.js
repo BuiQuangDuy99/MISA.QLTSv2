@@ -226,9 +226,13 @@ class baseForm {
         //        }
         //    });
         //}
-        let me = this;
-        if (me.jsCaller.formMode == "Add") {
-            me.jsCaller.loadData(data);
+        let me = this,
+            jsCaller = me.jsCaller;
+
+        if (jsCaller.formMode == "Add") {
+
+            jsCaller.listData.push(data);
+            jsCaller.loadData(jsCaller.listData);
         }
     }
 

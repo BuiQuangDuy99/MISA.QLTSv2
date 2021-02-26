@@ -4,45 +4,44 @@
     ViewData["ChildTitle"] = "Danh sách phòng ban";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="tool-bar">
-    <div class="filter-bar">
-        <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
-    </div>
-    <div class="tool-bar-right">
-        <div>
-            <button class="button btn-add" id="btn-add-department">Thêm</button>
+<div>
+    <div class="tool-bar">
+        <div class="filter-bar">
+            <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
         </div>
-        <div>
-            <button class="button btn-refresh" title="Làm mới">
-                <div class="icon-refresh">
+        <div class="tool-bar-right">
+            <div>
+                <button class="button btn-add" id="btn-add-department">Thêm</button>
+            </div>
+            <div>
+                <button class="button btn-refresh" title="Làm mới">
+                    <div class="icon-refresh">
 
-                </div>
-            </button>
-        </div>
-        <div>
-            <button class="button btn-remove" title="Xóa">
-                <div class="icon-remove ">
-                </div>
-            </button>
+                    </div>
+                </button>
+            </div>
+            <div>
+                <button class="button btn-remove" title="Xóa">
+                    <div class="icon-remove ">
+                    </div>
+                </button>
+            </div>
         </div>
     </div>
-</div>
-<div class="grid">
-    <div class="grid-default v-grid-overflow">
-        <table cellspacing="0" id="gridDepartment">
-            <thead>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+    <div class="grid">
+        <div class="grid-default v-grid-overflow">
+            <table cellspacing="0" id="gridDepartment">
+                <thead>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
 </div>
-<div class="menu">
-    <p>Option 1</p>
-    <p>Option 2</p>
-    <p>Option 2</p>
-</div>
+
 
 <div id="department_dialog" class="department_dialog" style="display:block">
     <div class="container-fluid">
@@ -64,9 +63,9 @@
                     <div class="sub-title">Trực thuộc (*)</div>
                     <select class="input-text" tabindex="3" id="cbxDepartment" style="width: 282px;">
                         @*<option value="phòng công nghệ thông tin">Phòng công nghệ thông tin</option>
-                        <option value="phòng hành chính tổng hợp">Phòng hành chính tổng hợp</option>
-                        <option value="phòng kế toán">Phòng kế toán</option>
-                        <option value="phòng thanh tra">Phòng thanh tra</option>*@
+                            <option value="phòng hành chính tổng hợp">Phòng hành chính tổng hợp</option>
+                            <option value="phòng kế toán">Phòng kế toán</option>
+                            <option value="phòng thanh tra">Phòng thanh tra</option>*@
                     </select>
                 </div>
                 <div class="sub-content">
@@ -81,4 +80,11 @@
         </div>
     </div>
 </div>
+
+@section scripts{ 
+    <script src="~/js/Form/departmentForm.js"></script>
+
+    <script src="~/js/views/Dictionary/department.js"></script>
+}
+
 
