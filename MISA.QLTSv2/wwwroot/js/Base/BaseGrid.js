@@ -10,7 +10,14 @@
      * CreatedBy: BQDUY(25/02/2021)
      * */
     initEvents() {
+        var me = this;
         super.initEvents();
+        $('#btn-add-dictionary').click(function () {
+            formMode = "Add";
+            if (me.formDetail) {
+                me.formDetail.show();
+            }
+        })
     }
 
     /**
@@ -20,7 +27,7 @@
     dbClickRow() {
         var data = this.getDataSelected();
         console.log(data);
-        this.formDetail.show();
+        this.formDetail.show(data);
     }
 
     /**
@@ -54,4 +61,4 @@
 }
 
 // Biến thay đổi giá trị của form khi ấn nút Thêm mới, hoặc Double Click vào 1 dòng trong bảng
-var formMode = null;
+var formMode = "View";

@@ -19,15 +19,12 @@ class Dictionary extends BaseGrid {
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-        $('#btn-add-dictionary').click(function () {
-            me.formDetail.show();
-        })
     }
 
-    createFormDetail(formID, width, height) {
-        this.formDetail = new dictionaryForm(formID, width, height);
+    createFormDetail(formID, width, height, jsCaller) {
+        this.formDetail = new dictionaryForm(formID, width, height, this);
         this.formDetail.initLoadComboBox("AssetGroup", dictionary);
-        this.formDetail.initLoadComboBox("AssetClass", dictionary);
+        //this.formDetail.initLoadComboBox("AssetClass", dictionary);
     }
 }
 

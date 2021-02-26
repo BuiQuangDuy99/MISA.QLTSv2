@@ -1,7 +1,7 @@
 ﻿//Lớp form chi tiết của bảng ở màn dictionary
 class dictionaryForm extends baseForm {
-    constructor(formId, width, height) {
-        super(formId);
+    constructor(formId, width, height, jsCaller) {
+        super(formId, jsCaller);
         //Định nghĩa Dialog
         this.dictionary_Form = $(formId).dialog({
             autoOpen: false,
