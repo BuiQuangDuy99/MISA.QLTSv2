@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $('#cbx-test').combobox();
-    var day = new Date("2020-10-01");
+    var day = new Date("2020");
     console.log(day);
     var date = formatDate(day, 'DD/MM/YYYY');
     console.log(date);
