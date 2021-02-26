@@ -3,6 +3,7 @@
         super(gridId);
 
         this.formDetail = null;
+        this.formMode = null;
     }
 
     /**
@@ -10,7 +11,14 @@
      * CreatedBy: BQDUY(25/02/2021)
      * */
     initEvents() {
+        var me = this;
         super.initEvents();
+        $('#btn-add-dictionary').click(function () {
+            me.formMode = "Add";
+            if (me.formDetail) {
+                me.formDetail.show();
+            }
+        })
     }
 
     /**
@@ -49,9 +57,6 @@
      * CreatedBY: BQDUY(25/02/2021)
      */
     loadData(data) {
-        super.loadData(data)
+        super.loadData(data);
     }
 }
-
-// Biến thay đổi giá trị của form khi ấn nút Thêm mới, hoặc Double Click vào 1 dòng trong bảng
-var formMode = null;

@@ -2,9 +2,10 @@
 //-----------------Form-----------------------------
 class baseForm {
     ///constructor
-    constructor(Idform, data) {
-        this.formMode = Enum.FormMode.Add;
+    constructor(Idform, jsCaller) {
+        //this.formMode = Enum.FormMode.Add;
         this.form = $(Idform);
+        this.jsCaller = jsCaller;
         this.setApiUrl();
         this.getApiUrl = null;
         this.initEvent();
@@ -38,6 +39,9 @@ class baseForm {
 
     }
 
+    setUrlJsonFile() {
+
+    }
 
 
     setApiUrl() {
@@ -207,19 +211,23 @@ class baseForm {
     saveChangeData(data) {
         //var url = this.getApiUrl;
         //var formMode = this.formMode;
-        if (formMode == 1) {
-            callAjax(url, "Post", data, function (res) {
-                if (res.MISACode == Enum.StatusResponse.Success) {
-                    showAlertWarring("Cất dữ liệu thành công!")
-                }
-            });
-        }
-        else if (formMode == 2) {
-            callAjax(url, "Put", data, function (res) {
-                if (res.MISACode == Enum.StatusResponse.Success) {
-                    showAlertWarring("Cất dữ liệu thành công!")
-                }
-            });
+        //if (formMode == 1) {
+        //    callAjax(url, "Post", data, function (res) {
+        //        if (res.MISACode == Enum.StatusResponse.Success) {
+        //            showAlertWarring("Cất dữ liệu thành công!")
+        //        }
+        //    });
+        //}
+        //else if (formMode == 2) {
+        //    callAjax(url, "Put", data, function (res) {
+        //        if (res.MISACode == Enum.StatusResponse.Success) {
+        //            showAlertWarring("Cất dữ liệu thành công!")
+        //        }
+        //    });
+        //}
+        let me = this;
+        if (me.jsCaller.formMode == "Add") {
+            me.jsCaller.loadData(data);
         }
     }
 
@@ -241,6 +249,15 @@ class baseForm {
                 case "Money":
                     value = parseInt(value.split(".").join(""));
                     break;
+                case "Combobox":
+                    var test = input.children();
+                    $.each(test, function (index, option) {
+                        var check = $(option).prop("selected");
+                        if (check) {
+                            value = $(option).prop("label");
+                        }
+                    })
+                    break;
                 default:
                     value = value.trim();
             }
@@ -255,19 +272,34 @@ class baseForm {
     getData() {
         var me = this;
         var data = {};
-        this.form.find("[fieldName]").each(function () {
+        this.form.find("[fieldName], select").each(function () {
             var fieldName = $(this).attr("fieldName"),
                 dataType = $(this).attr("DataType");
 
-            if (dataType == "Combobox") {
-                fieldName = $(this).attr("fieldValue");
-            }
+            //if (dataType == "Combobox") {
+            //    fieldName = $(this).attr("fieldValue");
+
+            //}
+
             data[fieldName] = me.getDataInput($(this), dataType);
 
         });
         return data;
     }
 
+    /**
+     * Lưu dữ liệu vào file .json
+     * CreatedBy: DVVUONG (25/02/2021)
+     * */
+    saveChangeData_(data) {
+        var source = null;
+        $.getJSON(this.urlJsonFile, function (dataJson) {
+            source = dataJson;
+        }).fail(function () {
+            console.log("load false");
+        });
+
+    }
 
     /**
      * Sự kiện click nút Lưu
@@ -278,11 +310,9 @@ class baseForm {
         var isValid = me.validateForm();
         if (isValid) {
             var data = me.getData();
-            this.saveChangeData(data);
-            this.closeForm();
+            me.saveChangeData(data);
+            me.closeForm();
         }
     }
-
-
 
 }

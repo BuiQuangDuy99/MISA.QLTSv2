@@ -144,9 +144,20 @@ class Grid {
             grid = this.grid;
 
         if (data) {
-            $.each(data, function (index, obj) {
-                $(grid).find('tbody').append(me.renderBody(obj));
-            })
+            //$.each(data, function (index, obj) {
+            //    $(grid).find('tbody').append(me.renderBody(obj));
+            //})
+            if (Array.isArray(data)) {
+                $.each(data, function (index, obj) {
+                    $(grid).find('tbody').append(me.renderBody(obj));
+                })
+            } else {
+                var numOfRow = $(grid).find('tbody tr').length;
+                data["STT"] = parseInt(numOfRow) + 1;
+                
+                $(grid).find('tbody').append(me.renderBody(data));
+            }
+            
         }
     }
 
