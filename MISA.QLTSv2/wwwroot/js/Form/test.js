@@ -73,8 +73,8 @@
                     },
                     select: function (event, ui) {
                         ui.item.option.selected = true;
-                        $('#txtAssetGroupName').val(ui.item.option.value);
-                        $('#txtdepartment').val(ui.item.option.value);
+                        var valueOfOption = ui.item.option.value;
+
                         that._trigger("selected", event, {
                             item: ui.item.option
                         });
