@@ -38,6 +38,12 @@ class baseForm {
 
 
     }
+
+    setUrlJsonFile() {
+
+    }
+
+
     setApiUrl() {
 
     }
@@ -193,7 +199,7 @@ class baseForm {
             me = this;
         $.each(data, function (index, element) {
             let select = me.form.find("select"),
-                option = `<option fieldValue="` + element[fieldValue] + `">` + element[fieldName] + `</option>`;
+                option = `<option value="` + element[fieldValue] + `">` + element[fieldName] + `</option>`;
             $(select).append(option);
         })
     }
@@ -269,6 +275,21 @@ class baseForm {
         });
         return data;
     }
+
+    /**
+     * Lưu dữ liệu vào file .json
+     * CreatedBy: DVVUONG (25/02/2021)
+     * */
+    saveChangeData_(data) {
+        var source = null;
+        $.getJSON(this.urlJsonFile, function (dataJson) {
+            source = dataJson;
+        }).fail(function () {
+            console.log("load false");
+        });
+
+    }
+
     /**
      * Sự kiện click nút Lưu
      * CreatedBy : NDTUNG (4/2/2021)
@@ -282,5 +303,7 @@ class baseForm {
             this.closeForm();
         }
     }
+
+
 
 }

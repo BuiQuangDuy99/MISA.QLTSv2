@@ -165,7 +165,7 @@
 }
 
 
-    .ui-menu-item:hover a {
+    .ui-menu-item a:hover {
         background-color: #fff !important;
     }
 
