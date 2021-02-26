@@ -16,9 +16,6 @@ class Department extends BaseGrid {
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-        $('#btn-add-department').click(function () {
-            me.formDetail.show();
-        })
     }
 
     createFormDetail(formID, width, height) {

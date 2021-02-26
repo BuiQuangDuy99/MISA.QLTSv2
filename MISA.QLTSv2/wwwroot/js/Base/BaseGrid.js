@@ -1,7 +1,6 @@
 ﻿class BaseGrid extends Grid {
     constructor(gridId, toolbarId) {
         super(gridId);
-
         this.formDetail = null;
         this.formMode = null;
     }
@@ -13,11 +12,27 @@
     initEvents() {
         var me = this;
         super.initEvents();
+
         $('#btn-add-dictionary').click(function () {
             me.formMode = "Add";
             if (me.formDetail) {
                 me.formDetail.show();
             }
+        })
+        $('#btn-add-assetincreased').click(function () {
+            me.formMode = "Add";
+            if (me.formDetail) {
+                me.formDetail.show();
+            }
+        })
+        $('#btn-add-department').click(function () {
+            me.formMode = "Add";
+            if (me.formDetail) {
+                me.formDetail.show();
+            }
+        })
+        $('#btn-change').click(function () {
+            dbClickRow();
         })
     }
 
@@ -29,6 +44,7 @@
         var data = this.getDataSelected();
         console.log(data);
         this.formDetail.show(data);
+        this.formMode = "edit";
     }
 
     /**
@@ -57,6 +73,6 @@
      * CreatedBY: BQDUY(25/02/2021)
      */
     loadData(data) {
-        super.loadData(data);
+        super.loadData(data)
     }
 }
