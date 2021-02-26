@@ -210,14 +210,15 @@ var dictionary =
         }
     ];
 
-var departments =
+var department =
     [
         {
             "STT": 1,
             "Id": "c75d5492-c08a-4105-a3f1-b7c1cd2c3e59",
             "DepartmentCode": "PCNTT",
             "DepartmentName": "Phòng Công nghệ thông tin",
-            "DepartmentGroupName": "Phòng CNTT",
+            "DepartmentGroupId": "445639",
+            "DepartmentGroupName": "Phòng Công nghệ thông tin",
             "Note": "Đây là phòng CNTT"
         },
         {
@@ -225,7 +226,8 @@ var departments =
             "Id": "772cbaa3-f9e4-4ae2-9cad-71770287c7ad",
             "DepartmentCode": "PHCTH",
             "DepartmentName": "Phòng Hành chính tổng hợp",
-            "DepartmentGroupName": "Phòng HCTH",
+            "DepartmentGroupId": "445999",
+            "DepartmentGroupName": "Phòng Hành chính tổng hợp",
             "Note": "Đây là phòng HCTH"
         },
         {
@@ -233,6 +235,7 @@ var departments =
             "Id": "d6858599-bede-40a5-804e-0ac035e413aa",
             "DepartmentCode": "PKT",
             "DepartmentName": "Phòng Kế toán",
+            "DepartmentGroupId": "665999",
             "DepartmentGroupName": "Phòng Kế toán",
             "Note": "Đây là phòng kế toán"
         },
@@ -241,7 +244,44 @@ var departments =
             "Id": "f09e3e27-bc29-48d4-8967-03b64bfc0900",
             "DepartmentCode": "PTT",
             "DepartmentName": "Phòng Thanh Tra",
+            "DepartmentGroupId": "115999",
             "DepartmentGroupName": "Phòng Thanh tra",
             "Note": "Đây là phòng thanh tra"
         }
     ];
+
+var assetGroup =
+    [
+        {
+            "AssetGroupId": "AG98232",
+            "AssetGroupName": "Tài Sản Văn Phòng"
+        },
+        {
+            "AssetGroupId": "AG13423",
+            "AssetGroupName": "Tài Sản Cá Nhân"
+        },
+        {
+            "AssetGroupId": "AG98777",
+            "AssetGroupName": "Tài Sản Nhà Nước"
+        }
+    ];
+
+var assetClass = 
+    [
+        {
+            "AssetClassId": "AC13122",
+            "AssetClassName": "Tài sản cố định vô hình"
+        },
+        {
+            "AssetClassId": "AC46634",
+            "AssetClassName": "Tài sản cố định hữu hình"
+        },
+        {
+            "AssetClassId": "AC72323",
+            "AssetClassName": "Tài sản cố định thuộc phạm vi quản lý của Bộ, Tỉnh"
+        },
+        {
+            "AssetClassId": "AC23134",
+            "AssetClassName": "Tài sản cố định đặc thù"
+        }
+    ]

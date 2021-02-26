@@ -23,20 +23,15 @@ var callAjax = function (url, method, data, functionCallBack, async = true) {
 /**
  * Format dữ liệu ngày tháng sang ngày/tháng/năm
  * @param {any} date tham số có kiểu dữ liệu bất kỳ
- * CreateBy: BQDUY(04/02/2021)
+ * CreateBy: BQDUY(/02/2021)
  */
-function formatDate(date) {
+function formatDate(date, formatDate) {
     try {
         if (!date) {
             return "";
         } else {
-            var date = new Date(date);
-            var day = date.getDate(),
-                month = date.getMonth() + 1,
-                year = date.getFullYear();
-            day = day < 10 ? '0' + day : day;
-            month = month < 10 ? '0' + month : month;
-            return day + '/' + month + '/' + year;
+            date = moment(date, ["DD-MM-YYYY", "MM-DD-YYYY", "DD-MMM-YYYY", "MMM-DD-YYYY"]).format("YYYY-MM-DD");
+            return moment(new Date(date)).format(formatDate);
         }
     } catch (e) {
         console.log(e);

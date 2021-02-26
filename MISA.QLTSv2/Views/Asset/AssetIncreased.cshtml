@@ -52,7 +52,7 @@
     </div>
 </div>
 
-<div id="dialog_asset" class="dialog_asset" title="Ghi tăng tài sản" >
+<div id="dialog_asset" class="dialog_asset" title="Ghi tăng tài sản">
     <div class="container-fluid">
         <div class="row dialog-header">
             <div class="col-8">
@@ -100,7 +100,7 @@
                         Mã phòng ban
                     </div>
                     <div>
-                        <select class="input-select input-asset" fieldname="departmentgroupname" tabindex="3">
+                        <select id="cbxdepartment" style="width:198px; z-index:99999;">
                             <option value="phòng công nghệ thông tin">Phòng công nghệ thông tin</option>
                             <option value="phòng hành chính tổng hợp">Phòng hành chính tổng hợp</option>
                             <option value="phòng kế toán">Phòng kế toán</option>
@@ -127,7 +127,7 @@
                         Mã loại tài sản
                     </div>
                     <div>
-                        <select class="input-select input-asset" fieldname="departmentgroupname" tabindex="3">
+                        <select id="cbxasset" style="width:198px">
                             <option value="phòng công nghệ thông tin">Phòng công nghệ thông tin</option>
                             <option value="phòng hành chính tổng hợp">Phòng hành chính tổng hợp</option>
                             <option value="phòng kế toán">Phòng kế toán</option>
@@ -227,3 +227,8 @@
     </div>
 
 </div>
+
+@section scripts{
+    <script src="~/js/Form/assetForm.js"></script>
+    <script src="~/js/views/Asset/assetIncreased.js"></script>
+}

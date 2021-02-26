@@ -1,8 +1,4 @@
-﻿//$(document).ready(function () {
-//    $('#cbx-test').combobox();
-//});
-
-/* 
+﻿/* 
     Combobox widget 
     - taken from http://jqueryui.com/autocomplete/#combobox
     - added support for
@@ -74,9 +70,12 @@
                     },
                     select: function (event, ui) {
                         ui.item.option.selected = true;
+                        var valueOfOption = ui.item.option.value;     
+                        
                         that._trigger("selected", event, {
                             item: ui.item.option
                         });
+                        return valueOfOption;
                     },
                     change: function (event, ui) {
                         if (!ui.item) {
@@ -125,3 +124,4 @@
         }
     });
 })(jQuery);
+

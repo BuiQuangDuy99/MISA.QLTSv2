@@ -3,6 +3,8 @@
         super(gridId);
 
         this.formDetail = null;
+        this.formMode = null;
+        this.listData = [];
     }
 
     /**
@@ -10,8 +12,36 @@
      * CreatedBy: BQDUY(25/02/2021)
      * */
     initEvents() {
+        var me = this;
         super.initEvents();
+        $('#btn-add-dictionary').click(function () {
+            me.formMode = "Add";
+            if (me.formDetail) {
+                me.formDetail.show();
+            }
+        })
+
+        $('#btn-remove-dictionary').off('click').on('click', me.deleteRow.bind(me));
     }
+
+    /**
+     * Hàm thực hiện xóa một hàng trong bảng
+     * CreatedBY: BQDUY(26/02/2021)
+     * */
+    deleteRow() {
+        let me = this;
+        var data = me.getAllRecord();
+        let selectedRow = $("#gridTest tbody").find(".selected-row");
+        debugger;
+        if (selectedRow.length>0) {
+            data = data.filter(item => item["Id"] !== selectedRow.data("recordId"));
+            $("#gridTest tbody").empty();
+            me.loadData(data);
+        } else {
+            alert("Vui lòng chọn bản ghi để xóa!");
+        }
+    }
+
 
     /**
      * Hàm xử lý sự kiện khi double click vào một hàng trong grid
@@ -20,7 +50,7 @@
     dbClickRow() {
         var data = this.getDataSelected();
         console.log(data);
-        this.formDetail.show();
+        this.formDetail.show(data);
     }
 
     /**
@@ -49,9 +79,8 @@
      * CreatedBY: BQDUY(25/02/2021)
      */
     loadData(data) {
-        super.loadData(data)
+        
+        super.loadData(data);
+        this.listData = data;
     }
 }
-
-// Biến thay đổi giá trị của form khi ấn nút Thêm mới, hoặc Double Click vào 1 dòng trong bảng
-var formMode = null;

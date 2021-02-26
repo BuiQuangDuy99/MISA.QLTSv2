@@ -7,6 +7,7 @@ class Grid {
 
         // Biến lưu grid
         me.grid = $(tableId);
+
         // Danh sách config cho các cột
         me.conFigColum = null;
         me.formDetail = null;
@@ -142,11 +143,13 @@ class Grid {
     loadData(data) {
         let me = this,
             grid = this.grid;
-
+        $(grid).find('tbody').empty();
         if (data) {
+
             $.each(data, function (index, obj) {
-                $(grid).find('tbody').append(me.renderBody(obj));
+                $(grid).find('tbody').append(me.renderBody(index, obj));
             })
+
         }
     }
 
@@ -154,7 +157,7 @@ class Grid {
      * Hàm render dữ liệu vào bảng
      * CreatedBY: BQDUY(04/02/2021)
      * */
-    renderBody(object) {
+    renderBody(index, object) {
         try {
             let me = this,
                 grid = this.grid,
@@ -167,6 +170,12 @@ class Grid {
 
             row = $(`<tr></tr>`);
             $(row).data('recordId', object['Id']);
+
+            // Binding cột số thứ tự riêng, index chính là value
+            object["STT"] = index + 1;
+
+
+            // Binding Cells
             column.each(function () {
                 dataType = $(this).attr('dataType');
                 fieldName = $(this).attr('fieldName');
@@ -179,7 +188,7 @@ class Grid {
 
             $(row).data("value", object);
 
-            return row;  
+            return row;
         } catch (e) {
             console.log(e);
         }
@@ -307,9 +316,24 @@ class Grid {
         let data = [],
             id = this.grid.find(".selected-row").data('recordId');
 
-        console.log(id);    
+        console.log(id);
 
         this.grid.find(".selected-row").each(function () {
+            let item = $(this).data("value");
+            data.push(item);
+        });
+
+        return data;
+    }
+
+    /**
+     * Hàm lấy toàn bộ data các dòng của bảng
+     *CreatedBY: BQDUY(26/2/2021) 
+     * */
+    getAllRecord() {
+        let data = [];
+
+        this.grid.find("tbody tr").each(function () {
             let item = $(this).data("value");
             data.push(item);
         });

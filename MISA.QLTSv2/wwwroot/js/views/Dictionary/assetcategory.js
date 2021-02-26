@@ -1,8 +1,10 @@
 ﻿$(document).ready(function () {
-    $('#cbx-test').combobox();
-    var day = new Date("2021-09-12");
+    $('#cbx-assetGroup').combobox();
+    $('#cbx-assetClass').combobox();
+    
+    var day = new Date("2020-10-01");
     console.log(day);
-    var date = moment(day).format("DD-MM-YYYY");
+    var date = formatDate("04-29-2020", 'DD/MM/YYYY');
     console.log(date);
 })
 
@@ -11,6 +13,9 @@ class Dictionary extends BaseGrid {
 
     constructor(gridId) {
         super(gridId);
+
+
+
         this.initEvents();
     }
 
@@ -19,15 +24,20 @@ class Dictionary extends BaseGrid {
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-        $('#btn-add-dictionary').click(function () {
-            me.formDetail.show();
-        })
     }
 
+    /**
+     * Hàm khởi tạo form của màn loại tài sản
+     * @param {any} formID id của form
+     * @param {any} width chiều ngang
+     * @param {any} height chiều cao
+     * CreatedBY: BQDUY(26/02/2021)
+     */
     createFormDetail(formID, width, height) {
-        this.formDetail = new dictionaryForm(formID, width, height);
-        this.formDetail.initLoadComboBox("AssetGroup", dictionary);
-        this.formDetail.initLoadComboBox("AssetClass", dictionary);
+        var me = this;
+        this.formDetail = new dictionaryForm(formID, width, height, me);
+        this.formDetail.initLoadComboBox("AssetGroup", assetGroup);
+        this.formDetail.initLoadComboBox("AssetClass", assetClass);
     }
 }
 
