@@ -19,7 +19,27 @@
                 me.formDetail.show();
             }
         })
+
+        $('#btn-remove-dictionary').on('click', me.deleteRow.bind(me));
     }
+
+    /**
+     * Hàm thực hiện xóa một hàng trong bảng
+     * CreatedBY: BQDUY(26/02/2021)
+     * */
+    deleteRow() {
+        let me = this;
+        var data = me.getAllRecord();
+        $.each(data, function (index, obj) {
+            if ($("#gridTest tbody tr").find(".selected-row").data("recordId") == obj["Id"]) {
+                data = data.filter(item => item !== obj);
+            }
+        })
+        $("#gridTest tbody").empty();
+        me.loadData(data);
+        
+    }
+
 
     /**
      * Hàm xử lý sự kiện khi double click vào một hàng trong grid

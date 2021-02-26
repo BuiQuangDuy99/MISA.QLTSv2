@@ -329,6 +329,21 @@ class Grid {
     }
 
     /**
+     * Hàm lấy toàn bộ data các dòng của bảng
+     *CreatedBY: BQDUY(26/2/2021) 
+     * */
+    getAllRecord() {
+        let data = [];
+
+        this.grid.find("tbody tr").each(function () {
+            let item = $(this).data("value");
+            data.push(item);
+        });
+
+        return data;
+    }
+
+    /**
      * Hàm khi xảy ra sự kiện double click vào 1 dòng
      * CreatedBY: BQDUY(23/02/2021)
      * */

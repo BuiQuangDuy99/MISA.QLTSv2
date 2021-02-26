@@ -22,7 +22,7 @@ class Department extends BaseGrid {
     }
 
     createFormDetail(formID, width, height) {
-        this.formDetail = new dictionaryForm(formID, width, height);
+        this.formDetail = new departmentForm(formID, width, height, me);
         this.formDetail.initLoadComboBox("DepartmentGroup", department);
     }
 
