@@ -4,12 +4,12 @@ class Grid {
     // Hàm khởi tạo, truyền vào id của bảng
     constructor(tableId) {
         var me = this;
-
+       
         // Biến lưu grid
         me.grid = $(tableId);
         // Danh sách config cho các cột
         me.conFigColum = null;
-
+        
         me.formDetail = null;
 
         // Khởi tạo các sự kiện cho grid

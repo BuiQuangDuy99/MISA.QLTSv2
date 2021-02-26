@@ -1,7 +1,6 @@
 ﻿class BaseGrid extends Grid {
     constructor(gridId, toolbarId) {
         super(gridId);
-
         this.formDetail = null;
     }
 

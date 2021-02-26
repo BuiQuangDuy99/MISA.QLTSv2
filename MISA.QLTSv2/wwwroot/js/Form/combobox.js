@@ -1,7 +1,6 @@
 ﻿//$(document).ready(function () {
 //    $('#cbx-test').combobox();
 //});
-
 /* 
     Combobox widget 
     - taken from http://jqueryui.com/autocomplete/#combobox
@@ -73,9 +72,7 @@
                         }));
                     },
                     select: function (event, ui) {
-                        console.log(ui);
                         ui.item.option.selected = true;
-                        alert(ui.item.option.value);
                         //if ($('#ui-id-2').item.option.selected == true) {
                         //    $('#txtdepartment').val(ui.item.option.value);
                         //}
