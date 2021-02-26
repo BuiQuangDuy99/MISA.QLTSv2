@@ -59,6 +59,7 @@ var conFigColum = [
         FieldText: "Ghi chú",
         Index: 5
     }
+
 ];
 
 
