@@ -226,8 +226,8 @@ class baseForm {
         //    });
         //}
         let me = this;
-        if (this.jsCaller.formMode == "Add") {
-            this.jsCaller.loadData(data);
+        if (me.jsCaller.formMode == "Add") {
+            me.jsCaller.loadData(data);
         }
     }
 
@@ -275,21 +275,6 @@ class baseForm {
         });
         return data;
     }
-
-    /**
-     * Lưu dữ liệu vào file .json
-     * CreatedBy: DVVUONG (25/02/2021)
-     * */
-    saveChangeData_(data) {
-        var source = null;
-        $.getJSON(this.urlJsonFile, function (dataJson) {
-            source = dataJson;
-        }).fail(function () {
-            console.log("load false");
-        });
-
-    }
-
     /**
      * Sự kiện click nút Lưu
      * CreatedBy : NDTUNG (4/2/2021)
@@ -299,11 +284,9 @@ class baseForm {
         var isValid = me.validateForm();
         if (isValid) {
             var data = me.getData();
-            this.saveChangeData(data);
-            this.closeForm();
+            me.saveChangeData(data);
+            me.closeForm();
         }
     }
-
-
 
 }

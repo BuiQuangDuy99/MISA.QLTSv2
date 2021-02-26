@@ -2,6 +2,7 @@
     constructor(gridId, toolbarId) {
         super(gridId);
         this.formDetail = null;
+        this.formMode = null;
     }
 
     /**
@@ -12,7 +13,7 @@
         var me = this;
         super.initEvents();
         $('#btn-add-dictionary').click(function () {
-            formMode = "Add";
+            me.formMode = "Add";
             if (me.formDetail) {
                 me.formDetail.show();
             }
@@ -58,6 +59,3 @@
         super.loadData(data)
     }
 }
-
-// Biến thay đổi giá trị của form khi ấn nút Thêm mới, hoặc Double Click vào 1 dòng trong bảng
-var formMode = "View";
