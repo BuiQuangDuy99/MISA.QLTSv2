@@ -22,7 +22,8 @@ class Department extends BaseGrid {
     }
 
     createFormDetail(formID, width, height) {
-        this.formDetail = new departmentForm(formID, width, height);
+        var me = this;
+        this.formDetail = new departmentForm(formID, width, height, me);
         this.formDetail.initLoadComboBox("DepartmentGroup", department);
     }
 
