@@ -10,8 +10,12 @@
         });
     }
 
-    show() {
+    show(data) {
         let me = this;
+        if (data) {
+            me.bindingData(data);
+            me.assetIncreasedForm.dialog('open');
+        }
         me.assetIncreasedForm.dialog('open');
     }
 

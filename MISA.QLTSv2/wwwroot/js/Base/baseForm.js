@@ -173,11 +173,11 @@ class baseForm {
             var propertyName = $(this).attr('fieldName');
             var propertyValue = data[0][propertyName];
             if ($(this).attr('dataType') == 'date') {
-                propertyvalue = formatStringDate(propertyvalue);
+                propertyValue = formatStringDate(propertyValue);
             }
             else if ($(this).attr('dataType') == "Money") {
-                var money = formatMoney(propertyvalue);
-                propertyvalue = money;
+                var money = formatMoney(propertyValue);
+                propertyValue = money;
             }
             this.value = propertyValue;
         });
