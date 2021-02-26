@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
-    $('#cbx-test').combobox();
+    $('#cbx-assetGroup').combobox();
+    $('#cbx-assetClass').combobox();
+    
     var day = new Date("2020-10-01");
     console.log(day);
     var date = formatDate("04-29-2020", 'DD/MM/YYYY');
@@ -31,6 +33,7 @@ class Dictionary extends BaseGrid {
         var me = this;
         this.formDetail = new dictionaryForm(formID, width, height, me);
         this.formDetail.initLoadComboBox("AssetGroup", assetGroup);
+        this.formDetail.initLoadComboBox("AssetClass", assetClass);
     }
 }
 
