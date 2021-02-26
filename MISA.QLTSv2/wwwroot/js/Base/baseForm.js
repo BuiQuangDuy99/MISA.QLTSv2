@@ -179,11 +179,11 @@ class baseForm {
             var propertyName = $(this).attr('fieldName');
             var propertyValue = data[0][propertyName];
             if ($(this).attr('dataType') == 'date') {
-                propertyvalue = formatStringDate(propertyvalue);
+                propertyValue = formatStringDate(propertyValue);
             }
             else if ($(this).attr('dataType') == "Money") {
-                var money = formatMoney(propertyvalue);
-                propertyvalue = money;
+                var money = formatMoney(propertyValue);
+                propertyValue = money;
             }
             this.value = propertyValue;
         });
@@ -228,6 +228,8 @@ class baseForm {
         let me = this;
         if (me.jsCaller.formMode == "Add") {
             me.jsCaller.loadData(data);
+        } else {
+
         }
     }
 

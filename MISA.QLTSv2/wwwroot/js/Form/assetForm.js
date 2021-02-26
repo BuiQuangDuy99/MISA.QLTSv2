@@ -1,28 +1,28 @@
-﻿$(document).ready(function () {
-
-    //Định nghĩa Dialog
-    dialog = $(".dialog_asset").dialog({
-        autoOpen: false,
-        width: 700,
-        height: 525,
-        modal: true,
-        draggable: true
-    });
-
-    new assetIncreasedForm("#dialog_asset");
-
-    $("#btn-add-assetincreased").click(function () {
-        dialog.dialog('open');
-    })
-
-})  
-
-class assetIncreasedForm extends baseForm {
-    constructor(formId) {
-        super(formId);
+﻿class assetIncreasedForm extends baseForm {
+    constructor(formId, width, height, jsCaller) {
+        super(formId, jsCaller);
+        //Định nghĩa Dialog
+        this.assetIncreasedForm = $(formId).dialog({
+            autoOpen: false,
+            height: height,
+            width: width,
+            modal: true,
+        });
     }
+
+    show(data) {
+        let me = this;
+        if (data) {
+            me.bindingData(data);
+            me.assetIncreasedForm.dialog('open');
+        }
+        me.assetIncreasedForm.dialog('open');
+    }
+
     closeForm() {
-        this.resetForm();
-        dialog.dialog('close');
+        let me = this;
+        me.resetForm();
+        me.assetIncreasedForm.dialog('close');
     }
+
 }

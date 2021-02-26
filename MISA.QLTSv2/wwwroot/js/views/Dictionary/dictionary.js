@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $('#cbx-test').combobox();
-    var day = new Date("2020-10-01");
+    var day = new Date("2020");
     console.log(day);
     var date = formatDate("04-29-2020", 'DD/MM/YYYY');
     console.log(date);
@@ -41,7 +41,7 @@ var conFigColum = [
     {
         DataType: "number",
         FieldName: "STT",
-        FieldText: "STT",
+        FieldText: "STT",   
         Index: 1
     },
     {

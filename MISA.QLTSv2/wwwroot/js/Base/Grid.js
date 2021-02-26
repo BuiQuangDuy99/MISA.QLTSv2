@@ -4,11 +4,12 @@ class Grid {
     // Hàm khởi tạo, truyền vào id của bảng
     constructor(tableId) {
         var me = this;
-
+       
         // Biến lưu grid
         me.grid = $(tableId);
         // Danh sách config cho các cột
         me.conFigColum = null;
+        
         me.formDetail = null;
 
         // Khởi tạo các sự kiện cho grid
@@ -16,7 +17,7 @@ class Grid {
     }
 
     /**
-     * Hàm khởi tạo các sự kiện trong grid 
+     * Hàm khởi tạo các sự kiện trong grid  
      * CreatedBY: BQDUY(04/02/2021)
      * */
     initEvents() {
@@ -252,7 +253,7 @@ class Grid {
 
         switch (dataType) {
             case "datetime":
-                value = formatDate(value);
+                value = formatDate(value,"DD-MM-YYYY");
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
@@ -275,15 +276,15 @@ class Grid {
                 break;
             case "function":
                 td = $(`<td style="display:flex; padding: 8px 16px;">` +
-                    `<button class="btn-function hide" title="Chỉnh sửa">
+                    `<button id="btn-change" class="btn-function hide" title="Chỉnh sửa">
                             <div class="icon-pencil">
                             </div>
                         </button>
-                        <button class="btn-function hide" title="Xóa">
+                        <button id="btn-delete" class="btn-function hide" title="Xóa">
                             <div class="icon-remove-function">
                             </div>
                         </button>
-                        <button class="btn-function hide" title="Lịch sử">
+                        <button id="btn-history" class="btn-function hide" title="Lịch sử">
                             <div class="icon-pie">
                             </div>
                         </button>
