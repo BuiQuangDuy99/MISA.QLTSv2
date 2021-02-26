@@ -197,16 +197,11 @@ class baseForm {
         let fieldValue = entity + "Id",
             fieldName = entity + "Name",
             me = this;
-        let selects = me.form.find("select[fieldName]");
-        $.each(selects, function (index, select) {
-            if (fieldName == $(select).attr("fieldName")) {
-                $.each(data, function (index, element) {
-                    let option = `<option value="` + element[fieldValue] + `">` + element[fieldName] + `</option>`;
-                    $(select).append(option);
-                })
-            }
+        $.each(data, function (index, element) {
+            let select = me.form.find("select"),
+                option = `<option value="` + element[fieldValue] + `">` + element[fieldName] + `</option>`;
+            $(select).append(option);
         })
-
     }
 
     /**
