@@ -1,4 +1,4 @@
-﻿.ui-dialog .ui-dialog-titlebar {
+.ui-dialog .ui-dialog-titlebar {
     display: none;
     border-radius: 0;
 }
@@ -35,23 +35,33 @@
         position: absolute;
         right: 21px;
     }
-.input-dictionary{
-    width:100%;
+
+.input-dictionary {
+    width: 100%;
 }
+
 .ui-combobox {
     position: relative;
     display: inline-block;
 }
 
+    .ui-combobox > input {
+        border: 1px solid #e0e0e0 !important;
+         padding-left: 15px; 
+    }
 .ui-combobox-toggle {
     position: absolute;
     top: 0;
     bottom: 0;
     margin-left: -1px;
     padding: 0;
-    /* support: IE7 */
-    *height: 1.7em;
-    *top: 0.1em;
+    /* height: 1.7em; */
+    /* top: 0.1em; */
+    height: 32px;
+    width: 32px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    color: #373737;
 }
 
 .ui-combobox-input {
@@ -62,10 +72,13 @@
 .ui-icon {
     background-image: url('/icon/svg/fi-rr-caret-down.svg') !important;
     background-size: contain !important;
+    opacity: 0.5;
 }
 
 .ui-widget.ui-widget-content {
-    border: 1px solid #e0e0e0 !important;
+    height: 32px;
+    background-color: #fff;
+    /* z-index: 9999; */
 }
 
 .ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
@@ -81,7 +94,7 @@
 }
 
 .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
-     border-radius: 0 !important; 
+    border-radius: 0 !important;
 }
 
 .ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
@@ -92,17 +105,24 @@
     border-top-right-radius: 0 !important;
 }
 
-.ui-menu-item, .ui-menu-item > a{
+.ui-menu-item, .ui-menu-item > a {
     display: block;
 }
 
 
-/*    .ui-menu-item:hover a {
+    .ui-menu-item:hover a {
         background-color: gray !important;
-    }*/
+    }
 
     .ui-menu-item .ui-menu-item-wrapper.ui-state-active {
         background: #808080 !important;
         border: solid 1px transparent;
         color: black;
     }
+
+.ui-menu .ui-menu-item-wrapper {
+    position: relative;
+    padding: 3px 1em 3px .4em;
+    background-color: #fff;
+    padding-left: 15px;
+}

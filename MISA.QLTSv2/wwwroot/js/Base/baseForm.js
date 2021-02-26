@@ -38,6 +38,12 @@ class baseForm {
 
 
     }
+
+    setUrlJsonFile() {
+
+    }
+
+
     setApiUrl() {
 
     }
@@ -193,7 +199,7 @@ class baseForm {
             me = this;
         $.each(data, function (index, element) {
             let select = me.form.find("select"),
-                option = `<option fieldValue="` + element[fieldValue] + `">` + element[fieldName] + `</option>`;
+                option = `<option value="` + element[fieldValue] + `">` + element[fieldName] + `</option>`;
             $(select).append(option);
         })
     }
