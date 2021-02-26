@@ -34,13 +34,5 @@ class departmentForm extends baseForm {
         me.resetForm();
         me.department_Form.dialog('close');
     }
-
-    setUrlJsonFile() {
-        this.urlJsonFile = "/wwwroot/js/departments.json";
-    }
         
-    closeForm() {
-        this.resetForm();
-        dialogs.dialog('close');
-    }
 }

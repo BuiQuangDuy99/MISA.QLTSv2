@@ -4,8 +4,6 @@ class baseForm {
     ///constructor
     constructor(Idform, data) {
         this.formMode = Enum.FormMode.Add;
-        this.urlJsonFile = null;
-        this.setUrlJsonFile();
         this.form = $(Idform);
         this.setApiUrl();
         this.getApiUrl = null;
@@ -40,9 +38,6 @@ class baseForm {
 
     }
 
-    setUrlJsonFile() {
-
-    }
 
 
     setApiUrl() {
@@ -273,19 +268,6 @@ class baseForm {
         return data;
     }
 
-    /**
-     * Lưu dữ liệu vào file .json
-     * CreatedBy: DVVUONG (25/02/2021)
-     * */
-    saveChangeData_(data) {
-        var source = null;
-        $.getJSON(this.urlJsonFile, function (dataJson) {
-            source = dataJson;
-        }).fail(function () {
-            console.log("load false");
-        });
-
-    }
 
     /**
      * Sự kiện click nút Lưu
