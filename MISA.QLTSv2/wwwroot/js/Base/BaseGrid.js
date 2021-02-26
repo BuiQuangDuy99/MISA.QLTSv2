@@ -25,6 +25,12 @@
                 me.formDetail.show();
             }
         })
+        $('#btn-add-department').click(function () {
+            me.formMode = "Add";
+            if (me.formDetail) {
+                me.formDetail.show();
+            }
+        })
         $('#btn-change').click(function () {
             dbClickRow();
         })
@@ -67,6 +73,6 @@
      * CreatedBY: BQDUY(25/02/2021)
      */
     loadData(data) {
-        super.loadData(data);
+        super.loadData(data)
     }
 }

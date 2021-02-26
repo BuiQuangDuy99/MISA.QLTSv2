@@ -16,13 +16,11 @@ class Department extends BaseGrid {
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-        $('#btn-add-department').click(function () {
-            me.formDetail.show();
-        })
     }
 
     createFormDetail(formID, width, height) {
-        this.formDetail = new dictionaryForm(formID, width, height);
+        var me = this;
+        this.formDetail = new departmentForm(formID, width, height, me);
         this.formDetail.initLoadComboBox("DepartmentGroup", department);
     }
 
@@ -61,6 +59,7 @@ var conFigColum = [
         FieldText: "Ghi chú",
         Index: 5
     }
+
 ];
 
 

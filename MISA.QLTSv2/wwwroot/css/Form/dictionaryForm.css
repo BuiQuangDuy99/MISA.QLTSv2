@@ -44,6 +44,10 @@
     position: relative;
     display: inline-block;
 }
+    .ui-combobox > input {
+        border: 1px solid #e0e0e0 !important;
+         padding-left: 15px; 
+    }
 .ui-combobox-toggle {
     position: absolute;
     top: 0;

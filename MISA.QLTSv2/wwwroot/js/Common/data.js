@@ -8,7 +8,7 @@
             "AssetGroupId": "AG98232",
             "AssetGroupName": "Tài Sản Văn Phòng",
             "WearPercent": "10%",
-            "DateTime": "04-18-2021",
+            "DateTime": "04-04-2021",
             "Price": 555666777,
             "YearOfUse": 15,
             "DepartmentId": "561561",
@@ -29,7 +29,7 @@
             "Price": 1241344,
             "YearOfUse": 10,
             "Note": "Đây là ghi chú tự động",
-            "DateTime": "04-18-2021",
+            "DateTime": "04-04-2021",
             "DepartmentId": "5615",
             "Department": "Phòng công nghệ thông tin",
             "ValueYear": "5%",
@@ -265,3 +265,23 @@ var assetGroup =
             "AssetGroupName": "Tài Sản Nhà Nước"
         }
     ];
+
+var assetClass = 
+    [
+        {
+            "AssetClassId": "AC13122",
+            "AssetClassName": "Tài sản cố định vô hình"
+        },
+        {
+            "AssetClassId": "AC46634",
+            "AssetClassName": "Tài sản cố định hữu hình"
+        },
+        {
+            "AssetClassId": "AC72323",
+            "AssetClassName": "Tài sản cố định thuộc phạm vi quản lý của Bộ, Tỉnh"
+        },
+        {
+            "AssetClassId": "AC23134",
+            "AssetClassName": "Tài sản cố định đặc thù"
+        }
+    ]

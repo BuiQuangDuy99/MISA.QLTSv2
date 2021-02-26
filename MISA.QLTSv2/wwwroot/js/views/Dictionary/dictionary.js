@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $('#cbx-test').combobox();
-    var day = new Date("2020");
+    var day = new Date("2020-10-01");
     console.log(day);
     var date = formatDate("04-29-2020", 'DD/MM/YYYY');
     console.log(date);
@@ -22,15 +22,17 @@ class Dictionary extends BaseGrid {
     }
 
     /**
-     * Hàm khởi tạo
-     * @param {any} formID
-     * @param {any} width
-     * @param {any} height
+     * Hàm khởi tạo form của màn loại tài sản
+     * @param {any} formID id của form
+     * @param {any} width chiều ngang
+     * @param {any} height chiều cao
+     * CreatedBY: BQDUY(26/02/2021)
      */
     createFormDetail(formID, width, height) {
         var me = this;
         this.formDetail = new dictionaryForm(formID, width, height, me);
         this.formDetail.initLoadComboBox("AssetGroup", assetGroup);
+        this.formDetail.initLoadComboBox("AssetClass", assetClass);
     }
 }
 
