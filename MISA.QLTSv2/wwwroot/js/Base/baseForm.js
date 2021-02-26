@@ -2,9 +2,10 @@
 //-----------------Form-----------------------------
 class baseForm {
     ///constructor
-    constructor(Idform, data) {
-        this.formMode = Enum.FormMode.Add;
+    constructor(Idform, jsCaller) {
+        //this.formMode = Enum.FormMode.Add;
         this.form = $(Idform);
+        this.jsCaller = jsCaller;
         this.setApiUrl();
         this.getApiUrl = null;
         this.initEvent();
@@ -204,19 +205,23 @@ class baseForm {
     saveChangeData(data) {
         //var url = this.getApiUrl;
         //var formMode = this.formMode;
-        if (formMode == 1) {
-            callAjax(url, "Post", data, function (res) {
-                if (res.MISACode == Enum.StatusResponse.Success) {
-                    showAlertWarring("Cất dữ liệu thành công!")
-                }
-            });
-        }
-        else if (formMode == 2) {
-            callAjax(url, "Put", data, function (res) {
-                if (res.MISACode == Enum.StatusResponse.Success) {
-                    showAlertWarring("Cất dữ liệu thành công!")
-                }
-            });
+        //if (formMode == 1) {
+        //    callAjax(url, "Post", data, function (res) {
+        //        if (res.MISACode == Enum.StatusResponse.Success) {
+        //            showAlertWarring("Cất dữ liệu thành công!")
+        //        }
+        //    });
+        //}
+        //else if (formMode == 2) {
+        //    callAjax(url, "Put", data, function (res) {
+        //        if (res.MISACode == Enum.StatusResponse.Success) {
+        //            showAlertWarring("Cất dữ liệu thành công!")
+        //        }
+        //    });
+        //}
+        let me = this;
+        if (this.jsCaller.formMode == "Add") {
+            this.jsCaller.loadData(data);
         }
     }
 
