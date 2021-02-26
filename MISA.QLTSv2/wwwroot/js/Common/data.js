@@ -265,3 +265,23 @@ var assetGroup =
             "AssetGroupName": "Tài Sản Nhà Nước"
         }
     ];
+
+var assetClass = 
+    [
+        {
+            "AssetClassId": "AC13122",
+            "AssetClassName": "Tài sản cố định vô hình"
+        },
+        {
+            "AssetClassId": "AC46634",
+            "AssetClassName": "Tài sản cố định hữu hình"
+        },
+        {
+            "AssetClassId": "AC72323",
+            "AssetClassName": "Tài sản cố định thuộc phạm vi quản lý của Bộ, Tỉnh"
+        },
+        {
+            "AssetClassId": "AC23134",
+            "AssetClassName": "Tài sản cố định đặc thù"
+        }
+    ]
