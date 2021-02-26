@@ -2,7 +2,7 @@
     $('#cbx-test').combobox();
     var day = new Date("2020");
     console.log(day);
-    var date = formatDate(day, 'DD/MM/YYYY');
+    var date = formatDate("04-29-2020", 'DD/MM/YYYY');
     console.log(date);
 })
 
@@ -21,11 +21,16 @@ class Dictionary extends BaseGrid {
         showTooltipElement($('td'));
     }
 
+    /**
+     * Hàm khởi tạo
+     * @param {any} formID
+     * @param {any} width
+     * @param {any} height
+     */
     createFormDetail(formID, width, height) {
         var me = this;
         this.formDetail = new dictionaryForm(formID, width, height, me);
-        this.formDetail.initLoadComboBox("AssetGroup", dictionary);
-        //this.formDetail.initLoadComboBox("AssetClass", dictionary);
+        this.formDetail.initLoadComboBox("AssetGroup", assetGroup);
     }
 }
 

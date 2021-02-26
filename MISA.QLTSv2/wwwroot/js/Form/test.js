@@ -1,7 +1,4 @@
-﻿//$(document).ready(function () {
-//    $('#cbx-test').combobox();
-//});
-/* 
+﻿/* 
     Combobox widget 
     - taken from http://jqueryui.com/autocomplete/#combobox
     - added support for
@@ -14,7 +11,7 @@
 */
 (function ($) {
     $.widget("ui.combobox", {
-        _create: function () { 
+        _create: function () {
             var input,
                 that = this,
                 wasOpen = false,
@@ -73,11 +70,12 @@
                     },
                     select: function (event, ui) {
                         ui.item.option.selected = true;
-                        $('#txtAssetGroupName').val(ui.item.option.value);
-                        $('#txtdepartment').val(ui.item.option.value);
+                        var valueOfOption = ui.item.option.value;     
+                        
                         that._trigger("selected", event, {
                             item: ui.item.option
                         });
+                        return valueOfOption;
                     },
                     change: function (event, ui) {
                         if (!ui.item) {
@@ -126,3 +124,4 @@
         }
     });
 })(jQuery);
+
