@@ -144,9 +144,14 @@ class Grid {
             grid = this.grid;
 
         if (data) {
-            $.each(data, function (index, obj) {
-                $(grid).find('tbody').append(me.renderBody(obj));
-            })
+            if (Array.isArray(data)) {
+                $.each(data, function (index, obj) {
+                    $(grid).find('tbody').append(me.renderBody(obj));
+                })
+            } else {
+                $(grid).find('tbody').append(me.renderBody(data));
+            }
+            
         }
     }
 

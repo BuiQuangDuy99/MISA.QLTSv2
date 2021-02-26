@@ -226,8 +226,8 @@ class baseForm {
         //    });
         //}
         let me = this;
-        if (this.jsCaller.formMode == "Add") {
-            this.jsCaller.loadData(data);
+        if (me.jsCaller.formMode == "Add") {
+            me.jsCaller.loadData(data);
         }
     }
 
@@ -284,8 +284,8 @@ class baseForm {
         var isValid = me.validateForm();
         if (isValid) {
             var data = me.getData();
-            this.saveChangeData(data);
-            this.closeForm();
+            me.saveChangeData(data);
+            me.closeForm();
         }
     }
 
