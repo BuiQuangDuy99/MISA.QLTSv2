@@ -1,32 +1,50 @@
 $(document).ready(function () {
     new Login();
 });
+
+/**
+ * Class dùng để login
+ * NDTUNG 24.02.2021
+ * */
 class Login {
+
+    /**
+    * Hàm khởi tạo
+    * CreatedBy: NDTUNG (24/2/2021)
+    * */
     constructor() {
-        this.initEvent();
+        var me = this;
+
+        // Khởi tạo các sự kiện cho form 
+        me.initEvents();
     }
+
     /**
      * Hàm các sự kiện form Login
      * CreatedBy: NDTUNG (24/2/2021)
      * */
-    initEvent() {
+    initEvents() {
+        var me = this;
+
+        // Khởi tạo sự kiện khi click button login
         $('#btn-login').off('click');
-        $('input[required]').on("blur", this.checkInput); //Sự kiện khi blur qua input
-        $('input[required]').on("keyup", function () {    //Sự kiện khi nhập tại input
-            let input = $(this);
-            if ($(this).val().trim() != "") {
-                input.removeClass('border-red');
-                input.removeAttr('title');
-                $(this).tooltip({
-                    items: $(this),
-                    disabled: true,
-                })
-                //$(this).tooltip("close");
-            }
+        $('#btn-login').on('click', me.loginOnClick.bind(me));
+
+        // Sự kiện khi blur qua input
+        $('input[required]').on("blur", function () {
+            me.checkInput($(this));
         });
-        $('input').click(function () { $(this).select(); });//Sự kiện khi click qua input
-        $('#btn-login').on('click', this.loginOnClick.bind(this)); //Sự kiện khi click qua Đăng nhập
-        $('.login').keypress(function (event) {                    //Sự kiện khi nhấn qua enter
+
+        //Sự kiện khi nhập tại input
+        $('input[required]').on("keyup", function () {
+            me.inputEventOnKeyUp($(this))
+        });
+
+        //Sự kiện khi click qua input
+        $('input').click(function () { $(this).select(); });
+
+        // Sự kiện khi nhấn qua enter
+        $('.login').keypress(function (event) {
             if (event.which == 13) {
                 $('[required]').trigger('blur');
                 $('#btn-login').trigger('click');
@@ -35,134 +53,107 @@ class Login {
     }
 
     /**
- * Hàm kiểm tra bắt buộc nhập và độ dài input
- * CreatedBy: NDTUNG (18/2/2021)
- */
-    checkInput() {
-        var maxLength, val = $(this).val().trim(), input = $(this);
-        maxLength = parseInt($(this).attr('maxlength'));
+    * Sự kiện khi nhập tại input
+    * CreatedBy: NDTUNG (24/2/2021)
+    * */
+    inputEventOnKeyUp(input) {
+        if (input.val().trim() != "") {
+            input.removeClass('border-red');
+            input.removeAttr('title');
+            input.tooltip({
+                items: $(this),
+                disabled: true,
+            })
+        }
+    }
+
+    /**
+    * Hàm kiểm tra bắt buộc nhập và độ dài input
+    * CreatedBy: NDTUNG (18/2/2021)
+    */
+    checkInput(input) {
+
+        var maxLength,
+            val = input.val().trim();
+
+        maxLength = parseInt(input.attr('maxlength'));
+
         if (val == "") {
-            $(this).addClass('border-red');
-            $(this).attr('title', 'Trường này không được để trống');
 
-            this.showTooltip.bind(this);
+            input.addClass('border-red');
+            input.attr('title', 'Trường này không được để trống');
 
-            //$(this).tooltip({
-            //    items: $(this),
-            //    content: $(this).attr('title'),
-            //    track: true,
-            //    position: {
-            //        my: "left+10 top",
-            //        at: "right+5 top",
-            //        collision: "none"
-            //    },
-            //    disabled: false
-            //})
-            //$(this).tooltip("close");
+            this.showTooltip(input);
+            input.tooltip("close");
         }
         else if (val.length > maxLength) {
-            $(this).addClass('border-red');
-            $(this).attr('title', 'Không được dài quá ' + maxLength + ' ký tự');
-            //showTooltip($(this));
-            $(this).tooltip({
-                items: $(this),
-                content: $(this).attr('title'),
-                track: true,
-                position: {
-                    my: "left+10 top",
-                    at: "right+5 top",
-                    collision: "none"
-                },
-                disabled: false
-            })
+
+            this.showTooltip(input);
             $(this).tooltip("close");
         }
 
         else {
-            $(this).removeClass('border-red');
-            $(this).removeAttr('title');
-            $(this).tooltip({
-                items: $(this),
-                disabled: true
-            });
+            this.hideTooltip(input);
         }
     }
     /**
- * Hàm kiểm tra bắt buộc nhập các trường input
- * CreatedBy: NDTUNG (18/2/2021)
- */
+     * Hàm kiểm tra bắt buộc nhập các trường input
+     * CreatedBy: NDTUNG (18/2/2021)
+     */
     checkRequired() {
-        var isValid = true;
+        var me = this,
+            isValid = true;
+
         $("input[required]").each(function () {
+
             var val = $(this).val().trim();
+
             if (val == "") {
                 $(this).addClass('border-red');
                 $(this).attr('title', 'Trường này không được để trống');
-                //showTooltip($(this));
-                $(this).tooltip({
-                    items: $(this),
-                    content: $(this).attr('title'),
-                    track: true,
-                    position: {
-                        my: "left+10 top",
-                        at: "right+5 top",
-                        collision: "none"
-                    },
-                    disabled: false
-                })
+
+                me.showTooltip($(this));
+
                 isValid = false;
             }
             else {
-                //hideTooltip($(this))
-                $(this).removeClass('border-red');
-                $(this).removeAttr('title');
-                $(this).tooltip({
-                    items: $(this),
-                    disabled: true
-                });
+                me.hideTooltip($(this))
             }
         });
+
         var inputRequire = $(".border-red");
+
         inputRequire.first().focus();
         return isValid;
     }
+
     /**
- * Hàm kiểm tra độ dài các trường input
- * CreatedBy: NDTUNG (18/2/2021)
- */
+     * Hàm kiểm tra độ dài các trường input
+     * CreatedBy: NDTUNG (18/2/2021)
+     */
     checkLength() {
-        var isValid = true;
+
+        var me = this,
+            isValid = true;
+
         $("input[maxlength]").each(function () {
-            var maxlength = parseInt($(this).attr('maxlength'));
-            var val = $(this).val().trim();
+
+            var maxlength = parseInt($(this).attr('maxlength')),
+                val = $(this).val().trim();
+
             if (val.length > maxlength) {
                 $(this).addClass('border-red');
                 $(this).attr('title', 'Không được dài quá ' + maxlength + ' ký tự');
-                //this.showTooltip($(this));
-                $(this).tooltip({
-                    items: $(this),
-                    content: $(this).attr('title'),
-                    track: true,
-                    position: {
-                        my: "left+10 top",
-                        at: "right+5 top",
-                        collision: "none"
-                    },
-                    disabled: false
-                })
+
+                me.showTooltip($(this));
                 isValid = false;
             }
             else {
-                //hideTooltip($(this))
-                $(this).removeClass('border-red');
-                $(this).removeAttr('title');
-                $(this).tooltip({
-                    items: $(this),
-                    disabled: true
-                });
+                me.hideTooltip($(this))
             }
         });
         var inputRequire = $(".border-red");
+
         inputRequire.first().focus();
         return isValid;
     }
@@ -182,22 +173,24 @@ class Login {
     }
 
     /**
-* Reset lại Login
-* CreatedBy : NDTUNG (18/2/2021)
-*/
+    * Reset lại Login
+    * CreatedBy : NDTUNG (18/2/2021)
+    */
     resetLogin() {
         $("[fieldName]").each(function () {
             $(this).val("");
         });
         $(".border-red").removeClass("border-red");
     }
+
     /**
-    * Reset lại Login
+    * Kiểm tra form Login
     * CreatedBy : NDTUNG (17/2/2021)
     */
     validateLogin() {
         this.delayLoading();
         var isValid = this.checkRequired();
+
         if (isValid) { isValid = this.checkLength() }
         return isValid;
     }
@@ -207,40 +200,35 @@ class Login {
      * CreatedBy: NDTUNG (21/2/2021)
      */
     errorAcount(account) {
-        $('input').each(function () {
-            var fieldName = $(this).attr('fieldName');
-            if ($(this).val() != account[fieldName]) {
-                $(this).attr('title', 'Thông tin đăng nhập không chính xác.');
-                $(this).addClass('border-red');
-                $(this).tooltip({
-                    items: $(this),
-                    content: $(this).attr('title'),
-                    track: true,
-                    position: {
-                        my: "left+10 top",
-                        at: "right+5 top",
-                        collision: "none"
-                    },
-                    disabled: false
-                })
-                $(this).tooltip("open");
-                //showTooltip($(this));
-                //$(this).tooltip('open');
-            }
-        })
+        var me = this;
+
+            $('input').each(function () {
+                var fieldName = $(this).attr('fieldName');
+
+                if ($(this).val() != account[fieldName]) {
+                    $(this).attr('title', 'Thông tin đăng nhập không chính xác.');
+                    $(this).addClass('border-red');
+
+                    me.showTooltip($(this));
+                    $(this).tooltip('open');
+                }
+            })
         //var inputRequire = $(".border-red");
         //inputRequire.first().focus();
     }
+
     /**
      * Sự kiện kích nút đăng nhập
      * CreatedBy: NDTUNG (18/2/2021)
      */
     loginOnClick() {
-        var accountTest = {
-            UnitBudgetCode: "Misa",
-            UserName: "12345678",
-            Password: "12345678"
-        }, check = 0;
+        var check = 0,
+            accountTest = {
+                UnitBudgetCode: "Misa",
+                UserName: "12345678",
+                Password: "12345678"
+            };
+
         $('.loading').show();
         var isValid = this.validateLogin();
         if (isValid) {
@@ -261,22 +249,11 @@ class Login {
             }
         }
     }
+
     /**
-     * Ẩn Tooltip
-     * CreatedBy: NDTUNG (22/2/2021)
-     */
-    hideTooltip(input) {
-        input.removeClass('border-red');
-        input.removeAttr('title');
-        input.tooltip({
-            items: input,
-            disabled: true
-        });
-    }
-    /**
-     * Hiển thị Tooltip
-     * CreatedBy: NDTUNG (22/2/2021)
-     */
+    * Hiển thị Tooltip
+    * CreatedBy: NDTUNG (22/2/2021)
+    */
     showTooltip(input) {
         input.tooltip({
             items: input,
@@ -291,9 +268,27 @@ class Login {
         })
     }
 
+    /**
+     * Ẩn Tooltip
+     * CreatedBy: NDTUNG (22/2/2021)
+     */
+    hideTooltip(input) {
+        input.removeClass('border-red');
+        input.removeAttr('title');
+        input.tooltip({
+            items: input,
+            disabled: true
+        });
+    }
+
+    /**
+     * Ẩn Tooltip
+     * CreatedBy: NDTUNG (22/2/2021)
+     */
     delayLoading() {
         setTimeout(function () {
+            // calsll
             $('.loading').hide();
-        }, 2000)
+        }, 3000)
     }
 }
