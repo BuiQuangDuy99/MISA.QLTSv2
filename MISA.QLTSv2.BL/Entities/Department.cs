@@ -22,14 +22,20 @@ namespace MISA.QLTSv2.BL.Entities
         /// <summary>
         /// Khóa chính
         /// </summary>
+        [PrimaryKey]
         public Guid DepartmentId { get; set; }
         /// <summary>
         /// Mã phòng ban
         /// </summary>
+        [CheckDuplicate]
+        [Required]
+        [DisplayName("Mã Phòng Ban")]
         public string DepartmentCode { get; set; }
         /// <summary>
         /// Tên phòng ban
         /// </summary>
+        [Required]
+        [DisplayName("Tên Phòng Ban")]
         public string DepartmentName { get; set; }
         /// <summary>
         /// Ghi chú

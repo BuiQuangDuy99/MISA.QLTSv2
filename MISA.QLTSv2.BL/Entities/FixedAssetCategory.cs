@@ -22,11 +22,21 @@ namespace MISA.QLTSv2.BL.Entities
         /// <summary>
         /// Khóa chính
         /// </summary>
+        [PrimaryKey]
         public Guid FixedAssetCategoryId { get; set; }
         /// <summary>
         /// Mã loại tài sản
         /// </summary>
+        [CheckDuplicate]
+        [Required]
+        [DisplayName("Mã Loại Tài Sản")]
         public string FixedAssetCategoryCode { get; set; }
+        /// <summary>
+        /// Tên loại tài sản
+        /// </summary>
+        [Required]
+        [DisplayName("Tên Loại Tài Sản")]
+        public string FixedAssetCategoryName { get; set; }
         /// <summary>
         /// Có phải là cha không
         /// </summary>
@@ -39,10 +49,6 @@ namespace MISA.QLTSv2.BL.Entities
         /// Loại tài sản này thuộc loại tài sản lớn hơn nào
         /// </summary>
         public string ParentName { get; set; }
-        /// <summary>
-        /// Tên loại tài sản
-        /// </summary>
-        public string FixedAssetCategoryName { get; set; }
         /// <summary>
         /// Id của đơn vị
         /// </summary>
