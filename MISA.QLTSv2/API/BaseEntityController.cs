@@ -88,7 +88,7 @@ namespace MISA.QLTSv2.API
         public IActionResult Delete(Guid entityId)
         {
             var serviceResult = _baseService.Delete(entityId);
-          
+            return Ok();
         }
         #endregion
 

@@ -26,6 +26,35 @@ namespace MISA.QLTSv2.BL.Entities
     {
 
     }
+
+    /// <summary>
+    /// Attribute kiểm tra độ dài theo yêu cầu
+    /// </summary>
+    /// CreatedBy: DVVUONG (01/03/2021)
+    [AttributeUsage(AttributeTargets.Property)]
+    public class MaxLength : Attribute
+    {
+        #region Property
+        /// <summary>
+        /// Giá trị độ dài muốn đặt
+        /// </summary>
+        public int Value { get; set; }
+
+        /// <summary>
+        /// chuỗi thông báo
+        /// </summary>
+        public string ErrorMsg { get; set; }
+        #endregion
+
+        #region Constructor
+        public MaxLength(int lengh, string erroMsg = null)
+        {
+            this.Value = lengh;
+            this.ErrorMsg = erroMsg;
+        }
+        #endregion
+    }
+
     /// <summary>
     /// lấy tên
     /// </summary>

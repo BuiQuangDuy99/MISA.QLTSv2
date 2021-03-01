@@ -103,6 +103,11 @@ namespace MISA.QLTSv2.DL
             }
             return parameters;
         }
+
+        public TEntity GetEntityByProperty(TEntity entity, System.Reflection.PropertyInfo property)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace MISA.QLTSv2.BL.Interfaces
@@ -49,5 +50,13 @@ namespace MISA.QLTSv2.BL.Interfaces
         /// <returns>Số bản ghi thực hiện được</returns>
         /// CreatedBy: BQDUY(01/03/2021)
         int Delete(Guid entityId);
+        /// <summary>
+        /// Lấy object theo property
+        /// </summary>
+        /// <param name="entity">object</param>
+        /// <param name="property">property</param>
+        /// <returns>Đối tượng lấy được</returns>
+        /// CreatedBy: BQDUY(01/03/2021)
+        TEntity GetEntityByProperty(TEntity entity, PropertyInfo property);
     }
 }

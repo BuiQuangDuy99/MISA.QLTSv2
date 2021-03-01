@@ -34,7 +34,7 @@ namespace MISA.QLTSv2.BL.Interfaces
         /// <param name="entity">object cần thêm mới</param>
         /// <returns>Object chứa kết quả thêm mới</returns>
         /// Author: DVVUONG (01/03/2021)
-        ServiceResult Add(TEntity entity);
+        ServiceResult Insert(TEntity entity);
 
         /// <summary>
         /// Chỉnh sửa thông tin bản ghi theo khóa chính

@@ -26,7 +26,7 @@ namespace MISA.QLTSv2.BL.Entities
         /// <summary>
         /// MISACode của kết quả truy vấn
         /// </summary>
-        public QLTSv2Code QLTSv2Code { get; set; }
+        public MISACode MISACode { get; set; }
         #endregion
     }
 }

@@ -16,7 +16,7 @@ namespace MISA.QLTSv2.BL.Enums
         /// <summary>
         /// Dữ liệu chưa hợp lệ
         /// </summary>
-        Notvalid = 900,
+        NotValid = 900,
         /// <summary>
         /// Thành công
         /// </summary>
