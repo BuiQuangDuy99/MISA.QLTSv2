@@ -4,12 +4,12 @@ using System.Text;
 
 namespace MISA.QLTSv2.BL.Entities
 {
-    public class Asset:BaseEntity
+    public class FixedAsset:BaseEntity
     {
         #region Declare
         #endregion
         #region Constructor
-        public Asset()
+        public FixedAsset()
         {
 
         }
@@ -18,15 +18,15 @@ namespace MISA.QLTSv2.BL.Entities
         /// <summary>
         /// Khóa chính
         /// </summary>
-        public Guid AssetId { get; set; }
+        public Guid FixedAssetId { get; set; }
         /// <summary>
         /// Mã tài sản
         /// </summary>
-        public string AssetCode { get; set; }
+        public string FixedAssetCode { get; set; }
         /// <summary>
         /// Tên tài sản
         /// </summary>
-        public string AssetName { get; set; }
+        public string FixedAssetName { get; set; }
         /// <summary>
         /// ID của đợn vị
         /// </summary>
@@ -54,15 +54,15 @@ namespace MISA.QLTSv2.BL.Entities
         /// <summary>
         /// ID loại tài sản
         /// </summary>
-        public Guid? AssetCategoryId { get; set; }
+        public Guid? FixedAssetCategoryId { get; set; }
         /// <summary>
         /// Mã loại tài sản
         /// </summary>
-        public string AssetCategoryCode { get; set; }
+        public string FixedAssetCategoryCode { get; set; }
         /// <summary>
         /// Tên loại tài sản
         /// </summary>
-        public string AssetCategoryName { get; set; }
+        public string FixedAssetCategoryName { get; set; }
         /// <summary>
         /// Ngày ghi tăng tài sản
         /// </summary>
