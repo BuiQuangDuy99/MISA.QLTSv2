@@ -32,7 +32,6 @@
         let me = this;
         var data = me.getAllRecord();
         let selectedRow = $("#gridTest tbody").find(".selected-row");
-        debugger;
         if (selectedRow.length>0) {
             data = data.filter(item => item["Id"] !== selectedRow.data("recordId"));
             $("#gridTest tbody").empty();

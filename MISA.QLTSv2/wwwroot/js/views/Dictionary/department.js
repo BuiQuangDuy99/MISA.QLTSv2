@@ -62,7 +62,6 @@ var conFigColum = [
     }
 ];
 
-debugger;
 //Khởi tạo form danh sách phòng ban
 departmentGrid.createFormDetail("#department_dialog", 360);
 
