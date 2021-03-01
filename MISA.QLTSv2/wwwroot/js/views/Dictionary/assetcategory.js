@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-    $('#cbx-test').combobox();
+    $('#cbx-assetGroup').combobox();
+    $('#cbx-assetClass').combobox();
     var day = new Date("2020-10-01");
     console.log(day);
     var date = formatDate("04-29-2020", 'DD/MM/YYYY');

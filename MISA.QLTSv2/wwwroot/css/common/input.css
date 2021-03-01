@@ -58,3 +58,16 @@ input{
     outline: none;
     font-family: Roboto-Regular !important;
 }
+
+
+/* Always */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    opacity: 1;
+    margin-left: 10px;
+}
+
+.input-number {
+    text-align: right;
+    opacity: 1;
+}

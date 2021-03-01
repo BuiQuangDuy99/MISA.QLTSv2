@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MISA.QLTSv2.BL.Services;
 
 namespace MISA.QLTSv2
 {
@@ -39,6 +40,7 @@ namespace MISA.QLTSv2
             services.AddCors();
             // Config DI:
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
