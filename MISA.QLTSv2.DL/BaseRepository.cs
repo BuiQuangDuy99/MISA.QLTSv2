@@ -1,12 +1,14 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.BL.Entities;
+using MISA.QLTSv2.BL.Enums;
 using MISA.QLTSv2.BL.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace MISA.QLTSv2.DL
@@ -54,7 +56,7 @@ namespace MISA.QLTSv2.DL
         public IEnumerable<TEntity> GetEntities()
         {
             // Thực thi commandText:
-            var entities = _dbConnection.Query<TEntity>($"Proc_Select{_tableName}s", null, commandType: CommandType.StoredProcedure);
+            var entities = _dbConnection.Query<TEntity>($"Proc_Select{_tableName}Datas", null, commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu: 
             return entities;
         }
@@ -104,9 +106,20 @@ namespace MISA.QLTSv2.DL
             return parameters;
         }
 
-        public TEntity GetEntityByProperty(TEntity entity, System.Reflection.PropertyInfo property)
+        public TEntity GetEntityByProperty(TEntity entity, PropertyInfo property)
         {
-            throw new NotImplementedException();
+            var propertyName = property.Name;
+            var propertyValue = property.GetValue(entity);
+            var keyValue = entity.GetType().GetProperty($"{_tableName}Id").GetValue(entity);
+            var query = string.Empty;
+            if (entity.EntityState == EntityState.AddNew)
+                query = $"SELECT * FROM {_tableName} WHERE {propertyName}='{propertyValue}'";
+            else if (entity.EntityState == EntityState.Update)
+                query = $"SELECT * FROM {_tableName} WHERE {propertyName}='{propertyValue}' AND {_tableName}Id <> '{keyValue}'";
+            else
+                return null;
+            var entityReturn = _dbConnection.Query<TEntity>(query, commandType: CommandType.Text).FirstOrDefault();
+            return entityReturn;
         }
         #endregion
     }

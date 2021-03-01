@@ -19,6 +19,7 @@ namespace MISA.QLTSv2.BL.Services
         #endregion
 
         #region Constructor
+
         public BaseService(IBaseRepository<TEntity> baseRepository)
         {
             _baseRepository = baseRepository;
