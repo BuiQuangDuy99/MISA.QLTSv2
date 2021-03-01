@@ -37,7 +37,7 @@ namespace MISA.QLTSv2
             services.AddMvc();
             services.AddControllersWithViews();
             services.AddCors();
-
+            // Config DI:
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
         }
 
