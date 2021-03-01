@@ -304,5 +304,4 @@ class baseForm {
             me.closeForm();
         }
     }
-
 }
