@@ -1,10 +1,12 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Dapper;
+using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.BL.Entities;
 using MISA.QLTSv2.BL.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace MISA.QLTSv2.DL
@@ -27,30 +29,80 @@ namespace MISA.QLTSv2.DL
             _tableName = typeof(TEntity).Name;
         }
         #endregion
-
+        #region Method
         public int Insert(TEntity entity)
         {
-            throw new NotImplementedException();
+            // Build thành đối tượng để lưu vào database:
+            var parameters = MappingDbType(entity);
+            // Thực thi commandText:
+            var rowAffects = _dbConnection.Execute($"Proc_Insert{_tableName}", parameters, commandType: CommandType.StoredProcedure);
+            // Trả về dữ liệu (số bản ghi thêm mới được): 
+            return rowAffects;
         }
 
         public int Delete(Guid entityId)
         {
-            throw new NotImplementedException();
+            var parameterEntityId = new DynamicParameters();
+            // Add param id của bảng cần xóa:
+            parameterEntityId.Add($"{_tableName}Id", entityId.ToString());
+            // Thực thi commandText:
+            var res = _dbConnection.Execute($"Proc_Delete{_tableName}", parameterEntityId, commandType: CommandType.StoredProcedure);
+            // Trả về dữ liệu: 
+            return res;
         }
 
         public IEnumerable<TEntity> GetEntities()
         {
-            throw new NotImplementedException();
+            // Thực thi commandText:
+            var entities = _dbConnection.Query<TEntity>($"Proc_Select{_tableName}s", null, commandType: CommandType.StoredProcedure);
+            // Trả về dữ liệu: 
+            return entities;
         }
 
         public TEntity GetEntityById(Guid entityId)
         {
-            throw new NotImplementedException();
+            var parameterEntityId = new DynamicParameters();
+            // Add param id của đối tượng cần lấy dữ liệu:
+            parameterEntityId.Add($"{_tableName}Id", entityId.ToString());
+            // Thực thi commandText:
+            var res = _dbConnection.Query<TEntity>($"Proc_Select{_tableName}ById", parameterEntityId, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            return res;
         }
 
         public int Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            // Build thành đối tượng để lưu vào database:
+            var parameters = MappingDbType(entity);
+            // Thực thi commandText và return:
+            return _dbConnection.Execute($"Proc_Update{_tableName}", parameters, commandType: CommandType.StoredProcedure);
         }
+
+        /// <summary>
+        /// Hàm chuyển kiểu dữ liệu từ c# sang sql
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        /// CreatedBy: BQDUY(18/01/2021)
+        private DynamicParameters MappingDbType(TEntity entity)
+        {
+            var properties = entity.GetType().GetProperties();
+            var parameters = new DynamicParameters();
+            foreach (var property in properties)
+            {
+                var propertyName = property.Name;
+                var propertyValue = property.GetValue(entity);
+                var propertyType = property.PropertyType;
+                if (propertyType == typeof(Guid) || propertyType == typeof(Guid?))
+                {
+                    parameters.Add($"@{propertyName}", propertyValue, DbType.String);
+                }
+                else
+                {
+                    parameters.Add($"@{propertyName}", propertyValue);
+                }
+            }
+            return parameters;
+        }
+        #endregion
     }
 }
