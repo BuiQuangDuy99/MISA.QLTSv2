@@ -109,6 +109,9 @@ class Grid {
                 case "Price":
                     element.addClass("width-price");
                     break;
+                case "depreciation_no":
+                    element.addClass("width-deprectation");
+                    break;
                 default:
                     break;
             }

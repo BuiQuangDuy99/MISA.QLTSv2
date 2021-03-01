@@ -1,0 +1,77 @@
+.depreciation-header {
+    padding: 10px 21px !important;
+    display: flex;
+    font-size: 18px;
+    font-weight: 700;
+    color: #454f63;
+    width: 100%;
+}
+tbody{
+    overflow-y:auto;
+}
+.depreciation-sub-grid thead {
+    background-color: !important;
+    /* width: 100px !important; */
+}
+.depreciation-sub-grid th {
+    padding: 0 14px 0px 14px !important;
+    box-sizing: border-box !important;
+    height: 35px !important;
+    /* margin: auto; */
+    border: #e0e0e0 solid 1px !important;
+    background-color: #e8e8e8;
+}
+.depreciation-sub-grid tbody tr td {
+    height: 35px !important;
+    padding: 0;
+    border: #e0e0e0 solid 1px !important;
+}
+.text-alight-center{
+     text-align:center;
+ }
+.text-alight-right{
+     text-align:right;
+ }
+
+.button-depreciation {
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+    /* display: flex; */
+    border: white;
+    background-color: white;
+    border-radius: 4px;
+    padding: 5px;
+    align-items:center;
+}
+.btn-add-row-icon {
+    width:14px;
+    height:14px;
+    background-image: url('/icon/sticker-png-startup-icon-set-over-4000-icons-plus-bold-thumbnail.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:contain;
+}
+.btn-add-row {
+    border: 1.5px solid #00abfe;
+    color: #00abfe;
+}
+.btn-add-row-content{
+}
+.btn-add-row {
+    border: 1.5px solid #00abfe;
+}
+.btn-delete-all-row {
+    border: 1px solid #e2e2e2;
+}
+.btn-delete-all-row-icon {
+    width: 14px;
+    height: 14px;
+    background-image: url('/icon/trash.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.btn-delete-all-row-content{
+    padding-left: 10px;
+}
