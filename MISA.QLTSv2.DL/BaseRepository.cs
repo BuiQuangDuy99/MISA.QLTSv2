@@ -8,7 +8,7 @@ namespace MISA.QLTSv2.DL
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
     {
-        public int Add(TEntity entity)
+        public int Insert(TEntity entity)
         {
             throw new NotImplementedException();
         }

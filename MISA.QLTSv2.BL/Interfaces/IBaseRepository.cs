@@ -32,7 +32,7 @@ namespace MISA.QLTSv2.BL.Interfaces
         /// <param name="entity">Đối tượng thêm mới</param>
         /// <returns>Số bản ghi thực hiện được</returns>
         /// CreatedBy: BQDUY(01/03/2021)
-        int Add(TEntity entity);
+        int Insert(TEntity entity);
 
         /// <summary>
         /// Hàm sửa dữ liệu đối tượng
