@@ -202,6 +202,7 @@ class baseForm {
                 })
             }
         })
+    }
 
     /**
      * Lưu dữ diệu vào Database

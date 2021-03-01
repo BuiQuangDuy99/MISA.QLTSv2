@@ -16,12 +16,15 @@ class Department extends BaseGrid {
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-        $('#cbxDepartment').combobox();
-        $('#btn-add-department').click(function () {
-            me.formDetail.show();
-        })
     }
 
+    /**
+     * Hàm khởi tạo form của màn hình loại tài sản
+     * @param {any} formID id form
+     * @param {any} width chiều rộng
+     * @param {any} height chiều cao
+     * CreatedBY: DVVUONG(26/02/2021)
+     */
     createFormDetail(formID, width, height) {
         let me = this;
         this.formDetail = new departmentForm(formID, width, height, me);
@@ -33,6 +36,7 @@ class Department extends BaseGrid {
 
 var departmentGrid = new Department('#gridDepartment');
 
+// Biến config cho từng column trong bảng
 var conFigColum = [
     {
         DataType: "number",

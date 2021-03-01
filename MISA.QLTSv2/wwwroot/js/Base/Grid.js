@@ -333,7 +333,6 @@ class Grid {
      * */
     getAllRecord() {
         let data = [];
-
         this.grid.find("tbody tr").each(function () {
             let item = $(this).data("value");
             data.push(item);

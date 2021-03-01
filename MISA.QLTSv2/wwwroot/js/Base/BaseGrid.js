@@ -34,6 +34,7 @@
         })
 
         $('#btn-remove-dictionary').off('click').on('click', me.deleteRow.bind(me));
+        $('#btn-remove-department').off('click').on('click', me.deleteRow.bind(me));
         $('#btn-change').click(function () {
             dbClickRow();
         })
@@ -46,10 +47,10 @@
     deleteRow() {
         let me = this;
         var data = me.getAllRecord();
-        let selectedRow = $("#gridTest tbody").find(".selected-row");
+        let selectedRow = $("#gridDepartment tbody").find(".selected-row");
         if (selectedRow.length>0) {
             data = data.filter(item => item["Id"] !== selectedRow.data("recordId"));
-            $("#gridTest tbody").empty();
+            $("#gridDepartment tbody").empty();
             me.loadData(data);
         } else {
             alert("Vui lòng chọn bản ghi để xóa!");
