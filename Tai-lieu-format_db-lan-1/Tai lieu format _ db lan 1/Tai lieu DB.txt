@@ -1,0 +1,28 @@
+
+***** Thông tin Database QLTS *****
+
+- Hệ quản trị CSDL: MySQL
+
+- Bảng:
+	
+	+ department: Danh mục phòng ban
+	+ fixed_asset: Danh sách tài sản (Sử dụng luôn cho Ghi tăng tài sản)
+	+ fixed_asset_category: Danh mục loại tài sản
+	
+	+ ref_decrement: Ghi giảm tài sản
+	+ ref_depreciation: Tính hao mòn
+	+ ref_transfer: Điều chuyển
+	
+- Store: các store được bổ sung đầy đủ theo các bảng gồm các công việc: Lấy dữ liệu (danh sách, từng bản ghi), Thêm, Sửa, Xóa.
+
+- Thông tin chi tiết:
+	+ Các bảng lưu trữ cho các nghiệp vụ Ghi giảm, Tính hao mòn, Điều chuyển ngoài các trường lưu chi tiết nội dung chứng từ ra sẽ thực hiện lưu Chi tiết danh sách tài sản tại trường `ref_detail` dưới dạng longtext (string).
+	+ Chú thích các trường dữ liệu đã có sẵn tại các bảng.
+	
+	
+- Một số thông tin khác xử lý liên kết CSDL và Backend:
+	+ Để kết nối CSDL, sử dụng NUGET: MySQL.Data (8.0.20), tạo các entity tương ứng với các bảng trong DB.
+	+ Map entity sử dụng NUGET: AutoMapper.Extensions.ExpressionMappin(4.0.0). Đây là Nuget hỗ trợ map entity về dạng thường tương tác, không phải để tương tác trực tiếp với CSDL.
+		=> key word :
+			- cấu hình sử dụng được AutoMapper: `mapper c# .net core`
+			- convert về dạng entity PascalCase: `automapper c# map lower underscore to pascalcase`
