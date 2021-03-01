@@ -62,7 +62,15 @@ namespace MISA.QLTSv2.API
         [HttpPost]
         public IActionResult Post([FromBody] TEntity entity)
         {
-            return Ok();
+            var serviceResult = _baseService.Insert(entity);
+            if (serviceResult.MISACode == MISA.QLTSv2.BL.Enums.MISACode.NotValid)
+            {
+                return BadRequest(serviceResult);
+            }
+            else
+            {
+                return Ok(serviceResult);
+            }
         }
 
         /// <summary>
@@ -75,7 +83,28 @@ namespace MISA.QLTSv2.API
         [HttpPut("{entityId}")]
         public IActionResult Put([FromRoute] string entityId, [FromBody] TEntity entity)
         {
-            return Ok();
+            var keyProperty = entity.GetType().GetProperty($"{typeof(TEntity).Name}Id");
+            if (keyProperty.PropertyType == typeof(Guid))
+            {
+                keyProperty.SetValue(entity, Guid.Parse(entityId));
+            }
+            else if (keyProperty.PropertyType == typeof(int))
+            {
+                keyProperty.SetValue(entity, int.Parse(entityId));
+            }
+            else
+            {
+                keyProperty.SetValue(entity, entityId);
+            }
+            var serviceResult = _baseService.Update(entity);
+            if (serviceResult.MISACode == MISA.QLTSv2.BL.Enums.MISACode.NotValid)
+            {
+                return BadRequest(serviceResult);
+            }
+            else
+            {
+                return Ok(serviceResult);
+            }
         }
 
         /// <summary>
@@ -87,8 +116,16 @@ namespace MISA.QLTSv2.API
         [HttpDelete("{entityId}")]
         public IActionResult Delete(Guid entityId)
         {
+            
             var serviceResult = _baseService.Delete(entityId);
-            return Ok();
+            if (serviceResult.MISACode == MISA.QLTSv2.BL.Enums.MISACode.NotValid)
+            {
+                return BadRequest(serviceResult);
+            }
+            else
+            {
+                return Ok(serviceResult);
+            }
         }
         #endregion
 

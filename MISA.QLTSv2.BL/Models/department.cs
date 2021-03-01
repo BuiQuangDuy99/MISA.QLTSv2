@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MISA.QLTSv2.BL.Models
 {
@@ -8,12 +6,12 @@ namespace MISA.QLTSv2.BL.Models
     /// Phòng ban
     /// </summary>
     /// CreatedBy:NVTUYEN(01/03/2021)
-    public class department
+    public class Department
     {
         #region Declare
         #endregion
         #region Constructor
-        public department()
+        public Department()
         {
 
         }
