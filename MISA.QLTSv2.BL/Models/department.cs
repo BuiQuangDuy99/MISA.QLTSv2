@@ -6,12 +6,12 @@ namespace MISA.QLTSv2.BL.Models
     /// Phòng ban
     /// </summary>
     /// CreatedBy:NVTUYEN(01/03/2021)
-    public class Department
+    public class department
     {
         #region Declare
         #endregion
         #region Constructor
-        public Department()
+        public department()
         {
 
         }
