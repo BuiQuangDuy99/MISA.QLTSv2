@@ -35,6 +35,8 @@ namespace MISA.QLTSv2
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
+
+
             services.AddMvc();
             services.AddControllersWithViews();
             services.AddCors();

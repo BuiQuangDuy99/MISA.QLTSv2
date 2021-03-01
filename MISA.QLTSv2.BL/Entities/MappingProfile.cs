@@ -13,6 +13,22 @@ namespace MISA.QLTSv2.BL.Entities
     /// createBy:NVTUYEN(01/03/2021)
     public class MappingProfile: Profile
     {
+        //public static MapperConfiguration MapperConfiguration;
+        //public static void RegisterMappings()
+        //{
+        //    MapperConfiguration = new MapperConfiguration(cfg =>
+        //    {
+        //        cfg.SourceMemberNamingConvention = new LowerUnderscoreNamingConvention();
+        //        cfg.DestinationMemberNamingConvention = new PascalCaseNamingConvention();
+        //        cfg.CreateMap<fixed_asset, FixedAsset>();
+        //        cfg.CreateMap<FixedAsset, fixed_asset>();
+        //        cfg.CreateMap<fixed_asset_category, FACategory>();
+        //        cfg.CreateMap<FACategory, fixed_asset_category>();
+        //        cfg.CreateMap<department, Department>();
+        //        cfg.CreateMap<Department, department>();
+        //    });
+        //}
+
         public MappingProfile()
         {
             CreateMap<fixed_asset, FixedAsset>();
