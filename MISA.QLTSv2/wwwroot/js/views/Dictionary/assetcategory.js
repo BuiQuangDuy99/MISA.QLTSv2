@@ -11,6 +11,9 @@ class Dictionary extends BaseGrid {
 
     constructor(gridId) {
         super(gridId);
+
+
+
         this.initEvents();
     }
 
