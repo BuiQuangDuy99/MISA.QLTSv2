@@ -39,6 +39,10 @@ class baseForm {
 
     }
 
+    setUrlJsonFile() {
+
+    }
+
 
     setApiUrl() {
 
@@ -175,11 +179,11 @@ class baseForm {
             var propertyName = $(this).attr('fieldName');
             var propertyValue = data[0][propertyName];
             if ($(this).attr('dataType') == 'date') {
-                propertyvalue = formatStringDate(propertyvalue);
+                propertyValue = formatDate(propertyValue,"YYYY-MM-DD");
             }
             else if ($(this).attr('dataType') == "Money") {
-                var money = formatMoney(propertyvalue);
-                propertyvalue = money;
+                var money = formatMoney(propertyValue);
+                propertyValue = money;
             }
             this.value = propertyValue;
         });
@@ -193,16 +197,11 @@ class baseForm {
         let fieldValue = entity + "Id",
             fieldName = entity + "Name",
             me = this;
-        let selects = me.form.find("select[fieldName]");
-        $.each(selects, function (index, select) {
-            if (fieldName == $(select).attr("fieldName")) {
-                $.each(data, function (index, element) {
-                    let option = `<option value="` + element[fieldValue] + `">` + element[fieldName] + `</option>`;
-                    $(select).append(option);
-                })
-            }
+        $.each(data, function (index, element) {
+            let select = me.form.find("select"),
+                option = `<option value="` + element[fieldValue] + `">` + element[fieldName] + `</option>`;
+            $(select).append(option);
         })
-
     }
 
     /**
@@ -261,6 +260,7 @@ class baseForm {
                         if (check) {
                             value = $(option).prop("label");
                         }
+                        
                     })
                     break;
                 default:
@@ -270,6 +270,7 @@ class baseForm {
 
         return value;
     }
+
     /**
      * Lấy dữ liệu trong form
      * CreatedBy : NDTUNG (3/2/2021)
@@ -291,6 +292,21 @@ class baseForm {
         });
         return data;
     }
+
+    /**
+     * Lưu dữ liệu vào file .json
+     * CreatedBy: DVVUONG (25/02/2021)
+     * */
+    saveChangeData_(data) {
+        var source = null;
+        $.getJSON(this.urlJsonFile, function (dataJson) {
+            source = dataJson;
+        }).fail(function () {
+            console.log("load false");
+        });
+
+    }
+
     /**
      * Sự kiện click nút Lưu
      * CreatedBy : NDTUNG (4/2/2021)

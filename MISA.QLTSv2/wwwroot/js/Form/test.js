@@ -70,14 +70,15 @@
                     },
                     select: function (event, ui) {
                         ui.item.option.selected = true;
-                        var valueOfOption = ui.item.option.value;     
                         
+                        //alert(ui.item.option.value);
+                        $('#txtAssetGroupName').val(ui.item.option.value);
                         that._trigger("selected", event, {
                             item: ui.item.option
                         });
-                        return valueOfOption;
                     },
                     change: function (event, ui) {
+                        
                         if (!ui.item) {
                             removeIfInvalid(this);
                         }

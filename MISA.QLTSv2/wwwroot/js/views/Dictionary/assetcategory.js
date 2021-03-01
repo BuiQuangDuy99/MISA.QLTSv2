@@ -1,7 +1,5 @@
 ﻿$(document).ready(function () {
-    $('#cbx-assetGroup').combobox();
-    $('#cbx-assetClass').combobox();
-    
+    $('#cbx-test').combobox();
     var day = new Date("2020-10-01");
     console.log(day);
     var date = formatDate("04-29-2020", 'DD/MM/YYYY');
@@ -48,7 +46,7 @@ var conFigColum = [
     {
         DataType: "number",
         FieldName: "STT",
-        FieldText: "STT",
+        FieldText: "STT",   
         Index: 1
     },
     {

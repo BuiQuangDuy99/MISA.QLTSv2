@@ -20,6 +20,8 @@ var callAjax = function (url, method, data, functionCallBack, async = true) {
     });
 }
 
+
+
 /**
  * Format dữ liệu ngày tháng sang ngày/tháng/năm
  * @param {any} date tham số có kiểu dữ liệu bất kỳ
@@ -30,8 +32,8 @@ function formatDate(date, formatDate) {
         if (!date) {
             return "";
         } else {
-            date = moment(date, ["DD-MM-YYYY", "MM-DD-YYYY", "DD-MMM-YYYY", "MMM-DD-YYYY"]).format("YYYY-MM-DD");
-            return moment(new Date(date)).format(formatDate);
+            //date = moment(date, ["DD-MM-YYYY", "MM-DD-YYYY", "DD-MMM-YYYY", "MMM-DD-YYYY"]).format("YYYY-MM-DD");
+            return moment(date).format(formatDate || "DD-MM-YYYY");
         }
     } catch (e) {
         console.log(e);

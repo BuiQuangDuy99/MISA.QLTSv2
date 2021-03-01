@@ -60,6 +60,7 @@ var conFigColum = [
         FieldText: "Ghi chú",
         Index: 5
     }
+
 ];
 
 //Khởi tạo form danh sách phòng ban
