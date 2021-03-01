@@ -95,7 +95,6 @@
      * CreatedBY: BQDUY(25/02/2021)
      */
     loadData(data) {
-        
         super.loadData(data);
         this.listData = data;
     }
