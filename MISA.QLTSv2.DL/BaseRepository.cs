@@ -1,4 +1,4 @@
-﻿using AutoMapper.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.BL.Entities;
 using MISA.QLTSv2.BL.Interfaces;
 using MySql.Data.MySqlClient;
