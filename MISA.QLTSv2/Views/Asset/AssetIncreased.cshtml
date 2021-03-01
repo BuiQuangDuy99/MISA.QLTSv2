@@ -31,8 +31,6 @@
     <div class="grid-default">
         <table cellspacing="0" id="asset-grid">
             <thead>
-                <tr>
-                </tr>
             </thead>
             <tbody>
             </tbody>
@@ -52,7 +50,7 @@
     </div>
 </div>
 
-<div id="dialog_asset" class="dialog_asset" title="Ghi tăng tài sản" >
+<div id="dialog_asset" class="dialog_asset" title="Ghi tăng tài sản">
     <div class="container-fluid">
         <div class="row dialog-header">
             <div class="col-8">
@@ -100,11 +98,11 @@
                         Mã phòng ban
                     </div>
                     <div>
-                        <select class="input-select input-asset" fieldname="departmentgroupname" tabindex="3">
-                            <option value="phòng công nghệ thông tin">Phòng công nghệ thông tin</option>
-                            <option value="phòng hành chính tổng hợp">Phòng hành chính tổng hợp</option>
-                            <option value="phòng kế toán">Phòng kế toán</option>
-                            <option value="phòng thanh tra">Phòng thanh tra</option>
+                        <select id="cbxdepartment" style="width:209px" >
+                            <option value="phòng công nghệ thông tin">PB4837429479</option>
+                            <option value="phòng hành chính tổng hợp">PB4837429333</option>
+                            <option value="phòng kế toán">PB4837429444</option>
+                            <option value="phòng thanh tra">PB4837429555</option>
                         </select>
                     </div>
                 </div>
@@ -115,7 +113,7 @@
                         Tên phòng ban
                     </div>
                     <div>
-                        <input fieldName="Department" class="input-text input-asset2" disabled />
+                        <input id="txtdepartment" fieldName="Department" class="input-text input-asset2" disabled />
                     </div>
                 </div>
             </div>
@@ -127,11 +125,10 @@
                         Mã loại tài sản
                     </div>
                     <div>
-                        <select class="input-select input-asset" fieldname="departmentgroupname" tabindex="3">
-                            <option value="phòng công nghệ thông tin">Phòng công nghệ thông tin</option>
-                            <option value="phòng hành chính tổng hợp">Phòng hành chính tổng hợp</option>
-                            <option value="phòng kế toán">Phòng kế toán</option>
-                            <option value="phòng thanh tra">Phòng thanh tra</option>
+                        <select id="cbxasset" style="width:209px">
+                            <option value="phòng hành chính tổng hợp">LTS3823894</option>
+                            <option value="phòng kế toán">LTS3823896</option>
+                            <option value="phòng thanh tra">LTS3823899</option>
                         </select>
                     </div>
                 </div>
@@ -142,7 +139,7 @@
                         Tên loại tài sản
                     </div>
                     <div>
-                        <input fieldName="AssetGroupName" class="input-text input-asset2" disabled />
+                        <input id="txtAssetGroupName" fieldName="AssetGroupName" class="input-text input-asset2" disabled />
                     </div>
                 </div>
             </div>
@@ -154,7 +151,7 @@
                         Ngày ghi tăng
                     </div>
                     <div>
-                        <input fieldName="DateTime" class="input-date input-asset" type="date" />
+                        <input dataType="date" fieldName="DateTime" class="input-date input-asset" type="date" />
                     </div>
                 </div>
             </div>
@@ -227,3 +224,8 @@
     </div>
 
 </div>
+
+@section scripts{
+    <script src="~/js/Form/assetForm.js"></script>
+    <script src="~/js/views/Asset/assetIncreased.js"></script>
+}

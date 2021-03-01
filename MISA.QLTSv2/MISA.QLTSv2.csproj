@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="API\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Asset\" />
     <Folder Include="wwwroot\content\images\" />
@@ -16,7 +17,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="4.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="MySql.Data" Version="8.0.20" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MISA.QLTSv2.BL\MISA.QLTSv2.BL.csproj" />
+    <ProjectReference Include="..\MISA.QLTSv2.DL\MISA.QLTSv2.DL.csproj" />
   </ItemGroup>
 
 </Project>

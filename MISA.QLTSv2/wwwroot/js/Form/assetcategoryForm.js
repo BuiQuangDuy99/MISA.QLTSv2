@@ -1,11 +1,9 @@
-
-//Lớp form chi tiết của bảng ở màn department
-class departmentForm extends baseForm {
-               
+﻿//Lớp form chi tiết của bảng ở màn dictionary
+class dictionaryForm extends baseForm {
     constructor(formId, width, height, jsCaller) {
         super(formId, jsCaller);
         //Định nghĩa Dialog
-        this.department_Form = $(formId).dialog({
+        this.dictionary_Form = $(formId).dialog({
             autoOpen: false,
             height: height,
             width: width,
@@ -25,15 +23,25 @@ class departmentForm extends baseForm {
         let me = this;
         if (data) {
             me.bindingData(data);
-            me.department_Form.dialog('open');
+            me.dictionary_Form.dialog('open');
         }
-        me.department_Form.dialog('open');
+        me.dictionary_Form.dialog('open');
     }
 
     closeForm() {
         let me = this;
         me.resetForm();
-        me.department_Form.dialog('close');
+        me.dictionary_Form.dialog('close');
     }
-        
+    /**
+     * Hàm hiển thị form chi tiết
+     * CreatedBY: BQDUY(23/02/2021)
+     * */
+    //showForm() {
+    //    this.closeForm();
+    //    dialog.dialog('open');
+    //}
+    //getDataForm() {
+    //    this.getData();
+    //}
 }

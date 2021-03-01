@@ -2,12 +2,12 @@
 //-----------------Form-----------------------------
 class baseForm {
     ///constructor
-    constructor(Idform, data) {
-        this.formMode = Enum.FormMode.Add;
+    constructor(Idform, jsCaller) {
+        //this.formMode = Enum.FormMode.Add;
         this.form = $(Idform);
+        this.jsCaller = jsCaller;
         this.setApiUrl();
         this.getApiUrl = null;
-        //this.bindingData(data);
         this.initEvent();
     };
 
@@ -38,6 +38,12 @@ class baseForm {
 
 
     }
+
+    setUrlJsonFile() {
+
+    }
+
+
     setApiUrl() {
 
     }
@@ -171,16 +177,31 @@ class baseForm {
     bindingData(data) {
         this.form.find("[fieldName]").each(function () {
             var propertyName = $(this).attr('fieldName');
-            var propertyValue = data[propertyName];
-            if ($(this).attr('DataType') == 'date') {
-                propertyvalue = formatStringDate(propertyvalue);
+            var propertyValue = data[0][propertyName];
+            if ($(this).attr('dataType') == 'date') {
+                propertyValue = formatDate(propertyValue,"YYYY-MM-DD");
             }
-            else if ($(this).attr('DataType') == "Money") {
-                var money = formatMoney(propertyvalue);
-                propertyvalue = money;
+            else if ($(this).attr('dataType') == "Money") {
+                var money = formatMoney(propertyValue);
+                propertyValue = money;
             }
             this.value = propertyValue;
         });
+    }
+
+    /**
+     * Load data combobox từ dữ liệu giả
+     * CreatedBY: BQDUY(25/02/2021)
+     * */
+    loadComboBox(entity, data) {
+        let fieldValue = entity + "Id",
+            fieldName = entity + "Name",
+            me = this;
+        $.each(data, function (index, element) {
+            let select = me.form.find("select"),
+                option = `<option value="` + element[fieldValue] + `">` + element[fieldName] + `</option>`;
+            $(select).append(option);
+        })
     }
 
     /**
@@ -190,19 +211,27 @@ class baseForm {
     saveChangeData(data) {
         //var url = this.getApiUrl;
         //var formMode = this.formMode;
-        if (formMode == 1) {
-            callAjax(url, "Post", data, function (res) {
-                if (res.MISACode == Enum.StatusResponse.Success) {
-                    showAlertWarring("Cất dữ liệu thành công!")
-                }
-            });
-        }
-        else if (formMode == 2) {
-            callAjax(url, "Put", data, function (res) {
-                if (res.MISACode == Enum.StatusResponse.Success) {
-                    showAlertWarring("Cất dữ liệu thành công!")
-                }
-            });
+        //if (formMode == 1) {
+        //    callAjax(url, "Post", data, function (res) {
+        //        if (res.MISACode == Enum.StatusResponse.Success) {
+        //            showAlertWarring("Cất dữ liệu thành công!")
+        //        }
+        //    });
+        //}
+        //else if (formMode == 2) {
+        //    callAjax(url, "Put", data, function (res) {
+        //        if (res.MISACode == Enum.StatusResponse.Success) {
+        //            showAlertWarring("Cất dữ liệu thành công!")
+        //        }
+        //    });
+        //}
+        let me = this,
+            jsCaller = me.jsCaller;
+
+        if (jsCaller.formMode == "Add") {
+
+            jsCaller.listData.push(data);
+            jsCaller.loadData(jsCaller.listData);
         }
     }
 
@@ -224,6 +253,16 @@ class baseForm {
                 case "Money":
                     value = parseInt(value.split(".").join(""));
                     break;
+                case "Combobox":
+                    var test = input.children();
+                    $.each(test, function (index, option) {
+                        var check = $(option).prop("selected");
+                        if (check) {
+                            value = $(option).prop("label");
+                        }
+                        
+                    })
+                    break;
                 default:
                     value = value.trim();
             }
@@ -231,6 +270,7 @@ class baseForm {
 
         return value;
     }
+
     /**
      * Lấy dữ liệu trong form
      * CreatedBy : NDTUNG (3/2/2021)
@@ -238,18 +278,35 @@ class baseForm {
     getData() {
         var me = this;
         var data = {};
-        this.form.find("[fieldName]").each(function () {
+        this.form.find("[fieldName], select").each(function () {
             var fieldName = $(this).attr("fieldName"),
                 dataType = $(this).attr("DataType");
 
-            if (dataType == "Combobox") {
-                fieldName = $(this).attr("fieldValue");
-            }
+            //if (dataType == "Combobox") {
+            //    fieldName = $(this).attr("fieldValue");
+
+            //}
+
             data[fieldName] = me.getDataInput($(this), dataType);
 
         });
         return data;
     }
+
+    /**
+     * Lưu dữ liệu vào file .json
+     * CreatedBy: DVVUONG (25/02/2021)
+     * */
+    saveChangeData_(data) {
+        var source = null;
+        $.getJSON(this.urlJsonFile, function (dataJson) {
+            source = dataJson;
+        }).fail(function () {
+            console.log("load false");
+        });
+
+    }
+
     /**
      * Sự kiện click nút Lưu
      * CreatedBy : NDTUNG (4/2/2021)
@@ -259,8 +316,8 @@ class baseForm {
         var isValid = me.validateForm();
         if (isValid) {
             var data = me.getData();
-            this.saveChangeData(data);
-            this.closeForm();
+            me.saveChangeData(data);
+            me.closeForm();
         }
     }
 
