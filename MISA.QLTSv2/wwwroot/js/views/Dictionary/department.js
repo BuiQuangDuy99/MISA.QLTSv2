@@ -1,8 +1,4 @@
-﻿$(document).ready(function () {
-    $('#cbxDepartment').combobox();
-})
-
-
+﻿
 // khởi tạo bảng và form màn hình danh sách phòng ban
 class Department extends BaseGrid {
    
@@ -16,11 +12,16 @@ class Department extends BaseGrid {
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
+        $('#cbxDepartment').combobox();
+        $('#btn-add-department').click(function () {
+            me.formDetail.show();
+        })
     }
 
     createFormDetail(formID, width, height) {
-        var me = this;
+        let me = this;
         this.formDetail = new departmentForm(formID, width, height, me);
+        debugger;
         this.formDetail.initLoadComboBox("DepartmentGroup", department);
     }
 
@@ -61,7 +62,6 @@ var conFigColum = [
     }
 
 ];
-
 
 //Khởi tạo form danh sách phòng ban
 departmentGrid.createFormDetail("#department_dialog", 360);
