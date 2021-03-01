@@ -7,6 +7,7 @@ namespace MISA.QLTSv2.BL.Models
     /// <summary>
     /// Phòng ban
     /// </summary>
+    /// CreatedBy:NVTUYEN(01/03/2021)
     public class department
     {
         #region Declare

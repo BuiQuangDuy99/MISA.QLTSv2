@@ -7,6 +7,7 @@ namespace MISA.QLTSv2.BL.Models
     /// <summary>
     /// Loại tài sản
     /// </summary>
+    /// CreatedBy:NVTUYEN(01/03/2021)
     public class fixed_asset_category
     {
         #region Declare

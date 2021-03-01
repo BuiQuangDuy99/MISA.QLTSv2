@@ -7,8 +7,8 @@ namespace MISA.QLTSv2.Models
 {
     /// <summary>
     /// Tài sản
-    /// createBy:NVTUYEN(01/03/2021)
     /// </summary>
+    /// createBy:NVTUYEN(01/03/2021)
     public class fixed_asset
     {
         #region Declare

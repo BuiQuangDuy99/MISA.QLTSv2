@@ -7,6 +7,10 @@ using System.Text;
 
 namespace MISA.QLTSv2.BL.Entities
 {
+    /// <summary>
+    /// Auto mapping các đối tượng
+    /// </summary>
+    /// createBy:NVTUYEN(01/03/2021)
     public class MappingProfile: Profile
     {
         public MappingProfile()

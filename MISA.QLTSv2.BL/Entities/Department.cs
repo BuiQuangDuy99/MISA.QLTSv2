@@ -4,6 +4,10 @@ using System.Text;
 
 namespace MISA.QLTSv2.BL.Entities
 {
+    /// <summary>
+    /// Phòng Ban
+    /// </summary>
+    /// CreatedBy:NVTUYEN(01/03/2021)
     public class Department:BaseEntity
     {
         #region Declare
