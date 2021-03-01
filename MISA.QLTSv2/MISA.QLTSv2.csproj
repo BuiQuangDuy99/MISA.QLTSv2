@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="API\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Asset\" />
     <Folder Include="wwwroot\content\images\" />
