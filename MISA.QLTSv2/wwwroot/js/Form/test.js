@@ -72,7 +72,6 @@
                         ui.item.option.selected = true;
                         
                         //alert(ui.item.option.value);
-                        $('#txtdepartment').val(ui.item.option.value);
                         $('#txtAssetGroupName').val(ui.item.option.value);
                         that._trigger("selected", event, {
                             item: ui.item.option

@@ -33,7 +33,7 @@ function formatDate(date, formatDate) {
             return "";
         } else {
             //date = moment(date, ["DD-MM-YYYY", "MM-DD-YYYY", "DD-MMM-YYYY", "MMM-DD-YYYY"]).format("YYYY-MM-DD");
-            return moment(date).format(formatDate);
+            return moment(date).format(formatDate || "DD-MM-YYYY");
         }
     } catch (e) {
         console.log(e);
