@@ -56,7 +56,7 @@ namespace MISA.QLTSv2.DL
         public IEnumerable<TEntity> GetEntities()
         {
             // Thực thi commandText:
-            var entities = _dbConnection.Query<TEntity>($"Proc_Select{_tableName}Datas", null, commandType: CommandType.StoredProcedure);
+            var entities = _dbConnection.Query<TEntity>($"Proc_Select{_tableName}Datas", commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu: 
             return entities;
         }
