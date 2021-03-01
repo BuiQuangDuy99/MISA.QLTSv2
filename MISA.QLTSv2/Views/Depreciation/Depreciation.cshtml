@@ -107,7 +107,7 @@
             </div>
         </div>
         <div class="row m-row-content">
-            <div class=" col-12">
+            <div class=" col-12" style="height:212px; overflow-y:auto">
                 <table id="depreciation-sub-grid" class="depreciation-sub-grid ">
                     <thead>
                         <tr>
@@ -128,7 +128,7 @@
                             <td class="text-alight-right"></td>
                             <td class="text-alight-center"></td>
                             <td class="text-alight-right"></td>
-                            <td></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
                         <tr>
                             <td class="text-alight-center">2</td>
@@ -137,7 +137,7 @@
                             <td class="text-alight-right"></td>
                             <td class="text-alight-center"></td>
                             <td class="text-alight-right"></td>
-                            <td></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
                         <tr>
                             <td class="text-alight-center">3</td>
@@ -146,7 +146,7 @@
                             <td class="text-alight-right"></td>
                             <td class="text-alight-center"></td>
                             <td class="text-alight-right"></td>
-                            <td></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
                         <tr>
                             <td class="text-alight-center">4</td>
@@ -155,7 +155,7 @@
                             <td class="text-alight-right"></td>
                             <td class="text-alight-center"></td>
                             <td class="text-alight-right"></td>
-                            <td></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
                         <tr>
                             <td class="text-alight-center">5</td>
@@ -164,22 +164,32 @@
                             <td class="text-alight-right"></td>
                             <td class="text-alight-center"></td>
                             <td class="text-alight-right"></td>
-                            <td></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
+                        <tr>
+                            <td class="text-alight-center">6</td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-alight-right"></td>
+                            <td class="text-alight-center"></td>
+                            <td class="text-alight-right"></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="row m-row-content">
             <div class=" col-12">
-                <div style=" display:flex">
+                <div style="display:flex; padding-top:10px">
                     <button class="button button-depreciation btn-add-row">
-                        <div class="btn-add-row-icon"></div>
-                        <div class="btn-add-row-content">Thêm dòng</div>
+                        <div class="button-depreciation-icon btn-add-row-icon">+</div>
+                        <div class="btn-content">Thêm dòng</div>
                     </button>
                     <button class="button button-depreciation btn-delete-all-row ml-4">
-                        <div class="btn-delete-all-row-icon"></div>
-                        <div class="btn-delete-all-row-content">Xóa hết dòng</div>
+                        <div class="button-depreciation-icon btn-delete-all-row-icon"></div>
+                        <div class="btn-content">Xóa hết dòng</div>
                     </button>
                 </div>
             </div>
