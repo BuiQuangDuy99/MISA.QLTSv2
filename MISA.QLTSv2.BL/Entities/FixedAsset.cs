@@ -22,14 +22,20 @@ namespace MISA.QLTSv2.BL.Entities
         /// <summary>
         /// Khóa chính
         /// </summary>
+        [PrimaryKey]
         public Guid FixedAssetId { get; set; }
         /// <summary>
         /// Mã tài sản
         /// </summary>
+        [CheckDuplicate]
+        [Required]
+        [DisplayName("Mã tài sản")]
         public string FixedAssetCode { get; set; }
         /// <summary>
         /// Tên tài sản
         /// </summary>
+        [Required]
+        [DisplayName("Mã tài sản")]
         public string FixedAssetName { get; set; }
         /// <summary>
         /// ID của đợn vị
