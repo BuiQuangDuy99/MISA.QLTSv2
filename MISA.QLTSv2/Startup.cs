@@ -22,6 +22,7 @@ namespace MISA.QLTSv2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
@@ -37,7 +38,12 @@ namespace MISA.QLTSv2
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
-
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                }); 
             services.AddMvc();
             services.AddControllersWithViews();
             services.AddCors();
