@@ -17,8 +17,8 @@ namespace MISA.QLTSv2.BL.Entities
         {
             CreateMap<fixed_asset, FixedAsset>();
             CreateMap<FixedAsset, fixed_asset>();
-            CreateMap<fixed_asset_category, FixedAssetCategory>();
-            CreateMap<FixedAssetCategory, fixed_asset_category>();
+            CreateMap<fixed_asset_category, FACategory>();
+            CreateMap<FACategory, fixed_asset_category>();
             CreateMap<department, Department>();
             CreateMap<Department, department>();
         }

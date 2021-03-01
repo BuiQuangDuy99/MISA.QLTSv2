@@ -88,6 +88,6 @@ namespace MISA.QLTSv2.BL.Entities
         /// <summary>
         /// Cờ sác định phương thức
         /// </summary>
-        public EntityState EntityState { get; set; } = EntityState.AddNew;
+        public EntityState EntityState { get; set; } = EntityState.Insert;
     }
 }

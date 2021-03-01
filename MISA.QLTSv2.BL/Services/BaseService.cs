@@ -47,7 +47,7 @@ namespace MISA.QLTSv2.BL.Services
 
         public ServiceResult Insert(TEntity entity)
         {
-            entity.EntityState = Enums.EntityState.AddNew;
+            entity.EntityState = Enums.EntityState.Insert;
             var isValid = Validate(entity);
 
             if (isValid == true)
