@@ -106,7 +106,7 @@ function showAlertWarring(msg, msgLength) {
 }
 /**
  * Hiển thị hộp thoại xác nhận
- * CreatedBy: NDTUNG(4/2/2021)
+ * CreatedBy: NDTUNG(3/2/2021)
  * */
 function showAlertConfirm(Messenget) {
     $('.warring').show();
@@ -116,7 +116,7 @@ function showAlertConfirm(Messenget) {
 }
 /**
  * Đóng hộp thoại cảnh báo
- * CreatedBy: NDTUNG(4/2/2021)
+ * CreatedBy: NDTUNG(3/2/2021)
  * */
 function closeWarring() {
     $('.warring').hide();
@@ -150,4 +150,43 @@ function hideTooltipElement(elements) {
             disabled: true,
         })
     })
+}
+
+/**
+ * Hiển thị hộp thoại cảnh báo
+ * Author: Nguyen Dang Tung(2/3/2021)
+ * */
+function showAlertWarring(msg, msgLength) {
+    $('.warring').show();
+    $('.warring-notify').empty();
+    if (!msgLength)
+        $('.warring-notify').text(msg);
+    else
+        for (var i = 0; i < msgLength; i++) {
+            var div = $(`<div>- ` + msg[i] + `</div>`);
+            $('.warring-notify').append(div);
+        }
+    $('#btn-yes-warring,#btn-no-warring').hide();
+    $('#btn-ok-warring').show();
+}
+/**
+ * Hiển thị hộp thoại xác nhận
+ * Author: Nguyen Dang Tung(2/3/2021)
+ * */
+function showAlertConfirm(Messenget) {
+    $('.warring').show();
+    $('.warring-notify').text(Messenget);
+    $('#btn-ok-warring').hide();
+    $('#btn-yes-warring, #btn-no-warring').show();
+
+}
+
+/**
+ * Đóng hộp thoại cảnh báo
+ * Author: Nguyen Dang Tung(2/3/2021)
+ * */
+function closeWarring() {
+    $('.warring').hide();
+    //$('#tbListData tbody tr').removeClass("row-selected");
+    //setDisabled();
 }

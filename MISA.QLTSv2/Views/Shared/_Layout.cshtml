@@ -24,6 +24,7 @@
     <link href="~/css/Form/depreciation.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/css/asset.css" rel="stylesheet" />
+    <link href="~/css/common/warring.css" rel="stylesheet" />
 </head>
 <body>
     <div class="wrapper container-fluid h-100">
@@ -108,10 +109,10 @@
                         <div class="department">Sở tài chính</div>
                         <div class="year">
                             @*<select size="1">
-                                <option>Năm 2021</option>
-                                <option>Năm 2020</option>
-                                <option>Năm 2019</option>
-                            </select>*@
+                                    <option>Năm 2021</option>
+                                    <option>Năm 2020</option>
+                                    <option>Năm 2019</option>
+                                </select>*@
                             <div class="text-year">Năm</div>
                             <input class="form-control" type="number" value="2021" min="2000" max="2030" id="example-number-input">
                         </div>
@@ -125,6 +126,24 @@
                 <div class="content">
                     @RenderBody()
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="warring">
+        <div class="warring-title">
+            <div class="title-warring">Quản lý tài sản - QLTSv2</div>
+            <button class="close" type="submit"></button>
+        </div>
+        <div class="warring-bode">
+            <div class="warring-content">
+                <div class="warring-icon"></div>
+                <div class="warring-notify"></div>
+            </div>
+            <div class="warring-button">
+                <button id="btn-no-warring">Hủy</button>
+                <button id="btn-yes-warring">Xóa</button>
+                <button id="btn-ok-warring">Đóng</button>
             </div>
         </div>
     </div>
