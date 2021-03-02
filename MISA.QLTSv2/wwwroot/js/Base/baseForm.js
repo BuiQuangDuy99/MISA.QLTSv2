@@ -15,10 +15,11 @@ class baseForm {
      * Hàm khởi tạo các sự kiện trong Form
      * CreatedBy : NDTUNG (4/2/2021)
      */
-    initEvent() {
+    initEvent() { 
         //var data = this.getJson();
         this.form.find("#btn-cancel").off("click");
         this.form.find("#btn-save").off("click");
+
         //this.form.find("#btn-save").on("click", this.getJson());
         this.form.find("#btn-cancel,#btn-close").on("click", this.closeForm.bind(this));
         this.form.find("#btn-save").on("click", this.saveData.bind(this));
@@ -175,11 +176,11 @@ class baseForm {
             var propertyName = $(this).attr('fieldName');
             var propertyValue = data[0][propertyName];
             if ($(this).attr('dataType') == 'date') {
-                propertyvalue = formatStringDate(propertyvalue);
+                propertyValue = formatDate(propertyValue,"YYYY-MM-DD");
             }
             else if ($(this).attr('dataType') == "Money") {
-                var money = formatMoney(propertyvalue);
-                propertyvalue = money;
+                var money = formatMoney(propertyValue);
+                propertyValue = money;
             }
             this.value = propertyValue;
         });
