@@ -14,6 +14,10 @@ class Dictionary extends BaseGrid {
         showTooltipElement($('td'));
     }
 
+    setUrl() {
+        this.url = 'https://localhost:44363/api/v1/FixedAssetCategories';
+    }
+
     /**
      * Hàm khởi tạo form của màn loại tài sản
      * @param {any} formID id của form

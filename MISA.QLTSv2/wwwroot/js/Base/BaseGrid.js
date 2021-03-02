@@ -81,7 +81,6 @@ class BaseGrid extends Grid {
         //    alert("Vui lòng chọn bản ghi để xóa!");
         //}
         var url = me.url;
-        debugger
         $.ajax({
             url: url + "/" + selectedRow.data("recordId"),
             method: "DELETE"
