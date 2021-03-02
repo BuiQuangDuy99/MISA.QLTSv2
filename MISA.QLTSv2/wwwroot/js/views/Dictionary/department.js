@@ -8,8 +8,8 @@
 // khởi tạo bảng và form màn hình danh sách phòng ban
 class Department extends BaseGrid {
    
-    constructor(gridId) {
-        super(gridId);
+    constructor(gridId, entity) {
+        super(gridId, entity);
         this.initEvents();
     }
 
@@ -18,6 +18,13 @@ class Department extends BaseGrid {
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
+    }
+    /**
+     * 
+     * 
+     * */
+    setUrl() {
+        this.url = 'https://localhost:44363/api/v1/Department';
     }
 
     /**
@@ -35,7 +42,7 @@ class Department extends BaseGrid {
 
 }
 
-var departmentGrid = new Department('#gridDepartment');
+var departmentGrid = new Department('#gridDepartment', "Department");
 
 // Biến config cho từng column trong bảng
 var conFigColum = [
@@ -85,4 +92,4 @@ departmentGrid.createFormDetail("#department_dialog", 360);
 departmentGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-departmentGrid.loadAjaxData();
+departmentGrid.loadAjaxData(url);

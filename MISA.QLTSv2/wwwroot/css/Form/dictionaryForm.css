@@ -130,3 +130,7 @@
     border: none !important;
     background: #fff !important;
 }*/
+
+textarea {
+    height: 100px !important;
+}

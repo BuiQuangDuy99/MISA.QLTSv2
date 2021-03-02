@@ -65,4 +65,6 @@ form .form-control:focus {
 
 select, textarea{
     padding-left: 15px;
+    resize: none;
+    font-family: Roboto !important;
 }

@@ -34,5 +34,14 @@ namespace MISA.QLTSv2.BL.Services
 
             return _fixedAssetDL.Delete(entityId);
         }
+        /// <summary>
+        /// Thêm một bản ghi
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>Số bản ghi thay đổi</returns>
+        public int Insert(FixedAsset entity)
+        {
+            return _fixedAssetDL.Insert(entity);
+        }
     }
 }
