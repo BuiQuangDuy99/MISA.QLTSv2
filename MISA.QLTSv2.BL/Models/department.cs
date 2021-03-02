@@ -8,14 +8,7 @@ namespace MISA.QLTSv2.BL.Models
     /// CreatedBy:NVTUYEN(01/03/2021)
     public class department
     {
-        #region Declare
-        #endregion
-        #region Constructor
-        public department()
-        {
 
-        }
-        #endregion
         #region properties
         /// <summary>
         /// Khóa chính
@@ -66,7 +59,6 @@ namespace MISA.QLTSv2.BL.Models
         /// </summary>
         public DateTime? modified_date { get; set; }
         #endregion
-        #region Method
-        #endregion
+
     }
 }

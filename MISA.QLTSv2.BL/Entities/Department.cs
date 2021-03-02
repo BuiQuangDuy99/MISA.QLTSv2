@@ -10,14 +10,7 @@ namespace MISA.QLTSv2.BL.Entities
     /// CreatedBy:NVTUYEN(01/03/2021)
     public class Department:BaseEntity
     {
-        #region Declare
-        #endregion
-        #region Constructor
-        public Department()
-        {
 
-        }
-        #endregion
         #region properties
         /// <summary>
         /// Khóa chính
@@ -57,8 +50,7 @@ namespace MISA.QLTSv2.BL.Entities
         /// Id của đơn vị
         /// </summary>
         public Guid? OrganizationId { get; set; }
-        #endregion
-        #region Method
-        #endregion
+        #endregions`
+       
     }
 }

@@ -27,10 +27,14 @@ tr:hover .hide {
     background-color: #f0f8ff;
 }
 
+form .form-control:focus {
+    border-color: #ced4da;
+    box-shadow: none !important;
+}
 /**
    Xét độ rộng cho th, td trong grid
 */
-.width-stt{
+.width-stt {
     width: 40px !important;
 }
 .width-datetime{

@@ -19,7 +19,12 @@ namespace MISA.QLTSv2.BL.Entities
             CreateMap<FixedAsset, fixed_asset>();
             CreateMap<fixed_asset_category, FixedAssetCategory>();
             CreateMap<FixedAssetCategory, fixed_asset_category>();
-            CreateMap<department, Department>();
+            CreateMap<department, Department>()
+                .ForMember(dest => dest.DepartmentId, opt => opt.MapFrom(src => src.department_id))
+                .ForMember(dest => dest.DepartmentCode, opt => opt.MapFrom(src => src.department_code))
+                .ForMember(dest => dest.DepartmentName, opt => opt.MapFrom(src => src.department_name))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.description))
+                .ForMember(dest => dest.IsParent, opt => opt.MapFrom(src => src.is_parent));
             CreateMap<Department, department>();
         }
     }

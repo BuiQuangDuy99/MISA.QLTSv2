@@ -11,10 +11,10 @@ namespace MISA.QLTSv2.DL
     /// Repository Phòng Ban
     /// </summary>
     /// Author: DVVUONG (01/03/2021)
-    public class DepartmentRepository : BaseRepository<Department>, IDepartmentRepository
+    public class DepartmentRepository
     {
         #region Constructor
-        public DepartmentRepository(IConfiguration configuration):base(configuration){
+        public DepartmentRepository(){
 
         }
         #endregion
