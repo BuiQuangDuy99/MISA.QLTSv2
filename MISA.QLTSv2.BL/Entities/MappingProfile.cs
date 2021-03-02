@@ -15,6 +15,8 @@ namespace MISA.QLTSv2.BL.Entities
     {
         public MappingProfile()
         {
+            SourceMemberNamingConvention = new LowerUnderscoreNamingConvention();
+            DestinationMemberNamingConvention = new PascalCaseNamingConvention();
             CreateMap<fixed_asset, FixedAsset>();
             CreateMap<FixedAsset, fixed_asset>();
             CreateMap<fixed_asset_category, FixedAssetCategory>();
