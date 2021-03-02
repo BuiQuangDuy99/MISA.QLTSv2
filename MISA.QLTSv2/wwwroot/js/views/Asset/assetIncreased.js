@@ -10,7 +10,9 @@ $(document).ready(function () {
     //    }
     //});
 
-    $("#cbxdepartment").combobox();
+    $("#txt_departmentcode").autocomplete({
+        source: availableTags
+    })
 
     //$("#cbxdepartment").combobox().autocomplete({
     //    change: function (event, ui) {
@@ -29,7 +31,10 @@ $(document).ready(function () {
     //        alert(ui.item.zzz);
     //    }
     //})
-    $('#cbxasset').combobox();
+    $('#txt_assetcategory').autocomplete({
+        source: availableTags
+    })
+
 
 })
  
@@ -57,44 +62,44 @@ var assetIncreasedGrid = new assetIncreased('#asset-grid');
 
 var conFigColum = [
     {
-        DataType: "number",
+        DataType: "STT",
         FieldName: "STT",
         FieldText: "STT",
         Index: 1 
     },
     {
         DataType: "datetime",
-        FieldName: "DateTime",
+        FieldName: "IncrementDate",
         FieldText: "Ngày ghi tăng",
         Index: 2
     },
     {
         DataType: "text",
-        FieldName: "AssetCode",
+        FieldName: "FixedAssetCode",
         FieldText: "Mã tài sản",
         Index: 3
     },
     {
         DataType: "text",
-        FieldName: "AssetName",
+        FieldName: "FixedAssetName",
         FieldText: "Tên tài sản",
         Index: 4
     },
     {
         DataType: "text",
-        FieldName: "AssetGroupName",
+        FieldName: "FixedAssetCategoryName",
         FieldText: "Loại tài sản",
         Index: 5
     },
     {
         DataType: "text",
-        FieldName: "Department",
+        FieldName: "DepartmentName",
         FieldText: "Phòng ban",
         Index: 6
     },
     {
         DataType: "money",
-        FieldName: "Price",
+        FieldName: "Cost",
         FieldText: "Nguyên giá",
         Index: 7
     },
@@ -105,6 +110,30 @@ var conFigColum = [
         Index: 8
     }
 ];
+var availableTags = [
+    "ActionScript",
+    "AppleScript",
+    "Asp",
+    "BASIC",
+    "C",
+    "C++",
+    "Clojure",
+    "COBOL",
+    "ColdFusion",
+    "Erlang",
+    "Fortran",
+    "Groovy",
+    "Haskell",
+    "Java",
+    "JavaScript",
+    "Lisp",
+    "Perl",
+    "PHP",
+    "Python",
+    "Ruby",
+    "Scala",
+    "Scheme"
+];
 //khởi tạo form ghi tăng tài sản
 assetIncreasedGrid.createFormDetail("#dialog_asset", 700, 525);
 
@@ -112,7 +141,7 @@ assetIncreasedGrid.createFormDetail("#dialog_asset", 700, 525);
 assetIncreasedGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-assetIncreasedGrid.loadData(asset);
+assetIncreasedGrid.loadAjaxData('https://localhost:44363/api/v1/FixedAsset');
 
 //bindingDataForInput() {
 //    //this.on(this.input, {

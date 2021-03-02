@@ -26,7 +26,7 @@
                 me.formDetail.show();
             }
         })
-        $toolbar.find('#btn-add-assetincreased').click(function () {
+        $('#btn-add-assetincreased').click(function () {
             me.formMode = "Add";
             if (me.formDetail) {
                 me.formDetail.show();
@@ -81,11 +81,11 @@
      * Hàm lấy dữ liệu từ server và render vào grid(tạm thời dùng biến fake data)
      * CreatedBy: BQDUY(25/02/2021)
      * */
-    loadAjaxData() {
+    loadAjaxData(url) {
         var me = this;
 
         $.ajax({
-            url: 'https://localhost:44363/api/v1/FixedAssetCategories',
+            url: url,
             method: "GET"
         }).done(function (res) {
             if (res) {

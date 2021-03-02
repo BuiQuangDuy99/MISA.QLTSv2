@@ -4,6 +4,7 @@ using Dapper;
 using MISA.QLTSv2.Model.Entities;
 using MISA.QLTSv2.Models;
 using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -24,7 +25,11 @@ namespace MISA.QLTSv2.DL
             _mapper = mapper;
 
         }
-
+        /// <summary>
+        /// Lấy ra danh sách Tài sản
+        /// </summary>
+        /// <returns>danh sách tài sản</returns>
+        /// CreatedBy:NVTUYEN(02/03/2021)
         public List<FixedAsset> GetEntities()
         {
             // Thực thi commandText:
@@ -33,5 +38,22 @@ namespace MISA.QLTSv2.DL
             // Trả về dữ liệu:
             return _mapper.Map<List<FixedAsset>>(entities);
         }
+        /// <summary>
+        /// Xóa một bản ghi
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns>số bản ghi xóa được</returns>
+        /// CreatedBy:NVTUYEN(02/03/2021)
+        public int Delete(Guid entityId)
+        {
+            var parameterEntityId = new DynamicParameters();
+            // Add param id của bảng cần xóa:
+            parameterEntityId.Add($"FixedAssetId", entityId.ToString());
+            // Thực thi commandText:
+            var res = _dbConnection.Execute($"Proc_DeleteFixedAsset", parameterEntityId, commandType: CommandType.StoredProcedure);
+            // Trả về dữ liệu: 
+            return res;
+        }
+
     }
 }

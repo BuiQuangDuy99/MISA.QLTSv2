@@ -32,14 +32,19 @@ namespace MISA.QLTSv2.API
         public IActionResult Get()
         {
             try
-    {
+            {
             }
             catch (Exception ex)
-        {
+            {
 
             }
 
             return Ok(_fixedAssetBL.GetEntities());
+        }
+        [HttpDelete("{entityId}")]
+        public IActionResult Delete(Guid entityId)
+        {
+            return Ok(_fixedAssetBL.Delete(entityId));
         }
     }
 }
