@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MISA.QLTSv2.BL.Enums
+namespace MISA.QLTSv2.Model.Enums
 {
     /// <summary>
     /// MISACode để xác định trạng thái của việc validate

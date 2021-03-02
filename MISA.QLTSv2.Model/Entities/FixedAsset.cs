@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MISA.QLTSv2.BL.Entities
+namespace MISA.QLTSv2.Model.Entities
 {
     /// <summary>
     /// Tài sản

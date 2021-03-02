@@ -1,9 +1,7 @@
-﻿using MISA.QLTSv2.BL.Enums;
+﻿using MISA.QLTSv2.Model.Enums;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace MISA.QLTSv2.BL.Entities
+namespace MISA.QLTSv2.Model.Entities
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class Required : Attribute
