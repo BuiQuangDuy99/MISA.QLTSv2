@@ -66,18 +66,19 @@ namespace MISA.QLTSv2.API
             return Ok(res);
         }
 
-        ///// <summary>
-        ///// Chỉnh sửa thông tin bản ghi
-        ///// </summary>
-        ///// <param name="entityId">khóa chính bản ghi cần chỉnh sửa</param>
-        ///// <param name="entity">thông tin object cần chỉnh sửa</param>
-        ///// <returns>số bản ghi chỉnh sửa được</returns>
-        ///// Author: DVVUONG (01/03/2021)
-        //[HttpPut("{entityId}")]
-        //public IActionResult Put([FromRoute] string entityId, [FromBody] TEntity entity)
-        //{
-        //    return Ok();
-        //}
+        /// <summary>
+        /// Chỉnh sửa thông tin bản ghi
+        /// </summary>
+        /// <param name="entityId">khóa chính bản ghi cần chỉnh sửa</param>
+        /// <param name="entity">thông tin object cần chỉnh sửa</param>
+        /// <returns>số bản ghi chỉnh sửa được</returns>
+        /// Author: DVVUONG (01/03/2021)
+        [HttpPut("{entityId}")]
+        public IActionResult Put([FromRoute] string entityId, [FromBody] FACategory entity)
+        {
+            var res = _fixedAssetCategoryBL.Update(entity);
+            return Ok(res);
+        }
 
         ///// <summary>
         ///// Xóa bản ghi

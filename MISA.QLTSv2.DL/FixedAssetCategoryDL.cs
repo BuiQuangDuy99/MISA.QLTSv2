@@ -7,6 +7,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace MISA.QLTSv2.DL
 {
@@ -89,18 +90,18 @@ namespace MISA.QLTSv2.DL
             return res;
         }
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="entity"></param>
-        ///// <returns></returns>
-        //public int Update(FACategory entity)
-        //{
-        //    // Build thành đối tượng để lưu vào database:
-        //    var parameters = MappingDbType(entity);
-        //    // Thực thi commandText và return:
-        //    return _dbConnection.Execute($"Proc_Update{_tableName}", parameters, commandType: CommandType.StoredProcedure);
-        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public int Update(FACategory entity)
+        {
+            // Build thành đối tượng để lưu vào database:
+            var parameters = MappingDbType(entity);
+            // Thực thi commandText và return:
+            return _dbConnection.Execute($"Proc_UpdateFACategory", parameters, commandType: CommandType.StoredProcedure);
+        }
 
         /// <summary>
         /// Hàm chuyển kiểu dữ liệu từ c# sang sql
@@ -119,46 +120,29 @@ namespace MISA.QLTSv2.DL
                 var propertyType = property.PropertyType;
                 if (propertyType == typeof(Guid) || propertyType == typeof(Guid?))
                 {
-                    parameters.Add($"@{propertyName}", propertyValue, DbType.String);
+                    parameters.Add($"${propertyName}", propertyValue, DbType.String);
                 }
                 else
                 {
-                    parameters.Add($"@{propertyName}", propertyValue);
+                    parameters.Add($"${propertyName}", propertyValue);
                 }
             }
             return parameters;
         }
 
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="entity"></param>
-        ///// <param name="property"></param>
-        ///// <returns></returns>
-        //public TEntity GetEntityByProperty(TEntity entity, System.Reflection.PropertyInfo property)
-        //{
-        //    var propertyName = property.Name;
-        //    var propertyValue = property.GetValue(entity);
-        //    var keyValue = entity.GetType().GetProperty($"{_tableName}Id").GetValue(entity);
-        //    var query = string.Empty;
-        //    //if (entity.EntityState == EntityState.Insert)
-        //    //{
-        //    //    query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}'";
-        //    //}
-        //    //else if (entity.EntityState == EntityState.Update)
-        //    //{
-        //    //    query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}' AND {_tableName}Id <> '{keyValue}'";
-        //    //}
-        //    //else if (entity.EntityState == EntityState.Select)
-        //    //{
-        //    //    query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}'";
-        //    //}
-        //    //else {
-        //    //    return null;
-        //    //}
-        //    var entityReturn = _dbConnection.Query<TEntity>(query, commandType: CommandType.Text).FirstOrDefault();
-        //    return entityReturn;
-        //}
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="property"></param>
+        /// <returns></returns>
+        public FACategory GetEntityByProperty(FACategory entity,System.Reflection.PropertyInfo property)
+        {
+            var propertyValue = property.GetValue(entity);
+            string query = $"SELECT * FROM fixed_asset_category WHERE fixed_asset_category_code = '{propertyValue}'";
+            var entityReturn = _dbConnection.Query<fixed_asset_category>(query, commandType: CommandType.Text).FirstOrDefault();
+            return _mapper.Map<FACategory>(entityReturn);
+        }
 
 
         #endregion

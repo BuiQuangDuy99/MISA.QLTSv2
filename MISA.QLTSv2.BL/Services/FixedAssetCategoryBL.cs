@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using MISA.QLTSv2.DL;
 using MISA.QLTSv2.Model.Entities;
+using MISA.QLTSv2.Model.Enums;
+using MISA.QLTSv2.Model.Properties;
 using System;
 using System.Collections.Generic;
 
@@ -9,11 +11,13 @@ namespace MISA.QLTSv2.BL.Services
     public class FixedAssetCategoryBL
     {
         FixedAssetCategoryDL _fixedAssetCategoryDL;
+        ServiceResult _serviceResult;
 
         #region Contrustor
         public FixedAssetCategoryBL(string connectionString, IMapper mapper)
         {
             _fixedAssetCategoryDL = new FixedAssetCategoryDL(connectionString, mapper);
+            _serviceResult = new ServiceResult();
         }
         #endregion
 
@@ -50,14 +54,15 @@ namespace MISA.QLTSv2.BL.Services
 
         public ServiceResult Insert(FACategory entity)
         {
+            
             //entity.EntityState = Enums.EntityState.Insert;
             var isValid = Validate(entity);
 
             if (isValid == true)
             {
-                _serviceResult.Data = _baseRepository.Insert(entity);
-                _serviceResult.MISACode = Enums.MISACode.Success;
-                _serviceResult.Messenger = Properties.Resources.Msg_AddSuccess;
+                _serviceResult.Data = _fixedAssetCategoryDL.Insert(entity);
+                _serviceResult.MISACode = MISACode.Success;
+                _serviceResult.Messenger = Resources.Msg_AddSuccess;
                 return _serviceResult;
             }
             else
@@ -88,22 +93,22 @@ namespace MISA.QLTSv2.BL.Services
                     if (propertyValue == null || propertyValue.ToString() == "")
                     {
                         isValidate = false;
-                        mesArr.Add(string.Format(Properties.Resources.Msg_Required, displayName));
-                        _serviceResult.MISACode = Enums.MISACode.NotValid;
-                        _serviceResult.Messenger = Properties.Resources.Msg_IsNotValid;
+                        mesArr.Add(string.Format(Resources.Msg_Required, displayName));
+                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }
                 if (property.IsDefined(typeof(CheckDuplicate), false))
                 {
                     // check trùng dữ liệu
                     var propertyName = property.Name;
-                    var entityDuplicate = _baseRepository.GetEntityByProperty(entity, property);
+                    var entityDuplicate = _fixedAssetCategoryDL.GetEntityByProperty(entity,property);
                     if (entityDuplicate != null)
                     {
                         isValidate = false;
-                        mesArr.Add(string.Format(Properties.Resources.Msg_Dulicate, displayName));
-                        _serviceResult.MISACode = Enums.MISACode.NotValid;
-                        _serviceResult.Messenger = Properties.Resources.Msg_IsNotValid;
+                        mesArr.Add(string.Format(Resources.Msg_Dulicate, displayName));
+                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }
 
@@ -117,40 +122,31 @@ namespace MISA.QLTSv2.BL.Services
                     {
                         isValidate = false;
                         mesArr.Add(msg ?? $"Thông tin này vượt quá {length} ky tu cho phep");
-                        _serviceResult.MISACode = Enums.MISACode.NotValid;
-                        _serviceResult.Messenger = Properties.Resources.Msg_IsNotValid;
+                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }
             }
             _serviceResult.Data = mesArr;
-            if (isValidate == true)
-            {
-                isValidate = ValidateCustom(entity);
-            }
             return isValidate;
         }
 
-        //private bool ValidateCustom(TEntity entity)
-        //{
-        //    return true;
-        //}
-
-        //public ServiceResult Update(TEntity entity)
-        //{
-        //    //entity.EntityState = Enums.EntityState.Update;
-        //    var isValid = Validate(entity);
-        //    if (isValid == true)
-        //    {
-        //        _serviceResult.Data = _baseRepository.Update(entity);
-        //        _serviceResult.MISACode = Enums.MISACode.Success;
-        //        _serviceResult.Messenger = Properties.Resources.Msg_UpdateSuccess;
-        //        return _serviceResult;
-        //    }
-        //    else
-        //    {
-        //        return _serviceResult;
-        //    }
-        //}
+        public ServiceResult Update(FACategory entity)
+        {
+            //entity.EntityState = Enums.EntityState.Update;
+            var isValid = Validate(entity);
+            if (isValid == true)
+            {
+                _serviceResult.Data = _fixedAssetCategoryDL.Update(entity);
+                _serviceResult.MISACode = MISACode.Success;
+                _serviceResult.Messenger = Resources.Msg_UpdateSuccess;
+                return _serviceResult;
+            }
+            else
+            {
+                return _serviceResult;
+            }
+        }
 
         #endregion
     }
