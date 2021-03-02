@@ -50,7 +50,7 @@ namespace MISA.QLTSv2.Model.Entities
         /// Id của đơn vị
         /// </summary>
         public Guid? OrganizationId { get; set; }
-        #endregions`
-       
+        #endregion
+
     }
 }

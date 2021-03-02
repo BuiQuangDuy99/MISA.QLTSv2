@@ -20,6 +20,12 @@
         //Gán sự kiện chung cho từng button
         //Tạo hàm để override
 
+        $toolbar.find('#btn-add-department').click(function () {
+            me.formMode = "Add";
+            if (me.formDetail) {
+                me.formDetail.show();
+            }
+        })
         $toolbar.find('#btn-add-dictionary').click(function () {
             me.formMode = "Add";
             if (me.formDetail) {
@@ -32,12 +38,7 @@
                 me.formDetail.show();
             }
         })
-        $toolbar.find('#btn-add-department').click(function () {
-            me.formMode = "Add";
-            if (me.formDetail) {
-                me.formDetail.show();
-            }
-        })
+      
 
         $('#btn-remove-dictionary').off('click').on('click', me.deleteRow.bind(me));
         $('#btn-remove-department').off('click').on('click', me.deleteRow.bind(me));
@@ -85,7 +86,7 @@
         var me = this;
 
         $.ajax({
-            url: 'https://localhost:44363/api/v1/FixedAssetCategories',
+            url: 'https://localhost:44363/api/v1/department',
             method: "GET"
         }).done(function (res) {
             if (res) {

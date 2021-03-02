@@ -28,7 +28,6 @@ class Department extends BaseGrid {
     createFormDetail(formID, width, height) {
         let me = this;
         this.formDetail = new departmentForm(formID, width, height, me);
-        debugger;
         this.formDetail.initLoadComboBox("DepartmentGroup", department);
     }
 
@@ -58,13 +57,13 @@ var conFigColum = [
     },
     {
         DataType: "text",
-        FieldName: "DepartmentGroupName",
+        FieldName: "ParentName",
         FieldText: "Trực thuộc",
         Index: 4
     },
     {
         DataType: "text",
-        FieldName: "Note",
+        FieldName: "Description",
         FieldText: "Ghi chú",
         Index: 5
     }
@@ -77,4 +76,4 @@ departmentGrid.createFormDetail("#department_dialog", 360);
 departmentGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-departmentGrid.loadData(department);
+departmentGrid.loadAjaxData();

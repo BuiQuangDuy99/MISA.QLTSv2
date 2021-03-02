@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using MISA.QLTSv2.BL.Entities;
-using MISA.QLTSv2.BL.Interfaces;
+using Microsoft.Extensions.Configuration;
+using MISA.QLTSv2.BL.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MISA.QLTSv2.API
 {
@@ -13,15 +10,62 @@ namespace MISA.QLTSv2.API
     /// API Phòng Ban
     /// </summary>
     /// Author: DVVUONG (01/03/2021)
-    public class DepartmentController : BaseEntityController<Department>
+    [Route("api/v1/[controller]")]
+    [ApiController]
+    public class DepartmentController : ControllerBase
     {
         #region Declare
-        IDepartmentService _departmentService;
+        string _connectionString;
+        DepartmentBL _departmentBL;
         #endregion
+
         #region Constructor
-        public DepartmentController(IDepartmentService departmentService) : base(departmentService)
+        public DepartmentController(IConfiguration configuration, IMapper mapper)
         {
-            _departmentService = departmentService;
+            _connectionString = configuration.GetConnectionString("MISAQLTSv2ConnectionString");
+            _departmentBL = new DepartmentBL(_connectionString, mapper);
+        }
+        #endregion
+
+        #region Method
+        /// <summary>
+        /// Lấy toàn bộ danh sách
+        /// </summary>
+        /// <returns>danh sách thỏa mãn</returns>
+        /// Author: DVVUONG (01/03/2021)
+        [HttpGet]
+        public IActionResult Get()
+        {
+            try
+            {
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return Ok(_departmentBL.GetEntities());
+        }
+
+
+        /// <summary>
+        /// Xóa bản ghi
+        /// </summary>
+        /// <param name="entityId">khóa chính bản ghi cần xóa</param>
+        /// <returns>số bản ghi xóa thành công</returns>
+        /// Author: DVVUONG (01/03/2021)
+        [HttpDelete("{entityId}")]
+        public IActionResult Delete(Guid entityId)
+        {
+            try
+            {
+
+            }
+            catch (Exception)
+            {
+
+            }
+            return Ok(_departmentBL.Delete(entityId));
         }
         #endregion
     }
