@@ -48,7 +48,7 @@ namespace MISA.QLTSv2.DL
         {
             var parameterEntityId = new DynamicParameters();
             // Add param id của bảng cần xóa:
-            parameterEntityId.Add($"FixedAssetId", entityId.ToString());
+            parameterEntityId.Add($"$FixedAssetId", entityId.ToString());
             // Thực thi commandText:
             var res = _dbConnection.Execute($"Proc_DeleteFixedAsset", parameterEntityId, commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu: 
