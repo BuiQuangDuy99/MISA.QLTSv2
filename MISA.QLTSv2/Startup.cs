@@ -48,7 +48,7 @@ namespace MISA.QLTSv2
                 }); 
             services.AddMvc();
             services.AddControllersWithViews();
-           
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

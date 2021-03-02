@@ -15,7 +15,9 @@
         $('#cbxdepartment').change(function () {
             $('#txtdepartment').val($(this).val());
         })
+
     }
+
 
     /**
      * Hàm xử lý sự kiện thay đổi selection

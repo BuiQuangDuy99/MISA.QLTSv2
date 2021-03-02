@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using MISA.QLTSv2.BL.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +11,40 @@ using System.Threading.Tasks;
 
 namespace MISA.QLTSv2.API
 {
+    [Route("api/v1/[controller]")]
+    [ApiController]
 
-    public class FixedAssetController 
+    public class FixedAssetController : ControllerBase
     {
-        public FixedAssetController()
+        FixedAssetBL _fixedAssetBL;
+        string _connectionString;
+        public FixedAssetController(IConfiguration configuration, IMapper mapper)
         {
+            _connectionString = configuration.GetConnectionString("MISAQLTSv2ConnectionString");
+            _fixedAssetBL = new FixedAssetBL(_connectionString, mapper);
+        }
+        /// <summary>
+        /// Lấy toàn bộ danh sách
+        /// </summary>
+        /// <returns>danh sách thỏa mãn</returns>
+        /// Author: DVVUONG (01/03/2021)
+        [HttpGet]
+        public IActionResult Get()
+        {
+            try
+            {
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return Ok(_fixedAssetBL.GetEntities());
+        }
+        [HttpDelete("{entityId}")]
+        public IActionResult Delete(Guid entityId)
+        {
+            return Ok(_fixedAssetBL.Delete(entityId));
         }
     }
 }

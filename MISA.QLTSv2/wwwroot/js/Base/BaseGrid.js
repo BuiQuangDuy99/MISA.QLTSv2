@@ -82,7 +82,7 @@
      * Hàm lấy dữ liệu từ server và render vào grid(tạm thời dùng biến fake data)
      * CreatedBy: BQDUY(25/02/2021)
      * */
-    loadAjaxData() {
+    loadAjaxData(url) {
         var me = this;
 
         $.ajax({
