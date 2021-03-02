@@ -98,7 +98,10 @@
     position: relative;
     display: inline-block;
 }
-
+.input-right {
+    text-align: right;
+    padding-right: 15px;
+}
     .ui-combobox > input {
         border: 1px solid #e0e0e0 !important;
         padding-left: 15px;

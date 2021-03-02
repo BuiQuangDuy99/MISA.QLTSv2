@@ -100,15 +100,15 @@ class Grid {
                 return element;
             }
 
-            switch (fieldName) {
+            switch (dataType) {
                 case "STT":
                     element.addClass("width-stt");
                     element.addClass("padding-stt");
                     break;
-                case "DateTime":
+                case "datetime":
                     element.addClass("width-datetime");
                     break;
-                case "Price":
+                case "money":
                     element.addClass("width-price");
                     break;
                 case "depreciation_no":
@@ -237,6 +237,8 @@ class Grid {
                 break;
             case 'function':
                 element.addClass("function-content");
+            case 'STT':
+                element.addClass("text-center");
             default:
                 break;
         }
