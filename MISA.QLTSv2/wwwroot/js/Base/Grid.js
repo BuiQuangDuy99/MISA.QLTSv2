@@ -2,7 +2,7 @@
 class Grid {
 
     // Hàm khởi tạo, truyền vào id của bảng
-    constructor(tableId) {
+    constructor(tableId, entity) {
         var me = this;
        
         // Biến lưu grid
@@ -12,6 +12,8 @@ class Grid {
         me.conFigColum = null;
         
         me.formDetail = null;
+
+        me.entity = entity;
 
         // Khởi tạo các sự kiện cho grid
         me.initEvents();
@@ -147,9 +149,9 @@ class Grid {
     loadData(data) {
         let me = this,
             grid = this.grid;
+
         $(grid).find('tbody').empty();
         if (data) {
-
             $.each(data, function (index, obj) {
                 $(grid).find('tbody').append(me.renderBody(index, obj));
             })
@@ -173,7 +175,7 @@ class Grid {
                 td;
 
             row = $(`<tr></tr>`);
-            $(row).data('recordId', object['Id']);
+            $(row).data('recordId', object[me.entity + 'Id']);
 
             // Binding cột số thứ tự riêng, index chính là value
             object["STT"] = index + 1;

@@ -1,6 +1,6 @@
 ﻿class BaseGrid extends Grid {
-    constructor(gridId, toolbarId) {
-        super(gridId);
+    constructor(gridId, entity) {
+        super(gridId, entity);
 
         this.formDetail = null;
         this.formMode = null;
@@ -12,53 +12,65 @@
      * CreatedBy: BQDUY(25/02/2021)
      * */
     initEvents() {
+        super.initEvents();
         var me = this,
             $toolbar = $(`${me.grid.data("toolbar")}`);
-        super.initEvents();
 
-        //find taats ca data-command cho từng button
+        //find tất cả data-command cho từng button
         //Gán sự kiện chung cho từng button
         //Tạo hàm để override
+        $toolbar.find("[CommandName]").off('click');
+        $toolbar.find("[CommandName]").on('click', function () {
+            let commandName = $(this).attr("CommandName");
+            switch (commandName) {
+                case "Add":
+                    me.add();
+                    break;
+                case "Edit":
+                    me.edit();
+                    break;
+                case "Delete":
+                    me.delete();
+                    break;
+                case "Save":
+                    me.save();
+                    break;
+                default:
+                    break;
+            }
+        });
 
-        $toolbar.find('#btn-add-dictionary').click(function () {
-            me.formMode = "Add";
-            if (me.formDetail) {
-                me.formDetail.show();
-            }
-        })
-        $toolbar.find('#btn-add-assetincreased').click(function () {
-            me.formMode = "Add";
-            if (me.formDetail) {
-                me.formDetail.show();
-            }
-        })
-        $toolbar.find('#btn-add-department').click(function () {
-            me.formMode = "Add";
-            if (me.formDetail) {
-                me.formDetail.show();
-            }
-        })
-
-        $('#btn-remove-dictionary').off('click').on('click', me.deleteRow.bind(me));
-        $('#btn-remove-department').off('click').on('click', me.deleteRow.bind(me));
-        $('#btn-change').click(function () {
-            dbClickRow();
-        })
+        //$('#btn-remove-dictionary').off('click').on('click', me.deleteRow.bind(me));
+        //$('#btn-remove-department').off('click').on('click', me.deleteRow.bind(me));
+        //$('#btn-change').click(function () {
+        //    dbClickRow();
+        //})
     }
 
     //Hàm thực hiện data-command
+    /**
+     * Hàm xử lý sự kiện khi ấn button Thêm mới
+     * CreatedBY: BQDUY(02/03/2021)
+     * */
+    add() {
+        let me = this;
+        me.formMode = "Add";
+        if (me.formDetail) {
+            me.formDetail.show();
+        }
+    }
 
     /**
      * Hàm thực hiện xóa một hàng trong bảng
      * CreatedBY: BQDUY(26/02/2021)
      * */
-    deleteRow() {
+    delete() {
         let me = this;
         var data = me.getAllRecord();
-        let selectedRow = $("#gridDepartment tbody").find(".selected-row");
+        let selectedRow = me.grid.find(".selected-row");
         if (selectedRow.length>0) {
-            data = data.filter(item => item["Id"] !== selectedRow.data("recordId"));
-            $("#gridDepartment tbody").empty();
+            data = data.filter(item => item["FixedAssetCategoryId"] !== selectedRow.data("recordId"));
+            me.grid.find("tbody").empty();
             me.loadData(data);
         } else {
             alert("Vui lòng chọn bản ghi để xóa!");
@@ -81,11 +93,11 @@
      * Hàm lấy dữ liệu từ server và render vào grid(tạm thời dùng biến fake data)
      * CreatedBy: BQDUY(25/02/2021)
      * */
-    loadAjaxData() {
+    loadAjaxData(url) {
         var me = this;
 
         $.ajax({
-            url: 'https://localhost:44363/api/v1/FixedAssetCategories',
+            url: url,
             method: "GET"
         }).done(function (res) {
             if (res) {

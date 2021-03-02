@@ -2,8 +2,8 @@
 //Khởi tạo bảng và form màn loại tài sản
 class Dictionary extends BaseGrid {
 
-    constructor(gridId) {
-        super(gridId);
+    constructor(gridId, entity) {
+        super(gridId, entity);
         this.initEvents();
     }
 
@@ -24,12 +24,10 @@ class Dictionary extends BaseGrid {
     createFormDetail(formID, width, height) {
         var me = this;
         this.formDetail = new dictionaryForm(formID, width, height, me);
-        this.formDetail.initLoadComboBox("AssetGroup", assetGroup);
-        this.formDetail.initLoadComboBox("AssetClass", assetClass);
     }
 }
 
-var dictionaryGrid = new Dictionary('#gridTest');
+var dictionaryGrid = new Dictionary('#gridTest', "FixedAssetCategory");
 
 // Biến config cho từng column trong bảng
 var conFigColum = [
@@ -90,5 +88,5 @@ dictionaryGrid.createFormDetail("#dialog_dictionary", 700, 500);
 dictionaryGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-dictionaryGrid.loadAjaxData();
+dictionaryGrid.loadAjaxData('https://localhost:44363/api/v1/FixedAssetCategories');
 
