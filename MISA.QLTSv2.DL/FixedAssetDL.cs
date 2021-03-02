@@ -48,11 +48,52 @@ namespace MISA.QLTSv2.DL
         {
             var parameterEntityId = new DynamicParameters();
             // Add param id của bảng cần xóa:
-            parameterEntityId.Add($"FixedAssetId", entityId.ToString());
+            parameterEntityId.Add($"$FixedAssetId", entityId.ToString());
             // Thực thi commandText:
             var res = _dbConnection.Execute($"Proc_DeleteFixedAsset", parameterEntityId, commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu: 
             return res;
+        }
+        /// <summary>
+        /// Thêm một bản ghi
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>số bản ghi được thêm</returns>
+        /// CreatedBy:NVTUYEN(02/03/2021)
+        public int Insert(FixedAsset entity)
+        {
+            // Build thành đối tượng để lưu vào database:
+            var parameters = MappingDbType(entity);
+            // Thực thi commandText:
+            var rowAffects = _dbConnection.Execute($"Proc_InsertFixedAsset", parameters, commandType: CommandType.StoredProcedure);
+            // Trả về dữ liệu (số bản ghi thêm mới được): 
+            return rowAffects;
+        }
+        /// <summary>
+        /// Hàm chuyển kiểu dữ liệu từ c# sang sql
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        /// CreatedBy: BQDUY(18/01/2021)
+        private DynamicParameters MappingDbType(FixedAsset entity)
+        {
+            var properties = entity.GetType().GetProperties();
+            var parameters = new DynamicParameters();
+            foreach (var property in properties)
+            {
+                var propertyName = property.Name;
+                var propertyValue = property.GetValue(entity);
+                var propertyType = property.PropertyType;
+                if (propertyType == typeof(Guid) || propertyType == typeof(Guid?))
+                {
+                    parameters.Add($"${propertyName}", propertyValue, DbType.String);
+                }
+                else
+                {
+                    parameters.Add($"${propertyName}", propertyValue);
+                }
+            }
+            return parameters;
         }
 
     }

@@ -1,10 +1,16 @@
-﻿class BaseGrid extends Grid {
+class BaseGrid extends Grid {
     constructor(gridId, entity) {
         super(gridId, entity);
 
         this.formDetail = null;
         this.formMode = null;
         this.listData = [];
+        this.url = null;
+        this.setUrl();
+    }
+
+    setUrl() {
+
     }
 
     /**
@@ -66,15 +72,27 @@
      * */
     delete() {
         let me = this;
-        var data = me.getAllRecord();
         let selectedRow = me.grid.find(".selected-row");
-        if (selectedRow.length>0) {
-            data = data.filter(item => item["FixedAssetCategoryId"] !== selectedRow.data("recordId"));
-            me.grid.find("tbody").empty();
-            me.loadData(data);
-        } else {
-            alert("Vui lòng chọn bản ghi để xóa!");
-        }
+        //if (selectedRow.length>0) {
+        //    data = data.filter(item => item["FixedAssetCategoryId"] !== selectedRow.data("recordId"));
+        //    me.grid.find("tbody").empty();
+        //    me.loadData(data);
+        //} else {
+        //    alert("Vui lòng chọn bản ghi để xóa!");
+        //}
+        var url = me.url;
+        debugger
+        $.ajax({
+            url: url + "/" + selectedRow.data("recordId"),
+            method: "DELETE"
+        }).done(function (res) {
+            if (res > 0) {
+                alert("xóa thành công");
+                me.loadAjaxData(url);
+            }
+        }).fail(function (res) {
+            alert("ko xóa được");
+        })
     }
 
 

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.BL.Services;
+using MISA.QLTSv2.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,10 +42,21 @@ namespace MISA.QLTSv2.API
 
             return Ok(_fixedAssetBL.GetEntities());
         }
+        /// <summary>
+        /// Xóa một bản ghi
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns></returns>
         [HttpDelete("{entityId}")]
         public IActionResult Delete(Guid entityId)
         {
             return Ok(_fixedAssetBL.Delete(entityId));
+        }
+
+        [HttpPost]
+        public IActionResult Insert([FromBody] FixedAsset entity)
+        {
+            return Ok(_fixedAssetBL.Insert(entity));
         }
     }
 }

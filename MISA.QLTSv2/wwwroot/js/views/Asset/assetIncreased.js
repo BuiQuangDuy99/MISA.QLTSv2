@@ -39,8 +39,8 @@ $(document).ready(function () {
 })
  
 class assetIncreased extends BaseGrid {
-    constructor(gridId) {
-        super(gridId);
+    constructor(gridId, entity) {
+        super(gridId, entity);
         this.initEvents();
     }
     initEvents() {
@@ -49,6 +49,9 @@ class assetIncreased extends BaseGrid {
         showTooltipElement($('button'));
         showTooltipElement($('td'));
     }
+    setUrl() {
+        this.url = 'https://localhost:44363/api/v1/FixedAsset';
+    }
     createFormDetail(formID, width, height) {
         var me = this;
         this.formDetail = new assetIncreasedForm(formID, width, height, me);
@@ -56,7 +59,7 @@ class assetIncreased extends BaseGrid {
 }
 
 
-var assetIncreasedGrid = new assetIncreased('#asset-grid');
+var assetIncreasedGrid = new assetIncreased('#asset-grid', "FixedAsset");
 
 // Biến config cho từng column trong bảng
 
