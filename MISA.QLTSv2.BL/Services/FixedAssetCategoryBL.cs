@@ -29,7 +29,6 @@ namespace MISA.QLTSv2.BL.Services
         /// <returns></returns>
         public int Delete(Guid entityId)
         {
-            
             return _fixedAssetCategoryDL.Delete(entityId);
         }
 

@@ -80,17 +80,17 @@ namespace MISA.QLTSv2.API
             return Ok(res);
         }
 
-        ///// <summary>
-        ///// Xóa bản ghi
-        ///// </summary>
-        ///// <param name="entityId">khóa chính bản ghi cần xóa</param>
-        ///// <returns>số bản ghi xóa thành công</returns>
-        ///// Author: DVVUONG (01/03/2021)
-        //[HttpDelete("{entityId}")]
-        //public IActionResult Delete(Guid entityId)
-        //{
-        //    var serviceResult = _baseService.Delete(entityId);
-        //    return Ok();
-        //}
+        /// <summary>
+        /// Xóa bản ghi
+        /// </summary>
+        /// <param name="entityId">khóa chính bản ghi cần xóa</param>
+        /// <returns>số bản ghi xóa thành công</returns>
+        /// Author: DVVUONG (01/03/2021)
+        [HttpDelete("{entityId}")]
+        public IActionResult Delete(Guid entityId)
+        {
+            var res = _fixedAssetCategoryBL.Delete(entityId);
+            return Ok(res);
+        }
     }
 }
