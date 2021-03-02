@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MISA.QLTSv2.BL.Entities;
-using MISA.QLTSv2.BL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +9,12 @@ using System.Threading.Tasks;
 namespace MISA.QLTSv2.API
 {
 
-    public class FixedAssetController : BaseEntityController<FixedAsset>
-    {
-        IFixedAssetService _fixedAssetService;
-        public FixedAssetController(IFixedAssetService fixedAssetService) : base(fixedAssetService)
+    public class FixedAssetController { 
+    
+       
+        public FixedAssetController()
         {
-            _fixedAssetService = fixedAssetService;
+      
         }
     }
 }

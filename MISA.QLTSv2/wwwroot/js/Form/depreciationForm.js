@@ -33,6 +33,7 @@ class depreciationForm extends baseForm {
         $('.btn-delete-all-row').off('click').click(function () {
             me.deleteAllRow();
         });
+        me.formatTd();
 
     }
 
@@ -43,7 +44,7 @@ class depreciationForm extends baseForm {
         let me = this,
             tr = $(`<tr>
                         <td class="text-alight-center"></td>
-                        <td></td>
+                        <td><input type="text" class="input-depreciation-sub-grid"></td>
                         <td></td>
                         <td class="text-alight-right"></td>
                         <td class="text-alight-center"></td>
@@ -58,7 +59,7 @@ class depreciationForm extends baseForm {
 
     /**
      * Hàm binding tự động STT
-     * Create
+     * CreatedBy:NDTUNG (2/3/2021)
      * */
     bindingSTT() {
         $('.depreciation-sub-grid tbody tr').each(function (index) {
@@ -70,6 +71,7 @@ class depreciationForm extends baseForm {
 
     /**
      * Hàm xóa một dòng khi nhấn click nút xóa trên dòng
+     * CreatedBy:NDTUNG (2/3/2021)
      */
     deleteRow(button) {
         $(button).parents('tr').remove();
@@ -98,4 +100,22 @@ class depreciationForm extends baseForm {
         me.depreciationForm.dialog('close');
     }
 
+    /**
+     * Hàm định dạng td của bảng trang form
+     * CreatedBy:NDTUNG (2/3/2021)
+     * */
+    formatTd() {
+        $('.depreciation-sub-grid tbody tr td').each(function () {
+            let dataType = $(this).attr('dataType');
+            switch (dataType) {
+                case "Money":
+                    let money = parseInt($(this).prop("textContent"));
+                    $(this).addClass('text-alight-right');
+                    $(this).empty();
+                    $(this).append(formatMoney(money));
+                    break;
+                default:
+            }
+        })
+    }
 }

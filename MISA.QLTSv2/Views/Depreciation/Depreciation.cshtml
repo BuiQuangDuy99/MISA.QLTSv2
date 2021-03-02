@@ -76,7 +76,7 @@
                         Ngày tính hao mòn
                     </div>
                     <div>
-                        <input fieldName="DateTime" class="input-date input-asset" type="date" />
+                        <input fieldName="PostedDate" class="input-date input-asset" dataType="Date" type="date" />
                     </div>
                 </div>
                 <div class="ml-4">
@@ -84,7 +84,7 @@
                         Số chứng từ
                     </div>
                     <div>
-                        <input fieldName="LicensiNo" class="input-text input-asset" maxlength="50" required />
+                        <input fieldName="RefNo" class="input-text input-asset" maxlength="50" dataType="Text" required />
                     </div>
                 </div>
             </div>
@@ -96,7 +96,7 @@
                     Diễn giải
                 </div>
                 <div>
-                    <textarea class="input-detail input-dictionary p-2" rows="2"></textarea>
+                    <textarea fieldName="JournalMemo" class="input-detail input-dictionary p-2" rows="2" dataType="Text" ></textarea>
                 </div>
 
             </div>
@@ -123,47 +123,47 @@
                     <tbody>
                         <tr>
                             <td class="text-alight-center">1</td>
-                            <td><input type="text" class="sss" value="3333" /></td>
+                            <td><input type="text" class="input-depreciation-sub-grid" value="3333" /></td>
                             <td></td>
-                            <td class="text-alight-right"></td>
+                            <td class="text-alight-right" dataType="Money" ></td>
                             <td class="text-alight-center"></td>
-                            <td class="text-alight-right"></td>
+                            <td class="text-alight-right" dataType="Money"></td>
                             <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
                         <tr>
                             <td class="text-alight-center">2</td>
-                            <td><input type="text" class="sss" value="3333" /></td>
+                            <td><input type="text" class="input-depreciation-sub-grid" value="3333" /></td>
                             <td></td>
-                            <td class="text-alight-right"></td>
+                            <td class="text-alight-right" dataType="Money"></td>
                             <td class="text-alight-center"></td>
-                            <td class="text-alight-right"></td>
+                            <td class="text-alight-right"dataType="Money"></td>
                             <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
                         <tr>
                             <td class="text-alight-center">3</td>
-                            <td><input type="text" class="sss" value="3333"/></td>
+                            <td><input type="text" class="input-depreciation-sub-grid" value=""/></td>
                             <td></td>
-                            <td class="text-alight-right"></td>
+                            <td class="text-alight-right"dataType="Money"></td>
                             <td class="text-alight-center"></td>
-                            <td class="text-alight-right"></td>
+                            <td class="text-alight-right" dataType="Money"></td>
                             <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
                         <tr>
                             <td class="text-alight-center">4</td>
-                            <td><input type="text" class="sss"  /></td>
+                            <td><input type="text" class="input-depreciation-sub-grid"/></td>
                             <td></td>
-                            <td class="text-alight-right"></td>
+                            <td class="text-alight-right" dataType="Money"></td>
                             <td class="text-alight-center"></td>
-                            <td class="text-alight-right"></td>
+                            <td class="text-alight-right " dataType="Money"></td>
                             <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
                         <tr>
                             <td class="text-alight-center">5</td>
-                            <td><input type="text" class="sss" /></td>
+                            <td><input type="text" class="input-depreciation-sub-grid" /></td>
                             <td></td>
-                            <td class="text-alight-right"></td>
+                            <td class="text-alight-right" dataType="Money"></td>
                             <td class="text-alight-center"></td>
-                            <td class="text-alight-right"></td>
+                            <td class="text-alight-right" dataType="Money"></td>
                             <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
                     </tbody>
@@ -174,7 +174,7 @@
             <div class=" col-12">
                 <div style="display:flex; padding-top:10px">
                     <button class="button button-depreciation btn-add-row">
-                        <div class="button-depreciation-icon btn-add-row-icon">+</div>
+                        <div class="button-depreciation-icon btn-add-row-icon"></div>
                         <div class="btn-content">Thêm dòng</div>
                     </button>
                     <button class="button button-depreciation btn-delete-all-row ml-4">

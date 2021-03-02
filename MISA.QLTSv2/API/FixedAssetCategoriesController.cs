@@ -30,13 +30,13 @@ namespace MISA.QLTSv2.API
         {
             try
             {
+            return Ok(_fixedAssetCategoryBL.GetEntities());
             }
             catch (Exception ex)
             {
-
+                return BadRequest(ex.Message);
             }
 
-            return Ok(_fixedAssetCategoryBL.GetEntities());
         }
 
         /// <summary>

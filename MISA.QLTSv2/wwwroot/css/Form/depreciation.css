@@ -31,6 +31,9 @@
         background: #555;
     }
 
+textarea{
+    resize:none !important;
+}
 .depreciation-sub-grid thead {
     background-color: !important;
     /* width: 100px !important; */
@@ -45,7 +48,7 @@
 }
 .depreciation-sub-grid tbody tr td {
     height: 35px !important;
-    padding: 0;
+    padding: 0 13px 0 13px;
     border: #e0e0e0 solid 1px !important;
 }
 .text-alight-center{
@@ -90,7 +93,7 @@
     margin-left: 8px;
 }
 .btn-add-row-icon {
-    background-image: url('/icon/lus-icon-blue-plus-icon-11563730393c5etlxssn5.png');
+    background-image: url('/icon/154313424_436685174069604_139532384885086985_n.png');
 }
 .btn-add-row {
     border: 1.5px solid #00abfe;
@@ -117,10 +120,11 @@
     color: #808080;
 }
 
-.depreciation-sub-grid input {
+.input-depreciation-sub-grid {
     border: none;
     outline: none !important;
     width: 100%;
     height: 100%;
-    padding-left: 10px;
+    padding:0 0 0 10px;
+
 }

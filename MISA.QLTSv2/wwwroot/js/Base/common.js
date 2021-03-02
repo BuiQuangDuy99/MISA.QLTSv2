@@ -70,12 +70,18 @@ function formatStringDate(date) {
  **@param {any} number số tiền
  */
 function formatMoney(number) {
-    try {
-        if (number != null) {
-            return number.toString().replace(/(\d)(?=(\d{3})+\b)/g, '$1.');
+    if (isNaN(number) == true) {
+        return "";
+    }
+    else {
+
+        try {
+            if (number != null) {
+                return number.toString().replace(/(\d)(?=(\d{3})+\b)/g, '$1.');
+            }
+            return 0;
+        } catch (e) {
         }
-        return 0;
-    } catch (e) {
         console.log(e);
     }
 
@@ -140,8 +146,8 @@ function hideTooltipElement(elements) {
         $(element).removeClass('border-red');
         $(element).removeAttr('title');
         $(element).tooltip({
-                items: $(this),
-                disabled: true,
-            })
+            items: $(this),
+            disabled: true,
         })
+    })
 }
