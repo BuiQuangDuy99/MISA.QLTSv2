@@ -45,6 +45,11 @@ namespace MISA.QLTSv2.BL.Services
         {
             return _departmentDL.Delete(entityId);
         }
+
+        public int Insert(Department department)
+        {
+            return _departmentDL.Insert(department);
+        }
         #endregion
     }
 }

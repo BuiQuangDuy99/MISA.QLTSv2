@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.BL.Services;
+using MISA.QLTSv2.Model.Entities;
 using System;
 
 namespace MISA.QLTSv2.API
@@ -66,6 +67,20 @@ namespace MISA.QLTSv2.API
 
             }
             return Ok(_departmentBL.Delete(entityId));
+        }
+
+
+        /// <summary>
+        /// Thêm mới bản ghi
+        /// </summary>
+        /// <param name="entity">object cần thêm mới</param>
+        /// <returns>số bản ghi thêm mới được</returns>
+        /// Author: DVVUONG (01/03/2021)
+        [HttpPost]
+        public IActionResult Post([FromBody] Department entity)
+        {
+            var res = _departmentBL.Insert(entity);
+            return Ok(res);
         }
         #endregion
     }

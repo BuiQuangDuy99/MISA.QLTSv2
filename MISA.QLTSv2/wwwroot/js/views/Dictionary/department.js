@@ -92,4 +92,4 @@ departmentGrid.createFormDetail("#department_dialog", 360);
 departmentGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-departmentGrid.loadAjaxData(url);
+departmentGrid.loadAjaxData('https://localhost:44363/api/v1/Department');

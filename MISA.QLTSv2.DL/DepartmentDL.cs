@@ -75,12 +75,13 @@ namespace MISA.QLTSv2.DL
         {
             var parameter = new DynamicParameters();
             // Add param id của bảng cần xóa:
-            parameter.Add("DepartmentId", entityId.ToString());
+            parameter.Add($"$DepartmentId", entityId.ToString());
             // Thực thi commandText:
             var res = _dbConnection.Execute($"Proc_DeleteDepartment", parameter, commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu:
             return res;
         }
+
 
         /// <summary>
         /// Hàm chuyển kiểu dữ liệu từ c# sang sql
