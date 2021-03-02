@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
-    $('#cbxDepartment').combobox();
+    $('#cboDepartment').autocomplete({
+        source: availableTags
+    })
 })
 
 
@@ -68,7 +70,14 @@ var conFigColum = [
         Index: 5
     }
 ];
+var availableTags = [
+    "Phòng nghiên cứu công nghệ",
+    "Phòng giáo dục",
+    "Phòng nhân sự",
+    "Phòng hành chính sự nghiệp",
+    "Phòng tài chính",
 
+];
 //Khởi tạo form danh sách phòng ban
 departmentGrid.createFormDetail("#department_dialog", 360);
 

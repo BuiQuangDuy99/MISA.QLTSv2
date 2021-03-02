@@ -23,7 +23,6 @@ namespace MISA.QLTSv2.DL
             _connectionString = connectionString;
             _dbConnection = new MySqlConnection(_connectionString);
             _mapper = mapper;
-
         }
         /// <summary>
         /// Lấy ra danh sách Tài sản

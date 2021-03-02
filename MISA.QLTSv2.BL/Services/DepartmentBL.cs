@@ -43,7 +43,6 @@ namespace MISA.QLTSv2.BL.Services
         /// Author: DVVUONG (02/03/2021)
         public int Delete(Guid entityId)
         {
-
             return _departmentDL.Delete(entityId);
         }
         #endregion
