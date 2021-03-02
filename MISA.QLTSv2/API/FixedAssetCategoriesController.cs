@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.BL.Services;
+using MISA.QLTSv2.Model.Entities;
 using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -52,17 +53,18 @@ namespace MISA.QLTSv2.API
             return Ok(entities);
         }
 
-        ///// <summary>
-        ///// Thêm mới bản ghi
-        ///// </summary>
-        ///// <param name="entity">object cần thêm mới</param>
-        ///// <returns>số bản ghi thêm mới được</returns>
-        ///// Author: DVVUONG (01/03/2021)
-        //[HttpPost]
-        //public IActionResult Post([FromBody] TEntity entity)
-        //{
-        //    return Ok();
-        //}
+        /// <summary>
+        /// Thêm mới bản ghi
+        /// </summary>
+        /// <param name="entity">object cần thêm mới</param>
+        /// <returns>số bản ghi thêm mới được</returns>
+        /// Author: DVVUONG (01/03/2021)
+        [HttpPost]
+        public IActionResult Post([FromBody] FACategory entity)
+        {
+            var res = _fixedAssetCategoryBL.Insert(entity);
+            return Ok(res);
+        }
 
         ///// <summary>
         ///// Chỉnh sửa thông tin bản ghi
