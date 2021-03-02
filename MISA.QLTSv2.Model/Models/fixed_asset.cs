@@ -11,14 +11,6 @@ namespace MISA.QLTSv2.Models
     /// createBy:NVTUYEN(01/03/2021)
     public class fixed_asset
     {
-        #region Declare
-        #endregion
-        #region Constructor
-        public fixed_asset()
-        {
-
-        }
-        #endregion
         #region properties
         /// <summary>
         /// Khóa chính
@@ -121,6 +113,7 @@ namespace MISA.QLTSv2.Models
         /// </summary>
         public DateTime? modified_date { get; set; }
         #endregion
+
         #region Method
         #endregion
     }

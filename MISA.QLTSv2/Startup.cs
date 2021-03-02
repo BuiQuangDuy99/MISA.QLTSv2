@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MISA.QLTSv2.Model.Entities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using MISA.QLTSv2.BL.Interfaces;
 using MISA.QLTSv2.DL;
 using MISA.QLTSv2.BL.Entities;
@@ -34,6 +37,14 @@ namespace MISA.QLTSv2
             {
                 mc.AddProfile(new MappingProfile());
             });
+
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                });
+
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);

@@ -1,9 +1,9 @@
-﻿using MISA.QLTSv2.BL.Enums;
+﻿using MISA.QLTSv2.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MISA.QLTSv2.BL.Entities
+namespace MISA.QLTSv2.Model.Entities
 {
     /// <summary>
     /// Class lưu kết quả truy vấn tầng BL trả về cho Web
@@ -21,12 +21,12 @@ namespace MISA.QLTSv2.BL.Entities
         /// <summary>
         /// Lời thông báo
         /// </summary>
-        public string Messenger { get; set; }
+        public string Messenger { get; set; } = "";
 
         /// <summary>
         /// MISACode của kết quả truy vấn
         /// </summary>
-        public MISACode MISACode { get; set; }
+        public MISACode MISACode { get; set; } = MISACode.Success;
         #endregion
     }
 }

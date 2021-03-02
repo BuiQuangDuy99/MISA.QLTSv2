@@ -183,7 +183,7 @@ class Grid {
             column.each(function () {
                 dataType = $(this).attr('dataType');
                 fieldName = $(this).attr('fieldName');
-                value = object[fieldName];
+                value = object[fieldName] || "";
                 td = me.addValueInTd(td, value, dataType);
                 td = me.addFormatTd(td, dataType);
                 td = td.attr("title", value);

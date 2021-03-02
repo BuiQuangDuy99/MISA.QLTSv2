@@ -160,18 +160,18 @@
     border-top-right-radius: 0 !important;
 }
 
-.ui-menu-item, .ui-menu-item > a {
+/*.ui-menu-item, .ui-menu-item > a {
     display: block;
 }
 
 
     .ui-menu-item a:hover {
-        background-color: #fff !important;
+        background-color: #57c7fd !important;
     }
 
     .ui-menu-item .ui-menu-item-wrapper.ui-state-active {
-        background: #808080 !important;
-        border: solid 1px transparent;  
+        background: #57c7fd !important;
+        border: solid 1px transparent;
         color: black;
     }
 
@@ -180,4 +180,4 @@
     padding: 3px 1em 3px .4em;
     background-color: #fff;
     padding-left: 15px;
-}
+}*/

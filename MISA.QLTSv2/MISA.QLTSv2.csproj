@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MISA.QLTSv2.BL\MISA.QLTSv2.BL.csproj" />
     <ProjectReference Include="..\MISA.QLTSv2.DL\MISA.QLTSv2.DL.csproj" />
+    <ProjectReference Include="..\MISA.QLTSv2.Model\MISA.QLTSv2.Model.csproj" />
   </ItemGroup>
 
 </Project>

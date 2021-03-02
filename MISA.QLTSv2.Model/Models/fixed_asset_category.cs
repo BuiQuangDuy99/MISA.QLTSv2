@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MISA.QLTSv2.BL.Models
+namespace MISA.QLTSv2.Model.Models
 {
     /// <summary>
     /// Loại tài sản
@@ -34,7 +34,7 @@ namespace MISA.QLTSv2.BL.Models
         /// <summary>
         /// ID loại tài sản cha
         /// </summary>
-        public Guid parent_id { get; set; }
+        public Guid? parent_id { get; set; }
         /// <summary>
         /// Loại tài sản này thuộc loại tài sản lớn hơn nào
         /// </summary>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MISA.QLTSv2.BL.Models
+namespace MISA.QLTSv2.Model.Models
 {
     /// <summary>
     /// Phòng ban

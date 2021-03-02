@@ -1,9 +1,7 @@
-﻿using MISA.QLTSv2.BL.Enums;
+﻿using MISA.QLTSv2.Model.Enums;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace MISA.QLTSv2.BL.Entities
+namespace MISA.QLTSv2.Model.Entities
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class Required : Attribute
@@ -88,6 +86,6 @@ namespace MISA.QLTSv2.BL.Entities
         /// <summary>
         /// Cờ sác định phương thức
         /// </summary>
-        public EntityState EntityState { get; set; } = EntityState.AddNew;
+        public EntityState EntityState { get; set; } = EntityState.Insert;
     }
 }

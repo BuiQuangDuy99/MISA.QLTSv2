@@ -12,21 +12,27 @@
      * CreatedBy: BQDUY(25/02/2021)
      * */
     initEvents() {
-        var me = this;
+        var me = this,
+            $toolbar = $(`${me.grid.data("toolbar")}`);
         super.initEvents();
-        $('#btn-add-dictionary').click(function () {
+
+        //find taats ca data-command cho từng button
+        //Gán sự kiện chung cho từng button
+        //Tạo hàm để override
+
+        $toolbar.find('#btn-add-dictionary').click(function () {
             me.formMode = "Add";
             if (me.formDetail) {
                 me.formDetail.show();
             }
         })
-        $('#btn-add-assetincreased').click(function () {
+        $toolbar.find('#btn-add-assetincreased').click(function () {
             me.formMode = "Add";
             if (me.formDetail) {
                 me.formDetail.show();
             }
         })
-        $('#btn-add-department').click(function () {
+        $toolbar.find('#btn-add-department').click(function () {
             me.formMode = "Add";
             if (me.formDetail) {
                 me.formDetail.show();
@@ -39,6 +45,8 @@
             dbClickRow();
         })
     }
+
+    //Hàm thực hiện data-command
 
     /**
      * Hàm thực hiện xóa một hàng trong bảng
@@ -75,9 +83,17 @@
      * */
     loadAjaxData() {
         var me = this;
-        if (data) {
-            me.loadData(data);
-        }
+
+        $.ajax({
+            url: 'https://localhost:44363/api/v1/FixedAssetCategories',
+            method: "GET"
+        }).done(function (res) {
+            if (res) {
+                me.loadData(res);
+            }
+        }).fail(function (res) {
+
+        })
     }
 
     /**
