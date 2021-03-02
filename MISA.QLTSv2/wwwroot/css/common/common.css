@@ -60,4 +60,6 @@ tr:hover .hide {
 
 select, textarea{
     padding-left: 15px;
+    resize: none;
+    font-family: Roboto !important;
 }

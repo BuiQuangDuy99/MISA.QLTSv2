@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.BL.Services;
+using MISA.QLTSv2.Model.Entities;
 using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -52,42 +53,44 @@ namespace MISA.QLTSv2.API
             return Ok(entities);
         }
 
-        ///// <summary>
-        ///// Thêm mới bản ghi
-        ///// </summary>
-        ///// <param name="entity">object cần thêm mới</param>
-        ///// <returns>số bản ghi thêm mới được</returns>
-        ///// Author: DVVUONG (01/03/2021)
-        //[HttpPost]
-        //public IActionResult Post([FromBody] TEntity entity)
-        //{
-        //    return Ok();
-        //}
+        /// <summary>
+        /// Thêm mới bản ghi
+        /// </summary>
+        /// <param name="entity">object cần thêm mới</param>
+        /// <returns>số bản ghi thêm mới được</returns>
+        /// Author: DVVUONG (01/03/2021)
+        [HttpPost]
+        public IActionResult Post([FromBody] FACategory entity)
+        {
+            var res = _fixedAssetCategoryBL.Insert(entity);
+            return Ok(res);
+        }
 
-        ///// <summary>
-        ///// Chỉnh sửa thông tin bản ghi
-        ///// </summary>
-        ///// <param name="entityId">khóa chính bản ghi cần chỉnh sửa</param>
-        ///// <param name="entity">thông tin object cần chỉnh sửa</param>
-        ///// <returns>số bản ghi chỉnh sửa được</returns>
-        ///// Author: DVVUONG (01/03/2021)
-        //[HttpPut("{entityId}")]
-        //public IActionResult Put([FromRoute] string entityId, [FromBody] TEntity entity)
-        //{
-        //    return Ok();
-        //}
+        /// <summary>
+        /// Chỉnh sửa thông tin bản ghi
+        /// </summary>
+        /// <param name="entityId">khóa chính bản ghi cần chỉnh sửa</param>
+        /// <param name="entity">thông tin object cần chỉnh sửa</param>
+        /// <returns>số bản ghi chỉnh sửa được</returns>
+        /// Author: DVVUONG (01/03/2021)
+        [HttpPut("{entityId}")]
+        public IActionResult Put([FromRoute] string entityId, [FromBody] FACategory entity)
+        {
+            var res = _fixedAssetCategoryBL.Update(entity);
+            return Ok(res);
+        }
 
-        ///// <summary>
-        ///// Xóa bản ghi
-        ///// </summary>
-        ///// <param name="entityId">khóa chính bản ghi cần xóa</param>
-        ///// <returns>số bản ghi xóa thành công</returns>
-        ///// Author: DVVUONG (01/03/2021)
-        //[HttpDelete("{entityId}")]
-        //public IActionResult Delete(Guid entityId)
-        //{
-        //    var serviceResult = _baseService.Delete(entityId);
-        //    return Ok();
-        //}
+        /// <summary>
+        /// Xóa bản ghi
+        /// </summary>
+        /// <param name="entityId">khóa chính bản ghi cần xóa</param>
+        /// <returns>số bản ghi xóa thành công</returns>
+        /// Author: DVVUONG (01/03/2021)
+        [HttpDelete("{entityId}")]
+        public IActionResult Delete(Guid entityId)
+        {
+            var res = _fixedAssetCategoryBL.Delete(entityId);
+            return Ok(res);
+        }
     }
 }

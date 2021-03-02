@@ -8,18 +8,18 @@
         <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
     </div>
     <div class="tool-bar-right">
-        <div class="test-tooltip">
-            <button id="btn-add-dictionary" class="button btn-add">Thêm</button>
+        <div class="test-tooltip"  >
+            <button class="button btn-add" CommandName="Add">Thêm</button>
         </div>
-        <div>
-            <button class="button btn-refresh" title="Làm mới">
+        <div >
+            <button class="button btn-refresh" CommandName="Refresh" title="Làm mới">
                 <div class="icon-refresh">
 
                 </div>
             </button>
         </div>
-        <div>
-            <button id="btn-remove-dictionary" class="button btn-remove" title="Xóa">
+        <div >
+            <button class="button btn-remove" CommandName="Delete" title="Xóa">
                 <div class="icon-remove ">
                 </div>
             </button>
@@ -57,7 +57,7 @@
                         Mã loại tài sản (*)
                     </div>
                     <div>
-                        <input class="input-text input-dictionary" fieldName="AssetTypeCode" required />
+                        <input class="input-text input-dictionary" fieldName="FixedAssetCategoryCode" required />
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                         Tên loại tài sản (*)
                     </div>
                     <div>
-                        <input class="input-text input-dictionary" fieldName="AssetTypeName" required />
+                        <input class="input-text input-dictionary" fieldName="FixedAssetCategoryName" required />
                     </div>
                 </div>
             </div>
@@ -79,8 +79,7 @@
                         Thuộc loại (*)
                     </div>
                     <div>
-                        <select style="width:265px" id="cbx-assetClass" DataType="Combobox" fieldName="AssetClassName" fieldValue="AssetClassId">
-                        </select>
+                        <input class="input-text input-dictionary" fieldName="ParentName"/>
                     </div>
                 </div>
             </div>
@@ -90,19 +89,7 @@
                         Nhóm tài sản
                     </div>
                     <div>
-                        <select style="width:294px" id="cbx-assetGroup" DataType="Combobox" fieldName="AssetGroupName" fieldValue="AssetGroupId">
-                            @*<option value="">-Select a number-</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                            <option value="4">Four</option>
-                            <option value="5">Five</option>
-                            <option value="6">Six</option>
-                            <option value="7">Seven</option>
-                            <option value="8">Eight</option>
-                            <option value="9">Nine</option>
-                            <option value="10">Ten</option>*@
-                        </select>
+                        <input class="input-text input-dictionary" fieldName="AssetGroupName"/>
                     </div>
                 </div>
             </div>
@@ -114,7 +101,7 @@
                         Tỷ lệ hao mòn
                     </div>
                     <div>
-                        <input class="input-text input-dictionary" fieldName="WearPercent" />
+                        <input class="input-text input-dictionary input-right" type="number" fieldName="DepreciationRate" />
                     </div>
                 </div>
             </div>
@@ -124,7 +111,7 @@
                         Số năm sử dụng
                     </div>
                     <div>
-                        <input class="input-text input-dictionary" fieldName="YearOfUse" dataType="Number" />
+                        <input class="input-text input-dictionary input-right" type="number" fieldName="LifeTime" dataType="Number" />
                     </div>
                 </div>
             </div>
@@ -132,7 +119,7 @@
         <div class="row m-row-content">
             <div class="col-12">
                 <div>Ghi chú</div>
-                <textarea class="input-detail input-dictionary" fieldName="Note"></textarea>
+                <textarea class="input-detail input-dictionary" fieldName="Description"></textarea>
             </div>
         </div>
     </div>
