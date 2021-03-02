@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MISA.QLTSv2.BL.Entities
+namespace MISA.QLTSv2.Model.Entities
 {
     /// <summary>
     /// Loại tài sản
     /// </summary>
     /// CreatedBy:NVTUYEN(01/03/2021)
-    public class FixedAssetCategory:BaseEntity
+    public class FACategory : BaseEntity
     {
         #region Declare
         #endregion
         #region Constructor
-        public FixedAssetCategory()
+        public FACategory()
         {
 
         }

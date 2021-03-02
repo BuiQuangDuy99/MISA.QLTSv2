@@ -1,59 +1,56 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using MISA.QLTSv2.BL.Services;
 using System;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MISA.QLTSv2.API
 {
-    /// <summary>
-    /// BaseController API
-    /// </summary>
-    /// <typeparam name="TEntity">Object Generic</typeparam>
-    /// Author: DVVUONG (01/03/2021)
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class BaseEntityController<TEntity> : ControllerBase
+    public class FixedAssetCategoriesController : ControllerBase
     {
-        #region Declare
-        #endregion
-
-        #region Constructor
-        public BaseEntityController()
+        string _connectionString;
+        FixedAssetCategoryBL _fixedAssetCategoryBL;
+        public FixedAssetCategoriesController(IConfiguration configuration, IMapper mapper)
         {
+            _connectionString = configuration.GetConnectionString("MISAQLTSv2ConnectionString");
+            _fixedAssetCategoryBL = new FixedAssetCategoryBL(_connectionString, mapper);
         }
-        #endregion
 
-        #region Method
-        ///// <summary>
-        ///// Lấy toàn bộ danh sách
-        ///// </summary>
-        ///// <returns>danh sách thỏa mãn</returns>
-        ///// Author: DVVUONG (01/03/2021)
-        //[HttpGet]
-        //public IActionResult Get()
-        //{
-        //    try
-        //    {
-        //    }
-        //    catch (Exception ex)
-        //    {
+        /// <summary>
+        /// Lấy toàn bộ danh sách
+        /// </summary>
+        /// <returns>danh sách thỏa mãn</returns>
+        /// Author: DVVUONG (01/03/2021)
+        [HttpGet]
+        public IActionResult Get()
+        {
+            try
+            {
+            }
+            catch (Exception ex)
+            {
 
-        //    }
+            }
 
-        //    var entities = _baseService.GetEntities();
-        //    return Ok(entities);
-        //}
+            return Ok(_fixedAssetCategoryBL.GetEntities());
+        }
 
-        ///// <summary>
-        ///// Lấy đối tượng theo khóa chính
-        ///// </summary>
-        ///// <param name="id">khóa chính</param>
-        ///// <returns>object có khóa chính thỏa mãn</returns>
-        ///// Author: DVVUONG (01/03/2021)
-        //[HttpGet("{entityId}")]
-        //public IActionResult Get(Guid entityId)
-        //{
-        //    var entities = _baseService.GetEntityById(entityId);
-        //    return Ok(entities);
-        //}
+        /// <summary>
+        /// Lấy đối tượng theo khóa chính
+        /// </summary>
+        /// <param name="id">khóa chính</param>
+        /// <returns>object có khóa chính thỏa mãn</returns>
+        /// Author: DVVUONG (01/03/2021)
+        [HttpGet("{entityId}")]
+        public IActionResult Get(Guid entityId)
+        {
+            var entities = _fixedAssetCategoryBL.GetEntityById(entityId);
+            return Ok(entities);
+        }
 
         ///// <summary>
         ///// Thêm mới bản ghi
@@ -92,7 +89,5 @@ namespace MISA.QLTSv2.API
         //    var serviceResult = _baseService.Delete(entityId);
         //    return Ok();
         //}
-        #endregion
-
     }
 }

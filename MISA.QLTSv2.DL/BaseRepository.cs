@@ -1,19 +1,15 @@
-﻿using Dapper;
+﻿using AutoMapper;
+using Dapper;
 using Microsoft.Extensions.Configuration;
-using MISA.QLTSv2.BL.Entities;
-using MISA.QLTSv2.BL.Enums;
-using MISA.QLTSv2.BL.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 
 namespace MISA.QLTSv2.DL
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseEntity
+    public class BaseRepository<TEntity> 
     {
 
         #region DECLARE
@@ -21,17 +17,26 @@ namespace MISA.QLTSv2.DL
         string _connectionString = string.Empty;
         protected IDbConnection _dbConnection = null;
         protected string _tableName;
+
+        private readonly IMapper _mapper;
+
         #endregion
         #region Constructor
-        public BaseRepository(IConfiguration configuration)
+        public BaseRepository(IConfiguration configuration, IMapper mapper)
         {
             _configuration = configuration;
             _connectionString = _configuration.GetConnectionString("MISAQLTSv2ConnectionString");
             _dbConnection = new MySqlConnection(_connectionString);
             _tableName = typeof(TEntity).Name;
+            _mapper = mapper;
         }
         #endregion
         #region Method
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public int Insert(TEntity entity)
         {
             // Build thành đối tượng để lưu vào database:
@@ -42,6 +47,11 @@ namespace MISA.QLTSv2.DL
             return rowAffects;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns></returns>
         public int Delete(Guid entityId)
         {
             var parameterEntityId = new DynamicParameters();
@@ -53,14 +63,26 @@ namespace MISA.QLTSv2.DL
             return res;
         }
 
-        public IEnumerable<TEntity> GetEntities()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<TEntity> GetEntities(Type type)
         {
+            var models = new List<TEntity>();
+
             // Thực thi commandText:
-            var entities = _dbConnection.Query<TEntity>($"Proc_Select{_tableName}Datas", commandType: CommandType.StoredProcedure);
-            // Trả về dữ liệu: 
+            var entities = _dbConnection.Query<TEntity>($"Proc_SelectFACategoryDatas", null, commandType: CommandType.StoredProcedure);
+            
+            // Trả về dữ liệu:
             return entities;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns></returns>
         public TEntity GetEntityById(Guid entityId)
         {
             var parameterEntityId = new DynamicParameters();
@@ -71,6 +93,11 @@ namespace MISA.QLTSv2.DL
             return res;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public int Update(TEntity entity)
         {
             // Build thành đối tượng để lưu vào database:
@@ -106,18 +133,33 @@ namespace MISA.QLTSv2.DL
             return parameters;
         }
 
-        public TEntity GetEntityByProperty(TEntity entity, PropertyInfo property)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="property"></param>
+        /// <returns></returns>
+        public TEntity GetEntityByProperty(TEntity entity, System.Reflection.PropertyInfo property)
         {
             var propertyName = property.Name;
             var propertyValue = property.GetValue(entity);
             var keyValue = entity.GetType().GetProperty($"{_tableName}Id").GetValue(entity);
             var query = string.Empty;
-            if (entity.EntityState == EntityState.AddNew)
-                query = $"SELECT * FROM {_tableName} WHERE {propertyName}='{propertyValue}'";
-            else if (entity.EntityState == EntityState.Update)
-                query = $"SELECT * FROM {_tableName} WHERE {propertyName}='{propertyValue}' AND {_tableName}Id <> '{keyValue}'";
-            else
-                return null;
+            //if (entity.EntityState == EntityState.Insert)
+            //{
+            //    query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}'";
+            //}
+            //else if (entity.EntityState == EntityState.Update)
+            //{
+            //    query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}' AND {_tableName}Id <> '{keyValue}'";
+            //}
+            //else if (entity.EntityState == EntityState.Select)
+            //{
+            //    query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}'";
+            //}
+            //else {
+            //    return null;
+            //}
             var entityReturn = _dbConnection.Query<TEntity>(query, commandType: CommandType.Text).FirstOrDefault();
             return entityReturn;
         }

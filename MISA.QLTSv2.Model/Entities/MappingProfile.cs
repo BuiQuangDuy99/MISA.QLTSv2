@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using MISA.QLTSv2.BL.Models;
+using MISA.QLTSv2.Model.Models;
 using MISA.QLTSv2.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MISA.QLTSv2.BL.Entities
+namespace MISA.QLTSv2.Model.Entities
 {
     /// <summary>
     /// Auto mapping các đối tượng
@@ -15,10 +15,15 @@ namespace MISA.QLTSv2.BL.Entities
     {
         public MappingProfile()
         {
+            SourceMemberNamingConvention = new LowerUnderscoreNamingConvention();
+            DestinationMemberNamingConvention = new PascalCaseNamingConvention();
+
             CreateMap<fixed_asset, FixedAsset>();
             CreateMap<FixedAsset, fixed_asset>();
-            CreateMap<fixed_asset_category, FixedAssetCategory>();
-            CreateMap<FixedAssetCategory, fixed_asset_category>();
+
+            CreateMap<fixed_asset_category, FACategory>();
+            CreateMap<FACategory, fixed_asset_category>();
+
             CreateMap<department, Department>();
             CreateMap<Department, department>();
         }

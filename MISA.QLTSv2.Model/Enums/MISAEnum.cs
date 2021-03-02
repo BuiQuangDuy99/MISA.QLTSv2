@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MISA.QLTSv2.BL.Enums
+namespace MISA.QLTSv2.Model.Enums
 {
     /// <summary>
     /// MISACode để xác định trạng thái của việc validate
@@ -27,7 +27,8 @@ namespace MISA.QLTSv2.BL.Enums
     /// </summary>
     public enum EntityState
     {
-        AddNew = 1,
+        Select = 0,
+        Insert = 1,
         Update = 2,
         Delete = 3
     }

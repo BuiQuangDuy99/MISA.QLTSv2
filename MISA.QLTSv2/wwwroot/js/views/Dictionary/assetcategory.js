@@ -1,20 +1,9 @@
-﻿$(document).ready(function () {
-    $('#cbx-assetGroup').combobox();
-    $('#cbx-assetClass').combobox();
-    var day = new Date("2020-10-01");
-    console.log(day);
-    var date = formatDate("04-29-2020", 'DD/MM/YYYY');
-    console.log(date);
-})
-
+﻿
 //Khởi tạo bảng và form màn loại tài sản
 class Dictionary extends BaseGrid {
 
     constructor(gridId) {
         super(gridId);
-
-
-
         this.initEvents();
     }
 
@@ -52,19 +41,19 @@ var conFigColum = [
     },
     {
         DataType: "text",
-        FieldName: "AssetTypeCode",
+        FieldName: "FixedAssetCategoryCode",
         FieldText: "Mã Loại Tài Sản",
         Index: 2
     },
     {
         DataType: "text",
-        FieldName: "AssetTypeName",
+        FieldName: "FixedAssetCategoryName",
         FieldText: "Tên Loại Tài Sản",
         Index: 3
     },
     {
         DataType: "text",
-        FieldName: "AssetClassName",
+        FieldName: "ParentName",
         FieldText: "Thuộc loại",
         Index: 4
     },
@@ -76,19 +65,19 @@ var conFigColum = [
     },
     {
         DataType: "percent",
-        FieldName: "WearPercent",
+        FieldName: "DepreciationRate",
         FieldText: "Tỷ Lệ Hao Mòn (%)",
         Index: 6
     },
     {
         DataType: "year",
-        FieldName: "YearOfUse",
+        FieldName: "LifeTime",
         FieldText: "Số Năm Sử Dụng",
         Index: 7
     },
     {
         DataType: "text",
-        FieldName: "Note",
+        FieldName: "Description",
         FieldText: "Ghi Chú",
         Index: 8
     }
@@ -101,5 +90,5 @@ dictionaryGrid.createFormDetail("#dialog_dictionary", 700, 500);
 dictionaryGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-dictionaryGrid.loadData(dictionary);
+dictionaryGrid.loadAjaxData();
 

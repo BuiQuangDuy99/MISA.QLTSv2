@@ -3,7 +3,7 @@
     ViewData["Title"] = "LayoutView";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="tool-bar">
+<div class="tool-bar" id="tbGrdFACategory">
     <div class="filter-bar">
         <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
     </div>
@@ -28,13 +28,11 @@
 </div>
 <div class="grid">
     <div class="grid-default">
-        <table cellspacing="0" id="gridTest">
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
+        <table cellspacing="0" 
+               id="gridTest"
+               data-toolbar="#tbGrdFACategory">
+            <thead></thead>
+            <tbody></tbody>
         </table>
     </div>
 </div>
