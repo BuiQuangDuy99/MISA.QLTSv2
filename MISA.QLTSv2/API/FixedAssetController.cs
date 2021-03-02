@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.BL.Services;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,10 +32,10 @@ namespace MISA.QLTSv2.API
         public IActionResult Get()
         {
             try
-            {
+    {
             }
             catch (Exception ex)
-            {
+        {
 
             }
 
