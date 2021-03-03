@@ -70,12 +70,18 @@ function formatStringDate(date) {
  **@param {any} number số tiền
  */
 function formatMoney(number) {
-    try {
-        if (number != null) {
-            return number.toString().replace(/(\d)(?=(\d{3})+\b)/g, '$1.');
+    if (isNaN(number) == true) {
+        return "";
+    }
+    else {
+
+        try {
+            if (number != null) {
+                return number.toString().replace(/(\d)(?=(\d{3})+\b)/g, '$1.');
+            }
+            return 0;
+        } catch (e) {
         }
-        return 0;
-    } catch (e) {
         console.log(e);
     }
 
@@ -100,7 +106,7 @@ function showAlertWarring(msg, msgLength) {
 }
 /**
  * Hiển thị hộp thoại xác nhận
- * CreatedBy: NDTUNG(4/2/2021)
+ * CreatedBy: NDTUNG(3/2/2021)
  * */
 function showAlertConfirm(Messenget) {
     $('.warring').show();
@@ -110,7 +116,7 @@ function showAlertConfirm(Messenget) {
 }
 /**
  * Đóng hộp thoại cảnh báo
- * CreatedBy: NDTUNG(4/2/2021)
+ * CreatedBy: NDTUNG(3/2/2021)
  * */
 function closeWarring() {
     $('.warring').hide();
@@ -118,7 +124,7 @@ function closeWarring() {
 }
 
 /**
- * Hàm hiện thị gợi ý chức năng cho button
+ * Hàm hiện thị tooltip
  * @param {any} element đối tượng cần hiện thị
  * CreatedBy: BQDUY(24/02/2021)
  */
@@ -128,5 +134,59 @@ function showTooltipElement(elements) {
             content: $(this).attr('title'),
             track: true
         })
-    }) 
+    })
+}
+/**
+ * Hàm ẩn thị tooltip
+ * @param {any} element đối tượng cần ẩn
+ * CreatedBy: BQDUY(24/02/2021)
+ */
+function hideTooltipElement(elements) {
+    $.each(elements, function (index, element) {
+        $(element).removeClass('border-red');
+        $(element).removeAttr('title');
+        $(element).tooltip({
+            items: $(this),
+            disabled: true,
+        })
+    })
+}
+
+/**
+ * Hiển thị hộp thoại cảnh báo
+ * Author: Nguyen Dang Tung(2/3/2021)
+ * */
+function showAlertWarring(msg, msgLength) {
+    $('.warring').show();
+    $('.warring-notify').empty();
+    if (!msgLength)
+        $('.warring-notify').text(msg);
+    else
+        for (var i = 0; i < msgLength; i++) {
+            var div = $(`<div>- ` + msg[i] + `</div>`);
+            $('.warring-notify').append(div);
+        }
+    $('#btn-yes-warring,#btn-no-warring').hide();
+    $('#btn-ok-warring').show();
+}
+/**
+ * Hiển thị hộp thoại xác nhận
+ * Author: Nguyen Dang Tung(2/3/2021)
+ * */
+function showAlertConfirm(Messenget) {
+    $('.warring').show();
+    $('.warring-notify').text(Messenget);
+    $('#btn-ok-warring').hide();
+    $('#btn-yes-warring, #btn-no-warring').show();
+
+}
+
+/**
+ * Đóng hộp thoại cảnh báo
+ * Author: Nguyen Dang Tung(2/3/2021)
+ * */
+function closeWarring() {
+    $('.warring').hide();
+    //$('#tbListData tbody tr').removeClass("row-selected");
+    //setDisabled();
 }
