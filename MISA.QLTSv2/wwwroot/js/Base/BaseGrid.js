@@ -36,7 +36,7 @@ class BaseGrid extends Grid {
                     me.edit();
                     break;
                 case "Delete":
-                    me.delete();
+                    me.confirmDelete();
                     break;
                 case "Save":
                     me.save();
@@ -46,11 +46,10 @@ class BaseGrid extends Grid {
             }
         });
 
-        //$('#btn-remove-dictionary').off('click').on('click', me.deleteRow.bind(me));
-        //$('#btn-remove-department').off('click').on('click', me.deleteRow.bind(me));
-        //$('#btn-change').click(function () {
-        //    dbClickRow();
-        //})
+        $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
+        $('#btn-yes-warring').off('click').click(function () {
+            me.delete()
+        });
     }
 
     //Hàm thực hiện data-command
@@ -64,6 +63,15 @@ class BaseGrid extends Grid {
         if (me.formDetail) {
             me.formDetail.show();
         }
+    }
+
+    /**
+     * Lấy ra câu thông báo khi nhấn nút Xóa
+     * Author: Nguyen Dang Tung(3/2/2021)
+     * */
+    confirmDelete() {
+        var msg = "Bạn có chắc chắn muốn xóa không?";
+        showAlertConfirm(msg);
     }
 
     /**
@@ -86,7 +94,7 @@ class BaseGrid extends Grid {
             method: "DELETE"
         }).done(function (res) {
             if (res > 0) {
-                alert("xóa thành công");
+                showAlertWarring("Xóa thành công");
                 me.loadAjaxData(url);
             }
         }).fail(function (res) {

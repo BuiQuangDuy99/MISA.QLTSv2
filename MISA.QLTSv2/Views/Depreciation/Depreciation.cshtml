@@ -1,0 +1,203 @@
+﻿
+@{
+    ViewData["ParentTitle"] = "Tài sản";
+    ViewData["ChildTitle"] = "Tính hao mòn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="tool-bar">
+    <div class="filter-bar">
+        <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
+    </div>
+    <div class="tool-bar-right">
+        <div>
+            <button class="button btn-add" id="btn-add-assetincreased">Thêm</button>
+        </div>
+        <div>
+            <button class="button btn-refresh" title="Làm mới">
+                <div class="icon-refresh">
+
+                </div>
+            </button>
+        </div>
+        <div>
+            <button class="button btn-remove" title="Xóa">
+                <div class="icon-remove ">
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="grid">
+    <div class="grid-default">
+        <table cellspacing="0" id="depreciation-grid">
+            <thead>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="menu">
+    <p>Option 1</p>
+    <p>Option 2</p>
+</div>
+<div class="footer-layout">
+    <div>
+        Tổng số tài sản: 1.015
+    </div>
+    <div class="footer-right">
+        Tổng nguyên giá: 1.546.354.789
+    </div>
+</div>
+
+<div id="dialog_depreciation" class="dialog_depreciation" title="Ghi tăng tài sản">
+    <div class="container-fluid">
+        <div class="row dialog-header">
+            <div class="col-8">
+                Thêm chứng từ tính hao mòn
+            </div>
+            <div class="col-4 header-toolbar">
+                <button class="btn-help button">
+                    <div class="icon-help">
+
+                    </div>
+                </button>
+                <button class="btn-close button" id="btn-close">
+                    <div class="icon-close">
+
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col col-12 content-items" style="display:flex">
+                <div>
+                    <div class="text-header">
+                        Ngày tính hao mòn
+                    </div>
+                    <div>
+                        <input fieldName="PostedDate" class="input-date input-asset" dataType="Date" type="date" />
+                    </div>
+                </div>
+                <div class="ml-4">
+                    <div class="text-header  ">
+                        Số chứng từ
+                    </div>
+                    <div>
+                        <input fieldName="RefNo" class="input-text input-asset" maxlength="50" dataType="Text" required />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class=" col-12">
+
+                <div>
+                    Diễn giải
+                </div>
+                <div>
+                    <textarea fieldName="JournalMemo" class="input-detail input-dictionary p-2" rows="2" dataType="Text" ></textarea>
+                </div>
+
+            </div>
+        </div>
+        <div class="row depreciation-header">
+            <div class="col-8">
+                Danh sách tài sản
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class=" col-12" style="height:212px;overflow-y: auto">
+                <table id="depreciation-sub-grid" class="depreciation-sub-grid ">
+                    <thead>
+                        <tr>
+                            <th style="width:40px" class="text-alight-center" title="Số thứ tự">STT</th>
+                            <th style="width:89px">Mã tài sản</th>
+                            <th style="width:125px">Tên tài sản</th>
+                            <th style="width:140px" class="text-alight-right">Nguyên giá</th>
+                            <th style="width:121px" class="text-alight-center" title="Tỉ lệ hao mòn năm">Tỉ lệ HM năm (%)</th>
+                            <th style="width:120px" class="text-alight-right">Số tiền</th>
+                            <th style="width:40px"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-alight-center">1</td>
+                            <td><input type="text" class="input-depreciation-sub-grid" value="3333" /></td>
+                            <td></td>
+                            <td class="text-alight-right" dataType="Money" ></td>
+                            <td class="text-alight-center"></td>
+                            <td class="text-alight-right" dataType="Money"></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+                        </tr>
+                        <tr>
+                            <td class="text-alight-center">2</td>
+                            <td><input type="text" class="input-depreciation-sub-grid" value="3333" /></td>
+                            <td></td>
+                            <td class="text-alight-right" dataType="Money"></td>
+                            <td class="text-alight-center"></td>
+                            <td class="text-alight-right"dataType="Money"></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+                        </tr>
+                        <tr>
+                            <td class="text-alight-center">3</td>
+                            <td><input type="text" class="input-depreciation-sub-grid" value=""/></td>
+                            <td></td>
+                            <td class="text-alight-right"dataType="Money"></td>
+                            <td class="text-alight-center"></td>
+                            <td class="text-alight-right" dataType="Money"></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+                        </tr>
+                        <tr>
+                            <td class="text-alight-center">4</td>
+                            <td><input type="text" class="input-depreciation-sub-grid"/></td>
+                            <td></td>
+                            <td class="text-alight-right" dataType="Money"></td>
+                            <td class="text-alight-center"></td>
+                            <td class="text-alight-right " dataType="Money"></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+                        </tr>
+                        <tr>
+                            <td class="text-alight-center">5</td>
+                            <td><input type="text" class="input-depreciation-sub-grid" /></td>
+                            <td></td>
+                            <td class="text-alight-right" dataType="Money"></td>
+                            <td class="text-alight-center"></td>
+                            <td class="text-alight-right" dataType="Money"></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class=" col-12">
+                <div style="display:flex; padding-top:10px">
+                    <button class="button button-depreciation btn-add-row">
+                        <div class="button-depreciation-icon btn-add-row-icon"></div>
+                        <div class="btn-content">Thêm dòng</div>
+                    </button>
+                    <button class="button button-depreciation btn-delete-all-row ml-4">
+                        <div class="button-depreciation-icon btn-delete-all-row-icon"></div>
+                        <div class="btn-content">Xóa hết dòng</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog-footer">
+        <div class="footer-left">
+            <button class="button btn-cancel" id="btn-cancel">Hủy</button>
+        </div>
+        <div class="footer-right">
+            <button id="btn-save" class="button btn-add">Lưu</button>
+        </div>
+    </div>
+
+</div>
+@section scripts{
+    <script src="~/js/Form/depreciationForm.js"></script>
+    <script src="~/js/views/Depreciation/depreciation.js"></script>
+}
+

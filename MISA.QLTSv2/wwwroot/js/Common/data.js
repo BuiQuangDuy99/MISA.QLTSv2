@@ -285,3 +285,43 @@ var assetClass =
             "AssetClassName": "Tài sản cố định đặc thù"
         }
     ]
+
+var deprectation  = 
+    [
+        {
+            "STT": 1,
+            "Id": "93e6c1b2-87de-45a1-aa61-f6389ef803a9",
+            "DateTime": "04-04-2021",
+            "depreciation_no": "TS85462",
+            "Explain": "Đây là ghi chú tự động",
+            "Price": 352342444,
+            "Function": ""
+        },
+        {
+            "STT": 2,
+            "Id": "93e6c1b2-87de-45a1-aa61-f6389ef803a9",
+            "DateTime": "04-04-2021",
+            "depreciation_no": "TS85462",
+            "Explain": "Đây là ghi chú tự động",
+            "Price": 352342444,
+            "Function": ""
+        },
+        {
+            "STT": 3,
+            "Id": "93e6c1b2-87de-45a1-aa61-f6389ef803a9",
+            "DateTime": "04-04-2021",
+            "depreciation_no": "TS85462",
+            "Explain": "Đây là ghi chú tự động",
+            "Price": 352342444,
+            "Function": ""
+        },
+        {
+            "STT": 4,
+            "Id": "93e6c1b2-87de-45a1-aa61-f6389ef803a9",
+            "DateTime": "04-04-2021",
+            "depreciation_no": "TS85462",
+            "Explain": "Đây là ghi chú tự động",
+            "Price": 352342444,
+            "Function": ""
+        }
+    ]

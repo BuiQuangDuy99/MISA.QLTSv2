@@ -2,6 +2,7 @@
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.Model.Entities;
+using MISA.QLTSv2.Model.Enums;
 using MISA.QLTSv2.Model.Models;
 using MySql.Data.MySqlClient;
 using System;
@@ -81,13 +82,12 @@ namespace MISA.QLTSv2.DL
         public FACategory GetEntityById(Guid entityId)
         {
             var parameterEntityId = new DynamicParameters();
-            var tableName = typeof(FACategory).Name;
             // Add param id của đối tượng cần lấy dữ liệu:
-            parameterEntityId.Add($"{tableName}Id", entityId.ToString());
+            parameterEntityId.Add($"$FixedAssetCategoryId", entityId.ToString());
 
             // Thực thi commandText:
-            var res = _dbConnection.QueryFirst<FACategory>($"Proc_Select{tableName}ById", parameterEntityId, commandType: CommandType.StoredProcedure);
-            return res;
+            var res = _dbConnection.QueryFirst<fixed_asset_category>($"Proc_SelectFACategoryById", parameterEntityId, commandType: CommandType.StoredProcedure);
+            return _mapper.Map<FACategory>(res);
         }
 
         /// <summary>
@@ -139,7 +139,20 @@ namespace MISA.QLTSv2.DL
         public FACategory GetEntityByProperty(FACategory entity,System.Reflection.PropertyInfo property)
         {
             var propertyValue = property.GetValue(entity);
-            string query = $"SELECT * FROM fixed_asset_category WHERE fixed_asset_category_code = '{propertyValue}'";
+            var keyValue = entity.GetType().GetProperty($"FixedAssetCategoryId").GetValue(entity);
+            var query = string.Empty;
+            if(entity.EntityState == EntityState.Insert)
+            {
+                query = $"SELECT * FROM fixed_asset_category WHERE fixed_asset_category_code = '{propertyValue}'";
+            } 
+            else if (entity.EntityState == EntityState.Update)
+            {
+                query = $"SELECT * FROM fixed_asset_category WHERE fixed_asset_category_code = '{propertyValue}' AND fixed_asset_category_id <> '{keyValue}'";
+            }
+            else
+            {
+                return null;
+            }
             var entityReturn = _dbConnection.Query<fixed_asset_category>(query, commandType: CommandType.Text).FirstOrDefault();
             return _mapper.Map<FACategory>(entityReturn);
         }
