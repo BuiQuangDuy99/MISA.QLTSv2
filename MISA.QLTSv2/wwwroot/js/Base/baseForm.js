@@ -26,8 +26,6 @@ class baseForm {
         this.form.find('input').click(function () { $(this).select(); });
         this.form.find("input").blur(this.checkStatusInput);
         this.form.find("input").keyup(this.checkStatusInput);
-        //this.form.find("input").blur(this.checkInputNumber.bind(this));
-        //this.form.find("input").keyup(this.checkInputNumber.bind(this));
         this.form.find("input[DataType='Money'],input[DataType='Number']").on("keypress", function () {
             if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
                 event.preventDefault();
@@ -36,7 +34,6 @@ class baseForm {
                 $("input[DataType='Money']").keyup(this.formatPrice)
             }
         }.bind(this));
-
 
     }
 

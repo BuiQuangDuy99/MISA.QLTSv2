@@ -12,11 +12,11 @@ namespace MISA.QLTSv2.API
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class FixedAssetCategoriesController : ControllerBase
+    public class FACategoriesController : ControllerBase
     {
         string _connectionString;
         FixedAssetCategoryBL _fixedAssetCategoryBL;
-        public FixedAssetCategoriesController(IConfiguration configuration, IMapper mapper)
+        public FACategoriesController(IConfiguration configuration, IMapper mapper)
         {
             _connectionString = configuration.GetConnectionString("MISAQLTSv2ConnectionString");
             _fixedAssetCategoryBL = new FixedAssetCategoryBL(_connectionString, mapper);
