@@ -238,7 +238,21 @@ class baseForm {
             }).done(function (res) {
                 me.closeForm();
                 me.jsCaller.loadAjaxData(me.getApiUrl);
-                
+
+            }).fail(function (res) {
+
+            })
+        } else if (jsCaller.formMode == "edit") {
+            var idSelected = me.jsCaller.grid.find(".selected-row").data("recordId");
+            $.ajax({
+                url: url + '/' + idSelected,
+                method: "PUT",
+                data: JSON.stringify(data),
+                contentType: 'application/json'
+            }).done(function (res) {
+                me.closeForm();
+                me.jsCaller.loadAjaxData(me.getApiUrl);
+
             }).fail(function (res) {
 
             })
@@ -296,7 +310,9 @@ class baseForm {
             //}
 
             data[fieldName] = me.getDataInput($(this), dataType);
-
+            if (fieldName == me.jsCaller.entity + "Id") {
+                data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
+            }
         });
         return data;
     }
