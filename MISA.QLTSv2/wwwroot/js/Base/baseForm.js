@@ -1,4 +1,4 @@
-﻿
+
 //-----------------Form-----------------------------
 class baseForm {
     ///constructor
@@ -236,7 +236,9 @@ class baseForm {
                 data: JSON.stringify(data),
                 contentType: 'application/json'
             }).done(function (res) {
-                res.
+                me.closeForm();
+                me.jsCaller.loadAjaxData(me.getApiUrl);
+                
             }).fail(function (res) {
 
             })
@@ -308,7 +310,7 @@ class baseForm {
         if (isValid) {
             var data = me.getData();
             me.saveChangeData(data);
-            me.closeForm();
+            
         }
     }
 }

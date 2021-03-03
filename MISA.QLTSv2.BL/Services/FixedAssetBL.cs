@@ -57,6 +57,7 @@ namespace MISA.QLTSv2.BL.Services
         /// createdBy:NVTUYEN(02/03/2021)
         public ServiceResult Insert(FixedAsset entity)
         {
+            entity.EntityState = EntityState.Insert;
             var isValid = Validate(entity);
 
             if (isValid == true)
@@ -79,7 +80,7 @@ namespace MISA.QLTSv2.BL.Services
         /// CreatedBy:NVTUYEN(02/03/2021)
         public ServiceResult Update(FixedAsset entity)
         {
-            //entity.EntityState = Enums.EntityState.Update;
+            entity.EntityState = EntityState.Update;
             var isValid = Validate(entity);
             if (isValid == true)
             {

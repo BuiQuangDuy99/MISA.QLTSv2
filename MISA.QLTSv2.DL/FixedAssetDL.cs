@@ -2,6 +2,7 @@
 using AutoMapper.Configuration;
 using Dapper;
 using MISA.QLTSv2.Model.Entities;
+using MISA.QLTSv2.Model.Enums;
 using MISA.QLTSv2.Models;
 using MySql.Data.MySqlClient;
 using System;
@@ -137,7 +138,20 @@ namespace MISA.QLTSv2.DL
         public FixedAsset GetEntityByProperty(FixedAsset entity, System.Reflection.PropertyInfo property)
         {
             var propertyValue = property.GetValue(entity);
-            string query = $"SELECT * FROM fixed_asset WHERE fixed_asset_code = '{propertyValue}'";
+            var keyValue = entity.GetType().GetProperty($"FixedAssetId").GetValue(entity);
+            var query = string.Empty;
+            if (entity.EntityState == EntityState.Insert)
+            {
+                query = $"SELECT * FROM fixed_asset WHERE fixed_asset_code = '{propertyValue}'";
+            }
+            else if (entity.EntityState == EntityState.Update)
+            {
+                query = $"SELECT * FROM fixed_asset WHERE fixed_asset_code = '{propertyValue}' AND fixed_asset_id <> '{keyValue}'";
+            }
+            else
+            {
+                return null;
+            }
             var entityReturn = _dbConnection.Query<fixed_asset>(query, commandType: CommandType.Text).FirstOrDefault();
             return _mapper.Map<FixedAsset>(entityReturn);
         }
