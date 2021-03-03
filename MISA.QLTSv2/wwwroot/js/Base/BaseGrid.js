@@ -50,12 +50,6 @@ class BaseGrid extends Grid {
         $('#btn-yes-warring').off('click').click(function () {
             me.delete()
         });
-            //$('#btn-remove-dictionary').off('click').on('click', me.deleteRow.bind(me));
-            //$('#btn-remove-department').off('click').on('click', me.deleteRow.bind(me));
-            //$('#btn-change').click(function () {
-            //    dbClickRow();
-            //})
-
     }
 
     //Hàm thực hiện data-command
@@ -76,7 +70,6 @@ class BaseGrid extends Grid {
      * Author: Nguyen Dang Tung(3/2/2021)
      * */
     confirmDelete() {
-        //console.log(recordCode);
         var msg = "Bạn có chắc chắn muốn xóa không?";
         showAlertConfirm(msg);
     }

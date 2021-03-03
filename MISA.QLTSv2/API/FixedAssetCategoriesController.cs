@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.BL.Services;
 using MISA.QLTSv2.Model.Entities;
+using MISA.QLTSv2.Model.Enums;
 using System;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -77,7 +78,14 @@ namespace MISA.QLTSv2.API
         public IActionResult Put([FromRoute] string entityId, [FromBody] FACategory entity)
         {
             var res = _fixedAssetCategoryBL.Update(entity);
-            return Ok(res);
+            if (res.MISACode == MISACode.Success)
+            {
+                return Ok(res);
+            }
+            else
+            {
+                return BadRequest(res);
+            }    
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿
+
 //-----------------Form-----------------------------
 class baseForm {
     ///constructor
@@ -6,8 +6,8 @@ class baseForm {
         //this.formMode = Enum.FormMode.Add;
         this.form = $(Idform);
         this.jsCaller = jsCaller;
-        this.setApiUrl();
         this.getApiUrl = null;
+        this.setApiUrl();
         this.initEvent();
         this.getData();
     };
@@ -16,7 +16,7 @@ class baseForm {
      * Hàm khởi tạo các sự kiện trong Form
      * CreatedBy : NDTUNG (4/2/2021)
      */
-    initEvent() { 
+    initEvent() {
         //var data = this.getJson();
         this.form.find("#btn-cancel").off("click");
         this.form.find("#btn-save").off("click");
@@ -175,7 +175,7 @@ class baseForm {
             var propertyName = $(this).attr('fieldName');
             var propertyValue = data[0][propertyName];
             if ($(this).attr('dataType') == 'date') {
-                propertyValue = formatDate(propertyValue,"YYYY-MM-DD");
+                propertyValue = formatDate(propertyValue, "YYYY-MM-DD");
             }
             else if ($(this).attr('dataType') == "Money") {
                 var money = formatMoney(propertyValue);
@@ -227,11 +227,34 @@ class baseForm {
         //}
         let me = this,
             jsCaller = me.jsCaller;
-
+        var url = me.getApiUrl;
         if (jsCaller.formMode == "Add") {
+            $.ajax({
+                url: url,
+                method: "POST",
+                data: JSON.stringify(data),
+                contentType: 'application/json'
+            }).done(function (res) {
+                me.closeForm();
+                me.jsCaller.loadAjaxData(me.getApiUrl);
 
-            jsCaller.listData.push(data);
-            jsCaller.loadData(jsCaller.listData);
+            }).fail(function (res) {
+
+            })
+        } else if (jsCaller.formMode == "edit") {
+            var idSelected = me.jsCaller.grid.find(".selected-row").data("recordId");
+            $.ajax({
+                url: url + '/' + idSelected,
+                method: "PUT",
+                data: JSON.stringify(data),
+                contentType: 'application/json'
+            }).done(function (res) {
+                me.closeForm();
+                me.jsCaller.loadAjaxData(me.getApiUrl);
+
+            }).fail(function (res) {
+
+            })
         }
     }
 
@@ -286,7 +309,9 @@ class baseForm {
             //}
 
             data[fieldName] = me.getDataInput($(this), dataType);
-
+            if (fieldName == me.jsCaller.entity + "Id") {
+                data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
+            }
         });
         return data;
     }
@@ -300,7 +325,7 @@ class baseForm {
         if (isValid) {
             var data = me.getData();
             me.saveChangeData(data);
-            me.closeForm();
+            
         }
     }
 }
