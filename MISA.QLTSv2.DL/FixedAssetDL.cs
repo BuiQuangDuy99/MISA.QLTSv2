@@ -2,11 +2,13 @@
 using AutoMapper.Configuration;
 using Dapper;
 using MISA.QLTSv2.Model.Entities;
+using MISA.QLTSv2.Model.Enums;
 using MISA.QLTSv2.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace MISA.QLTSv2.DL
 {
@@ -36,6 +38,23 @@ namespace MISA.QLTSv2.DL
 
             // Trả về dữ liệu:
             return _mapper.Map<List<FixedAsset>>(entities);
+        }
+        /// <summary>
+        /// Lấy ra một bản ghi theo ID
+        /// </summary>
+        /// <param name="entityId">ID</param>
+        /// <returns>Một bản ghi</returns>
+        /// CreatedBy:NVTUYEN(02/03/2021)
+        public FixedAsset GetEntityById(Guid entityId)
+        {
+            var parameterEntityId = new DynamicParameters();
+            var tableName = typeof(FixedAsset).Name;
+            // Add param id của đối tượng cần lấy dữ liệu:
+            parameterEntityId.Add($"${tableName}Id", entityId.ToString());
+
+            // Thực thi commandText:
+            var res = _dbConnection.Query<fixed_asset>($"Proc_Select{tableName}ById", parameterEntityId, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            return _mapper.Map<FixedAsset>(res);
         }
         /// <summary>
         /// Xóa một bản ghi
@@ -69,6 +88,19 @@ namespace MISA.QLTSv2.DL
             return rowAffects;
         }
         /// <summary>
+        /// Sửa bản ghi
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>SỐ lương bản ghi thay đổi</returns>
+        /// createdBy:NVTUYEN(02/03/2021)
+        public int Update(FixedAsset entity)
+        {
+            // Build thành đối tượng để lưu vào database:
+            var parameters = MappingDbType(entity);
+            // Thực thi commandText và return:
+            return _dbConnection.Execute($"Proc_UpdateFixedAsset", parameters, commandType: CommandType.StoredProcedure);
+        }
+        /// <summary>
         /// Hàm chuyển kiểu dữ liệu từ c# sang sql
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
@@ -94,6 +126,35 @@ namespace MISA.QLTSv2.DL
             }
             return parameters;
         }
+
+        /// <summary>
+        /// lấy ra bản ghi theo property
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="property"></param>
+        /// <returns>1 bản ghi</returns>
+        /// CreatedBy:NVTUYEN(02/03/2021)
+        public FixedAsset GetEntityByProperty(FixedAsset entity, System.Reflection.PropertyInfo property)
+        {
+            var propertyValue = property.GetValue(entity);
+            var keyValue = entity.GetType().GetProperty($"FixedAssetId").GetValue(entity);
+            var query = string.Empty;
+            if (entity.EntityState == EntityState.Insert)
+            {
+                query = $"SELECT * FROM fixed_asset WHERE fixed_asset_code = '{propertyValue}'";
+            }
+            else if (entity.EntityState == EntityState.Update)
+            {
+                query = $"SELECT * FROM fixed_asset WHERE fixed_asset_code = '{propertyValue}' AND fixed_asset_id <> '{keyValue}'";
+            }
+            else
+            {
+                return null;
+            }
+            var entityReturn = _dbConnection.Query<fixed_asset>(query, commandType: CommandType.Text).FirstOrDefault();
+            return _mapper.Map<FixedAsset>(entityReturn);
+        }
+
 
     }
 }

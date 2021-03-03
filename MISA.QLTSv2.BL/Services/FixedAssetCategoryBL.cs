@@ -53,8 +53,8 @@ namespace MISA.QLTSv2.BL.Services
 
         public ServiceResult Insert(FACategory entity)
         {
-            
-            //entity.EntityState = Enums.EntityState.Insert;
+
+            entity.EntityState = EntityState.Insert;
             var isValid = Validate(entity);
 
             if (isValid == true)
@@ -132,7 +132,7 @@ namespace MISA.QLTSv2.BL.Services
 
         public ServiceResult Update(FACategory entity)
         {
-            //entity.EntityState = Enums.EntityState.Update;
+            entity.EntityState = EntityState.Update;
             var isValid = Validate(entity);
             if (isValid == true)
             {
