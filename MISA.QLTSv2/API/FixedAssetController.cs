@@ -28,7 +28,7 @@ namespace MISA.QLTSv2.API
         /// Lấy toàn bộ danh sách
         /// </summary>
         /// <returns>danh sách thỏa mãn</returns>
-        /// Author: DVVUONG (01/03/2021)
+        /// CreatedBy:NVTUYEN(02/03/2021)
         [HttpGet]
         public IActionResult Get()
         {
@@ -43,20 +43,49 @@ namespace MISA.QLTSv2.API
             return Ok(_fixedAssetBL.GetEntities());
         }
         /// <summary>
-        /// Xóa một bản ghi
+        /// Lấy ra một bản ghi theo ID
         /// </summary>
-        /// <param name="entityId"></param>
-        /// <returns></returns>
+        /// <param name="entityId">ID</param>
+        /// <returns>Một bản ghi</returns>
+        /// CreatedBy:NVTUYEN(02/03/2021)
+        [HttpGet("{entityId}")]
+        public IActionResult GetEntityById([FromRoute] Guid entityId)
+        {
+            return Ok(_fixedAssetBL.GetEntityById(entityId));
+        }
+        /// <summary>
+        /// Xóa Một bản ghi
+        /// </summary>
+        /// <returns>Số bản ghi bị xóa</returns>
+        /// CreatedBy:NVTUYEN(02/03/2021)
         [HttpDelete("{entityId}")]
         public IActionResult Delete(Guid entityId)
         {
             return Ok(_fixedAssetBL.Delete(entityId));
         }
-
+        /// <summary>
+        /// Thêm một bản ghi
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>Số bản ghi thay đổi</returns>
+        /// createdBy:NVTUYEN(02/03/2021)
         [HttpPost]
         public IActionResult Insert([FromBody] FixedAsset entity)
         {
-            return Ok(_fixedAssetBL.Insert(entity));
+            var res = _fixedAssetBL.Insert(entity);
+            return Ok(res);
+        }
+        /// <summary>
+        /// Chỉnh sửa một bản ghi
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>Một bản ghi thay đổi</returns>
+        /// CreatedBy:NVTUYEN(02/03/2021)
+        [HttpPut("{entityId}")]
+        public IActionResult Put([FromRoute] string entityId, [FromBody] FixedAsset entity)
+        {
+            var res = _fixedAssetBL.Update(entity);
+            return Ok(res);
         }
     }
 }
