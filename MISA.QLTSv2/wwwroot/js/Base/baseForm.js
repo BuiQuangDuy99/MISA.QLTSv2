@@ -37,6 +37,8 @@ class baseForm {
                 $("input[DataType='Money']").keyup(this.formatPrice)
             }
         }.bind(this));
+
+        //this.form.find("input[dataType='Date']").mask("99/99/9999", {placeholder:'__/__/____'});
     }
 
 
