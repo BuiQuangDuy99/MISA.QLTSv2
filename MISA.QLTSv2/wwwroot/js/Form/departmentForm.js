@@ -13,6 +13,11 @@ class departmentForm extends baseForm {
         });
     }
 
+
+    setApiUrl() {
+        this.getApiUrl = 'https://localhost:44363/api/v1/department';
+    }
+
     /**
      * load combobox khi khởi tạo form
      * CreatedBY: BQDUY(25/02/2021)

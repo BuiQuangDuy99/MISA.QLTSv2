@@ -9,6 +9,7 @@ class baseForm {
         this.getApiUrl = null;
         this.setApiUrl();
         this.initEvent();
+        this.getData();
     };
 
     /**

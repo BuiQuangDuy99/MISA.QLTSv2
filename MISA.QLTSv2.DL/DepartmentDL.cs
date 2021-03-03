@@ -2,11 +2,13 @@
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.Model.Entities;
+using MISA.QLTSv2.Model.Enums;
 using MISA.QLTSv2.Model.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace MISA.QLTSv2.DL
@@ -49,6 +51,25 @@ namespace MISA.QLTSv2.DL
             return _mapper.Map<List<Department>>(entities);
         }
 
+
+        /// <summary>
+        /// Lấy ra một bản ghi theo ID
+        /// </summary>
+        /// <param name="entityId">ID</param>
+        /// <returns>Một bản ghi</returns>
+        /// CreatedBy:DVVUONG(02/03/2021)
+        public Department GetEntityById(Guid entityId)
+        {
+            var parameterEntityId = new DynamicParameters();
+            var tableName = typeof(Department).Name;
+            // Add param id của đối tượng cần lấy dữ liệu:
+            parameterEntityId.Add($"${tableName}Id", entityId.ToString());
+
+            // Thực thi commandText:
+            var res = _dbConnection.Query<department>($"Proc_Select{tableName}ById", parameterEntityId, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            return _mapper.Map<Department>(res);
+        }
+
         /// <summary>
         /// Thêm mới phòng ban
         /// </summary>
@@ -63,6 +84,20 @@ namespace MISA.QLTSv2.DL
             var rowAffects = _dbConnection.Execute($"Proc_InsertDepartment", parameters, commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu (số bản ghi thêm mới được): 
             return rowAffects;
+        }
+
+        /// <summary>
+        /// Sửa bản ghi
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>SỐ lương bản ghi thay đổi</returns>
+        /// createdBy:DVUONG(02/03/2021)
+        public int Update(Department entity)
+        {
+            // Build thành đối tượng để lưu vào database:
+            var parameters = MappingDbType(entity);
+            // Thực thi commandText và return:
+            return _dbConnection.Execute($"Proc_UpdateDepartment", parameters, commandType: CommandType.StoredProcedure);
         }
 
         /// <summary>
@@ -100,14 +135,42 @@ namespace MISA.QLTSv2.DL
                 var propertyType = property.PropertyType;
                 if (propertyType == typeof(Guid) || propertyType == typeof(Guid?))
                 {
-                    parameters.Add($"@{propertyName}", propertyValue, DbType.String);
+                    parameters.Add($"${propertyName}", propertyValue, DbType.String);
                 }
                 else
                 {
-                    parameters.Add($"@{propertyName}", propertyValue);
+                    parameters.Add($"${propertyName}", propertyValue);
                 }
             }
             return parameters;
+        }
+
+        /// <summary>
+        /// lấy ra bản ghi theo property
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="property"></param>
+        /// <returns>1 bản ghi</returns>
+        /// CreatedBy: DVVUONG(02/03/2021)
+        public Department GetEntityByProperty(Department entity, System.Reflection.PropertyInfo property)
+        {
+            var propertyValue = property.GetValue(entity);
+            var keyValue = entity.GetType().GetProperty($"DepartmentId").GetValue(entity);
+            var query = string.Empty;
+            if (entity.EntityState == EntityState.Insert)
+            {
+                query = $"SELECT * FROM department WHERE department_code = '{propertyValue}'";
+            }
+            else if (entity.EntityState == EntityState.Update)
+            {
+                query = $"SELECT * FROM department WHERE department_code = '{propertyValue}' AND department_id <> '{keyValue}'";
+            }
+            else
+            {
+                return null;
+            }
+            var entityReturn = _dbConnection.Query<department>(query, commandType: CommandType.Text).FirstOrDefault();
+            return _mapper.Map<Department>(entityReturn);
         }
         #endregion
     }
