@@ -4,7 +4,7 @@ class depreciationForm extends baseForm {
         super(formId, jsCaller);
         //Định nghĩa Dialog
         this.depreciationForm = $(formId).dialog({
-            autoOpen: true,
+            autoOpen: false,
             height: height,
             width: width,
             modal: true,
@@ -35,6 +35,9 @@ class depreciationForm extends baseForm {
         });
         me.formatTd();
 
+        $('input[fieldName="RefNo"]').off('keyup').keyup(function () {
+            this.value = this.value.toLocaleUpperCase();
+        });
     }
 
     /**
@@ -54,6 +57,7 @@ class depreciationForm extends baseForm {
 
         $('#depreciation-sub-grid tbody').append(tr);
         me.bindingSTT();
+        showTooltipElement($('.depreciation-sub-grid button'));
 
     }
 
@@ -117,5 +121,27 @@ class depreciationForm extends baseForm {
                 default:
             }
         })
+    }
+
+    getData() {
+        let depreciation = {},
+            asset = {},
+            listAsset = [];
+        $('.depreciation-sub-grid tbody tr').each(function (index) {
+            $(this).find('td[fieldName]').each(function () {
+                let fieldNameAss = $(this).attr('fieldName');
+                asset[fieldNameAss] = $(this).prop("textContent");
+            })
+            listAsset.push(asset);
+        })
+        $('input[fieldName],textarea[fieldName],table[fieldName]').each(function () {
+            let fieldName = $(this).attr('fieldName');
+            if (fieldName == "RefDetail") {
+                depreciation[fieldName] = listAsset;
+            }
+            else
+                depreciation[fieldName] = $(this).val();
+        });
+        console.log(depreciation);
     }
 }

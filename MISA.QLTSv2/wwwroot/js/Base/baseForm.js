@@ -9,6 +9,7 @@ class baseForm {
         this.setApiUrl();
         this.getApiUrl = null;
         this.initEvent();
+        this.getData();
     };
 
     /**
@@ -36,8 +37,6 @@ class baseForm {
                 $("input[DataType='Money']").keyup(this.formatPrice)
             }
         }.bind(this));
-
-
     }
 
 
