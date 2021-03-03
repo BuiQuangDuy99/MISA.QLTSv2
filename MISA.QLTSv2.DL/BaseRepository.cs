@@ -1,0 +1,170 @@
+﻿using AutoMapper;
+using Dapper;
+using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+
+namespace MISA.QLTSv2.DL
+{
+    public class BaseRepository<TEntity> 
+    {
+
+        #region DECLARE
+        IConfiguration _configuration;
+        string _connectionString = string.Empty;
+        protected IDbConnection _dbConnection = null;
+        protected string _tableName;
+
+        private readonly IMapper _mapper;
+
+        #endregion
+        #region Constructor
+        public BaseRepository(IConfiguration configuration, IMapper mapper)
+        {
+            _configuration = configuration;
+            _connectionString = _configuration.GetConnectionString("MISAQLTSv2ConnectionString");
+            _dbConnection = new MySqlConnection(_connectionString);
+            _tableName = typeof(TEntity).Name;
+            _mapper = mapper;
+        }
+        #endregion
+        #region Method
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public int Insert(TEntity entity)
+        {
+            // Build thành đối tượng để lưu vào database:
+            var parameters = MappingDbType(entity);
+            // Thực thi commandText:
+            var rowAffects = _dbConnection.Execute($"Proc_Insert{_tableName}", parameters, commandType: CommandType.StoredProcedure);
+            // Trả về dữ liệu (số bản ghi thêm mới được): 
+            return rowAffects;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns></returns>
+        public int Delete(Guid entityId)
+        {
+            var parameterEntityId = new DynamicParameters();
+            // Add param id của bảng cần xóa:
+            parameterEntityId.Add($"{_tableName}Id", entityId.ToString());
+            // Thực thi commandText:
+            var res = _dbConnection.Execute($"Proc_Delete{_tableName}", parameterEntityId, commandType: CommandType.StoredProcedure);
+            // Trả về dữ liệu: 
+            return res;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<TEntity> GetEntities(Type type)
+        {
+            var models = new List<TEntity>();
+
+            // Thực thi commandText:
+            var entities = _dbConnection.Query<TEntity>($"Proc_SelectFACategoryDatas", null, commandType: CommandType.StoredProcedure);
+            
+            // Trả về dữ liệu:
+            return entities;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entityId"></param>
+        /// <returns></returns>
+        public TEntity GetEntityById(Guid entityId)
+        {
+            var parameterEntityId = new DynamicParameters();
+            // Add param id của đối tượng cần lấy dữ liệu:
+            parameterEntityId.Add($"{_tableName}Id", entityId.ToString());
+            // Thực thi commandText:
+            var res = _dbConnection.Query<TEntity>($"Proc_Select{_tableName}ById", parameterEntityId, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            return res;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public int Update(TEntity entity)
+        {
+            // Build thành đối tượng để lưu vào database:
+            var parameters = MappingDbType(entity);
+            // Thực thi commandText và return:
+            return _dbConnection.Execute($"Proc_Update{_tableName}", parameters, commandType: CommandType.StoredProcedure);
+        }
+
+        /// <summary>
+        /// Hàm chuyển kiểu dữ liệu từ c# sang sql
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity"></param>
+        /// CreatedBy: BQDUY(18/01/2021)
+        private DynamicParameters MappingDbType(TEntity entity)
+        {
+            var properties = entity.GetType().GetProperties();
+            var parameters = new DynamicParameters();
+            foreach (var property in properties)
+            {
+                var propertyName = property.Name;
+                var propertyValue = property.GetValue(entity);
+                var propertyType = property.PropertyType;
+                if (propertyType == typeof(Guid) || propertyType == typeof(Guid?))
+                {
+                    parameters.Add($"@{propertyName}", propertyValue, DbType.String);
+                }
+                else
+                {
+                    parameters.Add($"@{propertyName}", propertyValue);
+                }
+            }
+            return parameters;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="property"></param>
+        /// <returns></returns>
+        public TEntity GetEntityByProperty(TEntity entity, System.Reflection.PropertyInfo property)
+        {
+            var propertyName = property.Name;
+            var propertyValue = property.GetValue(entity);
+            var keyValue = entity.GetType().GetProperty($"{_tableName}Id").GetValue(entity);
+            var query = string.Empty;
+            //if (entity.EntityState == EntityState.Insert)
+            //{
+            //    query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}'";
+            //}
+            //else if (entity.EntityState == EntityState.Update)
+            //{
+            //    query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}' AND {_tableName}Id <> '{keyValue}'";
+            //}
+            //else if (entity.EntityState == EntityState.Select)
+            //{
+            //    query = $"SELECT * FROM {_tableName} WHERE {propertyName} = '{propertyValue}'";
+            //}
+            //else {
+            //    return null;
+            //}
+            var entityReturn = _dbConnection.Query<TEntity>(query, commandType: CommandType.Text).FirstOrDefault();
+            return entityReturn;
+        }
+        #endregion
+    }
+}
