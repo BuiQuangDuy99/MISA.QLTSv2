@@ -20,8 +20,8 @@ class Department extends BaseGrid {
         showTooltipElement($('td'));
     }
     /**
-     * 
-     * 
+     * URL API danh muc phong ban
+     * CreatedBy: DVVUONG (03/03/2021)
      * */
     setUrl() {
         this.url = 'https://localhost:44363/api/v1/Department';
@@ -37,7 +37,7 @@ class Department extends BaseGrid {
     createFormDetail(formID, width, height) {
         let me = this;
         this.formDetail = new departmentForm(formID, width, height, me);
-        this.formDetail.initLoadComboBox("DepartmentGroup", department);
+        //this.formDetail.initLoadComboBox("DepartmentGroup", department);
     }
 
 }

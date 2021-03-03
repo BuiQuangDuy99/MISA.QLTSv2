@@ -50,6 +50,18 @@ namespace MISA.QLTSv2.API
 
 
         /// <summary>
+        /// Lấy ra một bản ghi theo ID
+        /// </summary>
+        /// <param name="entityId">ID</param>
+        /// <returns>Một bản ghi</returns>
+        /// CreatedBy:DVVUONG(02/03/2021)
+        [HttpGet("{entityId}")]
+        public IActionResult GetEntityById([FromRoute] Guid entityId)
+        {
+            return Ok(_departmentBL.GetEntityById(entityId));
+        }
+
+        /// <summary>
         /// Xóa bản ghi
         /// </summary>
         /// <param name="entityId">khóa chính bản ghi cần xóa</param>
@@ -70,6 +82,8 @@ namespace MISA.QLTSv2.API
         }
 
 
+
+
         /// <summary>
         /// Thêm mới bản ghi
         /// </summary>
@@ -80,6 +94,19 @@ namespace MISA.QLTSv2.API
         public IActionResult Post([FromBody] Department entity)
         {
             var res = _departmentBL.Insert(entity);
+            return Ok(res);
+        }
+
+        /// <summary>
+        /// Chỉnh sửa một bản ghi
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>Một bản ghi thay đổi</returns>
+        /// CreatedBy:NVTUYEN(02/03/2021)
+        [HttpPut("{entityId}")]
+        public IActionResult Put([FromRoute] string entityId, [FromBody] Department entity)
+        {
+            var res = _departmentBL.Update(entity);
             return Ok(res);
         }
         #endregion
