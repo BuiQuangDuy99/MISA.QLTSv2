@@ -11,7 +11,7 @@ namespace MISA.QLTSv2.API
     /// API Phòng Ban
     /// </summary>
     /// Author: DVVUONG (01/03/2021)
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class DepartmentController : ControllerBase
     {
@@ -35,7 +35,7 @@ namespace MISA.QLTSv2.API
         /// <returns>danh sách thỏa mãn</returns>
         /// Author: DVVUONG (01/03/2021)
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetDepartments()
         {
             try
             {
@@ -56,7 +56,7 @@ namespace MISA.QLTSv2.API
         /// <returns>Một bản ghi</returns>
         /// CreatedBy:DVVUONG(02/03/2021)
         [HttpGet("{entityId}")]
-        public IActionResult GetEntityById([FromRoute] Guid entityId)
+        public IActionResult GetDepartmentById([FromRoute] Guid entityId)
         {
             return Ok(_departmentBL.GetEntityById(entityId));
         }
@@ -68,7 +68,7 @@ namespace MISA.QLTSv2.API
         /// <returns>số bản ghi xóa thành công</returns>
         /// Author: DVVUONG (01/03/2021)
         [HttpDelete("{entityId}")]
-        public IActionResult Delete(Guid entityId)
+        public IActionResult DeleteDepartment(Guid entityId)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace MISA.QLTSv2.API
         /// <returns>số bản ghi thêm mới được</returns>
         /// Author: DVVUONG (01/03/2021)
         [HttpPost]
-        public IActionResult Post([FromBody] Department entity)
+        public IActionResult PostDepartment([FromBody] Department entity)
         {
             var res = _departmentBL.Insert(entity);
             return Ok(res);
@@ -104,7 +104,7 @@ namespace MISA.QLTSv2.API
         /// <returns>Một bản ghi thay đổi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
         [HttpPut("{entityId}")]
-        public IActionResult Put([FromRoute] string entityId, [FromBody] Department entity)
+        public IActionResult PutDepartment([FromRoute] string entityId, [FromBody] Department entity)
         {
             var res = _departmentBL.Update(entity);
             return Ok(res);

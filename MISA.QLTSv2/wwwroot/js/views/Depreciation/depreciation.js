@@ -22,7 +22,7 @@ var depreciationGrid = new depreciation('#depreciation-grid');
 
 var conFigColum = [
     {
-        DataType: "number",
+        DataType: "STT",
         FieldName: "STT",
         FieldText: "STT",
         Index: 1

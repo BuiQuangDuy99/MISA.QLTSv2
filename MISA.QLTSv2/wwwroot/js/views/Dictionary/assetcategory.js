@@ -39,7 +39,7 @@ var dictionaryGrid = new Dictionary('#gridTest', "FixedAssetCategory");
 // Biến config cho từng column trong bảng
 var conFigColum = [
     {
-        DataType: "number",
+        DataType: "STT",
         FieldName: "STT",
         FieldText: "STT",   
         Index: 1

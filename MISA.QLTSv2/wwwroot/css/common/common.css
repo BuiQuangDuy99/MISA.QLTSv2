@@ -71,7 +71,7 @@ select, textarea{
 .text-red{
     color: red !important;
 }
-/*
-thead th {
-    color: red !important;
-}*/
+
+thead {
+    border-bottom: 1px solid #000;
+}

@@ -6,7 +6,7 @@
     color: #454f63;
     width: 100%;
 }
-/* width */
+ /*width*/ 
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -14,19 +14,19 @@
 ::-webkit-scrollbar {
     height: 8px;
 }
-/* Track */
+ /*Track*/ 
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 4px;
 }
 
-/* Handle */
+ /*Handle*/ 
 ::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background: #888;
 }
 
-    /* Handle on hover */
+     Handle on hover 
     ::-webkit-scrollbar-thumb:hover {
         background: #555;
     }

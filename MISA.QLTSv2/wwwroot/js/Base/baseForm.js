@@ -224,6 +224,7 @@ class baseForm {
         //        }
         //    });
         //}
+        $('.loading').show();
         let me = this,
             jsCaller = me.jsCaller;
         var url = me.getApiUrl;
@@ -236,9 +237,9 @@ class baseForm {
             }).done(function (res) {
                 me.closeForm();
                 me.jsCaller.loadAjaxData(me.getApiUrl);
-
+                $('.loading').hide();
             }).fail(function (res) {
-
+                $('.loading').hide();
             })
         } else if (jsCaller.formMode == "edit") {
             var idSelected = me.jsCaller.grid.find(".selected-row").data("recordId");
@@ -250,9 +251,9 @@ class baseForm {
             }).done(function (res) {
                 me.closeForm();
                 me.jsCaller.loadAjaxData(me.getApiUrl);
-
+                $('.loading').hide();
             }).fail(function (res) {
-
+                $('.loading').hide();
             })
         }
     }
@@ -324,7 +325,6 @@ class baseForm {
         if (isValid) {
             var data = me.getData();
             me.saveChangeData(data);
-            
         }
     }
 }
