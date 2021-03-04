@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace MISA.QLTSv2.API
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
 
     public class FixedAssetController : ControllerBase

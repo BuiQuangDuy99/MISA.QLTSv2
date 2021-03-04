@@ -35,7 +35,8 @@ $(document).ready(function () {
         source: availableTags
     })
 
-
+    $('#dtIncrementDate').mask("00/00/0000", { placeholder: "___/___/______" });
+    $('#dtIncrementDate').datepicker.formatDate("yy-mm-dd");
 })
  
 class assetIncreased extends BaseGrid {
@@ -50,7 +51,7 @@ class assetIncreased extends BaseGrid {
         showTooltipElement($('td'));
     }
     setUrl() {
-        this.url = 'https://localhost:44363/api/v1/FixedAsset';
+        this.url = 'https://localhost:44363/api/FixedAsset';
     }
     createFormDetail(formID, width, height) {
         var me = this;
@@ -144,7 +145,7 @@ assetIncreasedGrid.createFormDetail("#dialog_asset", 700, 525);
 assetIncreasedGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-assetIncreasedGrid.loadAjaxData('https://localhost:44363/api/v1/FixedAsset');
+assetIncreasedGrid.loadAjaxData('https://localhost:44363/api/FixedAsset');
 
 //bindingDataForInput() {
 //    //this.on(this.input, {

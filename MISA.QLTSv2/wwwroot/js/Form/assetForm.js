@@ -19,7 +19,7 @@
     }
 
     setApiUrl() {
-        this.getApiUrl = 'https://localhost:44363/api/v1/FixedAsset';
+        this.getApiUrl = 'https://localhost:44363/api/FixedAsset';
     }
     /**
      * Hàm xử lý sự kiện thay đổi selection
