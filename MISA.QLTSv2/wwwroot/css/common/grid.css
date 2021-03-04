@@ -27,6 +27,7 @@ table th, td {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    border-bottom: 1px solid #000000;
 }
 
 table {
@@ -41,12 +42,13 @@ table {
         padding-top: 0;
         font-size: 12px;
         font-weight: 600;
+        
     }
 
-    table td {
-        font-size: 13px;
-        border-right: 1px solid #bbbbbb;
-    }
+        table td {
+            font-size: 13px;
+            border-right: 1px solid #bbbbbb;
+        }
 
         table td:last-child {
             border: none;
