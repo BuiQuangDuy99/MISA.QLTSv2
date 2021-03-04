@@ -35,8 +35,7 @@ $(document).ready(function () {
         source: availableTags
     })
 
-    $('#dtIncrementDate').mask("00/00/0000", { placeholder: "___/___/______" });
-    $('#dtIncrementDate').datepicker.formatDate("yy-mm-dd");
+    $('#dtIncrementDate').mask("00/00/0000", { placeholder: "___/___/______" }).datepicker();
 })
  
 class assetIncreased extends BaseGrid {
