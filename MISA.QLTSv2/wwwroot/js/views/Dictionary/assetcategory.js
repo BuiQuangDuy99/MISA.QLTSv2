@@ -11,11 +11,14 @@ class Dictionary extends BaseGrid {
         let me = this;
         super.initEvents();
         showTooltipElement($('button'));
-        showTooltipElement($('td'));
     }
 
+    /**
+     * set url để lên baseGrid có thể ghép url với id để thực thi ajax
+     * CreatedBY: BQDUY(03/03/2021)
+     * */
     setUrl() {
-        this.url = 'https://localhost:44363/api/v1/FixedAssetCategories';
+        this.url = 'https://localhost:44363/api/v1/FACategories';
     }
 
     /**
@@ -36,7 +39,7 @@ var dictionaryGrid = new Dictionary('#gridTest', "FixedAssetCategory");
 // Biến config cho từng column trong bảng
 var conFigColum = [
     {
-        DataType: "number",
+        DataType: "STT",
         FieldName: "STT",
         FieldText: "STT",   
         Index: 1
@@ -92,5 +95,5 @@ dictionaryGrid.createFormDetail("#dialog_dictionary", 700, 500);
 dictionaryGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-dictionaryGrid.loadAjaxData('https://localhost:44363/api/v1/FixedAssetCategories');
+dictionaryGrid.loadAjaxData('https://localhost:44363/api/v1/FACategories');
 

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MISA.QLTSv2.Model.Models
 {
@@ -10,14 +8,7 @@ namespace MISA.QLTSv2.Model.Models
     /// CreatedBy:NVTUYEN(01/03/2021)
     public class department
     {
-        #region Declare
-        #endregion
-        #region Constructor
-        public department()
-        {
 
-        }
-        #endregion
         #region properties
         /// <summary>
         /// Khóa chính
@@ -68,7 +59,6 @@ namespace MISA.QLTSv2.Model.Models
         /// </summary>
         public DateTime? modified_date { get; set; }
         #endregion
-        #region Method
-        #endregion
+
     }
 }

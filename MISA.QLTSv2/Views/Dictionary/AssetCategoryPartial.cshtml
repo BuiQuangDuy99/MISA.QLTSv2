@@ -1,6 +1,8 @@
 ﻿
 @{
     ViewData["Title"] = "LayoutView";
+    ViewData["ParentTitle"] = "Danh mục";
+    ViewData["ChildTitle"] = "Loại tài sản";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="tool-bar" id="tbGrdFACategory">
@@ -76,7 +78,7 @@
             <div class="col-6 m-col-5">
                 <div class="content-items">
                     <div class="text-header">
-                        Thuộc loại (*)
+                        Thuộc loại
                     </div>
                     <div>
                         <input class="input-text input-dictionary" fieldName="ParentName"/>
@@ -89,7 +91,7 @@
                         Nhóm tài sản
                     </div>
                     <div>
-                        <input class="input-text input-dictionary" fieldName="AssetGroupName"/>
+                        <input class="input-text input-dictionary" id="AssetGroup" fieldName="AssetGroupName"/>
                     </div>
                 </div>
             </div>
@@ -98,7 +100,7 @@
             <div class="col-6 m-col-5">
                 <div class="content-items">
                     <div class="text-header">
-                        Tỷ lệ hao mòn
+                        Tỷ lệ hao mòn (%)
                     </div>
                     <div>
                         <input class="input-text input-dictionary input-right" type="number" fieldName="DepreciationRate" />
@@ -133,18 +135,7 @@
         </div>
     </div>
 </div>
-<div class="menu">
-    <p>Option 1</p>
-    <p>Option 2</p>
-</div>
-<div class="footer-layout">
-    <div>
-        Tổng số tài sản: 1.015
-    </div>
-    <div class="footer-right">
-        Tổng nguyên giá: 1.546.354.789
-    </div>
-</div>
+
 
 @section scripts{
 

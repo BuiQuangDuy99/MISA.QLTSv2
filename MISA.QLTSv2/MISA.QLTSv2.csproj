@@ -16,8 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="4.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="MySql.Data" Version="8.0.20" />
   </ItemGroup>
@@ -25,7 +28,6 @@
   <ItemGroup>
     <ProjectReference Include="..\MISA.QLTSv2.BL\MISA.QLTSv2.BL.csproj" />
     <ProjectReference Include="..\MISA.QLTSv2.DL\MISA.QLTSv2.DL.csproj" />
-    <ProjectReference Include="..\MISA.QLTSv2.Model\MISA.QLTSv2.Model.csproj" />
   </ItemGroup>
 
 </Project>
