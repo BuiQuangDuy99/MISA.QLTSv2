@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using MISA.QLTSv2.BL.Properties;
 using MISA.QLTSv2.BL.Services;
 using MISA.QLTSv2.Model.Entities;
+using MISA.QLTSv2.Model.Enums;
 using System;
 
 namespace MISA.QLTSv2.API
@@ -18,6 +20,7 @@ namespace MISA.QLTSv2.API
         #region Declare
         string _connectionString;
         DepartmentBL _departmentBL;
+        ServiceResult _serviceResult;
         #endregion
 
         #region Constructor
@@ -25,6 +28,7 @@ namespace MISA.QLTSv2.API
         {
             _connectionString = configuration.GetConnectionString("MISAQLTSv2ConnectionString");
             _departmentBL = new DepartmentBL(_connectionString, mapper);
+            _serviceResult = new ServiceResult();
         }
         #endregion
 
@@ -35,18 +39,19 @@ namespace MISA.QLTSv2.API
         /// <returns>danh sách thỏa mãn</returns>
         /// Author: DVVUONG (01/03/2021)
         [HttpGet]
-        public IActionResult GetDepartments()
+        public ServiceResult GetDepartments()
         {
             try
             {
-                return Ok(_departmentBL.GetDepartments());
+                return _departmentBL.GetDepartments();
             }
             catch (Exception)
             {
-                return BadRequest();
+                _serviceResult.MISACode = MISACode.Exception;
+                _serviceResult.Data = null;
+                _serviceResult.Messenger = Resources.Msg_GetAllFail;
+                return _serviceResult;
             }
-
-           
         }
 
 
@@ -57,9 +62,20 @@ namespace MISA.QLTSv2.API
         /// <returns>Một bản ghi</returns>
         /// CreatedBy:DVVUONG(02/03/2021)
         [HttpGet("{entityId}")]
-        public IActionResult GetDepartmentById([FromRoute] Guid entityId)
+        public ServiceResult GetDepartmentById(Guid entityId)
         {
-            return Ok(_departmentBL.GetDepartmentById(entityId));
+            try
+            {
+                return _departmentBL.GetDepartmentById(entityId);
+            }
+            catch (Exception)
+            {
+                _serviceResult.MISACode = MISACode.Exception;
+                _serviceResult.Data = null;
+                _serviceResult.Messenger = Resources.Msg_GetFail;
+                return _serviceResult;
+            }
+            
         }
 
         /// <summary>
@@ -73,13 +89,17 @@ namespace MISA.QLTSv2.API
         {
             try
             {
-
+                return Ok(_departmentBL.DeleteDepartment(entityId));
             }
             catch (Exception)
             {
-
+                //_serviceResult.MISACode = MISACode.Exception;
+                //_serviceResult.Data = null;
+                //_serviceResult.Messenger = Resources.Msg_DeleteFail;
+                //return _serviceResult;
+                return BadRequest();
             }
-            return Ok(_departmentBL.DeleteDepartment(entityId));
+            
         }
 
 

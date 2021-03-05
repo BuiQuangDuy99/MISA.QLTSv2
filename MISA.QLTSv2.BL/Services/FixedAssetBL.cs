@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using MISA.QLTSv2.BL.Properties;
 using MISA.QLTSv2.DL;
 using MISA.QLTSv2.Model.Entities;
 using MISA.QLTSv2.Model.Enums;
-using MISA.QLTSv2.Model.Properties;
 using System;
 using System.Collections.Generic;
 

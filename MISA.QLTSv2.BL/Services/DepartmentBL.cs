@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using MISA.QLTSv2.BL.Properties;
 using MISA.QLTSv2.DL;
 using MISA.QLTSv2.Model.Entities;
 using MISA.QLTSv2.Model.Enums;
-using MISA.QLTSv2.Model.Properties;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,9 +34,12 @@ namespace MISA.QLTSv2.BL.Services
         /// </summary>
         /// <returns>danh sách phòng ban</returns>
         /// Author: DVVUONG (02/03/2021)
-        public List<Department> GetDepartments()
+        public ServiceResult GetDepartments()
         {
-            return _departmentDL.GetDepartments();
+            _serviceResult.Data = _departmentDL.GetDepartments();
+            _serviceResult.Messenger = Resources.Msg_GetAllSuccess;
+            _serviceResult.MISACode = MISACode.Success;
+            return _serviceResult;
         }
 
         /// <summary>
@@ -45,9 +48,12 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entityId">ID</param>
         /// <returns>một bản ghi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public Department GetDepartmentById(Guid entityId)
+        public ServiceResult GetDepartmentById(Guid entityId)
         {
-            return _departmentDL.GetDepartmentById(entityId);
+            _serviceResult.Data = _departmentDL.GetDepartmentById(entityId);
+            _serviceResult.Messenger = Resources.Msg_GetSuccess;
+            _serviceResult.MISACode = MISACode.Success;
+            return _serviceResult;
         }
 
         /// <summary>

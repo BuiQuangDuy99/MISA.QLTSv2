@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MISA.QLTSv2.Model.Properties {
+namespace MISA.QLTSv2.BL.Properties {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace MISA.QLTSv2.Model.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace MISA.QLTSv2.Model.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MISA.QLTSv2.BL.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace MISA.QLTSv2.Model.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,16 +63,25 @@ namespace MISA.QLTSv2.Model.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Thêm dữ liệu thành công.
         /// </summary>
-        internal static string Msg_AddSuccess {
+        public static string Msg_AddSuccess {
             get {
                 return ResourceManager.GetString("Msg_AddSuccess", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Xóa bản ghi thất bại.
+        /// </summary>
+        public static string Msg_DeleteFail {
+            get {
+                return ResourceManager.GetString("Msg_DeleteFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Xóa dữ liệu thành công.
         /// </summary>
-        internal static string Msg_DeleteSuccess {
+        public static string Msg_DeleteSuccess {
             get {
                 return ResourceManager.GetString("Msg_DeleteSuccess", resourceCulture);
             }
@@ -81,16 +90,52 @@ namespace MISA.QLTSv2.Model.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Thông tin {0} đã có trên hệ thống.
         /// </summary>
-        internal static string Msg_Dulicate {
+        public static string Msg_Dulicate {
             get {
                 return ResourceManager.GetString("Msg_Dulicate", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lấy danh sách thất bại.
+        /// </summary>
+        public static string Msg_GetAllFail {
+            get {
+                return ResourceManager.GetString("Msg_GetAllFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lấy danh sách thành công.
+        /// </summary>
+        public static string Msg_GetAllSuccess {
+            get {
+                return ResourceManager.GetString("Msg_GetAllSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lấy bản ghi thất bại.
+        /// </summary>
+        public static string Msg_GetFail {
+            get {
+                return ResourceManager.GetString("Msg_GetFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lấy một bản ghi thành công.
+        /// </summary>
+        public static string Msg_GetSuccess {
+            get {
+                return ResourceManager.GetString("Msg_GetSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dữ liệu không hợp lệ.
         /// </summary>
-        internal static string Msg_IsNotValid {
+        public static string Msg_IsNotValid {
             get {
                 return ResourceManager.GetString("Msg_IsNotValid", resourceCulture);
             }
@@ -99,7 +144,7 @@ namespace MISA.QLTSv2.Model.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Thông tin {0} không được phép để trống.
         /// </summary>
-        internal static string Msg_Required {
+        public static string Msg_Required {
             get {
                 return ResourceManager.GetString("Msg_Required", resourceCulture);
             }
@@ -108,7 +153,7 @@ namespace MISA.QLTSv2.Model.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Chỉnh sửa dữ liệu thành công.
         /// </summary>
-        internal static string Msg_UpdateSuccess {
+        public static string Msg_UpdateSuccess {
             get {
                 return ResourceManager.GetString("Msg_UpdateSuccess", resourceCulture);
             }
