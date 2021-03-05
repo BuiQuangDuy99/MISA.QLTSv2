@@ -24,7 +24,7 @@ class Department extends BaseGrid {
      * CreatedBy: DVVUONG (03/03/2021)
      * */
     setUrl() {
-        this.url = 'https://localhost:44363/api/Department';
+        this.url = 'https://localhost:44363/api/departments';
     }
 
     /**
@@ -86,10 +86,10 @@ var availableTags = [
 
 ];
 //Khởi tạo form danh sách phòng ban
-departmentGrid.createFormDetail("#department_dialog", 360);
+departmentGrid.createFormDetail("#department_dialog", 300);
 
 // THiết lập config header
 departmentGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-departmentGrid.loadAjaxData('https://localhost:44363/api/Department');
+departmentGrid.loadAjaxData('https://localhost:44363/api/departments');

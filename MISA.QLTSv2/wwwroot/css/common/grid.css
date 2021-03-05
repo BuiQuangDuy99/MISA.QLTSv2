@@ -1,7 +1,7 @@
 
 .grid {
     position: relative;
-    height: calc(100vh - 164px)
+    height: calc(100vh - 164px);
 }
 
     .grid .grid-default {
@@ -30,8 +30,8 @@ table th, td {
     text-overflow: ellipsis;
 }
 
-table thead tr{
-    border-bottom: 1px solid #ff0000;
+table thead tr {
+    border-bottom: 1px solid #bbbbbb;
 }
 
 table {
@@ -64,6 +64,24 @@ table {
         table tr:hover {
             background-color: #f0f8ff;
         }
+
+th:after,
+th:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+th:before {
+    top: -1px;
+    border-top: 1px solid #bbbbbb;
+}
+
+th:after {
+    bottom: -1px;
+    border-bottom: 2px solid #bbbbbb;
+}
 
 .selected-row {
     background-color: #f0f8ff !important;

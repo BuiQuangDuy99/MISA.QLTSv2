@@ -20,7 +20,6 @@ namespace MISA.QLTSv2.DL
     public class DepartmentDL
     {
         #region Declare
-        IConfiguration _configuration;
         string _connectionString = string.Empty;
         IDbConnection _dbConnection = null;
         IMapper _mapper;
@@ -42,13 +41,13 @@ namespace MISA.QLTSv2.DL
         /// </summary>
         /// <returns>list phòng ban</returns>
         /// Author: DVVUONG (02/03/2021)
-        public List<Department> GetEntities()
+        public List<Department> GetDepartments()
         {
             // Thực thi commandText:
-            var entities = _dbConnection.Query<department>($"Proc_SelectDepartmentDatas", null, commandType: CommandType.StoredProcedure);
+            var departments = _dbConnection.Query<department>($"Proc_SelectDepartmentDatas", null, commandType: CommandType.StoredProcedure);
 
             // Trả về dữ liệu:
-            return _mapper.Map<List<Department>>(entities);
+            return _mapper.Map<List<Department>>(departments);
         }
 
 
@@ -58,7 +57,7 @@ namespace MISA.QLTSv2.DL
         /// <param name="entityId">ID</param>
         /// <returns>Một bản ghi</returns>
         /// CreatedBy:DVVUONG(02/03/2021)
-        public Department GetEntityById(Guid entityId)
+        public Department GetDepartmentById(Guid entityId)
         {
             var parameterEntityId = new DynamicParameters();
             var tableName = typeof(Department).Name;
@@ -66,8 +65,8 @@ namespace MISA.QLTSv2.DL
             parameterEntityId.Add($"${tableName}Id", entityId.ToString());
 
             // Thực thi commandText:
-            var res = _dbConnection.Query<department>($"Proc_Select{tableName}ById", parameterEntityId, commandType: CommandType.StoredProcedure).FirstOrDefault();
-            return _mapper.Map<Department>(res);
+            var department = _dbConnection.Query<department>($"Proc_Select{tableName}ById", parameterEntityId, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            return _mapper.Map<Department>(department);
         }
 
         /// <summary>
@@ -76,7 +75,7 @@ namespace MISA.QLTSv2.DL
         /// <param name="entity">object phòng ban</param>
         /// <returns>số bản ghi thêm mơi được</returns>
         /// Author: DVVUONG (02/03/2021)
-        public int Insert(Department department)
+        public int InsertDepartment(Department department)
         {
             // Build thành đối tượng để lưu vào database:
             var parameters = MappingDbType(department);
@@ -92,12 +91,13 @@ namespace MISA.QLTSv2.DL
         /// <param name="entity"></param>
         /// <returns>SỐ lương bản ghi thay đổi</returns>
         /// createdBy:DVUONG(02/03/2021)
-        public int Update(Department entity)
+        public int UpdateDepartment(Department entity)
         {
             // Build thành đối tượng để lưu vào database:
             var parameters = MappingDbType(entity);
             // Thực thi commandText và return:
-            return _dbConnection.Execute($"Proc_UpdateDepartment", parameters, commandType: CommandType.StoredProcedure);
+            var rowAffects = _dbConnection.Execute($"Proc_UpdateDepartment", parameters, commandType: CommandType.StoredProcedure);
+            return rowAffects; 
         }
 
         /// <summary>
@@ -106,15 +106,15 @@ namespace MISA.QLTSv2.DL
         /// <param name="entityId">khóa chính bản ghi cần xóa</param>
         /// <returns>số bản ghi bị xóa</returns>
         /// Author: DVVUONG (02/03/2021)
-        public int Delete(Guid entityId)
+        public int DeleteDepartment(Guid entityId)
         {
             var parameter = new DynamicParameters();
             // Add param id của bảng cần xóa:
             parameter.Add($"$DepartmentId", entityId.ToString());
             // Thực thi commandText:
-            var res = _dbConnection.Execute($"Proc_DeleteDepartment", parameter, commandType: CommandType.StoredProcedure);
+            var rowAffects = _dbConnection.Execute($"Proc_DeleteDepartment", parameter, commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu:
-            return res;
+            return rowAffects;
         }
 
 

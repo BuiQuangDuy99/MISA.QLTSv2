@@ -34,9 +34,9 @@ namespace MISA.QLTSv2.BL.Services
         /// </summary>
         /// <returns>danh sách phòng ban</returns>
         /// Author: DVVUONG (02/03/2021)
-        public List<Department> GetEntities()
+        public List<Department> GetDepartments()
         {
-            return _departmentDL.GetEntities();
+            return _departmentDL.GetDepartments();
         }
 
         /// <summary>
@@ -45,9 +45,9 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entityId">ID</param>
         /// <returns>một bản ghi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public Department GetEntityById(Guid entityId)
+        public Department GetDepartmentById(Guid entityId)
         {
-            return _departmentDL.GetEntityById(entityId);
+            return _departmentDL.GetDepartmentById(entityId);
         }
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entityId">khóa chính</param>
         /// <returns>số bản ghi bị xóa</returns>
         /// Author: DVVUONG (02/03/2021)
-        public int Delete(Guid entityId)
+        public int DeleteDepartment(Guid entityId)
         {
-            return _departmentDL.Delete(entityId);
+            return _departmentDL.DeleteDepartment(entityId);
         }
 
 
@@ -68,14 +68,14 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entity"></param>
         /// <returns>Số bản ghi thay đổi</returns>
         /// createdBy:DVVUONG(02/03/2021)
-        public ServiceResult Insert(Department entity)
+        public ServiceResult InsertDepartment(Department entity)
         {
             entity.EntityState = EntityState.Insert;
             var isValid = Validate(entity);
 
             if (isValid == true)
             {
-                _serviceResult.Data = _departmentDL.Insert(entity);
+                _serviceResult.Data = _departmentDL.InsertDepartment(entity);
                 _serviceResult.MISACode = MISACode.Success;
                 _serviceResult.Messenger = Resources.Msg_AddSuccess;
                 return _serviceResult;
@@ -92,13 +92,13 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entity"></param>
         /// <returns>Một bản ghi thay đổi</returns>
         /// CreatedBy:DVVUONG(02/03/2021)
-        public ServiceResult Update(Department entity)
+        public ServiceResult UpdateDepartment(Department entity)
         {
             entity.EntityState = EntityState.Update;
             var isValid = Validate(entity);
             if (isValid == true)
             {
-                _serviceResult.Data = _departmentDL.Update(entity);
+                _serviceResult.Data = _departmentDL.UpdateDepartment(entity);
                 _serviceResult.MISACode = MISACode.Success;
                 _serviceResult.Messenger = Resources.Msg_UpdateSuccess;
                 return _serviceResult;

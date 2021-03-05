@@ -13,7 +13,7 @@ namespace MISA.QLTSv2.API
     /// Author: DVVUONG (01/03/2021)
     [Route("api/[controller]")]
     [ApiController]
-    public class DepartmentController : ControllerBase
+    public class DepartmentsController : ControllerBase
     {
         #region Declare
         string _connectionString;
@@ -21,7 +21,7 @@ namespace MISA.QLTSv2.API
         #endregion
 
         #region Constructor
-        public DepartmentController(IConfiguration configuration, IMapper mapper)
+        public DepartmentsController(IConfiguration configuration, IMapper mapper)
         {
             _connectionString = configuration.GetConnectionString("MISAQLTSv2ConnectionString");
             _departmentBL = new DepartmentBL(_connectionString, mapper);
@@ -39,13 +39,14 @@ namespace MISA.QLTSv2.API
         {
             try
             {
+                return Ok(_departmentBL.GetDepartments());
             }
             catch (Exception)
             {
-
+                return BadRequest();
             }
 
-            return Ok(_departmentBL.GetEntities());
+           
         }
 
 
@@ -58,7 +59,7 @@ namespace MISA.QLTSv2.API
         [HttpGet("{entityId}")]
         public IActionResult GetDepartmentById([FromRoute] Guid entityId)
         {
-            return Ok(_departmentBL.GetEntityById(entityId));
+            return Ok(_departmentBL.GetDepartmentById(entityId));
         }
 
         /// <summary>
@@ -78,7 +79,7 @@ namespace MISA.QLTSv2.API
             {
 
             }
-            return Ok(_departmentBL.Delete(entityId));
+            return Ok(_departmentBL.DeleteDepartment(entityId));
         }
 
 
@@ -93,7 +94,7 @@ namespace MISA.QLTSv2.API
         [HttpPost]
         public IActionResult PostDepartment([FromBody] Department entity)
         {
-            var res = _departmentBL.Insert(entity);
+            var res = _departmentBL.InsertDepartment(entity);
             return Ok(res);
         }
 
@@ -106,7 +107,7 @@ namespace MISA.QLTSv2.API
         [HttpPut("{entityId}")]
         public IActionResult PutDepartment([FromRoute] string entityId, [FromBody] Department entity)
         {
-            var res = _departmentBL.Update(entity);
+            var res = _departmentBL.UpdateDepartment(entity);
             return Ok(res);
         }
         #endregion

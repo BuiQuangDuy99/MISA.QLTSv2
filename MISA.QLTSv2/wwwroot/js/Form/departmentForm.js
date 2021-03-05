@@ -15,7 +15,7 @@ class departmentForm extends baseForm {
 
 
     setApiUrl() {
-        this.getApiUrl = 'https://localhost:44363/api/department';
+        this.getApiUrl = 'https://localhost:44363/api/departments';
     }
 
     /**
