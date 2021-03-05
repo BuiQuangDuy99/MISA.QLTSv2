@@ -46,7 +46,7 @@ namespace MISA.QLTSv2.API
                 }
             }
             catch (Exception ex)
-            { 
+            {
                 return BadRequest(ex);
             }
         }
