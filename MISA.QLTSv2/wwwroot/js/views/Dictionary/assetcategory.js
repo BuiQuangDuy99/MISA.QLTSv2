@@ -1,4 +1,9 @@
-﻿
+﻿$(document).ready(function () {
+    $('#cbxgroup').combobox();
+    $('#cbxgroupasset').combobox();
+
+    //$('#dtIncrementDate').mask("00/00/0000", { placeholder: "___/___/______" }).datepicker();
+})
 //Khởi tạo bảng và form màn loại tài sản
 class Dictionary extends BaseGrid {
 

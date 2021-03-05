@@ -34,7 +34,7 @@
 <body>
 
     <div id="project-label">Select a project (type &quot;j&quot; for a start):</div>
-    <select id="cbxTest">
+    <select id="cbxTest" style="display: block">
         <option value="one">1</option>
         <option value="two">2</option>
         <option value="three">3</option>
@@ -48,6 +48,7 @@
     </select>
     @section scripts{
         <script>
+            // giờ ném cái này thành file lib, dùng chung, chỉ cần .combobox là được
             $(function () {
                 $.widget("custom.combobox", {
                     _create: function () {
@@ -82,10 +83,12 @@
                             });
 
                         this._on(this.input, {
+                            // sự kiện select xong sẽ return về cái gì
                             autocompleteselect: function (event, ui) {
                                 ui.item.option.selected = true;
 
                                 this._trigger("select", event, {
+                                    // nơi return kết quả, ở đây return về 2 biến item và value
                                     item: ui.item.valre,
                                     value: ui.item.label
                                 });
@@ -187,15 +190,21 @@
                     }
                 });
 
+                // ở chỗ mình cần dùng, mình sẽ overide lại cái sự kiện select của nó để lấy data ra xử lý
+                // chắc cl
+                // để yên t nói nốt
+                // thằng nào dùng thì mình overide lại của thằng đấy để xử lý sự kiện riêng của nó là sẽ lấy được riêng từng thằng.
                 $("#cbxTest").combobox({
                     select: function (event, ui) {
                         debugger
+                        // ban nãy t return cái item = value (value của option)
                         alert(ui.item);
                     }
                 });
                 $("#cbxTest1").combobox({
                     select: function (event, ui) {
                         debugger
+                        // value = lable (lable chính là cái text hiển thị của option)
                         alert(ui.value);
                     }
                 });

@@ -7,7 +7,7 @@
     <link href="~/lib/jquery-ui-1.12.1.custom/jquery-ui.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/uicons-solid-rounded/css/uicons-solid-rounded.css" rel="stylesheet" />
-    <link href="~/css/common/common.css" rel="stylesheet" />            
+    <link href="~/css/common/common.css" rel="stylesheet" />
     <link href="~/css/common/main.css" rel="stylesheet" />
     <link href="~/css/common/navbar.css" rel="stylesheet" />
     <link href="~/css/common/header.css" rel="stylesheet" />
@@ -21,11 +21,10 @@
     <link href="~/css/common/loading.css" rel="stylesheet" />
     <link href="~/css/common/responsive.css" rel="stylesheet" />
     <link href="~/css/custom/department.css" rel="stylesheet" />
-    <link href="~/css/Form/dictionaryForm.css" rel="stylesheet" />
     <link href="~/css/Form/depreciation.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/css/common/warring.css" rel="stylesheet" />
-    <link href="~/css/asset.css" rel="stylesheet" />
+    @RenderSection("Links", required: false)
 </head>
 <body>
     <div class="wrapper container-fluid h-100">
@@ -156,7 +155,12 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-    <script src="~/lib/jQuery-Mask-Plugin-master/dist/jquery.mask.js"></script>
+
+    <script src="~/lib/Inputmask-5.x/dist/bindings/inputmask.binding.js"></script>
+    <script src="~/lib/Inputmask-5.x/dist/inputmask.js"></script>
+    <script src="~/lib/Inputmask-5.x/dist/jquery.inputmask.js"></script>
+
+    @*<script src="~/lib/jQuery-Mask-Plugin-master/dist/jquery.mask.js"></script>*@
     @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @*Script dùng chung*@

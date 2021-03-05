@@ -5,22 +5,25 @@
     ViewData["ChildTitle"] = "Loại tài sản";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section Links{
+    <link href="~/css/Form/dictionaryForm.css" rel="stylesheet" />
+}
 <div class="tool-bar" id="tbGrdFACategory">
     <div class="filter-bar">
         <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
     </div>
     <div class="tool-bar-right">
-        <div class="test-tooltip"  >
+        <div class="test-tooltip">
             <button class="button btn-add" CommandName="Add">Thêm</button>
         </div>
-        <div >
+        <div>
             <button class="button btn-refresh" CommandName="Refresh" title="Làm mới">
                 <div class="icon-refresh">
 
                 </div>
             </button>
         </div>
-        <div >
+        <div>
             <button class="button btn-remove" CommandName="Delete" title="Xóa">
                 <div class="icon-remove ">
                 </div>
@@ -30,7 +33,7 @@
 </div>
 <div class="grid">
     <div class="grid-default">
-        <table cellspacing="0" 
+        <table cellspacing="0"
                id="gridTest"
                data-toolbar="#tbGrdFACategory">
             <thead></thead>
@@ -63,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 m-col-5v2">
                 <div class="content-items">
                     <div class="text-header">
                         Tên loại tài sản (*)
@@ -81,18 +84,24 @@
                         Thuộc loại
                     </div>
                     <div>
-                        <input class="input-text input-dictionary" fieldName="ParentName"/>
+                        <select id="cbxgroup">
+                            <option value="value">Loại thứ nhất</option>
+                            <option value="value">Loại thứ hai</option>
+                            <option value="value">Loại thứ ba</option>
+                        </select>
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 m-col-5v2">
                 <div class="content-items">
                     <div class="text-header">
                         Nhóm tài sản
                     </div>
-                    <div>
-                        <input class="input-text input-dictionary" id="AssetGroup" fieldName="FACategoryGroupName"/>
-                    </div>
+                    <select id="cbxgroupasset">
+                        <option value="value">Nhóm thứ nhất</option>
+                        <option value="value">Nhóm thứ hai</option>
+                        <option value="value">Nhóm thứ ba</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -107,7 +116,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 m-col-5v2">
                 <div class="content-items">
                     <div class="text-header">
                         Số năm sử dụng
@@ -124,7 +133,7 @@
                 <textarea class="input-detail input-dictionary txt-area-facategory" fieldName="Description"></textarea>
             </div>
         </div>
-        <input fieldName="FixedAssetCategoryId" style="display:none"/>
+        <input fieldName="FixedAssetCategoryId" style="display:none" />
     </div>
     <div class="dialog-footer">
         <div class="footer-left">
