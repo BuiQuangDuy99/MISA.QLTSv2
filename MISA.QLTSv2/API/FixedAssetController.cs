@@ -30,7 +30,7 @@ namespace MISA.QLTSv2.API
         /// <returns>danh sách thỏa mãn</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetFixedAsset()
         {
             try
             {
@@ -40,7 +40,7 @@ namespace MISA.QLTSv2.API
 
             }
 
-            return Ok(_fixedAssetBL.GetEntities());
+            return Ok(_fixedAssetBL.GetFixedAssets());
         }
         /// <summary>
         /// Lấy ra một bản ghi theo ID
@@ -49,9 +49,9 @@ namespace MISA.QLTSv2.API
         /// <returns>Một bản ghi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
         [HttpGet("{entityId}")]
-        public IActionResult GetEntityById([FromRoute] Guid entityId)
+        public IActionResult GetFixedAssetById([FromRoute] Guid entityId)
         {
-            return Ok(_fixedAssetBL.GetEntityById(entityId));
+            return Ok(_fixedAssetBL.GetFixedAssetById(entityId));
         }
         /// <summary>
         /// Xóa Một bản ghi
@@ -59,9 +59,9 @@ namespace MISA.QLTSv2.API
         /// <returns>Số bản ghi bị xóa</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
         [HttpDelete("{entityId}")]
-        public IActionResult Delete(Guid entityId)
+        public IActionResult DeleteFixedAsset(Guid entityId)
         {
-            return Ok(_fixedAssetBL.Delete(entityId));
+            return Ok(_fixedAssetBL.DeleteFixedAsset(entityId));
         }
         /// <summary>
         /// Thêm một bản ghi
@@ -70,9 +70,9 @@ namespace MISA.QLTSv2.API
         /// <returns>Số bản ghi thay đổi</returns>
         /// createdBy:NVTUYEN(02/03/2021)
         [HttpPost]
-        public IActionResult Insert([FromBody] FixedAsset entity)
+        public IActionResult InsertFixedAsset([FromBody] FixedAsset entity)
         {
-            var res = _fixedAssetBL.Insert(entity);
+            var res = _fixedAssetBL.InsertFixedAsset(entity);
             return Ok(res);
         }
         /// <summary>
@@ -82,9 +82,9 @@ namespace MISA.QLTSv2.API
         /// <returns>Một bản ghi thay đổi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
         [HttpPut("{entityId}")]
-        public IActionResult Put([FromRoute] string entityId, [FromBody] FixedAsset entity)
+        public IActionResult PutFixedAsset([FromRoute] string entityId, [FromBody] FixedAsset entity)
         {
-            var res = _fixedAssetBL.Update(entity);
+            var res = _fixedAssetBL.UpdateFixedAsset(entity);
             return Ok(res);
         }
     }

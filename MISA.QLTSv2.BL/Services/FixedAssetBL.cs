@@ -25,9 +25,9 @@ namespace MISA.QLTSv2.BL.Services
         /// </summary>
         /// <returns>Danh sách tài sản</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public List<FixedAsset> GetEntities()
+        public List<FixedAsset> GetFixedAssets()
         {
-            return _fixedAssetDL.GetEntities();
+            return _fixedAssetDL.GetFixedAssets();
         }
         /// <summary>
         /// Lấy ra một bản ghi theo ID
@@ -35,19 +35,19 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entityId">ID</param>
         /// <returns>một bản ghi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public FixedAsset GetEntityById(Guid entityId)
+        public FixedAsset GetFixedAssetById(Guid entityId)
         {
-            return _fixedAssetDL.GetEntityById(entityId);
+            return _fixedAssetDL.GetFixedAssetById(entityId);
         }
         /// <summary>
         /// Xóa Một bản ghi
         /// </summary>
         /// <returns>Số bản ghi bị xóa</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public int Delete(Guid entityId)
+        public int DeleteFixedAsset(Guid entityId)
         {
 
-            return _fixedAssetDL.Delete(entityId);
+            return _fixedAssetDL.DeleteFixedAsset(entityId);
         }
         /// <summary>
         /// Thêm một bản ghi
@@ -55,14 +55,14 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entity"></param>
         /// <returns>Số bản ghi thay đổi</returns>
         /// createdBy:NVTUYEN(02/03/2021)
-        public ServiceResult Insert(FixedAsset entity)
+        public ServiceResult InsertFixedAsset(FixedAsset entity)
         {
             entity.EntityState = EntityState.Insert;
             var isValid = Validate(entity);
 
             if (isValid == true)
             {
-                _serviceResult.Data = _fixedAssetDL.Insert(entity);
+                _serviceResult.Data = _fixedAssetDL.InsertFixedAsset(entity);
                 _serviceResult.MISACode = MISACode.Success;
                 _serviceResult.Messenger = Resources.Msg_AddSuccess;
                 return _serviceResult;
@@ -78,13 +78,13 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entity"></param>
         /// <returns>Một bản ghi thay đổi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public ServiceResult Update(FixedAsset entity)
+        public ServiceResult UpdateFixedAsset(FixedAsset entity)
         {
             entity.EntityState = EntityState.Update;
             var isValid = Validate(entity);
             if (isValid == true)
             {
-                _serviceResult.Data = _fixedAssetDL.Update(entity);
+                _serviceResult.Data = _fixedAssetDL.UpdateFixedAsset(entity);
                 _serviceResult.MISACode = MISACode.Success;
                 _serviceResult.Messenger = Resources.Msg_UpdateSuccess;
                 return _serviceResult;

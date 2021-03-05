@@ -30,8 +30,8 @@ table th, td {
     text-overflow: ellipsis;
 }
 
-table thead tr {
-    border-bottom: 1px solid #bbbbbb;
+table thead tr:first-child {
+    border:none;
 }
 
 table {
@@ -47,7 +47,6 @@ table {
         font-size: 12px;
         font-weight: 600;
         background-color: #fff;
-        border-bottom: 1px solid red !important;
     }
 
     table td {
@@ -67,6 +66,7 @@ table {
             background-color: #f0f8ff;
         }
 
+
 th:after,
 th:before {
     content: '';
@@ -75,14 +75,14 @@ th:before {
     width: 100%;
 }
 
-th:before {
+/*th:before {
     top: -1px;
     border-top: 1px solid #bbbbbb;
-}
+}*/
 
 th:after {
-    bottom: -1px;
-    border-bottom: 2px solid #bbbbbb;
+    bottom: 0px;
+    border-bottom: 1px solid #bbbbbb;
 }
 
 .selected-row {
@@ -110,4 +110,3 @@ th:after {
     display: none;
     position: absolute;
 }
-

@@ -31,7 +31,7 @@ namespace MISA.QLTSv2.DL
         /// </summary>
         /// <returns>danh sách tài sản</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public List<FixedAsset> GetEntities()
+        public List<FixedAsset> GetFixedAssets()
         {
             // Thực thi commandText:
             var entities = _dbConnection.Query<fixed_asset>($"Proc_SelectFixedAssetDatas", null, commandType: CommandType.StoredProcedure);
@@ -45,7 +45,7 @@ namespace MISA.QLTSv2.DL
         /// <param name="entityId">ID</param>
         /// <returns>Một bản ghi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public FixedAsset GetEntityById(Guid entityId)
+        public FixedAsset GetFixedAssetById(Guid entityId)
         {
             var parameterEntityId = new DynamicParameters();
             var tableName = typeof(FixedAsset).Name;
@@ -62,7 +62,7 @@ namespace MISA.QLTSv2.DL
         /// <param name="entityId"></param>
         /// <returns>số bản ghi xóa được</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public int Delete(Guid entityId)
+        public int DeleteFixedAsset(Guid entityId)
         {
             var parameterEntityId = new DynamicParameters();
             // Add param id của bảng cần xóa:
@@ -78,7 +78,7 @@ namespace MISA.QLTSv2.DL
         /// <param name="entity"></param>
         /// <returns>số bản ghi được thêm</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public int Insert(FixedAsset entity)
+        public int InsertFixedAsset(FixedAsset entity)
         {
             // Build thành đối tượng để lưu vào database:
             var parameters = MappingDbType(entity);
@@ -93,7 +93,7 @@ namespace MISA.QLTSv2.DL
         /// <param name="entity"></param>
         /// <returns>SỐ lương bản ghi thay đổi</returns>
         /// createdBy:NVTUYEN(02/03/2021)
-        public int Update(FixedAsset entity)
+        public int UpdateFixedAsset(FixedAsset entity)
         {
             // Build thành đối tượng để lưu vào database:
             var parameters = MappingDbType(entity);
