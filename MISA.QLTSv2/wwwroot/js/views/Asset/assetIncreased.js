@@ -1,11 +1,13 @@
 $(document).ready(function () {
     $('#cbxdepartment').combobox({
         select: function (event, ui) {
+            debugger
             $('#txtdepartment').val(ui.item);
         }
     });
     $('#cbxassetcategory').combobox({
         select: function (event, ui) {
+            debugger
             $('#txtAssetGroupName').val(ui.item);
 
         }

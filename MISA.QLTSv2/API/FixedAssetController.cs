@@ -19,12 +19,10 @@ namespace MISA.QLTSv2.API
     {
         FixedAssetBL _fixedAssetBL;
         string _connectionString;
-        ServiceResult _serviceResult;
         public FixedAssetController(IConfiguration configuration, IMapper mapper)
         {
             _connectionString = configuration.GetConnectionString("MISAQLTSv2ConnectionString");
             _fixedAssetBL = new FixedAssetBL(_connectionString, mapper);
-            _serviceResult = new ServiceResult();
         }
         /// <summary>
         /// Lấy toàn bộ danh sách
@@ -36,19 +34,13 @@ namespace MISA.QLTSv2.API
         {
             try
             {
-                _serviceResult = _fixedAssetBL.GetFixedAssets();
-                if (_serviceResult.MISACode == Model.Enums.MISACode.Success)
-                {
-                    return Ok(_serviceResult);
-                }
-                else {
-                    return BadRequest(_serviceResult);
-                }
             }
             catch (Exception ex)
             {
-                return BadRequest(ex);
+
             }
+
+            return Ok(_fixedAssetBL.GetFixedAssets());
         }
         /// <summary>
         /// Lấy ra một bản ghi theo ID

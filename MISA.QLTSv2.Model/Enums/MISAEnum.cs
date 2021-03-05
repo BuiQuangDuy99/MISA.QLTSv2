@@ -20,11 +20,7 @@ namespace MISA.QLTSv2.Model.Enums
         /// <summary>
         /// Thành công
         /// </summary>
-        Success = 200,
-        /// <summary>
-        /// Thất bại
-        /// </summary>
-        Fail = 400 
+        Success = 200
     }
     /// <summary>
     /// xác định trạng thái của object

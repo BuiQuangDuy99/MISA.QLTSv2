@@ -138,7 +138,7 @@ class BaseGrid extends Grid {
             async: false
         }).done(function (res) {
             if (res) {
-                me.loadData(res.Data);
+                me.loadData(res);
             }
         }).fail(function (res) {
 
