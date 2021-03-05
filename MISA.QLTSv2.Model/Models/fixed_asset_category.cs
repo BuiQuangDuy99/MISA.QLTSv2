@@ -44,6 +44,14 @@ namespace MISA.QLTSv2.Model.Models
         /// </summary>
         public string fixed_asset_category_name { get; set; }
         /// <summary>
+        /// Id nhóm loại tài sản
+        /// </summary>
+        public Guid? fa_category_group_id { get; set; }
+        /// <summary>
+        /// Tên nhóm loại tài sản
+        /// </summary>
+        public string fa_category_group_name { get; set; }
+        /// <summary>
         /// Id của đơn vị
         /// </summary>
         public Guid? organization_id { get; set; }

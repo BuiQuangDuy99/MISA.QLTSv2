@@ -38,6 +38,7 @@ class depreciationForm extends baseForm {
         $('input[fieldName="RefNo"]').off('keyup').keyup(function () {
             this.value = this.value.toLocaleUpperCase();
         });
+        $('#TestDate').datepicker().inputmask("99/99/9999", { placeholder: "__/__/____" });
     }
 
     /**
