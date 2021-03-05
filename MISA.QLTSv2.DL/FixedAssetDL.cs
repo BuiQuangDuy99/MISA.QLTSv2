@@ -15,7 +15,6 @@ namespace MISA.QLTSv2.DL
     public class FixedAssetDL
     {
         #region DECLARE
-        IConfiguration _configuration;
         string _connectionString = string.Empty;
         IDbConnection _dbConnection = null;
         IMapper _mapper;

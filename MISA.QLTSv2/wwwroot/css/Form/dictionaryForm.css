@@ -336,3 +336,7 @@
     background-color: #fff;
     padding-left: 15px;
 }
+a.ui-button:active {
+    border: 1px solid #e0e0e0;
+    background: #f6f6f6;
+}

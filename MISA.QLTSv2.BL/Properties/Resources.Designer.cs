@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MISA.QLTSv2.Model.Properties {
+namespace MISA.QLTSv2.BL.Properties {
     using System;
     
     
@@ -70,6 +70,15 @@ namespace MISA.QLTSv2.Model.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Xóa không thành công.
+        /// </summary>
+        internal static string Msg_DeleteFail {
+            get {
+                return ResourceManager.GetString("Msg_DeleteFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Xóa dữ liệu thành công.
         /// </summary>
         internal static string Msg_DeleteSuccess {
@@ -84,6 +93,24 @@ namespace MISA.QLTSv2.Model.Properties {
         internal static string Msg_Dulicate {
             get {
                 return ResourceManager.GetString("Msg_Dulicate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lấy dữ liệu thất bại.
+        /// </summary>
+        internal static string Msg_GetFail {
+            get {
+                return ResourceManager.GetString("Msg_GetFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lấy dữ liệu thành công.
+        /// </summary>
+        internal static string Msg_GetSuccess {
+            get {
+                return ResourceManager.GetString("Msg_GetSuccess", resourceCulture);
             }
         }
         
