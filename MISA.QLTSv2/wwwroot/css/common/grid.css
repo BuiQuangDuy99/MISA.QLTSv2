@@ -47,7 +47,10 @@ table {
         font-size: 12px;
         font-weight: 600;
         background-color: #fff;
-        border-bottom: 1px solid red !important;
+    }
+
+    table td:first-child{
+        border-top: none;
     }
 
     table td {
@@ -67,18 +70,13 @@ table {
             background-color: #f0f8ff;
         }
 
-th:after,
-th:before {
+th:after {
     content: '';
     position: absolute;
     left: 0;
     width: 100%;
 }
 
-th:before {
-    top: -1px;
-    border-top: 1px solid #bbbbbb;
-}
 
 th:after {
     bottom: -1px;

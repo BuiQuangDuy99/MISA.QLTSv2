@@ -59,13 +59,13 @@ namespace MISA.QLTSv2.DL
         /// CreatedBy:DVVUONG(02/03/2021)
         public Department GetDepartmentById(Guid entityId)
         {
-            var parameterEntityId = new DynamicParameters();
+            var parameter = new DynamicParameters();
             var tableName = typeof(Department).Name;
             // Add param id của đối tượng cần lấy dữ liệu:
-            parameterEntityId.Add($"${tableName}Id", entityId.ToString());
+            parameter.Add($"${tableName}Id", entityId.ToString());
 
             // Thực thi commandText:
-            var department = _dbConnection.Query<department>($"Proc_Select{tableName}ById", parameterEntityId, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            var department = _dbConnection.Query<department>($"Proc_Select{tableName}ById", parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
             return _mapper.Map<Department>(department);
         }
 

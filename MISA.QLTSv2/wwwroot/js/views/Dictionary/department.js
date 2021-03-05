@@ -1,7 +1,5 @@
 ﻿$(document).ready(function () {
-    $('#cboDepartment').autocomplete({
-        source: availableTags
-    })
+    $('#cbxDepartment').combobox();
 })
 
 
@@ -86,7 +84,7 @@ var availableTags = [
 
 ];
 //Khởi tạo form danh sách phòng ban
-departmentGrid.createFormDetail("#department_dialog", 300);
+departmentGrid.createFormDetail("#department_dialog", 330);
 
 // THiết lập config header
 departmentGrid.setConFigColum(conFigColum);

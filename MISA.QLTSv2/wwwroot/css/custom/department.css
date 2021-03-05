@@ -54,7 +54,7 @@
 .department_dialog .top .sub-content{
     margin-bottom: 18px;
 }
-.department_dialog input, .department_dialog select, .department_dialog textarea{
+.department_dialog input{
     width: 100%;
     outline: none;
     font-family: 'Roboto-Regular';
@@ -68,10 +68,13 @@
         resize: none;
         border: 1px solid #e0e0e0;
         outline: none;
+        width: 100%;
+        z-index: 5;
     }
-.ui-dialog .ui-dialog-title{
-    display: none;
-}
+
+    .ui-dialog .ui-dialog-title {
+        display: none;
+    }
 
 .v-grid {
     height: calc(100vh - 114px) !important;
@@ -79,4 +82,46 @@
 
 .v-grid-overflow{
     overflow: unset !important;
+}
+
+.ui-icon {
+    background-image: url('/icon/svg/fi-rr-caret-down.svg') !important;
+    background-size: contain !important;
+    opacity: 0.5;
+}
+
+.ui-widget.ui-widget-content {
+    height: 32px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+}
+
+.custom-combobox {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+    border: 1px solid #e0e0e0;
+}
+
+.ui-widget-content a {
+    width: 32px;
+}
+
+.custom-combobox-input {
+    margin: 0;
+    padding-left: 15px;
+    width: 212px;
+    width: 212px;
+}
+
+.department_dialog .custom-combobox input{
+    width: 255px;
+    z-index: 10;
 }
