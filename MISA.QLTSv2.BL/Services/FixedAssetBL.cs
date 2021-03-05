@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using MISA.QLTSv2.BL.Properties;
 using MISA.QLTSv2.DL;
 using MISA.QLTSv2.Model.Entities;
 using MISA.QLTSv2.Model.Enums;
-using MISA.QLTSv2.Model.Properties;
 using System;
 using System.Collections.Generic;
 
@@ -25,9 +25,21 @@ namespace MISA.QLTSv2.BL.Services
         /// </summary>
         /// <returns>Danh sách tài sản</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public List<FixedAsset> GetFixedAssets()
+        public ServiceResult GetFixedAssets()
         {
-            return _fixedAssetDL.GetFixedAssets();
+            var res = _fixedAssetDL.GetFixedAssets();
+            if (res != null)
+            {
+                _serviceResult.Data = res;
+                _serviceResult.MISACode = MISACode.Success;
+                _serviceResult.Messenger = Resources.Msg_GetSuccess;
+            }
+            else {
+                _serviceResult.Data = res;
+                _serviceResult.MISACode = MISACode.Fail;
+                _serviceResult.Messenger = Resources.Msg_GetFail;
+            }
+            return _serviceResult;
         }
         /// <summary>
         /// Lấy ra một bản ghi theo ID
