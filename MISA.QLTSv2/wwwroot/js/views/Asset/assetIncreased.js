@@ -1,46 +1,13 @@
 $(document).ready(function () {
-   // $('#cbxdepartment').combobox();
-    //$('#cbxdepartment').combobox().autocomplete({
-    //    select: function (event, ui) {
-    //        ui.item.option.selected = true;
-    //            $('#txtdepartment').val(ui.item.option.value);
-    //        that._trigger("selected", event, {
-    //            item: ui.item.option
-    //        });
-    //    }
-    //});
-
-    $("#txt_departmentcode").autocomplete({
-        source: availableTags
-    })
-
-    //$("#cbxdepartment").combobox().autocomplete({
-    //    change: function (event, ui) {
-    //        debugger
-    //    }
-    //});
-
-    //$("#cbxdepartment").on("autocompletechange", function (event, ui) {
-
-    //    debugger
-    //});
-
-    //$('#cbxdepartment').combobox().autocomplete({
-    //    select: function (e, ui) {
-    //        debugger
-    //        alert(ui.item.zzz);
-    //    }
-    //})
-    $('#txt_assetcategory').autocomplete({
-        source: availableTags
-    })
+    $('#cbxdepartment').combobox();
+    $('#txt_assetcategory').combobox();
 
     $('#dtIncrementDate').mask("00/00/0000", { placeholder: "___/___/______" }).datepicker();
 })
  
 class assetIncreased extends BaseGrid {
     constructor(gridId, entity) {
-        super(gridId, entity);
+        super(gridId, entity); 
         this.initEvents();
     }
     initEvents() {
