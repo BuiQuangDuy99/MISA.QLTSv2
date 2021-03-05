@@ -302,12 +302,6 @@ class baseForm {
         this.form.find("[fieldName], select").each(function () {
             var fieldName = $(this).attr("fieldName"),
                 dataType = $(this).attr("DataType");
-
-            //if (dataType == "Combobox") {
-            //    fieldName = $(this).attr("fieldValue");
-
-            //}
-
             data[fieldName] = me.getDataInput($(this), dataType);
             if (fieldName == me.jsCaller.entity + "Id") {
                 data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
@@ -318,7 +312,7 @@ class baseForm {
     /**
      * Sự kiện click nút Lưu
      * CreatedBy : NDTUNG (4/2/2021)
-     */
+     **/
     saveData() {
         var me = this;
         var isValid = me.validateForm();

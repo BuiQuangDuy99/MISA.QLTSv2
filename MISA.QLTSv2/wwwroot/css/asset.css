@@ -204,4 +204,13 @@
     padding: 3px 1em 3px .4em;
     background-color: #fff;
     padding-left: 15px;
+    border-left:1px solid #bbbbbb;
+    border-right:1px solid #bbbbbb;
+}
+a.ui-button:active {
+    border: 1px solid #E0E0E0;
+    background: #F6F6F6;
+}
+.ui-menu .ui-menu-item:last-child {
+    border-bottom: 1px solid #bbbbbb;
 }

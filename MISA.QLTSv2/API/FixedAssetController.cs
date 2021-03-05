@@ -34,13 +34,14 @@ namespace MISA.QLTSv2.API
         {
             try
             {
+
             }
             catch (Exception ex)
             {
 
             }
-
             return Ok(_fixedAssetBL.GetFixedAssets());
+
         }
         /// <summary>
         /// Lấy ra một bản ghi theo ID
