@@ -1,4 +1,4 @@
-﻿
+
 //-----------------Form-----------------------------
 class baseForm {
     ///constructor
@@ -6,9 +6,10 @@ class baseForm {
         //this.formMode = Enum.FormMode.Add;
         this.form = $(Idform);
         this.jsCaller = jsCaller;
-        this.setApiUrl();
         this.getApiUrl = null;
+        this.setApiUrl();
         this.initEvent();
+        this.getData();
     };
 
     /**
@@ -19,14 +20,13 @@ class baseForm {
         //var data = this.getJson();
         this.form.find("#btn-cancel").off("click");
         this.form.find("#btn-save").off("click");
+
         //this.form.find("#btn-save").on("click", this.getJson());
         this.form.find("#btn-cancel,#btn-close").on("click", this.closeForm.bind(this));
         this.form.find("#btn-save").on("click", this.saveData.bind(this));
         this.form.find('input').click(function () { $(this).select(); });
         this.form.find("input").blur(this.checkStatusInput);
         this.form.find("input").keyup(this.checkStatusInput);
-        //this.form.find("input").blur(this.checkInputNumber.bind(this));
-        //this.form.find("input").keyup(this.checkInputNumber.bind(this));
         this.form.find("input[DataType='Money'],input[DataType='Number']").on("keypress", function () {
             if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
                 event.preventDefault();
@@ -35,7 +35,6 @@ class baseForm {
                 $("input[DataType='Money']").keyup(this.formatPrice)
             }
         }.bind(this));
-
 
     }
 
@@ -175,11 +174,11 @@ class baseForm {
             var propertyName = $(this).attr('fieldName');
             var propertyValue = data[0][propertyName];
             if ($(this).attr('dataType') == 'date') {
-                propertyvalue = formatStringDate(propertyvalue);
+                propertyValue = formatDate(propertyValue, "YYYY-MM-DD");
             }
             else if ($(this).attr('dataType') == "Money") {
-                var money = formatMoney(propertyvalue);
-                propertyvalue = money;
+                var money = formatMoney(propertyValue);
+                propertyValue = money;
             }
             this.value = propertyValue;
         });
@@ -227,11 +226,34 @@ class baseForm {
         //}
         let me = this,
             jsCaller = me.jsCaller;
-
+        var url = me.getApiUrl;
         if (jsCaller.formMode == "Add") {
+            $.ajax({
+                url: url,
+                method: "POST",
+                data: JSON.stringify(data),
+                contentType: 'application/json'
+            }).done(function (res) {
+                me.closeForm();
+                me.jsCaller.loadAjaxData(me.getApiUrl);
 
-            jsCaller.listData.push(data);
-            jsCaller.loadData(jsCaller.listData);
+            }).fail(function (res) {
+
+            })
+        } else if (jsCaller.formMode == "edit") {
+            var idSelected = me.jsCaller.grid.find(".selected-row").data("recordId");
+            $.ajax({
+                url: url + '/' + idSelected,
+                method: "PUT",
+                data: JSON.stringify(data),
+                contentType: 'application/json'
+            }).done(function (res) {
+                me.closeForm();
+                me.jsCaller.loadAjaxData(me.getApiUrl);
+
+            }).fail(function (res) {
+
+            })
         }
     }
 
@@ -286,7 +308,9 @@ class baseForm {
             //}
 
             data[fieldName] = me.getDataInput($(this), dataType);
-
+            if (fieldName == me.jsCaller.entity + "Id") {
+                data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
+            }
         });
         return data;
     }
@@ -300,7 +324,7 @@ class baseForm {
         if (isValid) {
             var data = me.getData();
             me.saveChangeData(data);
-            me.closeForm();
+            
         }
     }
 }

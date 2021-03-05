@@ -15,8 +15,12 @@
         $('#cbxdepartment').change(function () {
             $('#txtdepartment').val($(this).val());
         })
+
     }
 
+    setApiUrl() {
+        this.getApiUrl = 'https://localhost:44363/api/v1/FixedAsset';
+    }
     /**
      * Hàm xử lý sự kiện thay đổi selection
      * CretedBY: NVTUYEN(26/02/2021)

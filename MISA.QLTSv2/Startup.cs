@@ -4,14 +4,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MISA.QLTSv2.BL.Interfaces;
-using MISA.QLTSv2.DL;
-using MISA.QLTSv2.BL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MISA.QLTSv2.BL.Services;
+using MISA.QLTSv2.DL;
+using MISA.QLTSv2.Model.Entities;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace MISA.QLTSv2
 {
@@ -32,6 +29,14 @@ namespace MISA.QLTSv2
                 mc.AddProfile(new MappingProfile());
             });
 
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                });
+
+
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
@@ -40,9 +45,6 @@ namespace MISA.QLTSv2
             services.AddMvc();
             services.AddControllersWithViews();
             services.AddCors();
-            // Config DI:
-            services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

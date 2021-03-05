@@ -4,23 +4,23 @@
     ViewData["ChildTitle"] = "Ghi tăng tài sản";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="tool-bar">
+<div class="tool-bar" id="tbGrdFixedAsset">
     <div class="filter-bar">
         <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
     </div>
     <div class="tool-bar-right">
         <div>
-            <button class="button btn-add" id="btn-add-assetincreased">Thêm</button>
+            <button class="button btn-add" CommandName="Add">Thêm</button>
         </div>
         <div>
-            <button class="button btn-refresh" title="Làm mới">
+            <button class="button btn-refresh" CommandName="Refresh" title="Làm mới">
                 <div class="icon-refresh">
 
                 </div>
             </button>
         </div>
         <div>
-            <button class="button btn-remove" title="Xóa">
+            <button class="button btn-remove" CommandName="Delete" title="Xóa">
                 <div class="icon-remove ">
                 </div>
             </button>
@@ -29,8 +29,9 @@
 </div>
 <div class="grid">
     <div class="grid-default">
-        <table cellspacing="0" id="asset-grid">
+        <table cellspacing="0" id="asset-grid" data-toolbar="#tbGrdFixedAsset">
             <thead>
+                
             </thead>
             <tbody>
             </tbody>
@@ -76,7 +77,7 @@
                         Mã tài sản(*)
                     </div>
                     <div>
-                        <input fieldName="AssetCode" class="input-text input-asset" required />
+                        <input fieldName="FixedAssetCode" class="input-text input-asset" required />
                     </div>
                 </div>
             </div>
@@ -86,7 +87,7 @@
                         Tên tài sản(*)
                     </div>
                     <div>
-                        <input fieldName="AssetName" class="input-text input-asset" required />
+                        <input fieldName="FixedAssetName" class="input-text input-asset" required />
                     </div>
                 </div>
             </div>
@@ -98,12 +99,7 @@
                         Mã phòng ban
                     </div>
                     <div>
-                        <select id="cbxdepartment" style="width:209px" >
-                            <option value="phòng công nghệ thông tin">PB4837429479</option>
-                            <option value="phòng hành chính tổng hợp">PB4837429333</option>
-                            <option value="phòng kế toán">PB4837429444</option>
-                            <option value="phòng thanh tra">PB4837429555</option>
-                        </select>
+                        <input id="txt_departmentcode" class="input-text input-asset" />
                     </div>
                 </div>
             </div>
@@ -113,7 +109,7 @@
                         Tên phòng ban
                     </div>
                     <div>
-                        <input id="txtdepartment" fieldName="Department" class="input-text input-asset2" disabled />
+                        <input id="txtdepartment" fieldName="DepartmentName" class="input-text input-asset2" disabled />
                     </div>
                 </div>
             </div>
@@ -125,11 +121,7 @@
                         Mã loại tài sản
                     </div>
                     <div>
-                        <select id="cbxasset" style="width:209px">
-                            <option value="phòng hành chính tổng hợp">LTS3823894</option>
-                            <option value="phòng kế toán">LTS3823896</option>
-                            <option value="phòng thanh tra">LTS3823899</option>
-                        </select>
+                        <input id="txt_assetcategory" class="input-text input-asset" fieldName="FixedAssetCategoryCode"/>
                     </div>
                 </div>
             </div>
@@ -139,7 +131,7 @@
                         Tên loại tài sản
                     </div>
                     <div>
-                        <input id="txtAssetGroupName" fieldName="AssetGroupName" class="input-text input-asset2" disabled />
+                        <input id="txtAssetGroupName" fieldName="FixedAssetCategoryName" class="input-text input-asset2" disabled />
                     </div>
                 </div>
             </div>
@@ -151,7 +143,7 @@
                         Ngày ghi tăng
                     </div>
                     <div>
-                        <input dataType="date" fieldName="DateTime" class="input-date input-asset" type="date" />
+                        <input dataType="Date" fieldName="IncrementDate" class="input-date input-asset" type="date" />
                     </div>
                 </div>
             </div>
@@ -164,7 +156,7 @@
                                     Thời gian sử dụng(Năm)
                                 </div>
                                 <div>
-                                    <input class="form-control input-text input-asset3 input-number" type="number" value="10" min="0" max="20" dataType="Number" fieldName="YearOfUse" />
+                                    <input class="form-control input-text input-asset3 input-number" type="number" value="10" min="0" max="20" dataType="Number" fieldName="ProductionYear" />
                                 </div>
                             </div>
                         </div>
@@ -174,7 +166,7 @@
                                     Tỷ lệ hao mòn(%)
                                 </div>
                                 <div>
-                                    <input class="form-control input-text input-asset3 input-number" type="number" value="10.5" min="0" max="20" fieldName="WearPercent" >
+                                    <input class="form-control input-text input-asset3 input-number" type="number" value="10.5" min="0" max="20" dataType="Number" fieldName="DepreciationRate" />
                                 </div>
                             </div>
                         </div>
@@ -189,7 +181,7 @@
                         Nguyên giá
                     </div>
                     <div>
-                        <input dataType="Money" fieldName="Price" class="input-text input-asset" />
+                        <input dataType="Money" fieldName="Cost" class="input-text input-right  input-asset" />
                     </div>
                 </div>
             </div>
@@ -202,7 +194,7 @@
                                     Giá trị hao mòn năm
                                 </div>
                                 <div>
-                                    <input fieldName="ValueYear" class="input-text input-asset3" />
+                                    <input fieldName="DepreciationYearPrice" class="input-text input-right  input-asset3" />
                                 </div>
                             </div>
                         </div>
@@ -212,6 +204,7 @@
                 </div>
             </div>
         </div>
+        <input fieldName="FixedAssetId" style="display:none"/>
     </div>
 
     <div class="dialog-footer">

@@ -7,14 +7,14 @@
             "AssetName": "Tài Sản Nội Vụ",
             "AssetGroupId": "AG98232",
             "AssetGroupName": "Tài Sản Văn Phòng",
-            "WearPercent": "10%",
+            "WearPercent": 10.2,
             "DateTime": "04-04-2021",
             "Price": 555666777,
             "YearOfUse": 15,
             "DepartmentId": "561561",
             "Note": "Đây là ghi chú tự động",
             "Department": "Phòng công nghệ thông tin",
-            "ValueYear": "5%",
+            "ValueYear": "58",
             "Function": ""
 
         },
@@ -25,14 +25,14 @@
             "AssetName": "Tài Sản Công Vụ",
             "AssetGroupId": "AG13423",
             "AssetGroupName": "Tài Sản Cá Nhân",
-            "WearPercent": "45%",
+            "WearPercent": 12,
             "Price": 1241344,
             "YearOfUse": 10,
             "Note": "Đây là ghi chú tự động",
             "DateTime": "04-04-2021",
             "DepartmentId": "5615",
             "Department": "Phòng công nghệ thông tin",
-            "ValueYear": "5%",
+            "ValueYear": "56",
             "Function": ""
 
         },
@@ -43,14 +43,14 @@
             "AssetName": "Tài Sản Cố Định",
             "AssetGroupId": "AG98232",
             "AssetGroupName": "Tài Sản Nhà Nước",
-            "WearPercent": "30%",
+            "WearPercent": 30,
             "Price": 652345233,
             "YearOfUse": 20,
             "Note": "",
             "DateTime": "04-04-2021",
             "DepartmentId": "5615",
             "Department": "Phòng công nghệ thông tin",
-            "ValueYear": "5%",
+            "ValueYear": "58",
             "Function": ""
 
         },
@@ -61,14 +61,14 @@
             "AssetName": "Tài Sản Nội Vụ",
             "AssetGroupId": "AG98232",
             "AssetGroupName": "Tài Sản Văn Phòng",
-            "WearPercent": "20%",
+            "WearPercent": 25.2,
             "Price": 352342444,
             "YearOfUse": 5,
             "Note": "Đây là ghi chú tự động",
             "DateTime": "04-04-2021",
             "DepartmentId": "5615",
             "Department": "Phòng công nghệ thông tin",
-            "ValueYear": "5%",
+            "ValueYear": "59",
             "Function": ""
 
         },
@@ -79,14 +79,14 @@
             "AssetName": "Tài Sản Hữu Hình",
             "AssetGroupId": "AG98232",
             "AssetGroupName": "Tài Sản Văn Phòng",
-            "WearPercent": "50%",
+            "WearPercent": 50,
             "Price": 342342553,
             "YearOfUse": 3,
             "Note": "",
             "DateTime": "04-04-2021",
             "DepartmentId": "5615",
             "Department": "Phòng công nghệ thông tin",
-            "ValueYear": "5%",
+            "ValueYear": "54",
             "Function": ""
 
         },
@@ -97,14 +97,14 @@
             "AssetName": "Tài Sản",
             "AssetGroupId": "AG13423",
             "AssetGroupName": "Tài Sản Cá Nhân",
-            "WearPercent": "9%",
+            "WearPercent": 9,
             "Price": 999999999,
             "YearOfUse": 9,
             "Note": "Đây là ghi chú tự động",
             "DateTime": "04-04-2021",
             "DepartmentId": "5615",
             "Department": "Phòng công nghệ thông tin",
-            "ValueYear": "5%",
+            "ValueYear": "54",
             "Function": ""
         }
     ];
@@ -283,5 +283,45 @@ var assetClass =
         {
             "AssetClassId": "AC23134",
             "AssetClassName": "Tài sản cố định đặc thù"
+        }
+    ]
+
+var deprectation  = 
+    [
+        {
+            "STT": 1,
+            "Id": "93e6c1b2-87de-45a1-aa61-f6389ef803a9",
+            "DateTime": "04-12-2021",
+            "depreciation_no": "TS85462",
+            "Explain": "Đây là ghi chú tự động",
+            "Price": 352342444,
+            "Function": ""
+        },
+        {
+            "STT": 2,
+            "Id": "93e6c1b2-87de-45a1-aa61-f6389ef803a9",
+            "DateTime": "04-14-2021",
+            "depreciation_no": "TS85462",
+            "Explain": "Đây là ghi chú tự động",
+            "Price": 352342444,
+            "Function": ""
+        },
+        {
+            "STT": 3,
+            "Id": "93e6c1b2-87de-45a1-aa61-f6389ef803a9",
+            "DateTime": "04-31-2021",
+            "depreciation_no": "TS85462",
+            "Explain": "Đây là ghi chú tự động",
+            "Price": 352342444,
+            "Function": ""
+        },
+        {
+            "STT": 4,
+            "Id": "93e6c1b2-87de-45a1-aa61-f6389ef803a9",
+            "DateTime": "04-04-2021",
+            "depreciation_no": "TS85462",
+            "Explain": "Đây là ghi chú tự động",
+            "Price": 352342444,
+            "Function": ""
         }
     ]

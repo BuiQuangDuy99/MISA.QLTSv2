@@ -5,23 +5,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div>
-    <div class="tool-bar">
+    <div class="tool-bar" id="tbGrdDepartment">
         <div class="filter-bar">
             <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
         </div>
         <div class="tool-bar-right">
             <div>
-                <button class="button btn-add" id="btn-add-department">Thêm</button>
+                <button class="button btn-add" CommandName="Add">Thêm</button>
             </div>
             <div>
-                <button class="button btn-refresh" title="Làm mới">
+                <button class="button btn-refresh" CommandName="Refresh" title="Làm mới">
                     <div class="icon-refresh">
 
                     </div>
                 </button>
             </div>
             <div>
-                <button id="btn-remove-department" class="button btn-remove" title="Xóa">
+                <button CommandName="Delete" class="button btn-remove" title="Xóa">
                     <div class="icon-remove ">
                     </div>
                 </button>
@@ -29,8 +29,8 @@
         </div>
     </div>
     <div class="grid">
-        <div class="grid-default v-grid-overflow">
-            <table cellspacing="0" id="gridDepartment">
+        <div class="grid-default">
+            <table cellspacing="0" id="gridDepartment" data-toolbar="#tbGrdDepartment">
                 <thead>
                 </thead>
                 <tbody>
@@ -61,12 +61,13 @@
                 </div>
                 <div class="sub-content">
                     <div class="sub-title">Trực thuộc (*)</div>
-                    <select class="input-text" tabindex="3" id="cbxDepartment" style="width: 282px;" DataType="Combobox" fieldName="DepartmentGroupName" fieldValue="DepartmentGroupId">
-                    </select>
+                    @*<select class="input-text" tabindex="3" id="cbxDepartment" style="width: 282px;" DataType="Combobox" fieldName="DepartmentGroupName" fieldValue="DepartmentGroupId">
+                    </select>*@
+                    <input id="cboDepartment" tabindex="3" class="input-text" fieldName="ParentName" fieldValue="DepartmentGroupId"/>
                 </div>
                 <div class="sub-content">
                     <div class="sub-title">Ghi chú</div>
-                    <textarea fieldName="Note" tabindex="4" rows="3"></textarea>
+                    <textarea fieldName="Description" tabindex="4" rows="3"></textarea>
                 </div>
             </div>
             <div class="bottom col-12">

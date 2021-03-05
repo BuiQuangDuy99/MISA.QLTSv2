@@ -5,13 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="4.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="Dapper" Version="2.0.78" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
     <PackageReference Include="MySql.Data" Version="8.0.20" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MISA.QLTSv2.BL\MISA.QLTSv2.BL.csproj" />
+    <ProjectReference Include="..\MISA.QLTSv2.Model\MISA.QLTSv2.Model.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@
 class Grid {
 
     // Hàm khởi tạo, truyền vào id của bảng
-    constructor(tableId) {
+    constructor(tableId, entity) {
         var me = this;
        
         // Biến lưu grid
@@ -12,6 +12,8 @@ class Grid {
         me.conFigColum = null;
         
         me.formDetail = null;
+
+        me.entity = entity;
 
         // Khởi tạo các sự kiện cho grid
         me.initEvents();
@@ -68,7 +70,7 @@ class Grid {
 
         // Build thẻ th
         $.each(me.conFigColum, function (index, col) {
-            th = $(`<th>` + col.FieldText + `</th>`);
+            th = $(`<th>` + col.FieldText + `</th> <hr>`);
             th = me.addAttribute(th, 'fieldName', col.FieldName);
             th = me.addAttribute(th, 'dataType', col.DataType);
             th = me.addClassFormat(th, col.DataType);
@@ -98,15 +100,15 @@ class Grid {
                 return element;
             }
 
-            switch (fieldName) {
+            switch (dataType) {
                 case "STT":
                     element.addClass("width-stt");
                     element.addClass("padding-stt");
                     break;
-                case "DateTime":
+                case "datetime":
                     element.addClass("width-datetime");
                     break;
-                case "Price":
+                case "money":
                     element.addClass("width-price");
                     break;
                 case "depreciation_no":
@@ -147,9 +149,9 @@ class Grid {
     loadData(data) {
         let me = this,
             grid = this.grid;
+
         $(grid).find('tbody').empty();
         if (data) {
-
             $.each(data, function (index, obj) {
                 $(grid).find('tbody').append(me.renderBody(index, obj));
             })
@@ -173,7 +175,7 @@ class Grid {
                 td;
 
             row = $(`<tr></tr>`);
-            $(row).data('recordId', object['Id']);
+            $(row).data('recordId', object[me.entity + 'Id']);
 
             // Binding cột số thứ tự riêng, index chính là value
             object["STT"] = index + 1;
@@ -183,7 +185,7 @@ class Grid {
             column.each(function () {
                 dataType = $(this).attr('dataType');
                 fieldName = $(this).attr('fieldName');
-                value = object[fieldName];
+                value = object[fieldName] || "";
                 td = me.addValueInTd(td, value, dataType);
                 td = me.addFormatTd(td, dataType);
                 td = td.attr("title", value);
@@ -235,6 +237,8 @@ class Grid {
                 break;
             case 'function':
                 element.addClass("function-content");
+            case 'STT':
+                element.addClass("text-center");
             default:
                 break;
         }

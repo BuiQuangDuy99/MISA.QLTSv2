@@ -1,13 +1,15 @@
 ﻿$(document).ready(function () {
-    $('#cbxDepartment').combobox();
+    $('#cboDepartment').autocomplete({
+        source: availableTags
+    })
 })
 
 
 // khởi tạo bảng và form màn hình danh sách phòng ban
 class Department extends BaseGrid {
    
-    constructor(gridId) {
-        super(gridId);
+    constructor(gridId, entity) {
+        super(gridId, entity);
         this.initEvents();
     }
 
@@ -16,6 +18,13 @@ class Department extends BaseGrid {
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
+    }
+    /**
+     * URL API danh muc phong ban
+     * CreatedBy: DVVUONG (03/03/2021)
+     * */
+    setUrl() {
+        this.url = 'https://localhost:44363/api/v1/Department';
     }
 
     /**
@@ -28,13 +37,12 @@ class Department extends BaseGrid {
     createFormDetail(formID, width, height) {
         let me = this;
         this.formDetail = new departmentForm(formID, width, height, me);
-        debugger;
-        this.formDetail.initLoadComboBox("DepartmentGroup", department);
+        //this.formDetail.initLoadComboBox("DepartmentGroup", department);
     }
 
 }
 
-var departmentGrid = new Department('#gridDepartment');
+var departmentGrid = new Department('#gridDepartment', "Department");
 
 // Biến config cho từng column trong bảng
 var conFigColum = [
@@ -58,18 +66,25 @@ var conFigColum = [
     },
     {
         DataType: "text",
-        FieldName: "DepartmentGroupName",
+        FieldName: "ParentName",
         FieldText: "Trực thuộc",
         Index: 4
     },
     {
         DataType: "text",
-        FieldName: "Note",
+        FieldName: "Description",
         FieldText: "Ghi chú",
         Index: 5
     }
 ];
+var availableTags = [
+    "Phòng nghiên cứu công nghệ",
+    "Phòng giáo dục",
+    "Phòng nhân sự",
+    "Phòng hành chính sự nghiệp",
+    "Phòng tài chính",
 
+];
 //Khởi tạo form danh sách phòng ban
 departmentGrid.createFormDetail("#department_dialog", 360);
 
@@ -77,4 +92,4 @@ departmentGrid.createFormDetail("#department_dialog", 360);
 departmentGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-departmentGrid.loadData(department);
+departmentGrid.loadAjaxData('https://localhost:44363/api/v1/Department');
