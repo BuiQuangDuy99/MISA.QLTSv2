@@ -1,6 +1,7 @@
+
 .grid {
     position: relative;
-    height: calc(100vh - 164px)
+    height: calc(100vh - 164px);
 }
 
     .grid .grid-default {
@@ -11,9 +12,9 @@
         left: 0;
         right: 0;
         bottom: 0;
+        overflow: scroll;
         /*padding-right: 21px;*/
         padding-left: 21px;
-        overflow: scroll;
     }
 
 
@@ -21,30 +22,33 @@
     định dạng danh sách bảng
 */
 
+table th, td {
+    padding: 11px 16px;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+table thead tr {
+    border-bottom: 1px solid #bbbbbb;
+}
+
 table {
     border-bottom: none;
     width: 100%;
 }
+
     table th {
         position: sticky;
         top: 0;
+        background-color: #ffffff;
         padding-top: 0;
         font-size: 12px;
         font-weight: 600;
         background-color: #fff;
         border-bottom: 1px solid red !important;
     }
-
-    table th, td {
-        padding: 11px 16px;
-        text-align: left;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-
-
-   
 
     table td {
         font-size: 13px;
@@ -62,6 +66,24 @@ table {
         table tr:hover {
             background-color: #f0f8ff;
         }
+
+th:after,
+th:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+th:before {
+    top: -1px;
+    border-top: 1px solid #bbbbbb;
+}
+
+th:after {
+    bottom: -1px;
+    border-bottom: 2px solid #bbbbbb;
+}
 
 .selected-row {
     background-color: #f0f8ff !important;
