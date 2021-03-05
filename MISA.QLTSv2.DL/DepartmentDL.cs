@@ -123,7 +123,7 @@ namespace MISA.QLTSv2.DL
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="entity"></param>
-        /// CreatedBy: BQDUY(18/01/2021)
+        /// CreatedBy: DVVUONG(18/01/2021)
         private DynamicParameters MappingDbType(Department entity)
         {
             var properties = entity.GetType().GetProperties();
