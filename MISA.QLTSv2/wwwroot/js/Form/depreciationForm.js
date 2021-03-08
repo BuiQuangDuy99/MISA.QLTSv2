@@ -121,6 +121,7 @@ class depreciationForm extends baseForm {
 
     getData() {
         let depreciation = {},
+            sumMoney=0,
             listAsset = [];
         $('.depreciation-sub-grid tbody tr').each(function () {
             let asset = {},
@@ -132,7 +133,7 @@ class depreciationForm extends baseForm {
                 dataType = $(this).attr("dataType");
 
                 if (dataType == "Number" || dataType == "Money") {
-                    asset[fieldNameAss] = parseInt($(this).prop("textContent"));
+                    asset[fieldNameAss] = parseInt($(this).prop("textContent").split(".").join(""));
                 }
                 else {
                     asset[fieldNameAss] = $(this).prop("textContent");
@@ -140,11 +141,16 @@ class depreciationForm extends baseForm {
                 if (fieldNameAss == "AmountTotal") {
                     let AmountTotal = asset['Cost'] / 100 * asset['DepreciationRate'];
                     asset[fieldNameAss] = AmountTotal;
-                    $(this).append(AmountTotal);
+                    //$(this).append(AmountTotal);
                 }
             })
             listAsset.push(asset);
         })
+    
+        $('td[fieldName="AmountTotal"]').each(function() {
+            sumMoney += parseInt($(this).prop("textContent").split(".").join(""));
+        })
+        console.log(sumMoney);
 
         $('input[fieldName],textarea[fieldName],table[fieldName]').each(function () {
             let fieldName = $(this).attr('fieldName');
@@ -154,6 +160,7 @@ class depreciationForm extends baseForm {
             else {
                 depreciation[fieldName] = $(this).val();
             }
+            depreciation['AmountTotal'] = sumMoney;
         });
         console.log(depreciation);
     }
