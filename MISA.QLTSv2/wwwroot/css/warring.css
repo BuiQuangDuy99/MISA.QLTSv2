@@ -1,4 +1,4 @@
-﻿.warring {
+.warring {
     width: 450px;
     height: auto;
     position: fixed;
@@ -88,12 +88,12 @@
     }
 
 #btn-yes-warring {
-    background-color: #00abfe;
+    background-color: aqua !important;
     color: white;
 }
 
 #btn-ok-warring {
-    background-color: #00abfe;
+    background-color: #00abfe !important;
     color: white;
 }
 
@@ -103,12 +103,12 @@
 }
 
 #btn-yes-warring:hover {
-    background-color: #57c7fd;
+    background-color: #57c7fd !important;
     color: white;
 }
 
 #btn-ok-warring:hover {
-    background-color: #57c7fd;
+    background-color: #57c7fd !important;
     color: white;
 }
 
