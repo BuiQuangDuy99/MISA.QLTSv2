@@ -76,7 +76,8 @@
                         Ngày tính hao mòn
                     </div>
                     <div>
-                        <input fieldName="PostedDate" class="input-date input-asset" dataType="Date" placeholder="__/__/____" type="date" required />
+                        <input fieldName="PostedDate" class="input-date input-asset" dataType="Date" required />
+                        <div class="icon_PostDate"></div>
                     </div>
                 </div>
                 <div class="ml-4">
@@ -123,11 +124,13 @@
                     <tbody>
                         <tr>
                             <td class="text-alight-center">1</td>
-                            <td fieldName="FixedAssetCode"><input type="text" class="input-depreciation-sub-grid" value="3333" /></td>
-                            <td fieldName="FixedAssetName" >Ô tô</td>
-                            <td fieldName="Cost" class="text-alight-right" dataType="Money" >12345678</td>
-                            <td fieldName="DepreciationRate" dataType="Number" class="text-alight-right">10</td>
-                            <td fieldName="AmountTotal" class="text-alight-right" dataType="Money"></td>
+                            <td ><input fieldName="FixedAssetCode" type="text" class="input-depreciation-sub-grid" value="3333" /></td>
+                            <td ><input fieldName="FixedAssetName" type="text" class="input-depreciation-sub-grid" value="Ô tô" /></td>
+                            <td>
+                            <input fieldName="Cost" type="text" class="input-depreciation-sub-grid" dataType="Money" value="12345678"/>
+                            </td>
+                            <td><input fieldName="DepreciationRate" type="text" dataType="Number" class="input-depreciation-sub-grid" value="10" /></td>
+                            <td><input fieldName="AmountTotal" dataType="Money" type="text" class="input-depreciation-sub-grid" value="10" disabled /></td>
                             <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
                         <tr>

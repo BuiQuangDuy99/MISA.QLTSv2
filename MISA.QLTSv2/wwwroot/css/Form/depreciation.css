@@ -48,7 +48,7 @@ textarea{
 }
 .depreciation-sub-grid tbody tr td {
     height: 35px !important;
-    padding: 0 13px 0 13px;
+    padding: 0 0 0 0;
     border: #e0e0e0 solid 1px !important;
 }
 .text-alight-center{
@@ -119,13 +119,32 @@ textarea{
 .btn-delete-all-row:hover {
     color: #808080;
 }
+.icon_PostDate, input, textarea:hover {
+    cursor: pointer;
+}
 
 .input-depreciation-sub-grid {
     border: none;
     outline: none !important;
     width: 100%;
     height: 100%;
+    padding: 0 13px 0 13px;
 }
 .RefNo{
     text-transform: uppercase;
+}
+.ui-datepicker table{
+    border: 1px solid black;
+    background-color: #fff;
+}
+.icon_PostDate {
+    background-image: url('../../icon/calendar-60.svg');
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-repeat: no-repeat;
+    top: 32px;
+    left: 150px;
+    background-size: contain;
+    background-position: center;
 }

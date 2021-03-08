@@ -105,14 +105,19 @@ class depreciationForm extends baseForm {
      * CreatedBy:NDTUNG (2/3/2021)
      * */
     formatTd() {
-        $('.depreciation-sub-grid tbody tr td').each(function () {
-            let dataType = $(this).attr('dataType');
+        $('.depreciation-sub-grid tbody tr td input').each(function () {
+            let money,
+                dataType = $(this).attr('dataType');
             switch (dataType) {
                 case "Money":
-                    let money = parseInt($(this).prop("textContent"));
+                     money = parseInt($(this).val());
                     $(this).addClass('text-alight-right');
                     $(this).empty();
                     $(this).append(formatMoney(money));
+                    break;
+                case "Number":
+                     money = parseInt($(this).val());
+                    $(this).addClass('text-alight-right');
                     break;
                 default:
             }

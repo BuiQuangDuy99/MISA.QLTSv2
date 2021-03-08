@@ -4,10 +4,24 @@
         this.initEvents();
     }
     initEvents() {
-        let me = this;
+        let me = this,
+            count=0;
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
+        $('.btn-remove').click(function () {
+            $("#depreciation-grid tbody tr").each(function () {
+                if ($(this).hasClass("selected-row")) {
+                    count++;
+                }
+            })
+            if (count == 0) {
+                showAlertWarring("Vui lòng chọn chứng từ cần xóa!")
+            }
+            else {
+                showAlertConfirm("Bạn có chắc chắn muốn xóa không?")
+            }
+        });
     }
     createFormDetail(formID, width, height) {
         var me = this;
@@ -35,7 +49,7 @@ var conFigColum = [
     },
     {
         DataType: "text",
-        FieldName: "depreciation_no",
+        FieldName: "Depreciation_no",
         FieldText: "Số chứng từ",
         Index: 3
     },
