@@ -11,8 +11,6 @@ class depreciationForm extends baseForm {
         });
         this.initEventDepreciationForm();
         showTooltipElement($('.depreciation-sub-grid th'));
-
-
     }
 
     /**
