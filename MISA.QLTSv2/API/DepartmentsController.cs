@@ -85,19 +85,18 @@ namespace MISA.QLTSv2.API
         /// <returns>số bản ghi xóa thành công</returns>
         /// Author: DVVUONG (01/03/2021)
         [HttpDelete("{entityId}")]
-        public IActionResult DeleteDepartment(Guid entityId)
+        public ServiceResult DeleteDepartment(Guid entityId)
         {
             try
             {
-                return Ok(_departmentBL.DeleteDepartment(entityId));
+                return _departmentBL.DeleteDepartment(entityId);
             }
             catch (Exception)
             {
-                //_serviceResult.MISACode = MISACode.Exception;
-                //_serviceResult.Data = null;
-                //_serviceResult.Messenger = Resources.Msg_DeleteFail;
-                //return _serviceResult;
-                return BadRequest();
+                _serviceResult.MISACode = MISACode.Exception;
+                _serviceResult.Data = null;
+                _serviceResult.Messenger = Resources.Msg_DeleteFail;
+                return _serviceResult;
             }
             
         }
@@ -109,10 +108,19 @@ namespace MISA.QLTSv2.API
         /// <returns>số bản ghi thêm mới được</returns>
         /// Author: DVVUONG (01/03/2021)
         [HttpPost]
-        public IActionResult PostDepartment([FromBody] Department entity)
+        public ServiceResult PostDepartment([FromBody] Department entity)
         {
-            var res = _departmentBL.InsertDepartment(entity);
-            return Ok(res);
+            try
+            {
+               return _departmentBL.InsertDepartment(entity);
+            }
+            catch (Exception)
+            {
+                _serviceResult.MISACode = MISACode.Exception;
+                _serviceResult.Data = null;
+                _serviceResult.Messenger = Resources.Msg_AddFail;
+                return _serviceResult;
+            }
         }
 
         /// <summary>

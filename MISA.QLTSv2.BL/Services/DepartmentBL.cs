@@ -50,7 +50,6 @@ namespace MISA.QLTSv2.BL.Services
         /// CreatedBy:NVTUYEN(02/03/2021)
         public ServiceResult GetDepartmentById(Guid entityId)
         {
-            var result = _departmentDL.GetDepartmentById(entityId);
             _serviceResult.Data = _departmentDL.GetDepartmentById(entityId);
             _serviceResult.Messenger = Resources.Msg_GetSuccess;
             _serviceResult.MISACode = MISACode.Success;
@@ -63,9 +62,22 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entityId">khóa chính</param>
         /// <returns>số bản ghi bị xóa</returns>
         /// Author: DVVUONG (02/03/2021)
-        public int DeleteDepartment(Guid entityId)
+        public ServiceResult DeleteDepartment(Guid entityId)
         {
-            return _departmentDL.DeleteDepartment(entityId);
+            var res = _departmentDL.DeleteDepartment(entityId);
+            if(res == 1)
+            {
+                _serviceResult.Data = res;
+                _serviceResult.MISACode = MISACode.Success;
+                _serviceResult.Messenger = Resources.Msg_DeleteSuccess;
+            }
+            else
+            {
+                _serviceResult.Data = res;
+                _serviceResult.MISACode = MISACode.Failed;
+                _serviceResult.Messenger = Resources.Msg_DeleteFail;
+            }
+            return _serviceResult;
         }
 
 

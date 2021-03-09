@@ -16,5 +16,6 @@ namespace MISA.QLTSv2.Controllers
         {
             return View();
         }
+
     }
 }

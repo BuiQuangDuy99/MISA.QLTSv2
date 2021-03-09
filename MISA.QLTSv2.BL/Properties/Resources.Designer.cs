@@ -61,6 +61,15 @@ namespace MISA.QLTSv2.BL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thêm dữ liệu thất bại.
+        /// </summary>
+        public static string Msg_AddFail {
+            get {
+                return ResourceManager.GetString("Msg_AddFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Thêm dữ liệu thành công.
         /// </summary>
         public static string Msg_AddSuccess {
