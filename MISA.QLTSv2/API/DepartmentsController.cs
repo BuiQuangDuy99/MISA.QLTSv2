@@ -102,9 +102,6 @@ namespace MISA.QLTSv2.API
             
         }
 
-
-
-
         /// <summary>
         /// Thêm mới bản ghi
         /// </summary>

@@ -50,6 +50,7 @@ namespace MISA.QLTSv2.BL.Services
         /// CreatedBy:NVTUYEN(02/03/2021)
         public ServiceResult GetDepartmentById(Guid entityId)
         {
+            var result = _departmentDL.GetDepartmentById(entityId);
             _serviceResult.Data = _departmentDL.GetDepartmentById(entityId);
             _serviceResult.Messenger = Resources.Msg_GetSuccess;
             _serviceResult.MISACode = MISACode.Success;
