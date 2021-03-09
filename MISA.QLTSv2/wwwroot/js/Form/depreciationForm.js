@@ -4,7 +4,7 @@ class depreciationForm extends baseForm {
         super(formId, jsCaller);
         //Định nghĩa Dialog
         this.depreciationForm = $(formId).dialog({
-            autoOpen: false,
+            autoOpen: true,
             height: height,
             width: width,
             modal: true,
@@ -48,9 +48,9 @@ class depreciationForm extends baseForm {
                         <td class="text-alight-center"></td>
                         <td><input type="text" class="input-depreciation-sub-grid"></td>
                         <td></td>
-                        <td class="text-alight-right"></td>
-                        <td class="text-alight-center"></td>
-                        <td class="text-alight-right"></td>
+                        <td class="text-alight-right" dataType="Money" ></td>
+                        <td class="text-alight-right dataType="Number" "></td>
+                        <td class="text-alight-right" dataType="Money"></td>
                         <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                     </tr>`);
 
@@ -108,14 +108,19 @@ class depreciationForm extends baseForm {
      * CreatedBy:NDTUNG (2/3/2021)
      * */
     formatTd() {
-        $('.depreciation-sub-grid tbody tr td').each(function () {
-            let dataType = $(this).attr('dataType');
+        $('.depreciation-sub-grid tbody tr td input').each(function () {
+            let money,
+                dataType = $(this).attr('dataType');
             switch (dataType) {
                 case "Money":
-                    let money = parseInt($(this).prop("textContent"));
+                     money = parseInt($(this).val());
                     $(this).addClass('text-alight-right');
                     $(this).empty();
                     $(this).append(formatMoney(money));
+                    break;
+                case "Number":
+                     money = parseInt($(this).val());
+                    $(this).addClass('text-alight-right');
                     break;
                 default:
             }
@@ -124,23 +129,48 @@ class depreciationForm extends baseForm {
 
     getData() {
         let depreciation = {},
-            asset = {},
+            sumMoney=0,
             listAsset = [];
-        $('.depreciation-sub-grid tbody tr').each(function (index) {
+        $('.depreciation-sub-grid tbody tr').each(function () {
+            let asset = {},
+                fieldNameAss,
+                dataType;
             $(this).find('td[fieldName]').each(function () {
-                let fieldNameAss = $(this).attr('fieldName');
-                asset[fieldNameAss] = $(this).prop("textContent");
+
+                fieldNameAss = $(this).attr('fieldName');
+                dataType = $(this).attr("dataType");
+
+                if (dataType == "Number" || dataType == "Money") {
+                    asset[fieldNameAss] = parseInt($(this).prop("textContent").split(".").join(""));
+                }
+                else {
+                    asset[fieldNameAss] = $(this).prop("textContent");
+                }
+                if (fieldNameAss == "AmountTotal") {
+                    let AmountTotal = asset['Cost'] / 100 * asset['DepreciationRate'];
+                    asset[fieldNameAss] = AmountTotal;
+                    //$(this).append(AmountTotal);
+                }
             })
             listAsset.push(asset);
         })
+    
+        $('td[fieldName="AmountTotal"]').each(function() {
+            sumMoney += parseInt($(this).prop("textContent").split(".").join(""));
+        })
+        console.log(sumMoney);
+
         $('input[fieldName],textarea[fieldName],table[fieldName]').each(function () {
             let fieldName = $(this).attr('fieldName');
             if (fieldName == "RefDetail") {
                 depreciation[fieldName] = listAsset;
             }
-            else
+            else {
                 depreciation[fieldName] = $(this).val();
+            }
+            depreciation['AmountTotal'] = sumMoney;
         });
         console.log(depreciation);
     }
+
 }
