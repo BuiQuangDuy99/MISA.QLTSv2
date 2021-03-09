@@ -76,7 +76,8 @@
                         Ngày tính hao mòn
                     </div>
                     <div>
-                        <input id="TestDate" fieldName="PostedDate" class="input-date input-asset" dataType="Date" placeholder="__/__/____" required />
+                        <input fieldName="PostedDate" class="input-date input-asset" dataType="Date" required />
+                        <div class="icon_PostDate"></div>
                     </div>
                 </div>
                 <div class="ml-4">
@@ -84,7 +85,7 @@
                         Số chứng từ
                     </div>
                     <div>
-                        <input fieldName="RefNo" class="input-text input-asset" maxlength="50" dataType="Text" required />
+                        <input fieldName="RefNo" class="input-text input-asset RefNo "  maxlength="50" dataType="Text" required />
                     </div>
                 </div>
             </div>
@@ -115,7 +116,7 @@
                             <th style="width:89px">Mã tài sản</th>
                             <th style="width:125px">Tên tài sản</th>
                             <th style="width:140px" class="text-alight-right">Nguyên giá</th>
-                            <th style="width:121px" class="text-alight-center" title="Tỉ lệ hao mòn năm">Tỉ lệ HM năm (%)</th>
+                            <th style="width:121px" class="text-alight-right" title="Tỉ lệ hao mòn năm">Tỉ lệ HM năm (%)</th>
                             <th style="width:120px" class="text-alight-right">Số tiền</th>
                             <th style="width:40px"></th>
                         </tr>
@@ -123,28 +124,30 @@
                     <tbody>
                         <tr>
                             <td class="text-alight-center">1</td>
-                            <td fieldName="FixedAssetId"><input type="text" class="input-depreciation-sub-grid" value="3333" /></td>
-                            <td fieldName="FixedAssetName">Ô tô</td>
-                            <td fieldName="Cost" class="text-alight-right" dataType="Money">12345678</td>
-                            <td fieldName="DepreciationRate" class="text-alight-center">2</td>
-                            <td fieldName="AmountTotal" class="text-alight-right" dataType="Money"></td>
+                            <td ><input fieldName="FixedAssetCode" type="text" class="input-depreciation-sub-grid" value="3333" /></td>
+                            <td ><input fieldName="FixedAssetName" type="text" class="input-depreciation-sub-grid" value="Ô tô" /></td>
+                            <td>
+                            <input fieldName="Cost" type="text" class="input-depreciation-sub-grid" dataType="Money" value="12345678"/>
+                            </td>
+                            <td><input fieldName="DepreciationRate" type="text" dataType="Number" class="input-depreciation-sub-grid" value="10" /></td>
+                            <td><input fieldName="AmountTotal" dataType="Money" type="text" class="input-depreciation-sub-grid" value="10" disabled /></td>
                             <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
                         <tr>
                             <td class="text-alight-center">2</td>
-                            <td fieldName="FixedAssetId"><input type="text" class="input-depreciation-sub-grid" value="2222" /></td>
+                            <td fieldName="FixedAssetCode"><input type="text" class="input-depreciation-sub-grid" value="2222" /></td>
                             <td fieldName="FixedAssetName">Ô tô tải</td>
                             <td fieldName="Cost" class="text-alight-right" dataType="Money">567890</td>
-                            <td fieldName="DepreciationRate" class="text-alight-center">4</td>
-                            <td fieldName="AmountTotal" class="text-alight-right" dataType="Money"></td>
+                            <td fieldName="DepreciationRate" dataType="Number" class="text-alight-right">10</td>
+                            <td fieldName="AmountTotal" class="text-alight-right"dataType="Money"></td>
                             <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
                         <tr>
                             <td class="text-alight-center">3</td>
                             <td><input type="text" class="input-depreciation-sub-grid" value="" /></td>
                             <td></td>
-                            <td class="text-alight-right" dataType="Money"></td>
-                            <td class="text-alight-center"></td>
+                            <td class="text-alight-right"dataType="Money"></td>
+                            <td class="text-alight-right" dataType="Number" ></td>
                             <td class="text-alight-right" dataType="Money"></td>
                             <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
@@ -153,7 +156,7 @@
                             <td><input type="text" class="input-depreciation-sub-grid" /></td>
                             <td></td>
                             <td class="text-alight-right" dataType="Money"></td>
-                            <td class="text-alight-center"></td>
+                            <td class="text-alight-right" dataType="Number" ></td>
                             <td class="text-alight-right " dataType="Money"></td>
                             <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
@@ -162,7 +165,7 @@
                             <td><input type="text" class="input-depreciation-sub-grid" /></td>
                             <td></td>
                             <td class="text-alight-right" dataType="Money"></td>
-                            <td class="text-alight-center"></td>
+                            <td class="text-alight-right" dataType="Number" ></td>
                             <td class="text-alight-right" dataType="Money"></td>
                             <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                         </tr>
