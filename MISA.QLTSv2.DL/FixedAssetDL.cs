@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using AutoMapper.Configuration;
 using Dapper;
 using MISA.QLTSv2.Model.Entities;
 using MISA.QLTSv2.Model.Enums;
