@@ -36,6 +36,12 @@ class baseForm {
             }
         }.bind(this));
 
+        this.form.find("input[dataType='Date']").datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+        this.form.find(".icon_PostDate").click(function () {
+            $('input[dataType="Date"]').focus();
+        });
     }
 
 
