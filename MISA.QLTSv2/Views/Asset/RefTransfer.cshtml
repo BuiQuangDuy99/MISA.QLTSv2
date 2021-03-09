@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewData["ParentTitle"] = "Tài sản";
+    ViewData["ChildTitle"] = "Điều chuyển";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Links{
+    <link href="~/css/asset.css" rel="stylesheet" />
+}
+<div class="tool-bar" id="tbGrdRefTransfer">
+    <div class="filter-bar">
+        <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
+    </div>
+    <div class="tool-bar-right">
+        <div>
+            <button class="button btn-add" CommandName="Add">Thêm</button>
+        </div>
+        <div>
+            <button class="button btn-refresh" CommandName="Refresh" title="Làm mới">
+                <div class="icon-refresh">
+
+                </div>
+            </button>
+        </div>
+        <div>
+            <button class="button btn-remove" CommandName="Delete" title="Xóa">
+                <div class="icon-remove ">
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="grid">
+    <div class="grid-default">
+        <table cellspacing="0" id="reftransfer-grid" data-toolbar="#tbGrdRefTransfer">
+            <thead>
+
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="dialog_reftransfer" class="dialog_reftransfer" title="Thêm chứng từ điều chuyển tài sản">
+    <div class="container-fluid">
+        <div class="row dialog-header">
+            <div class="col-8">
+                Thêm chứng từ điều chuyển tài sản
+            </div>
+            <div class="col-4 header-toolbar">
+                <button class="btn-help button">
+                    <div class="icon-help">
+
+                    </div>
+                </button>
+                <button class="btn-close button" id="btn-close">
+                    <div class="icon-close">
+
+                    </div>
+                </button>
+            </div>
+        </div>
+
+
+
+
+        <input fieldName="FixedAssetId" style="display:none" />
+    </div>
+
+    <div class="dialog-footer">
+        <div class="footer-left">
+            <button class="button btn-cancel" id="btn-cancel">Hủy</button>
+        </div>
+        <div class="footer-right">
+            <button id="btn-save" class="button btn-add">Lưu</button>
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+    <script src="~/js/Form/reftransferForm.js"></script>
+    <script src="~/js/views/Asset/refTransfer.js"></script>
+}

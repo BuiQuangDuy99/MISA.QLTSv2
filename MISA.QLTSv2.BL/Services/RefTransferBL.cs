@@ -8,26 +8,26 @@ using System.Collections.Generic;
 
 namespace MISA.QLTSv2.BL.Services
 {
-    public class FixedAssetBL
+    public class RefTransferBL
     {
-        FixedAssetDL _fixedAssetDL;
+        RefTransferDL _refTransferDL;
         ServiceResult _serviceResult;
         #region contructor
-        public FixedAssetBL(string connectionString, IMapper mapper)
+        public RefTransferBL(string connectionString, IMapper mapper)
         {
-            _fixedAssetDL = new FixedAssetDL(connectionString, mapper);
+            _refTransferDL = new RefTransferDL(connectionString, mapper);
             _serviceResult = new ServiceResult();
 
         }
         #endregion
         /// <summary>
-        /// Lấy dánh sách tài sản
+        /// Lấy ra danh sách Điều chuyển phòng ban
         /// </summary>
-        /// <returns>Danh sách tài sản</returns>
+        /// <returns>danh sách Điều chuyển phòng ban</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public ServiceResult GetFixedAssets()
+        public ServiceResult GetRefTransfers()
         {
-            var res = _fixedAssetDL.GetFixedAssets();
+            var res = _refTransferDL.GetRefTransfers();
 
             if (res != null)
             {
@@ -50,9 +50,9 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entityId">ID</param>
         /// <returns>một bản ghi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public ServiceResult GetFixedAssetById(Guid entityId)
+        public ServiceResult GetRefTransferById(Guid entityId)
         {
-            var res = _fixedAssetDL.GetFixedAssetById(entityId);
+            var res = _refTransferDL.GetRefTransferById(entityId);
 
             if (res != null)
             {
@@ -74,9 +74,9 @@ namespace MISA.QLTSv2.BL.Services
         /// </summary>
         /// <returns>Số bản ghi bị xóa</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public ServiceResult DeleteFixedAsset(Guid entityId)
+        public ServiceResult DeleteRefTransfer(Guid entityId)
         {
-            var res = _fixedAssetDL.DeleteFixedAsset(entityId);
+            var res = _refTransferDL.DeleteRefTransfer(entityId);
 
             if (res > 0)
             {
@@ -99,14 +99,14 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entity"></param>
         /// <returns>Số bản ghi thay đổi</returns>
         /// createdBy:NVTUYEN(02/03/2021)
-        public ServiceResult InsertFixedAsset(FixedAsset entity)
+        public ServiceResult InsertRefTransfer(RefTransfer entity)
         {
             entity.EntityState = EntityState.Insert;
             var isValid = Validate(entity);
 
             if (isValid == true)
             {
-                _serviceResult.Data = _fixedAssetDL.InsertFixedAsset(entity);
+                _serviceResult.Data = _refTransferDL.InsertRefTransfer(entity);
                 _serviceResult.HttpCode = HttpCodeResult.Success;
                 _serviceResult.Messenger = Resources.Msg_AddSuccess;
                 return _serviceResult;
@@ -122,13 +122,13 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entity"></param>
         /// <returns>Một bản ghi thay đổi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public ServiceResult UpdateFixedAsset(FixedAsset entity)
+        public ServiceResult UpdateRefTransfer(RefTransfer entity)
         {
             entity.EntityState = EntityState.Update;
             var isValid = Validate(entity);
             if (isValid == true)
             {
-                _serviceResult.Data = _fixedAssetDL.UpdateFixedAsset(entity);
+                _serviceResult.Data = _refTransferDL.UpdateRefTransfer(entity);
                 _serviceResult.HttpCode = HttpCodeResult.Success;
                 _serviceResult.Messenger = Resources.Msg_UpdateSuccess;
                 return _serviceResult;
@@ -144,7 +144,7 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entity"></param>
         /// <returns>True/False</returns>
         /// CreatedBy:NVTUYEN(20/30/2021)
-        private bool Validate(FixedAsset entity)
+        private bool Validate(RefTransfer entity)
         {
             var mesArr = new List<string>();
             var isValidate = true;
@@ -175,7 +175,7 @@ namespace MISA.QLTSv2.BL.Services
                 {
                     // check trùng dữ liệu
                     var propertyName = property.Name;
-                    var entityDuplicate = _fixedAssetDL.GetEntityByProperty(entity, property);
+                    var entityDuplicate = _refTransferDL.GetEntityByProperty(entity, property);
                     if (entityDuplicate != null)
                     {
                         isValidate = false;

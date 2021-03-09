@@ -13,11 +13,11 @@ namespace MISA.QLTSv2.Model.Models
         /// <summary>
         /// ID chứng từ
         /// </summary>
-        public string ref_transfer_id { get; set; }
+        public Guid ref_transfer_id { get; set; }
         /// <summary>
         /// Thuộc đơn vị
         /// </summary>
-        public string organization_id { get; set; }
+        public Guid organization_id { get; set; }
         /// <summary>
         /// Số chứng từ
         /// </summary>
