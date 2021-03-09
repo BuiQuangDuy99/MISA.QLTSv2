@@ -99,7 +99,7 @@ class BaseGrid extends Grid {
             async: true
         }).done(function (res) {
             closeWarring();
-            if (res > 0) {
+            if (res.Data > 0) {
                 me.loadAjaxData(url);
             }
             $('.loading').hide();
