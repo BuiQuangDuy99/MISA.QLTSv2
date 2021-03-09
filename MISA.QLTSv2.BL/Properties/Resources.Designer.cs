@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MISA.QLTSv2.Model.Properties {
+namespace MISA.QLTSv2.BL.Properties {
     using System;
     
     
