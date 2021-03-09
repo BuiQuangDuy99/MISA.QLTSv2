@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using MISA.QLTSv2.BL.Properties;
 using MISA.QLTSv2.DL;
 using MISA.QLTSv2.Model.Entities;
 using MISA.QLTSv2.Model.Enums;
-using MISA.QLTSv2.Model.Properties;
 using System;
 using System.Collections.Generic;
 
@@ -23,32 +23,78 @@ namespace MISA.QLTSv2.BL.Services
 
         #region Method
         /// <summary>
-        /// 
+        /// Hàm xử lý kết quả của việc xóa trả xuống từ DL
         /// </summary>
-        /// <param name="entityId"></param>
-        /// <returns></returns>
-        public int Delete(Guid entityId)
+        /// <param name="entityId">id của đối tượng cần xóa</param>
+        /// <returns>Service result gồm dữ liệu, mã kết quả, message thông báo</returns>
+        /// CreatedBY: BQDUY(05/03/2021)
+        public ServiceResult Delete(Guid entityId)
         {
-            return _fixedAssetCategoryDL.Delete(entityId);
+            var res = _fixedAssetCategoryDL.Delete(entityId);
+
+            if (res > 0)
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                _serviceResult.Messenger = Resources.Msg_DeleteSuccess;
+            }
+            else 
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+                _serviceResult.Messenger = Resources.Msg_DeleteFail;
+            }
+            
+            return _serviceResult;
+        }
+
+        /// <summary>
+        /// Hàm xử lý kết quả của việc lấy dữ liệu trả xuống từ DL
+        /// </summary>
+        /// <returns></returns>
+        public ServiceResult GetEntities()
+        {
+            var res = _fixedAssetCategoryDL.GetEntities();
+
+            if (res != null)
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                _serviceResult.Messenger = Resources.Msg_GetSuccess;
+            }
+            else
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+                _serviceResult.Messenger = Resources.Msg_GetFail;
+            }
+
+            return _serviceResult;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <returns></returns>
-        public List<FACategory> GetEntities()
-        {
-            return _fixedAssetCategoryDL.GetEntities();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="entityId"></param>
         /// <returns></returns>
-        public FACategory GetEntityById(Guid entityId)
+        public ServiceResult GetEntityById(Guid entityId)
         {
-            return _fixedAssetCategoryDL.GetEntityById(entityId);
+            var res = _fixedAssetCategoryDL.GetEntityById(entityId);
+
+            if (res != null)
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                _serviceResult.Messenger = Resources.Msg_GetSuccess;
+            }
+            else
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+                _serviceResult.Messenger = Resources.Msg_GetFail;
+            }
+
+            return _serviceResult;
         }
 
         public ServiceResult Insert(FACategory entity)
@@ -60,7 +106,7 @@ namespace MISA.QLTSv2.BL.Services
             if (isValid == true)
             {
                 _serviceResult.Data = _fixedAssetCategoryDL.Insert(entity);
-                _serviceResult.MISACode = MISACode.Success;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
                 _serviceResult.Messenger = Resources.Msg_AddSuccess;
                 return _serviceResult;
             }
@@ -93,7 +139,7 @@ namespace MISA.QLTSv2.BL.Services
                     {
                         isValidate = false;
                         mesArr.Add(string.Format(Resources.Msg_Required, displayName));
-                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.HttpCode = HttpCodeResult.Fail;
                         _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }
@@ -106,7 +152,7 @@ namespace MISA.QLTSv2.BL.Services
                     {
                         isValidate = false;
                         mesArr.Add(string.Format(Resources.Msg_Dulicate, displayName));
-                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.HttpCode = HttpCodeResult.Fail;
                         _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }
@@ -121,7 +167,7 @@ namespace MISA.QLTSv2.BL.Services
                     {
                         isValidate = false;
                         mesArr.Add(msg ?? $"Thông tin này vượt quá {length} ky tu cho phep");
-                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.HttpCode = HttpCodeResult.Fail;
                         _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }
@@ -137,7 +183,7 @@ namespace MISA.QLTSv2.BL.Services
             if (isValid == true)
             {
                 _serviceResult.Data = _fixedAssetCategoryDL.Update(entity);
-                _serviceResult.MISACode = MISACode.Success;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
                 _serviceResult.Messenger = Resources.Msg_UpdateSuccess;
                 return _serviceResult;
             }

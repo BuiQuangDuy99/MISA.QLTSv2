@@ -120,11 +120,20 @@
   <data name="Msg_AddSuccess" xml:space="preserve">
     <value>Thêm dữ liệu thành công</value>
   </data>
+  <data name="Msg_DeleteFail" xml:space="preserve">
+    <value>Xóa không thành công</value>
+  </data>
   <data name="Msg_DeleteSuccess" xml:space="preserve">
     <value>Xóa dữ liệu thành công</value>
   </data>
   <data name="Msg_Dulicate" xml:space="preserve">
     <value>Thông tin {0} đã có trên hệ thống</value>
+  </data>
+  <data name="Msg_GetFail" xml:space="preserve">
+    <value>Lấy dữ liệu thất bại</value>
+  </data>
+  <data name="Msg_GetSuccess" xml:space="preserve">
+    <value>Lấy dữ liệu thành công</value>
   </data>
   <data name="Msg_IsNotValid" xml:space="preserve">
     <value>Dữ liệu không hợp lệ</value>

@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
+using MISA.QLTSv2.BL.Properties;
 using MISA.QLTSv2.DL;
 using MISA.QLTSv2.Model.Entities;
 using MISA.QLTSv2.Model.Enums;
-using MISA.QLTSv2.Model.Properties;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MISA.QLTSv2.BL.Services
 {
@@ -76,7 +75,7 @@ namespace MISA.QLTSv2.BL.Services
             if (isValid == true)
             {
                 _serviceResult.Data = _departmentDL.InsertDepartment(entity);
-                _serviceResult.MISACode = MISACode.Success;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
                 _serviceResult.Messenger = Resources.Msg_AddSuccess;
                 return _serviceResult;
             }
@@ -99,7 +98,7 @@ namespace MISA.QLTSv2.BL.Services
             if (isValid == true)
             {
                 _serviceResult.Data = _departmentDL.UpdateDepartment(entity);
-                _serviceResult.MISACode = MISACode.Success;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
                 _serviceResult.Messenger = Resources.Msg_UpdateSuccess;
                 return _serviceResult;
             }
@@ -139,7 +138,7 @@ namespace MISA.QLTSv2.BL.Services
                     {
                         isValidate = false;
                         mesArr.Add(string.Format(Resources.Msg_Required, displayName));
-                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.HttpCode = HttpCodeResult.Fail;
                         _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }
@@ -152,7 +151,7 @@ namespace MISA.QLTSv2.BL.Services
                     {
                         isValidate = false;
                         mesArr.Add(string.Format(Resources.Msg_Dulicate, displayName));
-                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.HttpCode = HttpCodeResult.Fail;
                         _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }
@@ -167,7 +166,7 @@ namespace MISA.QLTSv2.BL.Services
                     {
                         isValidate = false;
                         mesArr.Add(msg ?? $"Thông tin này vượt quá {length} ky tu cho phep");
-                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.HttpCode = HttpCodeResult.Fail;
                         _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }
