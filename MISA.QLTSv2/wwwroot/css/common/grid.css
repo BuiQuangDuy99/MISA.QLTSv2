@@ -63,7 +63,7 @@ table {
     }
 
         table tr:hover {
-        background-color: #dcdbdb;
+            background-color: #F0F8FF
         }
 
 
@@ -86,11 +86,11 @@ th:after {
 }
 
 .selected-row {
-    background-color: #dcdbdb !important;
+    background-color: #F0F8FF !important;
 }
 
     .selected-row:hover {
-        background-color: #dcdbdb !important;
+        background-color: #F0F8FF !important;
     }
 /*::-webkit-scrollbar{
     width:5px;

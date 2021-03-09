@@ -53,7 +53,7 @@ namespace MISA.QLTSv2.DL
         {
             var parameterEntityId = new DynamicParameters();
             // Add param id của bảng cần xóa:
-            parameterEntityId.Add($"$FixedAssetCategoryId", entityId.ToString());
+            parameterEntityId.Add($"$RefDepreciationId", entityId.ToString());
             // Thực thi commandText:
             var res = _dbConnection.Execute($"Proc_DeleteRefDepreciation", parameterEntityId, commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu: 
@@ -138,23 +138,23 @@ namespace MISA.QLTSv2.DL
         public RefDepreciation GetEntityByProperty(RefDepreciation entity, System.Reflection.PropertyInfo property)
         {
             var propertyValue = property.GetValue(entity);
-            var keyValue = entity.GetType().GetProperty($"FixedAssetCategoryId").GetValue(entity);
+            var keyValue = entity.GetType().GetProperty($"RefDepreciationId").GetValue(entity);
 
             var query = string.Empty;
 
             if (entity.EntityState == EntityState.Insert)
             {
                 var parameters = new DynamicParameters();
-                parameters.Add($"FixedAssetCategoryId", keyValue, DbType.String);
-                var entityReturn = _dbConnection.Query<ref_depreciation>($"Proc_SelectFACategoryById", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                parameters.Add($"$RefDepreciationId", keyValue, DbType.String);
+                var entityReturn = _dbConnection.Query<ref_depreciation>($"Proc_SelectRefDepreciationById", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
                 return _mapper.Map<RefDepreciation>(entityReturn);
             }
             else if (entity.EntityState == EntityState.Update)
             {
                 var parameters = new DynamicParameters();
-                parameters.Add($"$FACategoryId", keyValue, DbType.String);
-                parameters.Add($"$FACategoryCode", propertyValue);
-                var entityReturn = _dbConnection.Query<ref_depreciation>($"Proc_CheckDuplicateFACategoryCode", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                parameters.Add($"$RefDepreciationId", keyValue, DbType.String);
+                parameters.Add($"$RefNo", propertyValue);
+                var entityReturn = _dbConnection.Query<ref_depreciation>($"Proc_CheckDuplicateRefDepreciationNo", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
                 return _mapper.Map<RefDepreciation>(entityReturn);
             }
             else
