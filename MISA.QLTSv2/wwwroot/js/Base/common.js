@@ -1,4 +1,15 @@
-﻿
+﻿/**
+ * Hàm sinh id kiểu Guid
+ * CreatedBY: BQDUY(09/03/2021)
+ * */
+function createGuid() {
+    function S4() {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    }
+    var guid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+    return guid;
+}  
+
 /**
  * Hàm Ajax dùng chung
  * CreatBy: BQDUY (4/2/2021)

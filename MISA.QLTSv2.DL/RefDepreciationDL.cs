@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Dapper;
-using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.Model.Entities;
 using MISA.QLTSv2.Model.Enums;
 using MISA.QLTSv2.Model.Models;
@@ -9,10 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 
 namespace MISA.QLTSv2.DL
 {
-    public class FixedAssetCategoryDL
+    public class RefDepreciationDL
     {
         #region DECLARE
         string _connectionString = string.Empty;
@@ -20,7 +20,7 @@ namespace MISA.QLTSv2.DL
         IMapper _mapper;
         #endregion
         #region Contrustor
-        public FixedAssetCategoryDL(string connectionString, IMapper mapper)
+        public RefDepreciationDL(string connectionString, IMapper mapper)
         {
             _connectionString = connectionString;
             _dbConnection = new MySqlConnection(_connectionString);
@@ -34,12 +34,12 @@ namespace MISA.QLTSv2.DL
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public int Insert(FACategory entity)
+        public int Insert(RefDepreciation entity)
         {
             // Build thành đối tượng để lưu vào database:
             var parameters = MappingDbType(entity);
             // Thực thi commandText:
-            var rowAffects = _dbConnection.Execute($"Proc_InsertFACategory", parameters, commandType: CommandType.StoredProcedure);
+            var rowAffects = _dbConnection.Execute($"Proc_InsertRefDepreciation", parameters, commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu (số bản ghi thêm mới được): 
             return rowAffects;
         }
@@ -55,7 +55,7 @@ namespace MISA.QLTSv2.DL
             // Add param id của bảng cần xóa:
             parameterEntityId.Add($"$FixedAssetCategoryId", entityId.ToString());
             // Thực thi commandText:
-            var res = _dbConnection.Execute($"Proc_DeleteFACategory", parameterEntityId, commandType: CommandType.StoredProcedure);
+            var res = _dbConnection.Execute($"Proc_DeleteRefDepreciation", parameterEntityId, commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu: 
             return res;
         }
@@ -64,13 +64,13 @@ namespace MISA.QLTSv2.DL
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<FACategory> GetEntities()
+        public List<RefDepreciation> GetEntities()
         {
             // Thực thi commandText:
-            var entities = _dbConnection.Query<fixed_asset_category>($"Proc_SelectFACategoryDatas", null, commandType: CommandType.StoredProcedure);
+            var entities = _dbConnection.Query<ref_depreciation>($"Proc_SelectRefDepreciationDatas", commandType: CommandType.StoredProcedure);
 
             // Trả về dữ liệu:
-            return _mapper.Map<List<FACategory>>(entities);
+            return _mapper.Map<List<RefDepreciation>>(entities);
         }
 
         /// <summary>
@@ -78,15 +78,15 @@ namespace MISA.QLTSv2.DL
         /// </summary>
         /// <param name="entityId"></param>
         /// <returns></returns>
-        public FACategory GetEntityById(Guid entityId)
+        public RefDepreciation GetEntityById(Guid entityId)
         {
             var parameterEntityId = new DynamicParameters();
             // Add param id của đối tượng cần lấy dữ liệu:
-            parameterEntityId.Add($"$FixedAssetCategoryId", entityId.ToString());
+            parameterEntityId.Add($"$RefDepreciationId", entityId.ToString());
 
             // Thực thi commandText:
-            var res = _dbConnection.QueryFirst<fixed_asset_category>($"Proc_SelectFACategoryById", parameterEntityId, commandType: CommandType.StoredProcedure);
-            return _mapper.Map<FACategory>(res);
+            var res = _dbConnection.QueryFirst<ref_depreciation>($"Proc_SelectRefDepreciationById", parameterEntityId, commandType: CommandType.StoredProcedure);
+            return _mapper.Map<RefDepreciation>(res);
         }
 
         /// <summary>
@@ -94,12 +94,12 @@ namespace MISA.QLTSv2.DL
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        public int Update(FACategory entity)
+        public int Update(RefDepreciation entity)
         {
             // Build thành đối tượng để lưu vào database:
             var parameters = MappingDbType(entity);
             // Thực thi commandText và return:
-            return _dbConnection.Execute($"Proc_UpdateFACategory", parameters, commandType: CommandType.StoredProcedure);
+            return _dbConnection.Execute($"Proc_UpdateRefDepreciation", parameters, commandType: CommandType.StoredProcedure);
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace MISA.QLTSv2.DL
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="entity"></param>
         /// CreatedBy: BQDUY(18/01/2021)
-        private DynamicParameters MappingDbType(FACategory entity)
+        private DynamicParameters MappingDbType(RefDepreciation entity)
         {
             var properties = entity.GetType().GetProperties();
             var parameters = new DynamicParameters();
@@ -122,7 +122,7 @@ namespace MISA.QLTSv2.DL
                     parameters.Add($"${propertyName}", propertyValue, DbType.String);
                 }
                 else
-                {
+                {   
                     parameters.Add($"${propertyName}", propertyValue);
                 }
             }
@@ -135,31 +135,33 @@ namespace MISA.QLTSv2.DL
         /// <param name="entity"></param>
         /// <param name="property"></param>
         /// <returns></returns>
-        public FACategory GetEntityByProperty(FACategory entity,System.Reflection.PropertyInfo property)
+        public RefDepreciation GetEntityByProperty(RefDepreciation entity, System.Reflection.PropertyInfo property)
         {
             var propertyValue = property.GetValue(entity);
             var keyValue = entity.GetType().GetProperty($"FixedAssetCategoryId").GetValue(entity);
 
-            if(entity.EntityState == EntityState.Insert)
+            var query = string.Empty;
+
+            if (entity.EntityState == EntityState.Insert)
             {
                 var parameters = new DynamicParameters();
                 parameters.Add($"FixedAssetCategoryId", keyValue, DbType.String);
-                var entityReturn = _dbConnection.Query<fixed_asset_category>($"Proc_SelectFACategoryById", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                return _mapper.Map<FACategory>(entityReturn);
-            } 
+                var entityReturn = _dbConnection.Query<ref_depreciation>($"Proc_SelectFACategoryById", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return _mapper.Map<RefDepreciation>(entityReturn);
+            }
             else if (entity.EntityState == EntityState.Update)
             {
                 var parameters = new DynamicParameters();
                 parameters.Add($"$FACategoryId", keyValue, DbType.String);
                 parameters.Add($"$FACategoryCode", propertyValue);
-                var entityReturn = _dbConnection.Query<fixed_asset_category>($"Proc_CheckDuplicateFACategoryCode", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
-                return _mapper.Map<FACategory>(entityReturn);
+                var entityReturn = _dbConnection.Query<ref_depreciation>($"Proc_CheckDuplicateFACategoryCode", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return _mapper.Map<RefDepreciation>(entityReturn);
             }
             else
             {
                 return null;
             }
-           
+
         }
 
         #endregion
