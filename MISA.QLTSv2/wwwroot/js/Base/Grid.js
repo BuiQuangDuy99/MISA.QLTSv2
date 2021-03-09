@@ -70,7 +70,7 @@ class Grid {
 
         // Build thẻ th
         $.each(me.conFigColum, function (index, col) {
-            th = $(`<th>` + col.FieldText + `</th>`);
+            th = $(`<th>` + col.FieldText + `</th> <hr>`);
             th = me.addAttribute(th, 'fieldName', col.FieldName);
             th = me.addAttribute(th, 'dataType', col.DataType);
             th = me.addClassFormat(th, col.DataType);

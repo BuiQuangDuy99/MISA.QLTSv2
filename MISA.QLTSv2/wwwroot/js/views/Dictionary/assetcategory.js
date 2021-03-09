@@ -1,4 +1,9 @@
-﻿
+﻿$(document).ready(function () {
+    $('#cbxgroup').combobox();
+    $('#cbxgroupasset').combobox();
+
+    //$('#dtIncrementDate').mask("00/00/0000", { placeholder: "___/___/______" }).datepicker();
+})
 //Khởi tạo bảng và form màn loại tài sản
 class Dictionary extends BaseGrid {
 
@@ -39,7 +44,7 @@ var dictionaryGrid = new Dictionary('#gridTest', "FixedAssetCategory");
 // Biến config cho từng column trong bảng
 var conFigColum = [
     {
-        DataType: "number",
+        DataType: "STT",
         FieldName: "STT",
         FieldText: "STT",   
         Index: 1
@@ -47,13 +52,13 @@ var conFigColum = [
     {
         DataType: "text",
         FieldName: "FixedAssetCategoryCode",
-        FieldText: "Mã Loại Tài Sản",
+        FieldText: "Mã loại tài sản",
         Index: 2
     },
     {
         DataType: "text",
         FieldName: "FixedAssetCategoryName",
-        FieldText: "Tên Loại Tài Sản",
+        FieldText: "Tên loại tài sản",
         Index: 3
     },
     {
@@ -64,26 +69,26 @@ var conFigColum = [
     },
     {
         DataType: "text",
-        FieldName: "AssetGroupName",
-        FieldText: "Nhóm Tài Sản",
+        FieldName: "FACategoryGroupName",
+        FieldText: "Nhóm tài sản",
         Index: 5
     },
     {
         DataType: "percent",
         FieldName: "DepreciationRate",
-        FieldText: "Tỷ Lệ Hao Mòn (%)",
+        FieldText: "Tỷ lệ hao mòn (%)",
         Index: 6
     },
     {
         DataType: "year",
         FieldName: "LifeTime",
-        FieldText: "Số Năm Sử Dụng",
+        FieldText: "Số năm sử dụng",
         Index: 7
     },
     {
         DataType: "text",
         FieldName: "Description",
-        FieldText: "Ghi Chú",
+        FieldText: "Ghi chú",
         Index: 8
     }
 ];

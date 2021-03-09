@@ -4,6 +4,9 @@
     ViewData["ChildTitle"] = "Ghi tăng tài sản";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section Links{
+    <link href="~/css/asset.css" rel="stylesheet" />
+}
 <div class="tool-bar" id="tbGrdFixedAsset">
     <div class="filter-bar">
         <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
@@ -31,6 +34,7 @@
     <div class="grid-default">
         <table cellspacing="0" id="asset-grid" data-toolbar="#tbGrdFixedAsset">
             <thead>
+
             </thead>
             <tbody>
             </tbody>
@@ -98,7 +102,12 @@
                         Mã phòng ban
                     </div>
                     <div>
-                        <input id="txt_departmentcode" class="input-text input-asset" />
+                        <select id="cbxdepartment" fieldName="DepartmentId">
+                            <option value="Phòng công nghệ">PB567</option>
+                            <option value="Phòng hành chính">PB789</option>
+                            <option value="Phòng nhân sự">PB123</option>
+                            <option value="Phòng giám đốc">PB674</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -120,7 +129,11 @@
                         Mã loại tài sản
                     </div>
                     <div>
-                        <input id="txt_assetcategory" class="input-text input-asset" fieldName="FixedAssetCategoryCode"/>
+                        <select id="cbxassetcategory" fieldName="FixedAssetCategoryId">
+                            <option value="Tài sản chung">TS878</option>
+                            <option value="Tài sản Riêng">TS7988</option>
+                            <option value="Tài sản nội vụ">TS67889098</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -142,7 +155,7 @@
                         Ngày ghi tăng
                     </div>
                     <div>
-                        <input dataType="Date" fieldName="IncrementDate" class="input-date input-asset" type="date" />
+                        <input id="dtIncrementDate" dataType="date" fieldName="IncrementDate" class="input-date input-asset" type="text" data-mask="00/00/0000" />
                     </div>
                 </div>
             </div>
@@ -203,7 +216,7 @@
                 </div>
             </div>
         </div>
-        <input fieldName="FixedAssetId" style="display:none"/>
+        <input fieldName="FixedAssetId" style="display:none" />
     </div>
 
     <div class="dialog-footer">

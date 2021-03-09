@@ -1,6 +1,7 @@
+
 .grid {
     position: relative;
-    height: calc(100vh - 164px)
+    height: calc(100vh - 164px);
 }
 
     .grid .grid-default {
@@ -29,6 +30,10 @@ table th, td {
     text-overflow: ellipsis;
 }
 
+table thead tr:first-child {
+    border:none;
+}
+
 table {
     border-bottom: none;
     width: 100%;
@@ -41,6 +46,7 @@ table {
         padding-top: 0;
         font-size: 12px;
         font-weight: 600;
+        background-color: #fff;
     }
 
     table td {
@@ -60,6 +66,25 @@ table {
             background-color: #f0f8ff;
         }
 
+
+th:after,
+th:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+/*th:before {
+    top: -1px;
+    border-top: 1px solid #bbbbbb;
+}*/
+
+th:after {
+    bottom: 0px;
+    border-bottom: 1px solid #bbbbbb;
+}
+
 .selected-row {
     background-color: #f0f8ff !important;
 }
@@ -73,6 +98,7 @@ table {
 ::-webkit-scrollbar-thumb{
     background-color:#454545;
 }*/
+
 
 /*css cho context menu*/
 .menu {

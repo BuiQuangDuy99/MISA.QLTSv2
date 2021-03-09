@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.BL.Services;
 using MISA.QLTSv2.Model.Entities;
+using MISA.QLTSv2.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,17 +13,19 @@ using System.Threading.Tasks;
 
 namespace MISA.QLTSv2.API
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
 
     public class FixedAssetController : ControllerBase
     {
         FixedAssetBL _fixedAssetBL;
         string _connectionString;
+        ServiceResult _serviceResult;
         public FixedAssetController(IConfiguration configuration, IMapper mapper)
         {
             _connectionString = configuration.GetConnectionString("MISAQLTSv2ConnectionString");
             _fixedAssetBL = new FixedAssetBL(_connectionString, mapper);
+            _serviceResult = new ServiceResult();
         }
         /// <summary>
         /// Lấy toàn bộ danh sách
@@ -30,17 +33,18 @@ namespace MISA.QLTSv2.API
         /// <returns>danh sách thỏa mãn</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
         [HttpGet]
-        public IActionResult Get()
+        public ServiceResult GetFixedAsset()
         {
             try
             {
+                return _fixedAssetBL.GetFixedAssets();
             }
             catch (Exception ex)
             {
-
+                _serviceResult.Messenger = ex.Message.ToString();
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
+                return _serviceResult;
             }
-
-            return Ok(_fixedAssetBL.GetEntities());
         }
         /// <summary>
         /// Lấy ra một bản ghi theo ID
@@ -49,9 +53,18 @@ namespace MISA.QLTSv2.API
         /// <returns>Một bản ghi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
         [HttpGet("{entityId}")]
-        public IActionResult GetEntityById([FromRoute] Guid entityId)
+        public ServiceResult GetFixedAssetById([FromRoute] Guid entityId)
         {
-            return Ok(_fixedAssetBL.GetEntityById(entityId));
+            try
+            {
+                return _fixedAssetBL.GetFixedAssetById(entityId);
+            }
+            catch (Exception ex)
+            {
+                _serviceResult.Messenger = ex.Message.ToString();
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
+                return _serviceResult;
+            }
         }
         /// <summary>
         /// Xóa Một bản ghi
@@ -59,9 +72,18 @@ namespace MISA.QLTSv2.API
         /// <returns>Số bản ghi bị xóa</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
         [HttpDelete("{entityId}")]
-        public IActionResult Delete(Guid entityId)
+        public ServiceResult DeleteFixedAsset(Guid entityId)
         {
-            return Ok(_fixedAssetBL.Delete(entityId));
+            try
+            {
+                return _fixedAssetBL.DeleteFixedAsset(entityId);
+            }
+            catch (Exception ex)
+            {
+                _serviceResult.Messenger = ex.Message.ToString();
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
+                return _serviceResult;
+            }
         }
         /// <summary>
         /// Thêm một bản ghi
@@ -70,10 +92,18 @@ namespace MISA.QLTSv2.API
         /// <returns>Số bản ghi thay đổi</returns>
         /// createdBy:NVTUYEN(02/03/2021)
         [HttpPost]
-        public IActionResult Insert([FromBody] FixedAsset entity)
+        public ServiceResult InsertFixedAsset([FromBody] FixedAsset entity)
         {
-            var res = _fixedAssetBL.Insert(entity);
-            return Ok(res);
+            try
+            {
+                return _fixedAssetBL.InsertFixedAsset(entity);
+            }
+            catch (Exception ex)
+            {
+                _serviceResult.Messenger = ex.Message.ToString();
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
+                return _serviceResult;
+            }
         }
         /// <summary>
         /// Chỉnh sửa một bản ghi
@@ -82,10 +112,18 @@ namespace MISA.QLTSv2.API
         /// <returns>Một bản ghi thay đổi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
         [HttpPut("{entityId}")]
-        public IActionResult Put([FromRoute] string entityId, [FromBody] FixedAsset entity)
+        public ServiceResult PutFixedAsset([FromRoute] string entityId, [FromBody] FixedAsset entity)
         {
-            var res = _fixedAssetBL.Update(entity);
-            return Ok(res);
+            try
+            {
+                return _fixedAssetBL.UpdateFixedAsset(entity);
+            }
+            catch (Exception ex)
+            {
+                _serviceResult.Messenger = ex.Message.ToString();
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
+                return _serviceResult;
+            }
         }
     }
 }

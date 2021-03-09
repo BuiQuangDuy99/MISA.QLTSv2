@@ -31,13 +31,15 @@
         background: #555;
     }
 
-textarea{
-    resize:none !important;
+textarea {
+    resize: none !important;
 }
+
 .depreciation-sub-grid thead {
     background-color: !important;
     /* width: 100px !important; */
 }
+
 .depreciation-sub-grid th {
     padding: 0 13px 0px 13px !important;
     box-sizing: border-box !important;
@@ -46,17 +48,20 @@ textarea{
     border: #e0e0e0 solid 1px !important;
     background-color: #e8e8e8;
 }
+
 .depreciation-sub-grid tbody tr td {
     height: 35px !important;
-    padding: 0 13px 0 13px;
+    padding: 0 0 0 0;
     border: #e0e0e0 solid 1px !important;
 }
-.text-alight-center{
-     text-align:center;
- }
-.text-alight-right{
-     text-align:right;
- }
+
+.text-alight-center {
+    text-align: center;
+}
+
+.text-alight-right {
+    text-align: right;
+}
 
 .button-depreciation {
     font-size: 13px;
@@ -67,15 +72,17 @@ textarea{
     background-color: white;
     border-radius: 4px;
     padding: 5px;
-    align-items:center;
+    align-items: center;
 }
+
 .btn-depr-delete {
     padding: 0px;
     outline: none !important;
     border: none;
-    margin:auto;
+    margin: auto;
     padding-top: 6px;
 }
+
 .icon-delete-row {
     background-image: url('/icon/trash.svg');
     width: 14px;
@@ -84,6 +91,7 @@ textarea{
     background-repeat: no-repeat;
     background-size: contain;
 }
+
 .button-depreciation-icon {
     width: 14px;
     height: 14px;
@@ -92,22 +100,28 @@ textarea{
     background-size: contain;
     margin-left: 8px;
 }
+
 .btn-add-row-icon {
     background-image: url('/icon/154313424_436685174069604_139532384885086985_n.png');
 }
+
 .btn-add-row {
     border: 1.5px solid #00abfe;
     color: #00abfe;
 }
+
 .btn-add-row {
     border: 1.5px solid #00abfe;
 }
+
 .btn-delete-all-row {
     border: 1px solid #e2e2e2;
 }
+
 .btn-delete-all-row-icon {
     background-image: url('/icon/trash.svg');
 }
+
 .btn-content {
     padding: 9px 17px 7px 10px;
 }
@@ -116,8 +130,13 @@ textarea{
     border-color: #4086ad;
     color: #4086ad;
 }
+
 .btn-delete-all-row:hover {
     color: #808080;
+}
+
+.icon_PostDate, input, textarea:hover {
+    cursor: pointer;
 }
 
 .input-depreciation-sub-grid {
@@ -125,4 +144,26 @@ textarea{
     outline: none !important;
     width: 100%;
     height: 100%;
+    padding: 0 13px 0 13px;
 }
+
+.RefNo {
+    text-transform: uppercase;
+}
+
+.ui-datepicker table {
+    border: 1px solid black;
+    background-color: #fff;
+}
+
+/*.icon_PostDate {
+    background-image: url('../../icon/calendar-60.svg');
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-repeat: no-repeat;
+    top: 32px;
+    left: 150px;
+    background-size: contain;
+    background-position: center;
+}*/
