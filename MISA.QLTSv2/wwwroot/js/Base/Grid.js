@@ -50,6 +50,7 @@ class Grid {
             }
         } else {
             $(this).addClass('selected-row');
+            console.log($(this).data('recordId'));
             $(this).siblings().removeClass('selected-row');
         }
     }
@@ -175,7 +176,8 @@ class Grid {
                 td;
 
             row = $(`<tr></tr>`);
-            $(row).data('recordId', object[me.entity + 'Id']);
+            //$(row).data('recordId', object[me.entity + 'Id']);
+            $(row).data('recordId', object['Id']);
 
             // Binding cột số thứ tự riêng, index chính là value
             object["STT"] = index + 1;

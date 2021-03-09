@@ -24,7 +24,6 @@
 }
 tr:hover .hide {
     visibility: visible;
-    background-color: #f0f8ff;
 }
 
 form .form-control:focus {

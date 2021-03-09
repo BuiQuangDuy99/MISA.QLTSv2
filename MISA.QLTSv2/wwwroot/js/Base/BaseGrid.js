@@ -48,7 +48,7 @@ class BaseGrid extends Grid {
 
         $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
         $('#btn-yes-warring').off('click').click(function () {
-            me.delete()
+            me.delete(me.listData)
         });
     }
 
@@ -78,28 +78,29 @@ class BaseGrid extends Grid {
      * Hàm thực hiện xóa một hàng trong bảng
      * CreatedBY: BQDUY(26/02/2021)
      * */
-    delete() {
+    delete(data) {
         let me = this;
         let selectedRow = me.grid.find(".selected-row");
-        //if (selectedRow.length>0) {
-        //    data = data.filter(item => item["FixedAssetCategoryId"] !== selectedRow.data("recordId"));
-        //    me.grid.find("tbody").empty();
-        //    me.loadData(data);
-        //} else {
-        //    alert("Vui lòng chọn bản ghi để xóa!");
-        //}
-        var url = me.url;
-        $.ajax({
-            url: url + "/" + selectedRow.data("recordId"),
-            method: "DELETE"
-        }).done(function (res) {
-            if (res > 0) {
-                showAlertWarring("Xóa thành công");
-                me.loadAjaxData(url);
-            }
-        }).fail(function (res) {
-            alert("ko xóa được");
-        })
+        if (selectedRow.length>0) {
+            data = data.filter(item => item["Id"] !== selectedRow.data("recordId"));
+            me.grid.find("tbody").empty();
+            me.loadData(data);
+            closeWarring();
+            showMessengerSuccess("Xóa thành công!");
+            
+        }
+        //var url = me.url;
+        //$.ajax({
+        //    url: url + "/" + selectedRow.data("recordId"),
+        //    method: "DELETE"
+        //}).done(function (res) {
+        //    if (res > 0) {
+        //        showAlertWarring("Xóa thành công");
+        //        me.loadAjaxData(url);
+        //    }
+        //}).fail(function (res) {
+        //    alert("ko xóa được");
+        //})
     }
 
 
