@@ -16,12 +16,9 @@
         /*padding-right: 21px;*/
         padding-left: 21px;
     }
-
-
 /****
     định dạng danh sách bảng
 */
-
 table th, td {
     padding: 11px 16px;
     text-align: left;
@@ -31,7 +28,7 @@ table th, td {
 }
 
 table thead tr:first-child {
-    border:none;
+    border: none;
 }
 
 table {
@@ -42,7 +39,7 @@ table {
     table th {
         position: sticky;
         top: 0;
-        background-color: #ffffff;
+        background-color: #FFFFFF;
         padding-top: 0;
         font-size: 12px;
         font-weight: 600;
@@ -51,7 +48,7 @@ table {
 
     table td {
         font-size: 13px;
-        border-right: 1px solid #bbbbbb;
+        border-right: 1px solid #BBBBBB;
     }
 
         table td:last-child {
@@ -59,13 +56,12 @@ table {
         }
 
     table tr {
-        border-bottom: 1px solid #bbbbbb;
+        border-bottom: 1px solid #BBBBBB;
     }
 
         table tr:hover {
             background-color: #F0F8FF
         }
-
 
 th:after,
 th:before {
@@ -74,15 +70,13 @@ th:before {
     left: 0;
     width: 100%;
 }
-
 /*th:before {
     top: -1px;
-    border-top: 1px solid #bbbbbb;
+    border-top: 1px solid #BBBBBB;
 }*/
-
 th:after {
     bottom: 0px;
-    border-bottom: 1px solid #bbbbbb;
+    border-bottom: 1px solid #BBBBBB;
 }
 
 .selected-row {
@@ -110,3 +104,4 @@ th:after {
     display: none;
     position: absolute;
 }
+
