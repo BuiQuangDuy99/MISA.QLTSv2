@@ -1,29 +1,24 @@
 $(document).ready(function () {
-    $('#cbxdepartment').combobox();
-    //$('#cbxdepartment').combobox().autocomplete({
-    //    select: function (event, ui) {
-    //        ui.item.option.selected = true;
-    //            $('#txtdepartment').val(ui.item.option.value);
-    //        that._trigger("selected", event, {
-    //            item: ui.item.option
-    //        });
-    //    }
-    //});
-    $('#cbxdepartment').autocomplete({
+    $('#cbxdepartment').combobox({
         select: function (event, ui) {
-        alert(ui.item.option.value);
-        $('#txtdepartment').val(ui.item.option.value);
-        $('#txtAssetGroupName').val(ui.item.option.value);
+            debugger
+            $('#txtdepartment').val(ui.item);
+        }
+    });
+    $('#cbxassetcategory').combobox({
+        select: function (event, ui) {
+            debugger
+            $('#txtAssetGroupName').val(ui.item);
 
         }
-    })
-    $('#cbxasset').combobox();
+    });
 
+    //$('#dtIncrementDate').mask("00/00/0000", { placeholder: "___/___/______" }).datepicker();
 })
- 
+
 class assetIncreased extends BaseGrid {
-    constructor(gridId) {
-        super(gridId);
+    constructor(gridId, entity) {
+        super(gridId, entity);
         this.initEvents();
     }
     initEvents() {
@@ -32,57 +27,61 @@ class assetIncreased extends BaseGrid {
         showTooltipElement($('button'));
         showTooltipElement($('td'));
     }
+    setUrl() {
+        this.url = 'https://localhost:44363/api/FixedAsset';
+    }
     createFormDetail(formID, width, height) {
         var me = this;
         this.formDetail = new assetIncreasedForm(formID, width, height, me);
     }
+
 }
 
 
-var assetIncreasedGrid = new assetIncreased('#asset-grid');
+var assetIncreasedGrid = new assetIncreased('#asset-grid', "FixedAsset");
 
 // Biến config cho từng column trong bảng
 
 var conFigColum = [
     {
-        DataType: "number",
+        DataType: "STT",
         FieldName: "STT",
         FieldText: "STT",
-        Index: 1 
+        Index: 1
     },
     {
         DataType: "datetime",
-        FieldName: "DateTime",
+        FieldName: "IncrementDate",
         FieldText: "Ngày ghi tăng",
         Index: 2
     },
     {
         DataType: "text",
-        FieldName: "AssetCode",
+        FieldName: "FixedAssetCode",
         FieldText: "Mã tài sản",
         Index: 3
     },
     {
         DataType: "text",
-        FieldName: "AssetName",
+        FieldName: "FixedAssetName",
         FieldText: "Tên tài sản",
         Index: 4
     },
     {
         DataType: "text",
-        FieldName: "AssetGroupName",
+        FieldName: "FixedAssetCategoryName",
         FieldText: "Loại tài sản",
         Index: 5
     },
     {
         DataType: "text",
-        FieldName: "Department",
+        FieldName: "DepartmentName",
         FieldText: "Phòng ban",
         Index: 6
     },
     {
         DataType: "money",
-        FieldName: "Price",
+        FieldName: "Cost",
         FieldText: "Nguyên giá",
         Index: 7
     },
@@ -93,6 +92,30 @@ var conFigColum = [
         Index: 8
     }
 ];
+var availableTags = [
+    "ActionScript",
+    "AppleScript",
+    "Asp",
+    "BASIC",
+    "C",
+    "C++",
+    "Clojure",
+    "COBOL",
+    "ColdFusion",
+    "Erlang",
+    "Fortran",
+    "Groovy",
+    "Haskell",
+    "Java",
+    "JavaScript",
+    "Lisp",
+    "Perl",
+    "PHP",
+    "Python",
+    "Ruby",
+    "Scala",
+    "Scheme"
+];
 //khởi tạo form ghi tăng tài sản
 assetIncreasedGrid.createFormDetail("#dialog_asset", 700, 525);
 
@@ -100,7 +123,7 @@ assetIncreasedGrid.createFormDetail("#dialog_asset", 700, 525);
 assetIncreasedGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-assetIncreasedGrid.loadData(asset);
+assetIncreasedGrid.loadAjaxData('https://localhost:44363/api/FixedAsset');
 
 //bindingDataForInput() {
 //    //this.on(this.input, {
