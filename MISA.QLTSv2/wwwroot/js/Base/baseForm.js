@@ -222,40 +222,40 @@ class baseForm {
     saveChangeData(data) {
         let me = this,
             jsCaller = me.jsCaller;
-        //var url = me.getApiUrl;
-        //if (jsCaller.formMode == "Add") {
-        //    $.ajax({
-        //        url: url,
-        //        method: "POST",
-        //        data: JSON.stringify(data),
-        //        contentType: 'application/json'
-        //    }).done(function (res) {
-        //        me.closeForm();
-        //        me.jsCaller.loadAjaxData(me.getApiUrl);
+        var url = me.getApiUrl;
+        if (jsCaller.formMode == "Add") {
+            $.ajax({
+                url: url,
+                method: "POST",
+                data: JSON.stringify(data),
+                contentType: 'application/json'
+            }).done(function (res) {
+                me.closeForm();
+                me.jsCaller.loadAjaxData(me.getApiUrl);
 
-        //    }).fail(function (res) {
+            }).fail(function (res) {
 
-        //    })
-        //} else if (jsCaller.formMode == "edit") {
-        //    var idSelected = me.jsCaller.grid.find(".selected-row").data("recordId");
-        //    $.ajax({
-        //        url: url + '/' + idSelected,
-        //        method: "PUT",
-        //        data: JSON.stringify(data),
-        //        contentType: 'application/json'
-        //    }).done(function (res) {
-        //        me.closeForm();
-        //        me.jsCaller.loadAjaxData(me.getApiUrl);
+            })
+        } else if (jsCaller.formMode == "edit") {
+            var idSelected = me.jsCaller.grid.find(".selected-row").data("recordId");
+            $.ajax({
+                url: url + '/' + idSelected,
+                method: "PUT",
+                data: JSON.stringify(data),
+                contentType: 'application/json'
+            }).done(function (res) {
+                me.closeForm();
+                me.jsCaller.loadAjaxData(me.getApiUrl);
 
-        //    }).fail(function (res) {
+            }).fail(function (res) {
 
-        //    })
-        //}
+            })
+        }
 
-        deprectation.push(data);
-        me.closeForm();
-        showMessengerSuccess("Thêm thành công!");
-        jsCaller.loadData(deprectation);
+        //deprectation.push(data);
+        //me.closeForm();
+        //showMessengerSuccess("Thêm thành công!");
+        //jsCaller.loadData(deprectation);
     }
 
     /**
