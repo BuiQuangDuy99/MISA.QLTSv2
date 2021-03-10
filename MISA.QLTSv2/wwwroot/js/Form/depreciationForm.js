@@ -33,9 +33,10 @@ class depreciationForm extends baseForm {
         });
         me.formatTd();
 
-        $('.depreciation-sub-grid tbody tr').find("td input").eq(2).off('keyup').keyup(function () {
-            me.setDepreciation();
-        });
+        //$('.depreciation-sub-grid tbody tr').each(function () {
+            
+        //}).find("td input").eq(2).off('keyup').keyup(function () {
+        //    me.setDepreciation();
         $('.depreciation-sub-grid tbody tr').find("td input").eq(3).off('keyup').keyup(function () {
             me.setDepreciation();
         });
@@ -196,9 +197,9 @@ class depreciationForm extends baseForm {
             cost = parseInt($(this).find("td input").eq(2).val().split(".").join(""));
             depreciationRate = parseInt($(this).find("td input").eq(3).val().split(".").join(""));
             amountTotal = roundToTwo(cost / 100 * depreciationRate).toFixed(2);
-            amountTotal = amountTotal.toString().replace(".", ",");
-            amountTotal = formatMoney(parseInt(amountTotal.split(",")[0])).toString() + "," + parseInt(amountTotal.split(",")[1]).toString();
-            amountTotal = parseFloat(amountTotal.replace(",",".")); 
+            //amountTotal = amountTotal.toString().replace(".", ",");
+            //amountTotal = formatMoney(parseInt(amountTotal.split(",")[0])).toString() + "," + parseInt(amountTotal.split(",")[1]).toString();
+            //amountTotal = parseFloat(amountTotal.replace(",",".")); 
             $(this).find("td input").eq(4).val(amountTotal);
         })
     };
