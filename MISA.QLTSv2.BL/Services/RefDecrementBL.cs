@@ -9,6 +9,10 @@ using System.Text;
 
 namespace MISA.QLTSv2.BL.Services
 {
+    /// <summary>
+    /// Ghi giảm BL
+    /// </summary>
+    /// Author: DVVUONG (10/03/2021)
     public class RefDecrementBL
     {
         #region Declare
@@ -25,6 +29,130 @@ namespace MISA.QLTSv2.BL.Services
         #endregion
 
         #region Method
+        /// <summary>
+        /// Lấy danh sách ghi giảm
+        /// </summary>
+        /// <returns>danh sách ghi giảm</returns>
+        /// Author: DVVUONG (10/03/2021)
+        public ServiceResult GetRefDecrements()
+        {
+            var result = _refDecrementDL.GetRefDecrements();
+            _serviceResult.Data = result;
+            if (result != null)
+            {
+                _serviceResult.Messenger = Resources.Msg_GetAllSuccess;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+            }
+            else
+            {
+                _serviceResult.Messenger = Resources.Msg_GetAllFail;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+            }
+            return _serviceResult;
+        }
+
+        /// <summary>
+        /// Lấy ra một bản ghi giảm theo khóa chính
+        /// </summary>
+        /// <param name="entityId">khóa chính</param>
+        /// <returns>một bản ghi</returns>
+        /// CreatedBy: DVVUONG (10/03/2021)
+        public ServiceResult GetRefDecrementById(Guid entityId)
+        {
+            var result = _refDecrementDL.GetRefDecrementById(entityId);
+            _serviceResult.Data = result;
+            if (result != null)
+            {
+                _serviceResult.Messenger = Resources.Msg_GetSuccess;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+            }
+            else
+            {
+                _serviceResult.Messenger = Resources.Msg_GetFail;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+            }
+            return _serviceResult;
+        }
+
+        /// <summary>
+        /// Xóa bản ghi ghi giảm
+        /// </summary>
+        /// <param name="entityId">khóa chính</param>
+        /// <returns>số bản ghi bị xóa</returns>
+        /// Author: DVVUONG (10/03/2021)
+        public ServiceResult DeleteRefDecrement(Guid entityId)
+        {
+            var res = _refDecrementDL.DeleteRefDecrement(entityId);
+            _serviceResult.Data = res;
+
+            if (res == 1)
+            {
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                _serviceResult.Messenger = Resources.Msg_DeleteSuccess;
+            }
+            else
+            {
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+                _serviceResult.Messenger = Resources.Msg_DeleteFail;
+            }
+            return _serviceResult;
+        }
+
+
+        /// <summary>
+        /// Thêm một bản ghi ghi giảm
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>Số bản ghi thay đổi</returns>
+        /// Author: DVVUONG(10/03/2021)
+        public ServiceResult InsertRefDecrement(RefDecrement entity)
+        {
+            entity.EntityState = EntityState.Insert;
+            var isValid = Validate(entity);
+
+            if (isValid == true)
+            {
+                _serviceResult.Data = _refDecrementDL.InsertRefDecrement(entity);
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                _serviceResult.Messenger = Resources.Msg_AddSuccess;
+                return _serviceResult;
+            }
+            else
+            {
+                return _serviceResult;
+            }
+        }
+
+        /// <summary>
+        /// Chỉnh sửa một bản ghi
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>Một bản ghi thay đổi</returns>
+        /// CreatedBy:DVVUONG(02/03/2021)
+        public ServiceResult UpdateDepartment(RefDecrement entity)
+        {
+            entity.EntityState = EntityState.Update;
+            var isValid = Validate(entity);
+            if (isValid == true)
+            {
+                _serviceResult.Data = _refDecrementDL.UpdateRefDecrement(entity);
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                _serviceResult.Messenger = Resources.Msg_UpdateSuccess;
+                return _serviceResult;
+            }
+            else
+            {
+                return _serviceResult;
+            }
+        }
+
+
+        /// <summary>
+        /// Hàm Validate dữ liệu
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>True/False</returns>
+        /// CreatedBy:DVVUONG(20/30/2021)
         private bool Validate(RefDecrement entity)
         {
             var mesArr = new List<string>();
@@ -48,7 +176,7 @@ namespace MISA.QLTSv2.BL.Services
                     {
                         isValidate = false;
                         mesArr.Add(string.Format(Resources.Msg_Required, displayName));
-                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.HttpCode = HttpCodeResult.Fail;
                         _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }
@@ -61,7 +189,7 @@ namespace MISA.QLTSv2.BL.Services
                     {
                         isValidate = false;
                         mesArr.Add(string.Format(Resources.Msg_Dulicate, displayName));
-                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.HttpCode = HttpCodeResult.Fail;
                         _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }
@@ -76,7 +204,7 @@ namespace MISA.QLTSv2.BL.Services
                     {
                         isValidate = false;
                         mesArr.Add(msg ?? $"Thông tin này vượt quá {length} ky tu cho phep");
-                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.HttpCode = HttpCodeResult.Fail;
                         _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }

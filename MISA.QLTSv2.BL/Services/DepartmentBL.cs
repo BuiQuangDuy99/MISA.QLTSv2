@@ -35,9 +35,18 @@ namespace MISA.QLTSv2.BL.Services
         /// Author: DVVUONG (02/03/2021)
         public ServiceResult GetDepartments()
         {
-            _serviceResult.Data = _departmentDL.GetDepartments();
-            _serviceResult.Messenger = Resources.Msg_GetAllSuccess;
-            _serviceResult.MISACode = MISACode.Success;
+            var result = _departmentDL.GetDepartments();
+            _serviceResult.Data = result;
+            if (result != null)
+            {
+                _serviceResult.Messenger = Resources.Msg_GetAllSuccess;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+            }
+            else
+            {
+                _serviceResult.Messenger = Resources.Msg_GetAllFail;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+            }
             return _serviceResult;
         }
 
@@ -49,9 +58,18 @@ namespace MISA.QLTSv2.BL.Services
         /// CreatedBy:NVTUYEN(02/03/2021)
         public ServiceResult GetDepartmentById(Guid entityId)
         {
-            _serviceResult.Data = _departmentDL.GetDepartmentById(entityId);
-            _serviceResult.Messenger = Resources.Msg_GetSuccess;
-            _serviceResult.MISACode = MISACode.Success;
+            var result = _departmentDL.GetDepartmentById(entityId);
+            _serviceResult.Data = result;
+            if(result != null)
+            {
+                _serviceResult.Messenger = Resources.Msg_GetSuccess;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+            }
+            else
+            {
+                _serviceResult.Messenger = Resources.Msg_GetFail;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+            }
             return _serviceResult;
         }
 
@@ -64,16 +82,16 @@ namespace MISA.QLTSv2.BL.Services
         public ServiceResult DeleteDepartment(Guid entityId)
         {
             var res = _departmentDL.DeleteDepartment(entityId);
-            if(res == 1)
+            _serviceResult.Data = res;
+
+            if (res == 1)
             {
-                _serviceResult.Data = res;
-                _serviceResult.MISACode = MISACode.Success;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
                 _serviceResult.Messenger = Resources.Msg_DeleteSuccess;
             }
             else
             {
-                _serviceResult.Data = res;
-                _serviceResult.MISACode = MISACode.Failed;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
                 _serviceResult.Messenger = Resources.Msg_DeleteFail;
             }
             return _serviceResult;

@@ -47,7 +47,7 @@ namespace MISA.QLTSv2.API
             }
             catch (Exception)
             {
-                _serviceResult.MISACode = MISACode.Exception;
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
                 _serviceResult.Data = null;
                 _serviceResult.Messenger = Resources.Msg_GetAllFail;
                 return _serviceResult;
@@ -70,7 +70,7 @@ namespace MISA.QLTSv2.API
             }
             catch (Exception)
             {
-                _serviceResult.MISACode = MISACode.Exception;
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
                 _serviceResult.Data = null;
                 _serviceResult.Messenger = Resources.Msg_GetFail;
                 return _serviceResult;
@@ -93,7 +93,7 @@ namespace MISA.QLTSv2.API
             }
             catch (Exception)
             {
-                _serviceResult.MISACode = MISACode.Exception;
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
                 _serviceResult.Data = null;
                 _serviceResult.Messenger = Resources.Msg_DeleteFail;
                 return _serviceResult;
@@ -116,7 +116,7 @@ namespace MISA.QLTSv2.API
             }
             catch (Exception)
             {
-                _serviceResult.MISACode = MISACode.Exception;
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
                 _serviceResult.Data = null;
                 _serviceResult.Messenger = Resources.Msg_AddFail;
                 return _serviceResult;
@@ -130,10 +130,19 @@ namespace MISA.QLTSv2.API
         /// <returns>Một bản ghi thay đổi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
         [HttpPut("{entityId}")]
-        public IActionResult PutDepartment([FromRoute] string entityId, [FromBody] Department entity)
+        public ServiceResult PutDepartment([FromRoute] string entityId, [FromBody] Department entity)
         {
-            var res = _departmentBL.UpdateDepartment(entity);
-            return Ok(res);
+            try
+            {
+                return _departmentBL.UpdateDepartment(entity);
+            }
+            catch (Exception)
+            {
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
+                _serviceResult.Data = null;
+                _serviceResult.Messenger = Resources.Msg_UpdateFail;
+                return _serviceResult;
+            }
         }
         #endregion
     }

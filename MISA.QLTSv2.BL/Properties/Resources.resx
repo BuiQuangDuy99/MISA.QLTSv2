@@ -150,6 +150,9 @@
   <data name="Msg_Required" xml:space="preserve">
     <value>Thông tin {0} không được phép để trống</value>
   </data>
+  <data name="Msg_UpdateFail" xml:space="preserve">
+    <value>Chỉnh sửa dữ liệu thất bại</value>
+  </data>
   <data name="Msg_UpdateSuccess" xml:space="preserve">
     <value>Chỉnh sửa dữ liệu thành công</value>
   </data>

@@ -160,6 +160,15 @@ namespace MISA.QLTSv2.BL.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chỉnh sửa dữ liệu thất bại.
+        /// </summary>
+        public static string Msg_UpdateFail {
+            get {
+                return ResourceManager.GetString("Msg_UpdateFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chỉnh sửa dữ liệu thành công.
         /// </summary>
         public static string Msg_UpdateSuccess {
