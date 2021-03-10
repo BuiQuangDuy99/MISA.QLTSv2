@@ -48,11 +48,10 @@ namespace MISA.QLTSv2.API
             {
                 return _refDecrementBL.GetRefDecrements();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 _serviceResult.HttpCode = HttpCodeResult.Exception;
-                _serviceResult.Data = null;
-                _serviceResult.Messenger = Resources.Msg_GetAllFail;
+                _serviceResult.Messenger = e.Message;
                 return _serviceResult;
             }
         }
@@ -71,11 +70,10 @@ namespace MISA.QLTSv2.API
             {
                 return _refDecrementBL.GetRefDecrementById(entityId);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 _serviceResult.HttpCode = HttpCodeResult.Exception;
-                _serviceResult.Data = null;
-                _serviceResult.Messenger = Resources.Msg_GetFail;
+                _serviceResult.Messenger = e.Message;
                 return _serviceResult;
             }
 
@@ -94,11 +92,10 @@ namespace MISA.QLTSv2.API
             {
                 return _refDecrementBL.DeleteRefDecrement(entityId);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 _serviceResult.HttpCode = HttpCodeResult.Exception;
-                _serviceResult.Data = null;
-                _serviceResult.Messenger = Resources.Msg_DeleteFail;
+                _serviceResult.Messenger = e.Message;
                 return _serviceResult;
             }
 
@@ -117,11 +114,10 @@ namespace MISA.QLTSv2.API
             {
                 return _refDecrementBL.InsertRefDecrement(entity);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 _serviceResult.HttpCode = HttpCodeResult.Exception;
-                _serviceResult.Data = null;
-                _serviceResult.Messenger = Resources.Msg_AddFail;
+                _serviceResult.Messenger = e.Message;
                 return _serviceResult;
             }
         }
@@ -139,11 +135,10 @@ namespace MISA.QLTSv2.API
             {
                 return _refDecrementBL.UpdateRefDecrement(entity);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 _serviceResult.HttpCode = HttpCodeResult.Exception;
-                _serviceResult.Data = null;
-                _serviceResult.Messenger = Resources.Msg_UpdateFail;
+                _serviceResult.Messenger = e.Message;
                 return _serviceResult;
             }
         }

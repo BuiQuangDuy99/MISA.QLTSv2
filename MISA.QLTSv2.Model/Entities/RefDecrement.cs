@@ -16,7 +16,7 @@ namespace MISA.QLTSv2.Model.Entities
         /// <summary>
         /// Thuộc đơn vị
         /// </summary>
-        public Guid OrganizationId { get; set; }
+        public Guid? OrganizationId { get; set; }
 
         /// <summary>
         /// Số chứng từ
@@ -26,12 +26,12 @@ namespace MISA.QLTSv2.Model.Entities
         /// <summary>
         /// Loại chứng từ
         /// </summary>
-        public int RefType { get; set; }
+        public int? RefType { get; set; }
 
         /// <summary>
         /// Ngày chứng từ
         /// </summary>
-        public DateTime RefDate { get; set; }
+        public DateTime? RefDate { get; set; }
 
         /// <summary>
         /// Chi tiết danh sách tài sản của chứng từ
@@ -46,17 +46,17 @@ namespace MISA.QLTSv2.Model.Entities
         /// <summary>
         /// Ngày ghi giảm
         /// </summary>
-        public DateTime PostedDate { get; set; }
+        public DateTime? PostedDate { get; set; }
 
         /// <summary>
         /// Năm làm việc ~ năm chứng từ
         /// </summary>
-        public int TrackedYear { get; set; }
+        public int? TrackedYear { get; set; }
 
         /// <summary>
         /// Tổng nguyên giá
         /// </summary>
-        public decimal CostTotal { get; set; }
+        public decimal? CostTotal { get; set; }
         #endregion
     }
 }

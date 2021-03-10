@@ -17,5 +17,10 @@ namespace MISA.QLTSv2.Controllers
             return View();
         }
 
+        public IActionResult RefDecrement()
+        {
+            return View();
+        }
+
     }
 }

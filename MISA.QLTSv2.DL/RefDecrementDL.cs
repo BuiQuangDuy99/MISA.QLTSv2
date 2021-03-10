@@ -64,7 +64,7 @@ namespace MISA.QLTSv2.DL
             parameter.Add($"${tableName}Id", entityId.ToString());
 
             // Thực thi commandText:
-            var refDecrement = _dbConnection.Query<department>($"Proc_Select{tableName}ById", parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            var refDecrement = _dbConnection.Query<ref_decrement>($"Proc_Select{tableName}ById", parameter, commandType: CommandType.StoredProcedure).FirstOrDefault();
             return _mapper.Map<RefDecrement>(refDecrement);
         }
 
