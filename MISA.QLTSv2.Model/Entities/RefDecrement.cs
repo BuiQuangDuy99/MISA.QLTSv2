@@ -6,12 +6,7 @@ namespace MISA.QLTSv2.Model.Entities
 {
     public class RefDecrement : BaseEntity
     {
-        #region Constructor
-        public RefDecrement()
-        {
-
-        }
-        #endregion
+    
         #region Property
         /// <summary>
         /// ID chứng từ
