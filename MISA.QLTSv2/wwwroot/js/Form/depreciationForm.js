@@ -1,4 +1,4 @@
-﻿
+
 class depreciationForm extends baseForm {
     constructor(formId, width, height, jsCaller) {
         super(formId, jsCaller);
@@ -24,7 +24,7 @@ class depreciationForm extends baseForm {
             me.addRow();
         });
 
-        $('.depreciation-sub-grid').on('click', 'tr td button', (function () {
+        $('.depreciation-sub-grid').off('click').on('click', 'tr td button', (function () {
             me.deleteRow($(this));
         }));
 
@@ -34,10 +34,10 @@ class depreciationForm extends baseForm {
         me.formatTd();
 
         //$('.depreciation-sub-grid tbody tr').each(function () {
-            
+
         //}).find("td input").eq(2).off('keyup').keyup(function () {
         //    me.setDepreciation();
-        $('.depreciation-sub-grid tbody tr').find("td input").eq(3).off('keyup').keyup(function () {
+        $('.depreciation-sub-grid tbody tr').find('input[fieldName="Cost"]').off('keyup').keyup(function () {
             me.setDepreciation();
         });
     }
@@ -49,12 +49,12 @@ class depreciationForm extends baseForm {
         let me = this,
             tr = $(`<tr>
                         <td class="text-alight-center"></td>
-                        <td><input type="text" class="input-depreciation-sub-grid"></td>
-                        <td></td>
-                        <td class="text-alight-right" dataType="Money" ></td>
-                        <td class="text-alight-right dataType="Number" "></td>
-                        <td class="text-alight-right" dataType="Money"></td>
-                        <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+                            <td ><input fieldName="FixedAssetCode" type="text" class="input-depreciation-sub-grid" /></td>
+                            <td ><input fieldName="FixedAssetName" type="text" class="input-depreciation-sub-grid" /></td>
+                            <td><input fieldName="Cost" type="text" class="input-depreciation-sub-grid text-alight-right" dataType="money"/></td>
+                            <td><input fieldName="DepreciationRate" type="text" dataType="Number" class="input-depreciation-sub-grid text-alight-right" /></td>
+                            <td><input fieldName="AmountTotal" type="text" class="input-depreciation-sub-grid text-alight-right" disabled /></td>
+                        <td><button class=" btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                     </tr>`);
 
         $('#depreciation-sub-grid tbody').append(tr);
@@ -154,10 +154,6 @@ class depreciationForm extends baseForm {
                 else {
                     asset[fieldNameAss] = $(this).val();
                 }
-                //if (fieldNameAss == "AmountTotal") {
-                //    let AmountTotal = asset['Cost'] / 100 * asset['DepreciationRate'];
-                //    asset[fieldNameAss] = AmountTotal;
-                //}
             })
             listAsset.push(asset);
             list = JSON.stringify(listAsset);

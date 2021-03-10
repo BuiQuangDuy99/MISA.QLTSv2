@@ -17,6 +17,7 @@ class baseForm {
      * CreatedBy : NDTUNG (4/2/2021)
      */
     initEvent() {
+        let me = this;
         //var data = this.getJson();
         this.form.find("#btn-cancel").off("click");
         this.form.find("#btn-save").off("click");
@@ -28,14 +29,16 @@ class baseForm {
         this.form.find("[required]").blur(this.checkStatusInput);
         this.form.find("[required]").keyup(this.checkStatusInput);
 
-        this.form.find("input[dataType='money'],input[dataType='Number']").on("keypress", function () {
+        this.form.on("keypress", "input[dataType='money'],input[dataType='Number']", function () {
             if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
                 event.preventDefault();
             }
             else {
-                $("input[dataType='money']").keyup(this.formatPrice)
+                $("input[dataType='money']").keyup(function () {
+                    me.formatPrice($(this));
+                })
             }
-        }.bind(this));
+        });
 
         this.form.find("input[dataType='Date']").datepicker({ dateFormat:"dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
 
@@ -68,13 +71,12 @@ class baseForm {
      *Format định dạng tiền khi người dùng nhập trường nguyên giá
      *CreatedBy : NDTUNG (4/2/2021)
      */
-    formatPrice() {
+    formatPrice(input) {
         try {
-            if (isNaN($("input[dataType='money']").val()) != null) {
-                var value = $("input[dataType='money']").val().split(".").join("");
+                var value = input.val().split(".").join("");
                 var formated = formatMoney(value);
-                $("input[dataType='money']").val(formated);
-            }
+                input.val(formated);
+            
         } catch (e) {
             alert(e);
         }
