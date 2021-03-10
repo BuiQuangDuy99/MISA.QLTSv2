@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MISA.QLTSv2.Model.Models
 {
-    class ref_depreciation
+    public class ref_depreciation
     {
         #region Constructor
         public ref_depreciation()

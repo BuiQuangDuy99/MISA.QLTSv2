@@ -43,25 +43,25 @@ var conFigColum = [
     },
     {
         DataType: "datetime",
-        FieldName: "DateTime",
+        FieldName: "PostedDate",
         FieldText: "Ngày tính hao mòn",
         Index: 2
     },
     {
         DataType: "text",
-        FieldName: "Depreciation_no",
+        FieldName: "RefNo",
         FieldText: "Số chứng từ",
         Index: 3
     },
     {
         DataType: "text",
-        FieldName: "Explain",
+        FieldName: "JournalMemo",
         FieldText: "Diễn giải",
         Index: 4
     },
     {
         DataType: "money",
-        FieldName: "Price",
+        FieldName: "AmountTotal",
         FieldText: "Số tiền",
         Index: 5
     },
@@ -81,14 +81,3 @@ depreciationGrid.setConFigColum(conFigColum);
 //Load dữ liệu grid
 depreciationGrid.loadData(deprectation);
 
-//bindingDataForInput() {
-//    //this.on(this.input, {
-//    //    select: function (event, ui) {
-//    //        alert(ui.item.value);
-//    //        ui.item.option.selected = true;
-//    //        this._trigger("select", event, {
-//    //            item: ui.item.option
-//    //        });
-//    //    }
-//    //})
-//}

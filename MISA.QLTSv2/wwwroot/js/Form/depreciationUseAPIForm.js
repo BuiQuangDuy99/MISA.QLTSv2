@@ -4,7 +4,7 @@ class depreciationForm extends baseForm {
         super(formId, jsCaller);
         //Định nghĩa Dialog
         this.depreciationForm = $(formId).dialog({
-            autoOpen: true,
+            autoOpen: false,
             height: height,
             width: width,
             modal: true,
@@ -113,13 +113,13 @@ class depreciationForm extends baseForm {
                 dataType = $(this).attr('dataType');
             switch (dataType) {
                 case "Money":
-                     money = parseInt($(this).val());
+                    money = parseInt($(this).val());
                     $(this).addClass('text-alight-right');
                     $(this).empty();
                     $(this).append(formatMoney(money));
                     break;
                 case "Number":
-                     money = parseInt($(this).val());
+                    money = parseInt($(this).val());
                     $(this).addClass('text-alight-right');
                     break;
                 default:
@@ -129,7 +129,7 @@ class depreciationForm extends baseForm {
 
     getData() {
         let depreciation = {},
-            sumMoney=0,
+            sumMoney = 0,
             listAsset = [];
         $('.depreciation-sub-grid tbody tr').each(function () {
             let asset = {},
@@ -154,8 +154,8 @@ class depreciationForm extends baseForm {
             })
             listAsset.push(asset);
         })
-    
-        $('td[fieldName="AmountTotal"]').each(function() {
+
+        $('td[fieldName="AmountTotal"]').each(function () {
             sumMoney += parseInt($(this).prop("textContent").split(".").join(""));
         })
         console.log(sumMoney);

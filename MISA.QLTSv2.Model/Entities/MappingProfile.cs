@@ -26,6 +26,9 @@ namespace MISA.QLTSv2.Model.Entities
 
             CreateMap<department, Department>();
             CreateMap<Department, department>();
+
+            CreateMap<ref_depreciation, RefDepreciation>();
+            CreateMap<RefDepreciation, ref_depreciation>();
         }
     }
 }
