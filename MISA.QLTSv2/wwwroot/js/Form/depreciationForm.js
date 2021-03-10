@@ -185,26 +185,35 @@ class depreciationForm extends baseForm {
     }
 
     setDepreciation(tr) {
-        let cost,
+        let me=this,
+            cost,
             depreciationRate,
             amountTotal;
 
         // Mai tách hàm(1 hàm hiển thị , 1 hàm cất) Note: Không biết có làm được không ???
         cost = parseInt(tr.find('input[fieldName="Cost"]').val().split(".").join(""));
-        depreciationRate = parseInt(tr.find('input[fieldName="DepreciationRate"]').val().split(".").join(""));
+        depreciationRate = parseFloat(tr.find('input[fieldName="DepreciationRate"]').val());
         if (!isNaN(cost) && !isNaN(depreciationRate)) {
             amountTotal = roundToTwo(cost / 100 * depreciationRate).toFixed(2);
+            console.log(amountTotal);
         }
-        //amountTotal = amountTotal.toString().replace(".", ",");
-        //amountTotal = formatMoney(parseInt(amountTotal.split(",")[0])).toString() + "," + parseInt(amountTotal.split(",")[1]).toString();
-        //amountTotal = parseFloat(amountTotal.replace(",",".")); 
-        tr.find('input[fieldName="AmountTotal"]').val(amountTotal);
+
+        tr.find('input[fieldName="AmountTotal"]').val(me.showDepreciation(amountTotal));
 
     };
 
-    //
-    showDepreciation() {
-
+    /**
+     * Hàm dùng để định dạng hiển thị số tiền hao mòn lên Form
+     *  CreatedBy:NDTUNG (10/3/2021)
+     * @param {any} amountTotal Số tiền hao mòn
+     */
+    showDepreciation(amountTotal) {
+        if (!isNaN(amountTotal)) {
+            amountTotal = amountTotal.toString().replace(".", ",");
+            amountTotal = formatMoney(parseInt(amountTotal.split(",")[0])).toString() + "," + (amountTotal.split(",")[1]);
+        console.log(amountTotal);
+        return amountTotal;
+        }
     }
 
 }
