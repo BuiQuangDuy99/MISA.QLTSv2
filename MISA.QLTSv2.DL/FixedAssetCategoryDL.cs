@@ -15,7 +15,6 @@ namespace MISA.QLTSv2.DL
     public class FixedAssetCategoryDL
     {
         #region DECLARE
-        IConfiguration _configuration;
         string _connectionString = string.Empty;
         IDbConnection _dbConnection = null;
         IMapper _mapper;
@@ -140,23 +139,28 @@ namespace MISA.QLTSv2.DL
         {
             var propertyValue = property.GetValue(entity);
             var keyValue = entity.GetType().GetProperty($"FixedAssetCategoryId").GetValue(entity);
-            var query = string.Empty;
+
             if(entity.EntityState == EntityState.Insert)
             {
-                query = $"SELECT * FROM fixed_asset_category WHERE fixed_asset_category_code = '{propertyValue}'";
+                var parameters = new DynamicParameters();
+                parameters.Add($"FixedAssetCategoryId", keyValue, DbType.String);
+                var entityReturn = _dbConnection.Query<fixed_asset_category>($"Proc_SelectFACategoryById", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return _mapper.Map<FACategory>(entityReturn);
             } 
             else if (entity.EntityState == EntityState.Update)
             {
-                query = $"SELECT * FROM fixed_asset_category WHERE fixed_asset_category_code = '{propertyValue}' AND fixed_asset_category_id <> '{keyValue}'";
+                var parameters = new DynamicParameters();
+                parameters.Add($"$FACategoryId", keyValue, DbType.String);
+                parameters.Add($"$FACategoryCode", propertyValue);
+                var entityReturn = _dbConnection.Query<fixed_asset_category>($"Proc_CheckDuplicateFACategoryCode", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return _mapper.Map<FACategory>(entityReturn);
             }
             else
             {
                 return null;
             }
-            var entityReturn = _dbConnection.Query<fixed_asset_category>(query, commandType: CommandType.Text).FirstOrDefault();
-            return _mapper.Map<FACategory>(entityReturn);
+           
         }
-
 
         #endregion
     }

@@ -11,8 +11,6 @@ class depreciationForm extends baseForm {
         });
         this.initEventDepreciationForm();
         showTooltipElement($('.depreciation-sub-grid th'));
-
-
     }
 
     /**
@@ -34,6 +32,11 @@ class depreciationForm extends baseForm {
             me.deleteAllRow();
         });
         me.formatTd();
+
+        $('input[fieldName="RefNo"]').off('keyup').keyup(function () {
+            this.value = this.value.toLocaleUpperCase();
+        });
+        $('#TestDate').datepicker().inputmask("99/99/9999", { placeholder: "__/__/____" });
     }
 
     /**

@@ -30,8 +30,8 @@ table th, td {
     text-overflow: ellipsis;
 }
 
-table thead tr {
-    border-bottom: 1px solid #bbbbbb;
+table thead tr:first-child {
+    border:none;
 }
 
 table {
@@ -67,10 +67,12 @@ table {
     }
 
         table tr:hover {
-        background-color: #dcdbdb;
+            background-color: #F0F8FF
         }
 
-th:after {
+
+th:after,
+th:before {
     content: '';
     position: absolute;
     left: 0;
@@ -79,16 +81,16 @@ th:after {
 
 
 th:after {
-    bottom: -1px;
-    border-bottom: 2px solid #bbbbbb;
+    bottom: 0px;
+    border-bottom: 1px solid #bbbbbb;
 }
 
 .selected-row {
-    background-color: #dcdbdb !important;
+    background-color: #F0F8FF !important;
 }
 
     .selected-row:hover {
-        background-color: #dcdbdb !important;
+        background-color: #F0F8FF !important;
     }
 /*::-webkit-scrollbar{
     width:5px;
@@ -108,4 +110,3 @@ th:after {
     display: none;
     position: absolute;
 }
-

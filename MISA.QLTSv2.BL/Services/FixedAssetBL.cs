@@ -25,9 +25,24 @@ namespace MISA.QLTSv2.BL.Services
         /// </summary>
         /// <returns>Danh sách tài sản</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public List<FixedAsset> GetEntities()
+        public ServiceResult GetFixedAssets()
         {
-            return _fixedAssetDL.GetEntities();
+            var res = _fixedAssetDL.GetFixedAssets();
+
+            if (res != null)
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                _serviceResult.Messenger = Resources.Msg_GetSuccess;
+            }
+            else
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+                _serviceResult.Messenger = Resources.Msg_GetFail;
+            }
+
+            return _serviceResult;
         }
         /// <summary>
         /// Lấy ra một bản ghi theo ID
@@ -35,19 +50,48 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entityId">ID</param>
         /// <returns>một bản ghi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public FixedAsset GetEntityById(Guid entityId)
+        public ServiceResult GetFixedAssetById(Guid entityId)
         {
-            return _fixedAssetDL.GetEntityById(entityId);
+            var res = _fixedAssetDL.GetFixedAssetById(entityId);
+
+            if (res != null)
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                _serviceResult.Messenger = Resources.Msg_GetSuccess;
+            }
+            else
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+                _serviceResult.Messenger = Resources.Msg_GetFail;
+            }
+
+            return _serviceResult;
         }
         /// <summary>
         /// Xóa Một bản ghi
         /// </summary>
         /// <returns>Số bản ghi bị xóa</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public int Delete(Guid entityId)
+        public ServiceResult DeleteFixedAsset(Guid entityId)
         {
+            var res = _fixedAssetDL.DeleteFixedAsset(entityId);
 
-            return _fixedAssetDL.Delete(entityId);
+            if (res > 0)
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                _serviceResult.Messenger = Resources.Msg_GetSuccess;
+            }
+            else
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+                _serviceResult.Messenger = Resources.Msg_GetFail;
+            }
+
+            return _serviceResult;
         }
         /// <summary>
         /// Thêm một bản ghi
@@ -55,15 +99,15 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entity"></param>
         /// <returns>Số bản ghi thay đổi</returns>
         /// createdBy:NVTUYEN(02/03/2021)
-        public ServiceResult Insert(FixedAsset entity)
+        public ServiceResult InsertFixedAsset(FixedAsset entity)
         {
             entity.EntityState = EntityState.Insert;
             var isValid = Validate(entity);
 
             if (isValid == true)
             {
-                _serviceResult.Data = _fixedAssetDL.Insert(entity);
-                _serviceResult.MISACode = MISACode.Success;
+                _serviceResult.Data = _fixedAssetDL.InsertFixedAsset(entity);
+                _serviceResult.HttpCode = HttpCodeResult.Success;
                 _serviceResult.Messenger = Resources.Msg_AddSuccess;
                 return _serviceResult;
             }
@@ -78,14 +122,14 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entity"></param>
         /// <returns>Một bản ghi thay đổi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public ServiceResult Update(FixedAsset entity)
+        public ServiceResult UpdateFixedAsset(FixedAsset entity)
         {
             entity.EntityState = EntityState.Update;
             var isValid = Validate(entity);
             if (isValid == true)
             {
-                _serviceResult.Data = _fixedAssetDL.Update(entity);
-                _serviceResult.MISACode = MISACode.Success;
+                _serviceResult.Data = _fixedAssetDL.UpdateFixedAsset(entity);
+                _serviceResult.HttpCode = HttpCodeResult.Success;
                 _serviceResult.Messenger = Resources.Msg_UpdateSuccess;
                 return _serviceResult;
             }
@@ -123,7 +167,7 @@ namespace MISA.QLTSv2.BL.Services
                     {
                         isValidate = false;
                         mesArr.Add(string.Format(Resources.Msg_Required, displayName));
-                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.HttpCode = HttpCodeResult.Fail;
                         _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }
@@ -136,7 +180,7 @@ namespace MISA.QLTSv2.BL.Services
                     {
                         isValidate = false;
                         mesArr.Add(string.Format(Resources.Msg_Dulicate, displayName));
-                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.HttpCode = HttpCodeResult.Fail;
                         _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }
@@ -151,7 +195,7 @@ namespace MISA.QLTSv2.BL.Services
                     {
                         isValidate = false;
                         mesArr.Add(msg ?? $"Thông tin này vượt quá {length} ky tu cho phep");
-                        _serviceResult.MISACode = MISACode.NotValid;
+                        _serviceResult.HttpCode = HttpCodeResult.Fail;
                         _serviceResult.Messenger = Resources.Msg_IsNotValid;
                     }
                 }

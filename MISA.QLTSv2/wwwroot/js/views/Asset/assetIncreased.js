@@ -1,13 +1,24 @@
 $(document).ready(function () {
-    $('#cbxdepartment').combobox();
-    $('#txt_assetcategory').combobox();
+    $('#cbxdepartment').combobox({
+        select: function (event, ui) {
+            debugger
+            $('#txtdepartment').val(ui.item);
+        }
+    });
+    $('#cbxassetcategory').combobox({
+        select: function (event, ui) {
+            debugger
+            $('#txtAssetGroupName').val(ui.item);
 
-    $('#dtIncrementDate').mask("00/00/0000", { placeholder: "___/___/______" }).datepicker();
+        }
+    });
+
+    //$('#dtIncrementDate').mask("00/00/0000", { placeholder: "___/___/______" }).datepicker();
 })
- 
+
 class assetIncreased extends BaseGrid {
     constructor(gridId, entity) {
-        super(gridId, entity); 
+        super(gridId, entity);
         this.initEvents();
     }
     initEvents() {
@@ -35,7 +46,7 @@ var conFigColum = [
         DataType: "STT",
         FieldName: "STT",
         FieldText: "STT",
-        Index: 1 
+        Index: 1
     },
     {
         DataType: "datetime",

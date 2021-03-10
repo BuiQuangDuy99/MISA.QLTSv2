@@ -24,7 +24,8 @@ $(function () {
 
         _createAutocomplete: function () {
             var selected = this.element.children(":selected"),
-                value = selected.val() ? selected.text() : "";
+                value = selected.val() ? selected.text() : "",
+                me = this;
 
             this.input = $("<input>")
                 .appendTo(this.wrapper)
@@ -43,10 +44,14 @@ $(function () {
                 });
 
             this._on(this.input, {
+                // sự kiện select xong sẽ return về cái gì
                 autocompleteselect: function (event, ui) {
                     ui.item.option.selected = true;
+
                     this._trigger("select", event, {
-                        item: ui.item.option
+                        // nơi return kết quả, ở đây return về 2 biến item và value
+                        item: ui.item.valre,
+                        value: ui.item.label
                     });
                 },
 
@@ -91,10 +96,12 @@ $(function () {
             var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
             response(this.element.children("option").map(function () {
                 var text = $(this).text();
+                var value = $(this).val();
                 if (this.value && (!request.term || matcher.test(text)))
                     return {
                         label: text,
                         value: text,
+                        valre: value,
                         option: this
                     };
             }));
@@ -138,7 +145,10 @@ $(function () {
         _destroy: function () {
             this.wrapper.remove();
             this.element.show();
+        },
+
+        test: function () {
         }
     });
-});
 
+});

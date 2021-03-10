@@ -24,9 +24,9 @@ namespace MISA.QLTSv2.Model.Entities
         public string Messenger { get; set; } = "";
 
         /// <summary>
-        /// MISACode của kết quả truy vấn, cho dev
+        /// HttpCode của kết quả truy vấn, cho dev
         /// </summary>
-        public MISACode MISACode { get; set; } = MISACode.Success;
+        public HttpCodeResult HttpCode { get; set; } = HttpCodeResult.Success;
         #endregion
     }
 }

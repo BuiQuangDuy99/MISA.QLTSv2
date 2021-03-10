@@ -125,7 +125,7 @@ class BaseGrid extends Grid {
     }
 
     /**
-     * Hàm lấy dữ liệu từ server và render vào grid(tạm thời dùng biến fake data)
+     * Hàm lấy dữ liệu từ server và render vào grid
      * CreatedBy: BQDUY(25/02/2021)
      * */
     loadAjaxData(url) {
@@ -137,7 +137,7 @@ class BaseGrid extends Grid {
             method: "GET",
             async: false
         }).done(function (res) {
-            if (res) {
+            if (res.Data) {
                 me.loadData(res.Data);
             }
         }).fail(function (res) {

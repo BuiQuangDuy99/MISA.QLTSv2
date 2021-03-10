@@ -24,13 +24,25 @@ namespace MISA.QLTSv2.Model.Enums
         /// <summary>
         /// Thất bại
         /// </summary>
-        Failed = 400,
-        /// <summary>
-        /// Exception
-        /// </summary>
-        Exception = 500
-
+        Fail = 400
     }
+
+    public enum HttpCodeResult
+    {
+        /// <summary>
+        /// Thành công
+        /// </summary>
+        Success = 200,
+        /// <summary>
+        /// Thất bại
+        /// </summary>
+        Fail = 400,
+        /// <summary>
+        /// Có exception
+        /// </summary>
+        Exception = 900
+    }
+
     /// <summary>
     /// xác định trạng thái của object
     /// </summary>
