@@ -73,16 +73,16 @@ textarea{
     padding: 0px;
     outline: none !important;
     border: none;
-    margin:auto;
-    padding-top: 6px;
+    height: 0;
 }
 .icon-delete-row {
     background-image: url('/icon/trash.svg');
-    width: 14px;
-    height: 20px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    margin: 6px 0 0 14px;
+    width: 14px;
+    height: 20px;
 }
 .button-depreciation-icon {
     width: 14px;

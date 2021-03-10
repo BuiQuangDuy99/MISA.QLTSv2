@@ -4,23 +4,20 @@
         this.initEvents();
     }
     initEvents() {
-        let me = this,
-            count=0;
+        let me = this;
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-        $('.btn-remove').click(function () {
+        $('.content ').on('click', '.btn-remove ,#btn-delete', function () {
             $("#depreciation-grid tbody tr").each(function () {
                 if ($(this).hasClass("selected-row")) {
-                    count++;
+                    showAlertConfirm("Bạn có chắc chắn muốn xóa không?")
+                }
+                else {
+                    showAlertWarring("Vui lòng chọn chứng từ cần xóa!")
                 }
             })
-            if (count == 0) {
-                showAlertWarring("Vui lòng chọn chứng từ cần xóa!")
-            }
-            else {
-                showAlertConfirm("Bạn có chắc chắn muốn xóa không?")
-            }
+
         });
     }
     createFormDetail(formID, width, height) {
@@ -43,25 +40,25 @@ var conFigColum = [
     },
     {
         DataType: "datetime",
-        FieldName: "DateTime",
+        FieldName: "PostedDate",
         FieldText: "Ngày tính hao mòn",
         Index: 2
     },
     {
         DataType: "text",
-        FieldName: "Depreciation_no",
+        FieldName: "RefNo",
         FieldText: "Số chứng từ",
         Index: 3
     },
     {
         DataType: "text",
-        FieldName: "Explain",
+        FieldName: "JournalMemo",
         FieldText: "Diễn giải",
         Index: 4
     },
     {
         DataType: "money",
-        FieldName: "Price",
+        FieldName: "AmountTotal",
         FieldText: "Số tiền",
         Index: 5
     },
