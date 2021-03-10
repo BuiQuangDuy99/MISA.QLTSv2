@@ -129,7 +129,7 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entity"></param>
         /// <returns>Một bản ghi thay đổi</returns>
         /// CreatedBy:DVVUONG(02/03/2021)
-        public ServiceResult UpdateDepartment(RefDecrement entity)
+        public ServiceResult UpdateRefDecrement(RefDecrement entity)
         {
             entity.EntityState = EntityState.Update;
             var isValid = Validate(entity);

@@ -1,10 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using MISA.QLTSv2.BL.Properties;
+using MISA.QLTSv2.BL.Services;
+using MISA.QLTSv2.Model.Entities;
+using MISA.QLTSv2.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MISA.QLTSv2.API
 {
@@ -15,31 +20,133 @@ namespace MISA.QLTSv2.API
     [ApiController]
     public class RefDecrementsController : ControllerBase
     {
+        #region Declare
+        string _connectionString;
+        RefDecrementBL _refDecrementBL;
+        ServiceResult _serviceResult;
+        #endregion
+
+        #region Constructor
+        public RefDecrementsController(IConfiguration configuration, IMapper mapper)
+        {
+            _connectionString = configuration.GetConnectionString("MISAQLTSv2ConnectionString");
+            _refDecrementBL = new RefDecrementBL(_connectionString, mapper);
+            _serviceResult = new ServiceResult();
+        }
+        #endregion
+
+        #region Method
+        /// <summary>
+        /// Lấy toàn bộ danh sách
+        /// </summary>
+        /// <returns>danh sách thỏa mãn</returns>
+        /// Author: DVVUONG (10/03/2021)
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ServiceResult GetRefDecrements()
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                return _refDecrementBL.GetRefDecrements();
+            }
+            catch (Exception)
+            {
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
+                _serviceResult.Data = null;
+                _serviceResult.Messenger = Resources.Msg_GetAllFail;
+                return _serviceResult;
+            }
         }
 
-        [HttpGet("{id}")]
-        public string Get(int id)
+
+        /// <summary>
+        /// Lấy ra một bản ghi theo ID
+        /// </summary>
+        /// <param name="entityId">ID</param>
+        /// <returns>Một bản ghi</returns>
+        /// CreatedBy:DVVUONG(10/03/2021)
+        [HttpGet("{entityId}")]
+        public ServiceResult GetRefDecrementById(Guid entityId)
         {
-            return "value";
+            try
+            {
+                return _refDecrementBL.GetRefDecrementById(entityId);
+            }
+            catch (Exception)
+            {
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
+                _serviceResult.Data = null;
+                _serviceResult.Messenger = Resources.Msg_GetFail;
+                return _serviceResult;
+            }
+
         }
 
+        /// <summary>
+        /// Xóa bản ghi
+        /// </summary>
+        /// <param name="entityId">khóa chính bản ghi cần xóa</param>
+        /// <returns>số bản ghi xóa thành công</returns>
+        /// Author: DVVUONG (10/03/2021)
+        [HttpDelete("{entityId}")]
+        public ServiceResult DeleteRefDecrement(Guid entityId)
+        {
+            try
+            {
+                return _refDecrementBL.DeleteRefDecrement(entityId);
+            }
+            catch (Exception)
+            {
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
+                _serviceResult.Data = null;
+                _serviceResult.Messenger = Resources.Msg_DeleteFail;
+                return _serviceResult;
+            }
+
+        }
+
+        /// <summary>
+        /// Thêm mới bản ghi
+        /// </summary>
+        /// <param name="entity">object cần thêm mới</param>
+        /// <returns>số bản ghi thêm mới được</returns>
+        /// Author: DVVUONG (10/03/2021)
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ServiceResult PostRefDecrement([FromBody] RefDecrement entity)
         {
+            try
+            {
+                return _refDecrementBL.InsertRefDecrement(entity);
+            }
+            catch (Exception)
+            {
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
+                _serviceResult.Data = null;
+                _serviceResult.Messenger = Resources.Msg_AddFail;
+                return _serviceResult;
+            }
         }
 
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        /// <summary>
+        /// Chỉnh sửa một bản ghi
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>Một bản ghi thay đổi</returns>
+        /// CreatedBy: DVVUONG (10/03/2021)
+        [HttpPut("{entityId}")]
+        public ServiceResult PutRefDecrement([FromRoute] string entityId, [FromBody] RefDecrement entity)
         {
+            try
+            {
+                return _refDecrementBL.UpdateRefDecrement(entity);
+            }
+            catch (Exception)
+            {
+                _serviceResult.HttpCode = HttpCodeResult.Exception;
+                _serviceResult.Data = null;
+                _serviceResult.Messenger = Resources.Msg_UpdateFail;
+                return _serviceResult;
+            }
         }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        #endregion
     }
 }
