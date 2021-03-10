@@ -13,8 +13,11 @@ namespace MISA.QLTSv2.BL.Entities
     /// createBy:NVTUYEN(01/03/2021)
     public class MappingProfile: Profile
     {
+
         public MappingProfile()
         {
+            SourceMemberNamingConvention = new LowerUnderscoreNamingConvention();
+            DestinationMemberNamingConvention = new PascalCaseNamingConvention();
             CreateMap<fixed_asset, FixedAsset>();
             CreateMap<FixedAsset, fixed_asset>();
             CreateMap<fixed_asset_category, FixedAssetCategory>();
@@ -22,5 +25,6 @@ namespace MISA.QLTSv2.BL.Entities
             CreateMap<department, Department>();
             CreateMap<Department, department>();
         }
+
     }
 }

@@ -1,8 +1,10 @@
-﻿using Dapper;
+﻿using AutoMapper;
+using Dapper;
 using Microsoft.Extensions.Configuration;
 using MISA.QLTSv2.BL.Entities;
 using MISA.QLTSv2.BL.Enums;
 using MISA.QLTSv2.BL.Interfaces;
+using MISA.QLTSv2.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -55,6 +57,7 @@ namespace MISA.QLTSv2.DL
 
         public IEnumerable<TEntity> GetEntities()
         {
+            //Mapper.map<FixedAsset>(fixed_asset);
             // Thực thi commandText:
             var entities = _dbConnection.Query<TEntity>($"Proc_Select{_tableName}Datas", commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu: 
