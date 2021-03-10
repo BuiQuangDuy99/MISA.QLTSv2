@@ -2,6 +2,7 @@
 
 ## [5.0.6 - UNRELEASED]
 ### Updates
+- Fix caret shift with negative numbers in numeric aliases
 - enhance alternation logic
 - update datetime alias
 - datetime prefillYear option  
@@ -10,6 +11,9 @@
     This options is to disable this feature.
  
 ### Fixed
+- Selecting all + backspace goes to the end of the input #2336
+- Error thrown, if only insert radixpoint and leave field and placeholder = "" #2475
+- Datetime alias with day auto-fill problem #2480
 - Suppress DateTime year autocomplete? #2395
 - Bug in iframes #2461
 - stuck with cursor on / text of date with datetime extension #2464

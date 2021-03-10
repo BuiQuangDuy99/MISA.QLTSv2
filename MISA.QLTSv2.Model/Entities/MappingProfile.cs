@@ -21,6 +21,9 @@ namespace MISA.QLTSv2.Model.Entities
             CreateMap<fixed_asset, FixedAsset>();
             CreateMap<FixedAsset, fixed_asset>();
 
+            CreateMap<ref_transfer, RefTransfer>();
+            CreateMap<RefTransfer, ref_transfer>();
+
             CreateMap<fixed_asset_category, FACategory>();
             CreateMap<FACategory, fixed_asset_category>();
 

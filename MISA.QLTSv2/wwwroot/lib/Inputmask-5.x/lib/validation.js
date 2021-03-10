@@ -236,6 +236,10 @@ function handleRemove(input, k, pos, strict, fromIsValid) {
 
 		if (strict !== true) {
 			maskset.p = k === keyCode.DELETE ? pos.begin + offset : pos.begin;
+			maskset.p = determineNewCaretPosition.call(inputmask, {
+				begin: maskset.p,
+				end: maskset.p
+			}, false).begin;
 		}
 	}
 }
@@ -510,7 +514,7 @@ function refreshFromBuffer(start, end, buffer) {
 		keypress.which = bffr[i].toString().charCodeAt(0);
 		inputmask.ignorable = false; //make sure ignorable is ignored ;-)
 		var valResult = EventHandlers.keypressEvent.call(inputmask, keypress, true, false, false, p);
-		if (valResult !== false) {
+		if (valResult !== false && valResult !== undefined) {
 			p = valResult.forwardPosition;
 		}
 	}

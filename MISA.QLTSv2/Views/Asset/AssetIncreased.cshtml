@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Links{
-    <link href="~/css/asset.css" rel="stylesheet" />
+    <link href="~/css/Form/asset.css" rel="stylesheet" />
 }
 <div class="tool-bar" id="tbGrdFixedAsset">
     <div class="filter-bar">
@@ -102,7 +102,7 @@
                         Mã phòng ban
                     </div>
                     <div>
-                        <select id="cbxdepartment" fieldName="DepartmentId">
+                        <select id="cbxdepartment" fieldName="DepartmentCode">
                             <option value="Phòng công nghệ">PB567</option>
                             <option value="Phòng hành chính">PB789</option>
                             <option value="Phòng nhân sự">PB123</option>
@@ -129,7 +129,7 @@
                         Mã loại tài sản
                     </div>
                     <div>
-                        <select id="cbxassetcategory" fieldName="FixedAssetCategoryId">
+                        <select id="cbxassetcategory" fieldName="FixedAssetCategoryCode">
                             <option value="Tài sản chung">TS878</option>
                             <option value="Tài sản Riêng">TS7988</option>
                             <option value="Tài sản nội vụ">TS67889098</option>
@@ -193,7 +193,7 @@
                         Nguyên giá
                     </div>
                     <div>
-                        <input dataType="Money" fieldName="Cost" class="input-text input-right  input-asset" />
+                        <input dataType="money" fieldName="Cost" class="input-text input-right  input-asset" />
                     </div>
                 </div>
             </div>

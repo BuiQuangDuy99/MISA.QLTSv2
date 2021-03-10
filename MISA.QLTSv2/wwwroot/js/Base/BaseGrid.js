@@ -50,8 +50,15 @@ class BaseGrid extends Grid {
 
         $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
         $('#btn-yes-warring').off('click').click(function () {
-            me.delete()
+            me.delete(me.listData)
         });
+        $('#btn-delete').on("click", function () {
+            me.confirmDelete();
+            $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
+            $('#btn-yes-warring').off('click').click(function () {
+                me.delete()
+            });
+        })
     }
 
     //Hàm thực hiện data-command
@@ -99,7 +106,7 @@ class BaseGrid extends Grid {
             async: true
         }).done(function (res) {
             closeWarring();
-            if (res > 0) {
+            if (res.Data > 0) {
                 me.loadAjaxData(url);
             }
             $('.loading').hide();

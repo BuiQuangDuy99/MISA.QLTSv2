@@ -2,7 +2,7 @@
 using Dapper;
 using MISA.QLTSv2.Model.Entities;
 using MISA.QLTSv2.Model.Enums;
-using MISA.QLTSv2.Models;
+using MISA.QLTSv2.Model.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -11,31 +11,31 @@ using System.Linq;
 
 namespace MISA.QLTSv2.DL
 {
-    public class FixedAssetDL
+    public class RefTransferDL
     {
         #region DECLARE
         string _connectionString = string.Empty;
         IDbConnection _dbConnection = null;
         IMapper _mapper;
         #endregion
-        public FixedAssetDL(string connectionString, IMapper mapper)
+        public RefTransferDL(string connectionString, IMapper mapper)
         {
             _connectionString = connectionString;
             _dbConnection = new MySqlConnection(_connectionString);
             _mapper = mapper;
         }
         /// <summary>
-        /// Lấy ra danh sách Tài sản
+        /// Lấy ra danh sách Điều chuyển phòng ban
         /// </summary>
-        /// <returns>danh sách tài sản</returns>
+        /// <returns>danh sách Điều chuyển phòng ban</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public List<FixedAsset> GetFixedAssets()
+        public List<RefTransfer> GetRefTransfers()
         {
             // Thực thi commandText:
-            var entities = _dbConnection.Query<fixed_asset>($"Proc_SelectFixedAssetDatas", null, commandType: CommandType.StoredProcedure);
+            var entities = _dbConnection.Query<ref_transfer>($"Proc_SelectRefTransferDatas", null, commandType: CommandType.StoredProcedure);
 
             // Trả về dữ liệu:
-            return _mapper.Map<List<FixedAsset>>(entities);
+            return _mapper.Map<List<RefTransfer>>(entities);
         }
         /// <summary>
         /// Lấy ra một bản ghi theo ID
@@ -43,16 +43,16 @@ namespace MISA.QLTSv2.DL
         /// <param name="entityId">ID</param>
         /// <returns>Một bản ghi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public FixedAsset GetFixedAssetById(Guid entityId)
+        public RefTransfer GetRefTransferById(Guid entityId)
         {
             var parameterEntityId = new DynamicParameters();
-            var tableName = typeof(FixedAsset).Name;
+            var tableName = typeof(RefTransfer).Name;
             // Add param id của đối tượng cần lấy dữ liệu:
             parameterEntityId.Add($"${tableName}Id", entityId.ToString());
 
             // Thực thi commandText:
-            var res = _dbConnection.Query<fixed_asset>($"Proc_Select{tableName}ById", parameterEntityId, commandType: CommandType.StoredProcedure).FirstOrDefault();
-            return _mapper.Map<FixedAsset>(res);
+            var res = _dbConnection.Query<ref_transfer>($"Proc_Select{tableName}ById", parameterEntityId, commandType: CommandType.StoredProcedure).FirstOrDefault();
+            return _mapper.Map<RefTransfer>(res);
         }
         /// <summary>
         /// Xóa một bản ghi
@@ -60,13 +60,13 @@ namespace MISA.QLTSv2.DL
         /// <param name="entityId"></param>
         /// <returns>số bản ghi xóa được</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public int DeleteFixedAsset(Guid entityId)
+        public int DeleteRefTransfer(Guid entityId)
         {
             var parameterEntityId = new DynamicParameters();
             // Add param id của bảng cần xóa:
-            parameterEntityId.Add($"$FixedAssetId", entityId.ToString());
+            parameterEntityId.Add($"$RefTransferId", entityId.ToString());
             // Thực thi commandText:
-            var res = _dbConnection.Execute($"Proc_DeleteFixedAsset", parameterEntityId, commandType: CommandType.StoredProcedure);
+            var res = _dbConnection.Execute($"Proc_DeleteRefTransfer", parameterEntityId, commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu: 
             return res;
         }
@@ -76,12 +76,12 @@ namespace MISA.QLTSv2.DL
         /// <param name="entity"></param>
         /// <returns>số bản ghi được thêm</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public int InsertFixedAsset(FixedAsset entity)
+        public int InsertRefTransfer(RefTransfer entity)
         {
             // Build thành đối tượng để lưu vào database:
             var parameters = MappingDbType(entity);
             // Thực thi commandText:
-            var rowAffects = _dbConnection.Execute($"Proc_InsertFixedAsset", parameters, commandType: CommandType.StoredProcedure);
+            var rowAffects = _dbConnection.Execute($"Proc_InsertRefTransfer", parameters, commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu (số bản ghi thêm mới được): 
             return rowAffects;
         }
@@ -91,20 +91,20 @@ namespace MISA.QLTSv2.DL
         /// <param name="entity"></param>
         /// <returns>SỐ lương bản ghi thay đổi</returns>
         /// createdBy:NVTUYEN(02/03/2021)
-        public int UpdateFixedAsset(FixedAsset entity)
+        public int UpdateRefTransfer(RefTransfer entity)
         {
             // Build thành đối tượng để lưu vào database:
             var parameters = MappingDbType(entity);
             // Thực thi commandText và return:
-            return _dbConnection.Execute($"Proc_UpdateFixedAsset", parameters, commandType: CommandType.StoredProcedure);
+            return _dbConnection.Execute($"Proc_UpdateRefTransfer", parameters, commandType: CommandType.StoredProcedure);
         }
         /// <summary>
         /// Hàm chuyển kiểu dữ liệu từ c# sang sql
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="entity"></param>
-        /// CreatedBy: BQDUY(18/01/2021)
-        private DynamicParameters MappingDbType(FixedAsset entity)
+        /// CreatedBy: NVTUYEN(18/01/2021)
+        private DynamicParameters MappingDbType(RefTransfer entity)
         {
             var properties = entity.GetType().GetProperties();
             var parameters = new DynamicParameters();
@@ -132,27 +132,26 @@ namespace MISA.QLTSv2.DL
         /// <param name="property"></param>
         /// <returns>1 bản ghi</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        public FixedAsset GetEntityByProperty(FixedAsset entity, System.Reflection.PropertyInfo property)
+        public RefTransfer GetEntityByProperty(RefTransfer entity, System.Reflection.PropertyInfo property)
         {
             var propertyValue = property.GetValue(entity);
-            var keyValue = entity.GetType().GetProperty($"FixedAssetId").GetValue(entity);
+            var keyValue = entity.GetType().GetProperty($"RefTransferId").GetValue(entity);
             var query = string.Empty;
             if (entity.EntityState == EntityState.Insert)
             {
-                query = $"SELECT * FROM fixed_asset WHERE fixed_asset_code = '{propertyValue}'";
+                query = $"SELECT * FROM ref_transfer WHERE ref_transfer_code = '{propertyValue}'";
             }
             else if (entity.EntityState == EntityState.Update)
             {
-                query = $"SELECT * FROM fixed_asset WHERE fixed_asset_code = '{propertyValue}' AND fixed_asset_id <> '{keyValue}'";
+                query = $"SELECT * FROM ref_transfer WHERE ref_transfer_code = '{propertyValue}' AND ref_transfer_id <> '{keyValue}'";
             }
             else
             {
                 return null;
             }
-            var entityReturn = _dbConnection.Query<fixed_asset>(query, commandType: CommandType.Text).FirstOrDefault();
-            return _mapper.Map<FixedAsset>(entityReturn);
+            var entityReturn = _dbConnection.Query<ref_transfer>(query, commandType: CommandType.Text).FirstOrDefault();
+            return _mapper.Map<RefTransfer>(entityReturn);
         }
-
 
     }
 }

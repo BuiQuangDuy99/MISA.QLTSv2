@@ -3,6 +3,7 @@ using System;
 
 namespace MISA.QLTSv2.Model.Entities
 {
+
     [AttributeUsage(AttributeTargets.Property)]
     public class Required : Attribute
     {

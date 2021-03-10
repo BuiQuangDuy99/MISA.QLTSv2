@@ -9,7 +9,7 @@ class baseForm {
         this.getApiUrl = null;
         this.setApiUrl();
         this.initEvent();
-        this.getData();
+        this.getData(); 
     };
 
     /**
@@ -17,6 +17,7 @@ class baseForm {
      * CreatedBy : NDTUNG (4/2/2021)
      */
     initEvent() {
+        let me = this;
         //var data = this.getJson();
         this.form.find("#btn-cancel").off("click");
         this.form.find("#btn-save").off("click");
@@ -25,21 +26,27 @@ class baseForm {
         this.form.find("#btn-cancel,#btn-close").on("click", this.closeForm.bind(this));
         this.form.find("#btn-save").on("click", this.saveData.bind(this));
         this.form.find('input').click(function () { $(this).select(); });
-        this.form.find("input").blur(this.checkStatusInput);
-        this.form.find("input").keyup(this.checkStatusInput);
-        this.form.find("input[DataType='Money'],input[DataType='Number']").on("keypress", function () {
+        this.form.find("[required]").blur(this.checkStatusInput);
+        //this.form.find("[required]").keyup(this.checkStatusInput);
+        this.form.find("[required]").focus(function () {
+            $(this).removeClass("border-red");
+            $(this).attr("title", "");
+        });
+
+        this.form.on("keypress", "input[dataType='money'],input[dataType='Number']", function () {
             if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
                 event.preventDefault();
             }
             else {
-                $("input[DataType='Money']").keyup(this.formatPrice)
+                $("input[dataType='money']").keyup(function () {
+                    me.formatPrice($(this));
+                })
             }
-        }.bind(this));
-
-        this.form.find("input[dataType='Date']").datepicker({
-            dateFormat: 'dd-mm-yy'
         });
-        this.form.find(".icon_PostDate").click(function () {
+
+        this.form.find("input[dataType='Date']").datepicker({ dateFormat:"dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
+
+        this.form.find(".icon_PostDate").off('click').click(function () {
             $('input[dataType="Date"]').focus();
         });
     }
@@ -68,13 +75,12 @@ class baseForm {
      *Format định dạng tiền khi người dùng nhập trường nguyên giá
      *CreatedBy : NDTUNG (4/2/2021)
      */
-    formatPrice() {
+    formatPrice(input) {
         try {
-            if (isNaN($("input[DataType='Money']").val()) != null) {
-                var value = $("input[DataType='Money']").val().split(".").join("");
+                var value = input.val().split(".").join("");
                 var formated = formatMoney(value);
-                $("input[DataType='Money']").val(formated);
-            }
+                input.val(formated);
+            
         } catch (e) {
             alert(e);
         }
@@ -214,23 +220,6 @@ class baseForm {
      * CreatedBy : NDTUNG (4/2/2021)
      */
     saveChangeData(data) {
-        //var url = this.getApiUrl;
-        //var formMode = this.formMode;
-        //if (formMode == 1) {
-        //    callAjax(url, "Post", data, function (res) {
-        //        if (res.MISACode == Enum.StatusResponse.Success) {
-        //            showAlertWarring("Cất dữ liệu thành công!")
-        //        }
-        //    });
-        //}
-        //else if (formMode == 2) {
-        //    callAjax(url, "Put", data, function (res) {
-        //        if (res.MISACode == Enum.StatusResponse.Success) {
-        //            showAlertWarring("Cất dữ liệu thành công!")
-        //        }
-        //    });
-        //}
-        $('.loading').show();
         let me = this,
             jsCaller = me.jsCaller;
         var url = me.getApiUrl;
@@ -243,9 +232,9 @@ class baseForm {
             }).done(function (res) {
                 me.closeForm();
                 me.jsCaller.loadAjaxData(me.getApiUrl);
-                $('.loading').hide();
+
             }).fail(function (res) {
-                $('.loading').hide();
+
             })
         } else if (jsCaller.formMode == "edit") {
             var idSelected = me.jsCaller.grid.find(".selected-row").data("recordId");
@@ -257,11 +246,16 @@ class baseForm {
             }).done(function (res) {
                 me.closeForm();
                 me.jsCaller.loadAjaxData(me.getApiUrl);
-                $('.loading').hide();
+
             }).fail(function (res) {
-                $('.loading').hide();
+
             })
         }
+
+        //deprectation.push(data);
+        //me.closeForm();
+        //showMessengerSuccess("Thêm thành công!");
+        //jsCaller.loadData(deprectation);
     }
 
     /**
@@ -308,12 +302,6 @@ class baseForm {
         this.form.find("[fieldName], select").each(function () {
             var fieldName = $(this).attr("fieldName"),
                 dataType = $(this).attr("DataType");
-
-            //if (dataType == "Combobox") {
-            //    fieldName = $(this).attr("fieldValue");
-
-            //}
-
             data[fieldName] = me.getDataInput($(this), dataType);
             if (fieldName == me.jsCaller.entity + "Id") {
                 data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
@@ -324,7 +312,7 @@ class baseForm {
     /**
      * Sự kiện click nút Lưu
      * CreatedBy : NDTUNG (4/2/2021)
-     */
+     **/
     saveData() {
         var me = this;
         var isValid = me.validateForm();

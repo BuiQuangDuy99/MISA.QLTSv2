@@ -34,6 +34,7 @@ class assetIncreased extends BaseGrid {
         var me = this;
         this.formDetail = new assetIncreasedForm(formID, width, height, me);
     }
+
 }
 
 

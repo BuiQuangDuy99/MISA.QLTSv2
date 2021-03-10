@@ -43,7 +43,7 @@ function formatDate(date, formatDate) {
         if (!date) {
             return "";
         } else {
-            //date = moment(date, ["DD-MM-YYYY", "MM-DD-YYYY", "DD-MMM-YYYY", "MMM-DD-YYYY"]).format("YYYY-MM-DD");
+            date = moment(date, ["DD-MM-YYYY", "MM-DD-YYYY", "DD-MMM-YYYY", "MMM-DD-YYYY"]).format("YYYY-MM-DD");
             return moment(date).format(formatDate || "DD-MM-YYYY");
         }
     } catch (e) {
@@ -200,4 +200,34 @@ function closeWarring() {
     $('.warring').hide();
     //$('#tbListData tbody tr').removeClass("row-selected");
     //setDisabled();
+}
+
+/**
+ * Hàm tạo ID 
+ * Author: BQDUY(9/3/2021)
+ * */
+function createGuid() {
+    function S4() {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    }
+    var guid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+    return guid;
+}
+
+/**
+ * Hiển thị hộp thoại thành công
+ * Author: Nguyen Dang Tung(9/3/2021)
+ */
+function showMessengerSuccess(msg) {
+    $('.success_content').text(msg);
+    $('.success').show(2000, async function () {
+        await setTimeout(async function () {
+            await $('.success').hide(2000);
+        }, 2500);
+    });
+    $('.success').css('display', 'flex');
+};
+
+function roundToTwo(num) {
+    return +(Math.round(num + "e+2") + "e-2");
 }

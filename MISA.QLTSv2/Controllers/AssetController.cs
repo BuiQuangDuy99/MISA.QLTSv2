@@ -22,5 +22,9 @@ namespace MISA.QLTSv2.Controllers
             return View();
         }
 
+        public IActionResult RefTransfer()
+        {
+            return View();
+        }
     }
 }
