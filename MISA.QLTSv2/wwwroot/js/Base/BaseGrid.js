@@ -52,6 +52,13 @@ class BaseGrid extends Grid {
         $('#btn-yes-warring').off('click').click(function () {
             me.delete()
         });
+        $('#btn-delete').on("click", function () {
+            me.confirmDelete();
+            $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
+            $('#btn-yes-warring').off('click').click(function () {
+                me.delete()
+            });
+        })
     }
 
     //Hàm thực hiện data-command
