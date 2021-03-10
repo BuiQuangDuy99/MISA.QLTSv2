@@ -46,5 +46,6 @@ namespace MISA.QLTSv2.Model.Entities
         /// Năm làm việc ~ năm chứng từ
         /// </summary>
         public int TrackedYear { get; set; }
+
     }
 }

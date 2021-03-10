@@ -124,7 +124,7 @@
 }
 
 
-.ui-icon {
+.ui-button .ui-icon {
     background-image: url('/icon/svg/fi-rr-caret-down.svg') !important;
     background-size: contain !important;
     opacity: 0.5;
