@@ -37,8 +37,8 @@ class depreciationForm extends baseForm {
 
         //}).find("td input").eq(2).off('keyup').keyup(function () {
         //    me.setDepreciation();
-        $('.depreciation-sub-grid tbody tr').find('input[fieldName="Cost"]').off('keyup').keyup(function () {
-            me.setDepreciation();
+        $('.depreciation-sub-grid tbody ').off('keyup').on('keyup', 'tr', function () {
+            me.setDepreciation($(this));
         });
     }
 
@@ -148,7 +148,7 @@ class depreciationForm extends baseForm {
                 fieldNameAss = $(this).attr('fieldName');
                 dataType = $(this).attr("dataType");
 
-                if (dataType == "Number" || dataType == "Money") {
+                if (dataType == "Number" || dataType == "money") {
                     asset[fieldNameAss] = parseInt($(this).val().split(".").join(""));
                 }
                 else {
@@ -184,22 +184,28 @@ class depreciationForm extends baseForm {
         return depreciation;
     }
 
-    setDepreciation() {
+    setDepreciation(tr) {
         let cost,
             depreciationRate,
             amountTotal;
-        $('.depreciation-sub-grid tbody tr').each(function () {
-            // Mai tách hàm(1 hàm hiển thị , 1 hàm cất) Note: Không biết có làm được không ???
-            cost = parseInt($(this).find("td input").eq(2).val().split(".").join(""));
-            depreciationRate = parseInt($(this).find("td input").eq(3).val().split(".").join(""));
+
+        // Mai tách hàm(1 hàm hiển thị , 1 hàm cất) Note: Không biết có làm được không ???
+        cost = parseInt(tr.find('input[fieldName="Cost"]').val().split(".").join(""));
+        depreciationRate = parseInt(tr.find('input[fieldName="DepreciationRate"]').val().split(".").join(""));
+        if (!isNaN(cost) && !isNaN(depreciationRate)) {
             amountTotal = roundToTwo(cost / 100 * depreciationRate).toFixed(2);
-            //amountTotal = amountTotal.toString().replace(".", ",");
-            //amountTotal = formatMoney(parseInt(amountTotal.split(",")[0])).toString() + "," + parseInt(amountTotal.split(",")[1]).toString();
-            //amountTotal = parseFloat(amountTotal.replace(",",".")); 
-            $(this).find("td input").eq(4).val(amountTotal);
-        })
+        }
+        //amountTotal = amountTotal.toString().replace(".", ",");
+        //amountTotal = formatMoney(parseInt(amountTotal.split(",")[0])).toString() + "," + parseInt(amountTotal.split(",")[1]).toString();
+        //amountTotal = parseFloat(amountTotal.replace(",",".")); 
+        tr.find('input[fieldName="AmountTotal"]').val(amountTotal);
+
     };
 
+    //
+    showDepreciation() {
+
+    }
 
 }
 

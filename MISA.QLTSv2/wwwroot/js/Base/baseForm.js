@@ -27,7 +27,11 @@ class baseForm {
         this.form.find("#btn-save").on("click", this.saveData.bind(this));
         this.form.find('input').click(function () { $(this).select(); });
         this.form.find("[required]").blur(this.checkStatusInput);
-        this.form.find("[required]").keyup(this.checkStatusInput);
+        //this.form.find("[required]").keyup(this.checkStatusInput);
+        this.form.find("[required]").focus(function () {
+            $(this).removeClass("border-red");
+            $(this).attr("title", "");
+        });
 
         this.form.on("keypress", "input[dataType='money'],input[dataType='Number']", function () {
             if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
