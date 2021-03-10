@@ -44,10 +44,12 @@
     position: relative;
     display: inline-block;
 }
+
     .ui-combobox > input {
         border: 1px solid #e0e0e0 !important;
-         padding-left: 15px; 
+        padding-left: 15px;
     }
+
 .ui-combobox-toggle {
     position: absolute;
     top: 0;
@@ -69,9 +71,9 @@
 }
 
 .ui-icon {
-    background-image: url('/icon/svg/fi-rr-caret-down.svg') !important;
+    /*background-image: url('/icon/svg/fi-rr-caret-down.svg') !important;
     background-size: contain !important;
-    opacity: 0.5;
+    opacity: 0.5;*/
 }
 
 .ui-widget.ui-widget-content {

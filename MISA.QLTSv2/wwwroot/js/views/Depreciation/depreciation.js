@@ -9,21 +9,21 @@
         showTooltipElement($('button'));
         showTooltipElement($('td'));
         $('.content ').on('click', '.btn-remove ,#btn-delete', function () {
-            $("#depreciation-grid tbody tr").each(function () {
-                if ($(this).hasClass("selected-row")) {
-                    showAlertConfirm("Bạn có chắc chắn muốn xóa không?")
-                }
-                else {
-                    showAlertWarring("Vui lòng chọn chứng từ cần xóa!")
-                }
-            })
-
+            //         $("#depreciation-grid tbody tr").each(function () {
+            if ($('#depreciation-grid tbody tr').hasClass("selected-row")) {
+                showAlertConfirm("Bạn có chắc chắn muốn xóa không?")
+            }
+            else {
+                showAlertWarring("Vui lòng chọn chứng từ cần xóa!")
+            }
         });
-    }
-    createFormDetail(formID, width, height) {
-        var me = this;
-        this.formDetail = new depreciationForm(formID, width, height, me);
-    }
+
+  //  });
+}
+createFormDetail(formID, width, height) {
+    var me = this;
+    this.formDetail = new depreciationForm(formID, width, height, me);
+}
 }
 
 

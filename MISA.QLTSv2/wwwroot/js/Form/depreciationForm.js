@@ -135,7 +135,8 @@ class depreciationForm extends baseForm {
      * CreatedBy:NDTUNG (9/3/2021)
      * */
     getData() {
-        let depreciation = {},
+        let me=this,
+            depreciation = {},
             sumMoney = 0,
             listAsset = [],
             list;
@@ -148,8 +149,11 @@ class depreciationForm extends baseForm {
                 fieldNameAss = $(this).attr('fieldName');
                 dataType = $(this).attr("dataType");
 
-                if (dataType == "Number" || dataType == "money") {
+                if (dataType == "money") {
                     asset[fieldNameAss] = parseInt($(this).val().split(".").join(""));
+                }
+                else if (dataType == "Number") {
+                    asset[fieldNameAss] = parseFloat($(this).val());
                 }
                 else {
                     asset[fieldNameAss] = $(this).val();
@@ -160,9 +164,10 @@ class depreciationForm extends baseForm {
         })
 
         $('input[fieldName="AmountTotal"]').each(function () {
-            sumMoney += parseInt($(this).val().split(".").join(""));
+            if ($(this).val() != "") {
+            sumMoney += parseFloat(me.getDepreciationForm($(this)));
+            }
         })
-        console.log(sumMoney);
 
         $('input[fieldName],textarea[fieldName],table[fieldName]').each(function () {
 
@@ -174,18 +179,22 @@ class depreciationForm extends baseForm {
             else if (fieldName == "PostedDate") {
                 depreciation[fieldName] = $(this).val();
             }
-            else if (fieldName == "RefNo" || fieldName == "JournalMemo") {
+            else if (fieldName == "RefNo") {
+                depreciation[fieldName] = $(this).val().toUpperCase();
+            }
+            else if (fieldName == "JournalMemo") {
                 depreciation[fieldName] = $(this).val();
             }
 
             depreciation['Id'] = createGuid();
             depreciation['AmountTotal'] = sumMoney;
         });
+        console.log(depreciation);
         return depreciation;
     }
 
     setDepreciation(tr) {
-        let me=this,
+        let me = this,
             cost,
             depreciationRate,
             amountTotal;
@@ -195,7 +204,6 @@ class depreciationForm extends baseForm {
         depreciationRate = parseFloat(tr.find('input[fieldName="DepreciationRate"]').val());
         if (!isNaN(cost) && !isNaN(depreciationRate)) {
             amountTotal = roundToTwo(cost / 100 * depreciationRate).toFixed(2);
-            console.log(amountTotal);
         }
 
         tr.find('input[fieldName="AmountTotal"]').val(me.showDepreciation(amountTotal));
@@ -204,17 +212,29 @@ class depreciationForm extends baseForm {
 
     /**
      * Hàm dùng để định dạng hiển thị số tiền hao mòn lên Form
-     *  CreatedBy:NDTUNG (10/3/2021)
+     * CreatedBy:NDTUNG (10/3/2021)
      * @param {any} amountTotal Số tiền hao mòn
      */
     showDepreciation(amountTotal) {
         if (!isNaN(amountTotal)) {
             amountTotal = amountTotal.toString().replace(".", ",");
             amountTotal = formatMoney(parseInt(amountTotal.split(",")[0])).toString() + "," + (amountTotal.split(",")[1]);
-        console.log(amountTotal);
-        return amountTotal;
+            return amountTotal;
         }
     }
 
+    /**
+     * Hàm dùng để tính tổng hao mòn các tài sản trong form 
+     * CreatedBy:NDTUNG (10/3/2021)
+     * @param {any} value 
+     */
+    getDepreciationForm(input) {
+        let value;
+
+        value = input.val().split(".").join("");
+        value = value.split(",").join(".");
+
+        return value;
+    }
 }
 

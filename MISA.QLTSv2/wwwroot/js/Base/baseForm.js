@@ -26,14 +26,14 @@ class baseForm {
         this.form.find("#btn-cancel,#btn-close").on("click", this.closeForm.bind(this));
         this.form.find("#btn-save").on("click", this.saveData.bind(this));
         this.form.find('input').click(function () { $(this).select(); });
-        this.form.find("[required]").blur(this.checkStatusInput);
-        //this.form.find("[required]").keyup(this.checkStatusInput);
-        this.form.find("[required]").focus(function () {
+        //this.form.find("input[required]").off('blur').blur(this.checkStatusInput);
+        this.form.find("input[required]").off('keyup').keyup(this.checkStatusInput);
+        this.form.find("input[required]").focus(function () {
             $(this).removeClass("border-red");
             $(this).attr("title", "");
         });
 
-        this.form.on("keypress", "input[dataType='money'],input[dataType='Number']", function () {
+        this.form.on("keypress", "input[dataType='money']", function () {
             if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
                 event.preventDefault();
             }
@@ -44,7 +44,7 @@ class baseForm {
             }
         });
 
-        this.form.find("input[dataType='Date']").datepicker({ dateFormat:"dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
+        this.form.find("input[dataType='Date']").datepicker({ dateFormat: "dd/mm/yy"}).inputmask("99/99/9999", { placeholder: "__/__/____" });
 
         this.form.find(".icon_PostDate").off('click').click(function () {
             $('input[dataType="Date"]').focus();
@@ -64,7 +64,7 @@ class baseForm {
             require = $(this).attr("required");
         if (value.trim() == "" && require) {
             $(this).addClass("border-red");
-            $(this).attr("title", "Trường này không được để trống!");
+            $(this).attr("title", "Trường này không được để trống?");
         } else {
             $(this).removeClass("border-red");
             $(this).attr("title", "");
@@ -119,7 +119,7 @@ class baseForm {
         this.form.find("input[DataType='Number']").each(function () {
             var val = $(this).val().trim();
             if (val != "") {
-                var test = /^[0-9]+$/i;
+                var test = /^[0-9]?[.]?[0-9]+$/i;
                 if (!test.test(val)) {
                     $(this).addClass('border-red');
                     $(this).attr('title', 'Càn nhập đúng định dạng số!');
