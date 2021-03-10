@@ -6,4 +6,40 @@
     ViewData["ChildTitle"] = "Ghi giảm tài sản";
 }
 
+@section Links{
+}
 
+<div class="tool-bar" id="tbGrdRefDecrement">
+    <div class="filter-bar">
+        <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
+    </div>
+    <div class="tool-bar-right">
+        <div>
+            <button class="button btn-add" CommandName="Add">Thêm</button>
+        </div>
+        <div>
+            <button class="button btn-refresh" CommandName="Refresh" title="Làm mới">
+                <div class="icon-refresh">
+
+                </div>
+            </button>
+        </div>
+        <div>
+            <button class="button btn-remove" CommandName="Delete" title="Xóa">
+                <div class="icon-remove ">
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="grid">
+    <div class="grid-default">
+        <table cellspacing="0" id="refdecrement-grid" data-toolbar="#tbGrdRefDecrement">
+            <thead>
+
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
