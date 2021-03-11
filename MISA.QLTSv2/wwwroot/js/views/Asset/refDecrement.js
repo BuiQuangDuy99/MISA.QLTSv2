@@ -27,7 +27,7 @@ class refDecrement extends BaseGrid {
     }
 }
 
-var refTransferGrid = new refTransfer('#refdecrement-grid', "RefDecrement");
+var refDecrementGrid = new refDecrement('#refdecrement-grid', "RefDecrement");
 
 // Biến config cho từng column trong bảng
 
@@ -74,7 +74,7 @@ var conFigColum = [
 //refTransferGrid.createFormDetail("#dialog_reftransfer", 800, 600);
 
 // THiết lập config header
-refTransferGrid.setConFigColum(conFigColum);
+refDecrementGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-refTransferGrid.loadAjaxData('https://localhost:44363/api/refdecrements');
+refDecrementGrid.loadAjaxData('https://localhost:44363/api/refdecrements');
