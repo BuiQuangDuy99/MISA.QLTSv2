@@ -73,7 +73,7 @@ textarea{
     padding: 0px;
     outline: none !important;
     border: none;
-    height: 0;
+    height: auto;
 }
 .icon-delete-row {
     background-image: url('/icon/trash.svg');

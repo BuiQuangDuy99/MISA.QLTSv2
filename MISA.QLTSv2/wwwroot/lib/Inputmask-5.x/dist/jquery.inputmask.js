@@ -3,11 +3,7 @@
  * https://github.com/RobinHerbots/Inputmask
  * Copyright (c) 2010 - 2021 Robin Herbots
  * Licensed under the MIT license
-<<<<<<< HEAD
  * Version: 5.0.6-beta.40
-=======
- * Version: 5.0.6-beta.44
->>>>>>> NDTUNG
  */
 !function webpackUniversalModuleDefinition(root, factory) {
     if ("object" == typeof exports && "object" == typeof module) module.exports = factory(require("jquery")); else if ("function" == typeof define && define.amd) define([ "jquery" ], factory); else {
@@ -732,15 +728,7 @@
                         (k !== _keycode.default.DELETE || pos.begin > newPos) && pos.begin;
                     }
                 }
-<<<<<<< HEAD
                 !0 !== strict && (maskset.p = k === _keycode.default.DELETE ? pos.begin + offset : pos.begin);
-=======
-                !0 !== strict && (maskset.p = k === _keycode.default.DELETE ? pos.begin + offset : pos.begin, 
-                maskset.p = _positioning.determineNewCaretPosition.call(this, {
-                    begin: maskset.p,
-                    end: maskset.p
-                }, !1).begin);
->>>>>>> NDTUNG
             }
         }
         function isComplete(buffer) {
@@ -877,11 +865,7 @@
             for (i = start; i < end; i++) {
                 keypress.which = bffr[i].toString().charCodeAt(0), this.ignorable = !1;
                 var valResult = _eventhandlers.EventHandlers.keypressEvent.call(this, keypress, !0, !1, !1, p);
-<<<<<<< HEAD
                 !1 !== valResult && (p = valResult.forwardPosition);
-=======
-                !1 !== valResult && void 0 !== valResult && (p = valResult.forwardPosition);
->>>>>>> NDTUNG
             }
             opts.skipOptionalPartCharacter = skipOptionalPartCharacter;
         }
@@ -2272,11 +2256,7 @@
                     ("day" === targetProp && 29 === parseInt(datavalue) || "month" === targetProp && 2 === parseInt(datavalue)) && (29 !== parseInt(dateObj.day) || 2 !== parseInt(dateObj.month) || "" !== dateObj.year && void 0 !== dateObj.year || dateObj.date.setFullYear(2012, 1, 29)), 
                     "day" === targetProp && 0 === parseInt(datavalue) && (datavalue = 1), "month" === targetProp && (datavalue = parseInt(datavalue), 
                     0 < datavalue) && (datavalue -= 1), "year" === targetProp && datavalue.length < 4 && (datavalue = pad(datavalue, 4, !0)), 
-<<<<<<< HEAD
                     "" !== datavalue && dateOperation.call(dateObj.date, datavalue);
-=======
-                    "" === datavalue || isNaN(datavalue) || dateOperation.call(dateObj.date, datavalue);
->>>>>>> NDTUNG
                 }
             }
             if ("string" == typeof mask) {
@@ -2481,11 +2461,7 @@
                 var dq = opts.digits.toString().split(",");
                 isFinite(dq[0]) && dq[1] && isFinite(dq[1]) ? mask += radixPointDef + decimalDef + "{" + opts.digits + "}" : (isNaN(opts.digits) || 0 < parseInt(opts.digits)) && (opts.digitsOptional ? (altMask = mask + radixPointDef + decimalDef + "{0," + opts.digits + "}", 
                 opts.keepStatic = !0) : mask += radixPointDef + decimalDef + "{" + opts.digits + "}");
-<<<<<<< HEAD
             }
-=======
-            } else opts.inputmode = "numeric";
->>>>>>> NDTUNG
             return mask += autoEscape(opts.suffix, opts), mask += "[-]", altMask && (mask = [ altMask + autoEscape(opts.suffix, opts) + "[-]", mask ]), 
             opts.greedy = !1, parseMinMaxOptions(opts), mask;
         }
@@ -2586,11 +2562,7 @@
                         var isNegative = !1, front = findValid("+", maskset), back = findValid("-", maskset);
                         return -1 !== front && (isNegative = [ front, back ]), !1 !== isNegative ? {
                             remove: isNegative,
-<<<<<<< HEAD
                             caret: initPos - opts.negationSymbol.front.length
-=======
-                            caret: initPos - opts.negationSymbol.back.length
->>>>>>> NDTUNG
                         } : {
                             insert: [ {
                                 pos: findValidator("+", maskset),

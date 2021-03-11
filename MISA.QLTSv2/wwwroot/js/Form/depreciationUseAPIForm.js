@@ -14,6 +14,14 @@ class depreciationForm extends baseForm {
     }
 
     /**
+     * 
+     * 
+     * */
+    setApiUrl() {
+        this.getApiUrl = 'https://localhost:44363/api/v1/RefDepreciations';
+    }
+
+    /**
      * Hàm tạo sự kiện trên form Depreciation
      * */
     initEventDepreciationForm() {
@@ -36,7 +44,6 @@ class depreciationForm extends baseForm {
         $('input[fieldName="RefNo"]').off('keyup').keyup(function () {
             this.value = this.value.toLocaleUpperCase();
         });
-        $('#TestDate').datepicker().inputmask("99/99/9999", { placeholder: "__/__/____" });
     }
 
     /**
@@ -57,7 +64,6 @@ class depreciationForm extends baseForm {
         $('#depreciation-sub-grid tbody').append(tr);
         me.bindingSTT();
         showTooltipElement($('.depreciation-sub-grid button'));
-
     }
 
     /**
@@ -97,6 +103,40 @@ class depreciationForm extends baseForm {
         me.depreciationForm.dialog('open');
     }
 
+    /**
+     * binding dữ liệu từ hàng được chọn ở grid lên form
+     * @param {any} data dữ liệu của row được selected
+     * CreatedBY: BQDUY(11/03/2021)
+     */
+    bindingData(data) {
+        let me = this;
+        me.form.find("[fieldName]").each(function () {
+            var propertyName = $(this).attr('fieldName');
+            var propertyValue = data[0][propertyName];
+            
+            if ($(this).attr('dataType') == 'date') {
+                propertyValue = formatDate(propertyValue, "DD-MM-YYYY");
+            }
+            else if ($(this).attr('dataType') == "Money") {
+                var money = formatMoney(propertyValue);
+                propertyValue = money;
+            }
+
+            this.value = propertyValue;
+
+            if (propertyName == "RefDetail") {
+                propertyValue = JSON.parse(propertyValue);
+                let gridDetail = new BaseGrid('#depreciation-sub-grid', 'FixedAsset');
+
+                gridDetail.loadData(propertyValue);
+
+                $('#depreciation-sub-grid tbody tr').each(function () {
+                    $(this).find('td').eq(5).prop("textContent", parseFloat($(this).find('td').eq(3).prop("textContent")) / 100 * parseFloat($(this).find('td').eq(4).prop("textContent")));
+                });
+            }
+        });
+    }
+
     closeForm() {
         let me = this;
         me.resetForm();
@@ -127,50 +167,51 @@ class depreciationForm extends baseForm {
         })
     }
 
-    getData() {
-        let depreciation = {},
-            sumMoney = 0,
-            listAsset = [];
-        $('.depreciation-sub-grid tbody tr').each(function () {
-            let asset = {},
-                fieldNameAss,
-                dataType;
-            $(this).find('td[fieldName]').each(function () {
+    //getData() {
+    //    super.getData();
+    //    let depreciation = {},
+    //        sumMoney = 0,
+    //        listAsset = [];
+    //    $('.depreciation-sub-grid tbody tr').each(function () {
+    //        let asset = {},
+    //            fieldNameAss,
+    //            dataType;
+    //        $(this).find('td[fieldName]').each(function () {
 
-                fieldNameAss = $(this).attr('fieldName');
-                dataType = $(this).attr("dataType");
+    //            fieldNameAss = $(this).attr('fieldName');
+    //            dataType = $(this).attr("dataType");
 
-                if (dataType == "Number" || dataType == "Money") {
-                    asset[fieldNameAss] = parseInt($(this).prop("textContent").split(".").join(""));
-                }
-                else {
-                    asset[fieldNameAss] = $(this).prop("textContent");
-                }
-                if (fieldNameAss == "AmountTotal") {
-                    let AmountTotal = asset['Cost'] / 100 * asset['DepreciationRate'];
-                    asset[fieldNameAss] = AmountTotal;
-                    //$(this).append(AmountTotal);
-                }
-            })
-            listAsset.push(asset);
-        })
+    //            if (dataType == "Number" || dataType == "Money") {
+    //                asset[fieldNameAss] = parseInt($(this).prop("textContent").split(".").join(""));
+    //            }
+    //            else {
+    //                asset[fieldNameAss] = $(this).prop("textContent");
+    //            }
+    //            if (fieldNameAss == "AmountTotal") {
+    //                let AmountTotal = asset['Cost'] / 100 * asset['DepreciationRate'];
+    //                asset[fieldNameAss] = AmountTotal;
+    //                //$(this).append(AmountTotal);
+    //            }
+    //        })
+    //        listAsset.push(asset);
+    //    })
 
-        $('td[fieldName="AmountTotal"]').each(function () {
-            sumMoney += parseInt($(this).prop("textContent").split(".").join(""));
-        })
-        console.log(sumMoney);
+    //    $('td[fieldName="AmountTotal"]').each(function () {
+    //        sumMoney += parseInt($(this).prop("textContent").split(".").join(""));
+    //    })
+    //    console.log(sumMoney);
 
-        $('input[fieldName],textarea[fieldName],table[fieldName]').each(function () {
-            let fieldName = $(this).attr('fieldName');
-            if (fieldName == "RefDetail") {
-                depreciation[fieldName] = listAsset;
-            }
-            else {
-                depreciation[fieldName] = $(this).val();
-            }
-            depreciation['AmountTotal'] = sumMoney;
-        });
-        console.log(depreciation);
-    }
+    //    $('input[fieldName],textarea[fieldName],table[fieldName]').each(function () {
+    //        let fieldName = $(this).attr('fieldName');
+    //        if (fieldName == "RefDetail") {
+    //            depreciation[fieldName] = listAsset;
+    //        }
+    //        else {
+    //            depreciation[fieldName] = $(this).val();
+    //        }
+    //        depreciation['AmountTotal'] = sumMoney;
+    //    });
+    //    console.log(depreciation);
+    //}
 
 }
