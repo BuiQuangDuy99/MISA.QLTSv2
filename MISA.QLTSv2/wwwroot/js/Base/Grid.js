@@ -148,13 +148,13 @@ class Grid {
      * CreatedBY: BQDUY(25/02/2021)
      */
     loadData(data) {
-        let me = this,
-            grid = this.grid;
+        let me = this
+            /*grid = this.grid*/;
 
-        $(grid).find('tbody').empty();
+        $(me.grid).find('tbody').empty();
         if (data) {
             $.each(data, function (index, obj) {
-                $(grid).find('tbody').append(me.renderBody(index, obj));
+                $(me.grid).find('tbody').append(me.renderBody(index, obj));
             })
 
         }
