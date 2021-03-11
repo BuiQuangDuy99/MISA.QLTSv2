@@ -125,7 +125,7 @@ class depreciationForm extends baseForm {
             this.value = propertyValue;
 
             if (propertyName == "RefDetail") {
-                propertyValue = JSON.parse(propertyValue);
+                propertyValue = JSON.parse(propertyName);
                 let gridDetail = new BaseGrid('#depreciation-sub-grid', 'FixedAsset');
 
                 gridDetail.loadData(propertyValue);

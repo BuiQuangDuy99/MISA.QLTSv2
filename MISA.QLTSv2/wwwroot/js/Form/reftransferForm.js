@@ -37,6 +37,32 @@
         me.reftransferForm.dialog('open');
     }
 
+
+    bindingData(data) {
+        let me = this;
+        me.form.find("[fieldName]").each(function () {
+            var propertyName = $(this).attr('fieldName');
+            var propertyValue = data[0][propertyName];
+
+            if ($(this).attr('dataType') == 'date') {
+                propertyValue = formatDate(propertyValue, "DD-MM-YYYY");
+            }
+            else if ($(this).attr('dataType') == "Money") {
+                var money = formatMoney(propertyValue);
+                propertyValue = money;
+            }
+
+            this.value = propertyValue;
+
+            if (propertyName == "RefDetail") {
+                propertyValue = JSON.parse(propertyName);
+                let gridDetail = new BaseGrid('#depreciation-sub-grid', 'FixedAsset');
+
+                gridDetail.loadData(propertyValue);
+            }
+        });
+    }
+
     closeForm() {
         let me = this;
         me.resetForm();
