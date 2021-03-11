@@ -3,7 +3,7 @@
     constructor(formId, width, height, jsCaller) {
         super(formId, jsCaller);
         //Định nghĩa Dialog
-        this.assetIncreasedForm = $(formId).dialog({
+        this.reftransferForm = $(formId).dialog({
             autoOpen: false,
             height: height,
             width: width,
@@ -13,7 +13,7 @@
 
     initEvent() {
         super.initEvent();
-
+        $('#TestDate').datepicker({ dateFormat: "dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
 
     }
 
@@ -32,15 +32,15 @@
         let me = this;
         if (data) {
             me.bindingData(data);
-            me.assetIncreasedForm.dialog('open');
+            me.reftransferForm.dialog('open');
         }
-        me.assetIncreasedForm.dialog('open');
+        me.reftransferForm.dialog('open');
     }
 
     closeForm() {
         let me = this;
         me.resetForm();
-        me.assetIncreasedForm.dialog('close');
+        me.reftransferForm.dialog('close');
     }
 
 }
