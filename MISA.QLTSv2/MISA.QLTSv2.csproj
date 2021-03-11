@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +16,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\lib\Inputmask-5.x\.github\FUNDING.yml" />
+    <None Include="wwwroot\lib\Inputmask-5.x\.github\ISSUE_TEMPLATE\issue-report.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" Version="4.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="MySql.Data" Version="8.0.20" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MISA.QLTSv2.BL\MISA.QLTSv2.BL.csproj" />
+    <ProjectReference Include="..\MISA.QLTSv2.DL\MISA.QLTSv2.DL.csproj" />
   </ItemGroup>
 
 </Project>

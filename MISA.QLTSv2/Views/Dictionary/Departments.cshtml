@@ -5,23 +5,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div>
-    <div class="tool-bar">
+    <div class="tool-bar" id="tbGrdDepartment">
         <div class="filter-bar">
             <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
         </div>
         <div class="tool-bar-right">
             <div>
-                <button class="button btn-add" id="btn-add-department">Thêm</button>
+                <button class="button btn-add" CommandName="Add">Thêm</button>
             </div>
             <div>
-                <button class="button btn-refresh" title="Làm mới">
+                <button class="button btn-refresh" CommandName="Refresh" title="Làm mới">
                     <div class="icon-refresh">
 
                     </div>
                 </button>
             </div>
             <div>
-                <button class="button btn-remove" title="Xóa">
+                <button CommandName="Delete" class="button btn-remove" title="Xóa">
                     <div class="icon-remove ">
                     </div>
                 </button>
@@ -29,8 +29,8 @@
         </div>
     </div>
     <div class="grid">
-        <div class="grid-default v-grid-overflow">
-            <table cellspacing="0" id="gridDepartment">
+        <div class="grid-default">
+            <table cellspacing="0" id="gridDepartment" data-toolbar="#tbGrdDepartment">
                 <thead>
                 </thead>
                 <tbody>
@@ -47,7 +47,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="m-title col-12">
-                <div>Thêm mới bộ phận sử dụng tài sản</div>
+                <div>Thêm mới phòng ban</div>
                 <button class="v-cancel button" id="btn-close"></button>
             </div>
             <div class="top col-12">
@@ -61,21 +61,19 @@
                 </div>
                 <div class="sub-content">
                     <div class="sub-title">Trực thuộc (*)</div>
-                    <select class="input-text" tabindex="3" id="cbxDepartment" style="width: 282px;">
-                        @*<option value="phòng công nghệ thông tin">Phòng công nghệ thông tin</option>
-                            <option value="phòng hành chính tổng hợp">Phòng hành chính tổng hợp</option>
-                            <option value="phòng kế toán">Phòng kế toán</option>
-                            <option value="phòng thanh tra">Phòng thanh tra</option>*@
-                    </select>
+                    @*<select class="input-text" tabindex="3" id="cbxDepartment" style="width: 282px;" DataType="Combobox" fieldName="DepartmentGroupName" fieldValue="DepartmentGroupId">
+            </select>*@
+                    <input id="cboDepartment" tabindex="3" class="input-text" fieldName="ParentName" fieldValue="DepartmentGroupId" />
                 </div>
                 <div class="sub-content">
                     <div class="sub-title">Ghi chú</div>
-                    <textarea fieldName="Note" tabindex="4" rows="3"></textarea>
+                    <textarea fieldName="Description" tabindex="4" rows="3"></textarea>
                 </div>
+                <input fieldName="DepartmentId" style="display:none" />
             </div>
             <div class="bottom col-12">
-                <button class="button btn-cancel" id="btn-cancel">Hủy</button>
-                <button class="btn-add button" id="btn-save">Lưu</button>
+                <button class="button btn-cancel" id="btn-cancel" tabindex="6">Hủy</button>
+                <button class="btn-add button" id="btn-save" tabindex="5">Lưu</button>
             </div>
         </div>
     </div>

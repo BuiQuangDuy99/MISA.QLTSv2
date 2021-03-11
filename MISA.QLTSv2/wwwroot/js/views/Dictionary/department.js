@@ -1,9 +1,15 @@
-﻿
+﻿$(document).ready(function () {
+    $('#cboDepartment').autocomplete({
+        source: availableTags
+    })
+})
+
+
 // khởi tạo bảng và form màn hình danh sách phòng ban
 class Department extends BaseGrid {
    
-    constructor(gridId) {
-        super(gridId);
+    constructor(gridId, entity) {
+        super(gridId, entity);
         this.initEvents();
     }
 
@@ -12,26 +18,36 @@ class Department extends BaseGrid {
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-        $('#cbxDepartment').combobox();
-        $('#btn-add-department').click(function () {
-            me.formDetail.show();
-        })
+    }
+    /**
+     * URL API danh muc phong ban
+     * CreatedBy: DVVUONG (03/03/2021)
+     * */
+    setUrl() {
+        this.url = 'https://localhost:44363/api/departments';
     }
 
+    /**
+     * Hàm khởi tạo form của màn hình loại tài sản
+     * @param {any} formID id form
+     * @param {any} width chiều rộng
+     * @param {any} height chiều cao
+     * CreatedBY: DVVUONG(26/02/2021)
+     */
     createFormDetail(formID, width, height) {
         let me = this;
         this.formDetail = new departmentForm(formID, width, height, me);
-        debugger;
-        this.formDetail.initLoadComboBox("DepartmentGroup", department);
+        //this.formDetail.initLoadComboBox("DepartmentGroup", department);
     }
 
 }
 
-var departmentGrid = new Department('#gridDepartment');
+var departmentGrid = new Department('#gridDepartment', "Department");
 
+// Biến config cho từng column trong bảng
 var conFigColum = [
     {
-        DataType: "number",
+        DataType: "STT",
         FieldName: "STT",
         FieldText: "STT",
         Index: 1
@@ -50,24 +66,30 @@ var conFigColum = [
     },
     {
         DataType: "text",
-        FieldName: "DepartmentGroupName",
+        FieldName: "ParentName",
         FieldText: "Trực thuộc",
         Index: 4
     },
     {
         DataType: "text",
-        FieldName: "Note",
+        FieldName: "Description",
         FieldText: "Ghi chú",
         Index: 5
     }
 ];
+var availableTags = [
+    "Phòng nghiên cứu công nghệ",
+    "Phòng giáo dục",
+    "Phòng nhân sự",
+    "Phòng hành chính sự nghiệp",
+    "Phòng tài chính",
 
-debugger;
+];
 //Khởi tạo form danh sách phòng ban
-departmentGrid.createFormDetail("#department_dialog", 360);
+departmentGrid.createFormDetail("#department_dialog", 300);
 
 // THiết lập config header
 departmentGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-departmentGrid.loadData(department);
+departmentGrid.loadAjaxData('https://localhost:44363/api/departments');

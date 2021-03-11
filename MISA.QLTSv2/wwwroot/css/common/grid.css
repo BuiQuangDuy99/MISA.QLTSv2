@@ -1,6 +1,7 @@
+
 .grid {
     position: relative;
-    height: calc(100vh - 164px)
+    height: calc(100vh - 164px);
 }
 
     .grid .grid-default {
@@ -15,18 +16,19 @@
         /*padding-right: 21px;*/
         padding-left: 21px;
     }
-
-
 /****
     định dạng danh sách bảng
 */
-
 table th, td {
     padding: 11px 16px;
     text-align: left;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+
+table thead tr:first-child {
+    border: none;
 }
 
 table {
@@ -37,15 +39,16 @@ table {
     table th {
         position: sticky;
         top: 0;
-        background-color: #ffffff;
+        background-color: #FFFFFF;
         padding-top: 0;
         font-size: 12px;
         font-weight: 600;
+        background-color: #fff;
     }
 
     table td {
         font-size: 13px;
-        border-right: 1px solid #bbbbbb;
+        border-right: 1px solid #BBBBBB;
     }
 
         table td:last-child {
@@ -53,19 +56,35 @@ table {
         }
 
     table tr {
-        border-bottom: 1px solid #bbbbbb;
+        border-bottom: 1px solid #BBBBBB;
     }
 
         table tr:hover {
-            background-color: #f0f8ff;
+            background-color: #F0F8FF
         }
 
+th:after,
+th:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+/*th:before {
+    top: -1px;
+    border-top: 1px solid #BBBBBB;
+}*/
+th:after {
+    bottom: 0px;
+    border-bottom: 1px solid #BBBBBB;
+}
+
 .selected-row {
-    background-color: #f0f8ff !important;
+    background-color: #F0F8FF !important;
 }
 
     .selected-row:hover {
-        background-color: #f0f8ff !important;
+        background-color: #F0F8FF !important;
     }
 /*::-webkit-scrollbar{
     width:5px;
@@ -73,6 +92,7 @@ table {
 ::-webkit-scrollbar-thumb{
     background-color:#454545;
 }*/
+
 
 /*css cho context menu*/
 .menu {
@@ -84,3 +104,4 @@ table {
     display: none;
     position: absolute;
 }
+

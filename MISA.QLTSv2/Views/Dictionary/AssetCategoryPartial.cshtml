@@ -1,25 +1,30 @@
 ﻿
 @{
     ViewData["Title"] = "LayoutView";
+    ViewData["ParentTitle"] = "Danh mục";
+    ViewData["ChildTitle"] = "Loại tài sản";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="tool-bar">
+@section Links{
+    <link href="~/css/Form/dictionaryForm.css" rel="stylesheet" />
+}
+<div class="tool-bar" id="tbGrdFACategory">
     <div class="filter-bar">
         <input id="txtsearch" class="input-search icon-search" type="text" placeholder="Tìm Kiếm" />
     </div>
     <div class="tool-bar-right">
         <div class="test-tooltip">
-            <button id="btn-add-dictionary" class="button btn-add">Thêm</button>
+            <button class="button btn-add" CommandName="Add">Thêm</button>
         </div>
         <div>
-            <button class="button btn-refresh" title="Làm mới">
+            <button class="button btn-refresh" CommandName="Refresh" title="Làm mới">
                 <div class="icon-refresh">
 
                 </div>
             </button>
         </div>
         <div>
-            <button id="btn-remove-dictionary" class="button btn-remove" title="Xóa">
+            <button class="button btn-remove" CommandName="Delete" title="Xóa">
                 <div class="icon-remove ">
                 </div>
             </button>
@@ -28,13 +33,11 @@
 </div>
 <div class="grid">
     <div class="grid-default">
-        <table cellspacing="0" id="gridTest">
-            <thead>
-                <tr>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
+        <table cellspacing="0"
+               id="gridTest"
+               data-toolbar="#tbGrdFACategory">
+            <thead></thead>
+            <tbody></tbody>
         </table>
     </div>
 </div>
@@ -59,17 +62,17 @@
                         Mã loại tài sản (*)
                     </div>
                     <div>
-                        <input class="input-text input-dictionary" fieldName="AssetTypeCode" required />
+                        <input class="input-text input-dictionary" fieldName="FixedAssetCategoryCode" required />
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 m-col-5v2">
                 <div class="content-items">
                     <div class="text-header">
                         Tên loại tài sản (*)
                     </div>
                     <div>
-                        <input class="input-text input-dictionary" fieldName="AssetTypeName" required />
+                        <input class="input-text input-dictionary" fieldName="FixedAssetCategoryName" required />
                     </div>
                 </div>
             </div>
@@ -78,23 +81,27 @@
             <div class="col-6 m-col-5">
                 <div class="content-items">
                     <div class="text-header">
-                        Thuộc loại (*)
+                        Thuộc loại
                     </div>
                     <div>
-                        <select style="width:265px" id="cbx-assetClass" DataType="Combobox" fieldName="AssetClassName" fieldValue="AssetClassId">
+                        <select id="cbxgroup">
+                            <option value="value">Loại thứ nhất</option>
+                            <option value="value" selected>Loại thứ hai</option>
+                            <option value="value">Loại thứ ba</option>
                         </select>
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 m-col-5v2">
                 <div class="content-items">
                     <div class="text-header">
                         Nhóm tài sản
                     </div>
-                    <div>
-                        <select style="width:294px" id="cbx-assetGroup" DataType="Combobox" fieldName="AssetGroupName" fieldValue="AssetGroupId">
-                        </select>
-                    </div>
+                    <select id="cbxgroupasset">
+                        <option value="value">Nhóm thứ nhất</option>
+                        <option value="value">Nhóm thứ hai</option>
+                        <option value="value">Nhóm thứ ba</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -102,20 +109,20 @@
             <div class="col-6 m-col-5">
                 <div class="content-items">
                     <div class="text-header">
-                        Tỷ lệ hao mòn
+                        Tỷ lệ hao mòn (%)
                     </div>
                     <div>
-                        <input class="input-text input-dictionary" fieldName="WearPercent" />
+                        <input class="input-text input-dictionary input-right" type="number" fieldName="DepreciationRate" />
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 m-col-5v2">
                 <div class="content-items">
                     <div class="text-header">
                         Số năm sử dụng
                     </div>
                     <div>
-                        <input class="input-text input-dictionary" fieldName="YearOfUse" dataType="Number" />
+                        <input class="input-text input-dictionary input-right" type="number" fieldName="LifeTime" dataType="Number" />
                     </div>
                 </div>
             </div>
@@ -123,9 +130,10 @@
         <div class="row m-row-content">
             <div class="col-12">
                 <div>Ghi chú</div>
-                <textarea class="input-detail input-dictionary" fieldName="Note"></textarea>
+                <textarea class="input-detail input-dictionary txt-area-facategory" fieldName="Description"></textarea>
             </div>
         </div>
+        <input fieldName="FixedAssetCategoryId" style="display:none" />
     </div>
     <div class="dialog-footer">
         <div class="footer-left">
@@ -136,18 +144,7 @@
         </div>
     </div>
 </div>
-<div class="menu">
-    <p>Option 1</p>
-    <p>Option 2</p>
-</div>
-<div class="footer-layout">
-    <div>
-        Tổng số tài sản: 1.015
-    </div>
-    <div class="footer-right">
-        Tổng nguyên giá: 1.546.354.789
-    </div>
-</div>
+
 
 @section scripts{
 

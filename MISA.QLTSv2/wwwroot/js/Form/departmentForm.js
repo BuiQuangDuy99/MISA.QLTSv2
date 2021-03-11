@@ -1,8 +1,9 @@
 
 //Lớp form chi tiết của bảng ở màn department
 class departmentForm extends baseForm {
-    constructor(formId, width, height) {
-        super(formId);
+               
+    constructor(formId, width, height, jsCaller) {
+        super(formId, jsCaller);
         //Định nghĩa Dialog
         this.department_Form = $(formId).dialog({
             autoOpen: false,
@@ -10,6 +11,11 @@ class departmentForm extends baseForm {
             width: width,
             modal: true,
         });
+    }
+
+
+    setApiUrl() {
+        this.getApiUrl = 'https://localhost:44363/api/departments';
     }
 
     /**
@@ -34,13 +40,5 @@ class departmentForm extends baseForm {
         me.resetForm();
         me.department_Form.dialog('close');
     }
-
-    setUrlJsonFile() {
-        this.urlJsonFile = "/wwwroot/js/departments.json";
-    }
         
-    closeForm() {
-        this.resetForm();
-        dialogs.dialog('close');
-    }
 }

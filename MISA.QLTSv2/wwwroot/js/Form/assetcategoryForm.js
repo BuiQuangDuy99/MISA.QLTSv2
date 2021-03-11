@@ -19,6 +19,10 @@ class dictionaryForm extends baseForm {
         this.loadComboBox(entity, dataCbx);
     }
 
+    setApiUrl() {
+        this.getApiUrl = 'https://localhost:44363/api/v1/FACategories';
+    }
+
     show(data) {
         let me = this;
         if (data) {

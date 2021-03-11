@@ -1,21 +1,14 @@
 ﻿$(document).ready(function () {
-    $('#cbx-assetGroup').combobox();
-    $('#cbx-assetClass').combobox();
-    
-    var day = new Date("2020-10-01");
-    console.log(day);
-    var date = formatDate("04-29-2020", 'DD/MM/YYYY');
-    console.log(date);
-})
+    $('#cbxgroup').combobox();
+    $('#cbxgroupasset').combobox();
 
+    //$('#dtIncrementDate').mask("00/00/0000", { placeholder: "___/___/______" }).datepicker();
+})
 //Khởi tạo bảng và form màn loại tài sản
 class Dictionary extends BaseGrid {
 
-    constructor(gridId) {
-        super(gridId);
-
-
-
+    constructor(gridId, entity) {
+        super(gridId, entity);
         this.initEvents();
     }
 
@@ -23,7 +16,14 @@ class Dictionary extends BaseGrid {
         let me = this;
         super.initEvents();
         showTooltipElement($('button'));
-        showTooltipElement($('td'));
+    }
+
+    /**
+     * set url để lên baseGrid có thể ghép url với id để thực thi ajax
+     * CreatedBY: BQDUY(03/03/2021)
+     * */
+    setUrl() {
+        this.url = 'https://localhost:44363/api/v1/FACategories';
     }
 
     /**
@@ -36,61 +36,59 @@ class Dictionary extends BaseGrid {
     createFormDetail(formID, width, height) {
         var me = this;
         this.formDetail = new dictionaryForm(formID, width, height, me);
-        this.formDetail.initLoadComboBox("AssetGroup", assetGroup);
-        this.formDetail.initLoadComboBox("AssetClass", assetClass);
     }
 }
 
-var dictionaryGrid = new Dictionary('#gridTest');
+var dictionaryGrid = new Dictionary('#gridTest', "FixedAssetCategory");
 
 // Biến config cho từng column trong bảng
 var conFigColum = [
     {
-        DataType: "number",
+        DataType: "STT",
         FieldName: "STT",
-        FieldText: "STT",
+        FieldText: "STT",   
         Index: 1
     },
     {
         DataType: "text",
-        FieldName: "AssetTypeCode",
-        FieldText: "Mã Loại Tài Sản",
+        FieldName: "FixedAssetCategoryCode",
+        FieldText: "Mã loại tài sản",
         Index: 2
     },
     {
         DataType: "text",
-        FieldName: "AssetTypeName",
-        FieldText: "Tên Loại Tài Sản",
+        FieldName: "FixedAssetCategoryName",
+        FieldText: "Tên loại tài sản",
         Index: 3
     },
     {
         DataType: "text",
-        FieldName: "AssetClassName",
+        FieldName: "ParentName",
         FieldText: "Thuộc loại",
         Index: 4
     },
     {
         DataType: "text",
-        FieldName: "AssetGroupName",
-        FieldText: "Nhóm Tài Sản",
+        FieldName: "FACategoryGroupName",
+        FieldText: "Nhóm tài sản",
         Index: 5
     },
     {
         DataType: "percent",
-        FieldName: "WearPercent",
-        FieldText: "Tỷ Lệ Hao Mòn (%)",
+        FieldName: "DepreciationRate",
+        FieldText: "Tỷ lệ hao mòn (%)",
         Index: 6
     },
     {
         DataType: "year",
-        FieldName: "YearOfUse",
-        FieldText: "Số Năm Sử Dụng",
+        FieldName: "LifeTime",
+        FieldText: "Số năm sử dụng",
         Index: 7
     },
     {
         DataType: "text",
-        FieldName: "Note",
-        FieldText: "Ghi Chú",
+        FieldName: "Description",
+        FieldText: "Ghi chú",
         Index: 8
     }
 ];
@@ -102,5 +100,5 @@ dictionaryGrid.createFormDetail("#dialog_dictionary", 700, 500);
 dictionaryGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-dictionaryGrid.loadData(dictionary);
+dictionaryGrid.loadAjaxData('https://localhost:44363/api/v1/FACategories');
 
