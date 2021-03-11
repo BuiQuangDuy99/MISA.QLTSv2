@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MISA.QLTSv2.Model.Entities
 {
-    class RefDepreciation : BaseEntity
+    public class RefDepreciation : BaseEntity
     {
         public RefDepreciation()
         {

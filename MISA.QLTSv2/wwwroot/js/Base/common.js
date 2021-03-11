@@ -1,4 +1,15 @@
-﻿
+﻿/**
+ * Hàm sinh id kiểu Guid
+ * CreatedBY: BQDUY(09/03/2021)
+ * */
+function createGuid() {
+    function S4() {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    }
+    var guid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+    return guid;
+}  
+
 /**
  * Hàm Ajax dùng chung
  * CreatBy: BQDUY (4/2/2021)
@@ -32,35 +43,32 @@ function formatDate(date, formatDate) {
         if (!date) {
             return "";
         } else {
-            //date = moment(date, ["DD-MM-YYYY", "MM-DD-YYYY", "DD-MMM-YYYY", "MMM-DD-YYYY"]).format("YYYY-MM-DD");
-            return moment(date).format(formatDate || "DD-MM-YYYY");
+            var type = typeof(moment(date, ["DD-MM-YYYY", "MM-DD-YYYY"]));
+            var date = new Date(moment(date, ["DD-MM-YYYY", "MM-DD-YYYY"]).format(formatDate || "DD-MM-YYYY"));
+            console.log(type);
+            return date.getMonth();
         }
     } catch (e) {
         console.log(e);
     }
 }
-
 /**
- * Chuyển đổi dữ liệu từ dd/mm/yyyy lên form
- * CreatBy: NDTUNG (4/2/2021)
-*/
-function formatStringDate(date) {
-    if (!date) {
-        return "";
-    }
-    else {
-        var date = new Date(date);
-
-        day = date.getDate();
-        month = date.getMonth() + 1;
-        year = date.getFullYear();
-        if (day < 10) {
-            day = '0' + day;
+ * Hàm format lại ngày tháng từ date picker để lưu lên db
+ * CreateBy: BQDUY(11/03/2021)
+ * */
+function formatDatePicker(date) {
+    try {
+        if (!date) {
+            return "";
+        } else {
+            date = date.toString();
+            let day = date.split("/")[0];
+            let month = date.split("/")[1];
+            let year = date.split("/")[2];
+            return month + "/" + day + "/" + year;
         }
-        if (month < 10) {
-            month = '0' + month;
-        }
-        return year + "-" + month + "-" + day;
+    } catch (e) {
+        console.log(e);
     }
 }
 
@@ -189,4 +197,34 @@ function closeWarring() {
     $('.warring').hide();
     //$('#tbListData tbody tr').removeClass("row-selected");
     //setDisabled();
+}
+
+/**
+ * Hàm tạo ID 
+ * Author: BQDUY(9/3/2021)
+ * */
+function createGuid() {
+    function S4() {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    }
+    var guid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+    return guid;
+}
+
+/**
+ * Hiển thị hộp thoại thành công
+ * Author: Nguyen Dang Tung(9/3/2021)
+ */
+function showMessengerSuccess(msg) {
+    $('.success_content').text(msg);
+    $('.success').show(2000, async function () {
+        await setTimeout(async function () {
+            await $('.success').hide(2000);
+        }, 2500);
+    });
+    $('.success').css('display', 'flex');
+};
+
+function roundToTwo(num) {
+    return +(Math.round(num + "e+2") + "e-2");
 }

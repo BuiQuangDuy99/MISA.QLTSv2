@@ -5,76 +5,108 @@ using MISA.QLTSv2.Model.Entities;
 using MISA.QLTSv2.Model.Enums;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace MISA.QLTSv2.BL.Services
 {
-    /// <summary>
-    /// DepartmentBL cho Phòng Ban
-    /// </summary>
-    /// Author: DVVUONG (02/03/2021)
-    public class DepartmentBL
+    public class RefDepreciationBL
     {
-        #region Declare
-        DepartmentDL _departmentDL;
+        RefDepreciationDL _refDepreciationDL;
         ServiceResult _serviceResult;
-        #endregion
 
-        #region Constructor
-        public DepartmentBL(string connectionString, IMapper mapper)
+        #region Contrustor
+        public RefDepreciationBL(string connectionString, IMapper mapper)
         {
-            _departmentDL = new DepartmentDL(connectionString, mapper);
+            _refDepreciationDL = new RefDepreciationDL(connectionString, mapper);
             _serviceResult = new ServiceResult();
         }
         #endregion
 
         #region Method
         /// <summary>
-        /// Lấy danh sách phòng ban
+        /// Hàm xử lý kết quả của việc xóa trả xuống từ DL
         /// </summary>
-        /// <returns>danh sách phòng ban</returns>
-        /// Author: DVVUONG (02/03/2021)
-        public List<Department> GetDepartments()
+        /// <param name="entityId">id của đối tượng cần xóa</param>
+        /// <returns>Service result gồm dữ liệu, mã kết quả, message thông báo</returns>
+        /// CreatedBY: BQDUY(05/03/2021)
+        public ServiceResult Delete(Guid entityId)
         {
-            return _departmentDL.GetDepartments();
+            var res = _refDepreciationDL.Delete(entityId);
+
+            if (res > 0)
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                _serviceResult.Messenger = Resources.Msg_DeleteSuccess;
+            }
+            else
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+                _serviceResult.Messenger = Resources.Msg_DeleteFail;
+            }
+
+            return _serviceResult;
         }
 
         /// <summary>
-        /// Lấy ra một bản ghi theo ID
+        /// Hàm xử lý kết quả của việc lấy dữ liệu trả xuống từ DL
         /// </summary>
-        /// <param name="entityId">ID</param>
-        /// <returns>một bản ghi</returns>
-        /// CreatedBy:NVTUYEN(02/03/2021)
-        public Department GetDepartmentById(Guid entityId)
+        /// <returns></returns>
+        public ServiceResult GetEntities()
         {
-            return _departmentDL.GetDepartmentById(entityId);
+            var res = _refDepreciationDL.GetEntities();
+
+            if (res != null)
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                _serviceResult.Messenger = Resources.Msg_GetSuccess;
+            }
+            else
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+                _serviceResult.Messenger = Resources.Msg_GetFail;
+            }
+
+            return _serviceResult;
         }
 
         /// <summary>
-        /// Xóa phòng ban
+        /// 
         /// </summary>
-        /// <param name="entityId">khóa chính</param>
-        /// <returns>số bản ghi bị xóa</returns>
-        /// Author: DVVUONG (02/03/2021)
-        public int DeleteDepartment(Guid entityId)
+        /// <param name="entityId"></param>
+        /// <returns></returns>
+        public ServiceResult GetEntityById(Guid entityId)
         {
-            return _departmentDL.DeleteDepartment(entityId);
+            var res = _refDepreciationDL.GetEntityById(entityId);
+
+            if (res != null)
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                _serviceResult.Messenger = Resources.Msg_GetSuccess;
+            }
+            else
+            {
+                _serviceResult.Data = res;
+                _serviceResult.HttpCode = HttpCodeResult.Fail;
+                _serviceResult.Messenger = Resources.Msg_GetFail;
+            }
+
+            return _serviceResult;
         }
 
-
-        /// <summary>
-        /// Thêm một bản ghi
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns>Số bản ghi thay đổi</returns>
-        /// createdBy:DVVUONG(02/03/2021)
-        public ServiceResult InsertDepartment(Department entity)
+        public ServiceResult Insert(RefDepreciation entity)
         {
+
             entity.EntityState = EntityState.Insert;
             var isValid = Validate(entity);
 
             if (isValid == true)
             {
-                _serviceResult.Data = _departmentDL.InsertDepartment(entity);
+                _serviceResult.Data = _refDepreciationDL.Insert(entity);
                 _serviceResult.HttpCode = HttpCodeResult.Success;
                 _serviceResult.Messenger = Resources.Msg_AddSuccess;
                 return _serviceResult;
@@ -85,37 +117,7 @@ namespace MISA.QLTSv2.BL.Services
             }
         }
 
-        /// <summary>
-        /// Chỉnh sửa một bản ghi
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns>Một bản ghi thay đổi</returns>
-        /// CreatedBy:DVVUONG(02/03/2021)
-        public ServiceResult UpdateDepartment(Department entity)
-        {
-            entity.EntityState = EntityState.Update;
-            var isValid = Validate(entity);
-            if (isValid == true)
-            {
-                _serviceResult.Data = _departmentDL.UpdateDepartment(entity);
-                _serviceResult.HttpCode = HttpCodeResult.Success;
-                _serviceResult.Messenger = Resources.Msg_UpdateSuccess;
-                return _serviceResult;
-            }
-            else
-            {
-                return _serviceResult;
-            }
-        }
-
-
-        /// <summary>
-        /// Hàm Validate dữ liệu
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns>True/False</returns>
-        /// CreatedBy:DVVUONG(20/30/2021)
-        private bool Validate(Department entity)
+        private bool Validate(RefDepreciation entity)
         {
             var mesArr = new List<string>();
             var isValidate = true;
@@ -146,7 +148,7 @@ namespace MISA.QLTSv2.BL.Services
                 {
                     // check trùng dữ liệu
                     var propertyName = property.Name;
-                    var entityDuplicate = _departmentDL.GetEntityByProperty(entity, property);
+                    var entityDuplicate = _refDepreciationDL.GetEntityByProperty(entity, property);
                     if (entityDuplicate != null)
                     {
                         isValidate = false;
@@ -173,6 +175,23 @@ namespace MISA.QLTSv2.BL.Services
             }
             _serviceResult.Data = mesArr;
             return isValidate;
+        }
+
+        public ServiceResult Update(RefDepreciation entity)
+        {
+            entity.EntityState = EntityState.Update;
+            var isValid = Validate(entity);
+            if (isValid == true)
+            {
+                _serviceResult.Data = _refDepreciationDL.Update(entity);
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                _serviceResult.Messenger = Resources.Msg_UpdateSuccess;
+                return _serviceResult;
+            }
+            else
+            {
+                return _serviceResult;
+            }
         }
 
         #endregion

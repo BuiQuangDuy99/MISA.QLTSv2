@@ -25,17 +25,23 @@ class baseForm {
         this.form.find("#btn-cancel,#btn-close").on("click", this.closeForm.bind(this));
         this.form.find("#btn-save").on("click", this.saveData.bind(this));
         this.form.find('input').click(function () { $(this).select(); });
-        this.form.find("input").blur(this.checkStatusInput);
-        this.form.find("input").keyup(this.checkStatusInput);
-        this.form.find("input[DataType='Money'],input[DataType='Number']").on("keypress", function () {
+        this.form.find("[required]").blur(this.checkStatusInput);
+        this.form.find("[required]").keyup(this.checkStatusInput);
+
+        this.form.find("input[dataType='money'],input[dataType='Number']").on("keypress", function () {
             if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
                 event.preventDefault();
             }
             else {
-                $("input[DataType='Money']").keyup(this.formatPrice)
+                $("input[dataType='money']").keyup(this.formatPrice)
             }
         }.bind(this));
 
+        this.form.find("input[dataType='date']").datepicker({ dateFormat: "dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
+
+        this.form.find(".icon_PostDate").off('click').click(function () {
+            $('input[dataType="date"]').focus();
+        });
     }
 
 
@@ -64,10 +70,10 @@ class baseForm {
      */
     formatPrice() {
         try {
-            if (isNaN($("input[DataType='Money']").val()) != null) {
-                var value = $("input[DataType='Money']").val().split(".").join("");
+            if (isNaN($("input[dataType='money']").val()) != null) {
+                var value = $("input[dataType='money']").val().split(".").join("");
                 var formated = formatMoney(value);
-                $("input[DataType='Money']").val(formated);
+                $("input[dataType='money']").val(formated);
             }
         } catch (e) {
             alert(e);
@@ -150,6 +156,9 @@ class baseForm {
     resetForm() {
         this.form.find("[fieldName]").each(function () {
             $(this).val("");
+            if ($(this).attr("dataType") == "JSON") {
+                $(this).find('tbody').empty();
+            }
         });
         this.form.find(".border-red").removeClass("border-red");
     }
@@ -170,11 +179,12 @@ class baseForm {
     * CreatedBy : NDTUNG (3/2/2021)
     */
     bindingData(data) {
+
         this.form.find("[fieldName]").each(function () {
             var propertyName = $(this).attr('fieldName');
             var propertyValue = data[0][propertyName];
             if ($(this).attr('dataType') == 'date') {
-                propertyValue = formatDate(propertyValue, "YYYY-MM-DD");
+                propertyValue = formatDate(propertyValue, "DD-MM-YYYY");
             }
             else if ($(this).attr('dataType') == "Money") {
                 var money = formatMoney(propertyValue);
@@ -208,22 +218,6 @@ class baseForm {
      * CreatedBy : NDTUNG (4/2/2021)
      */
     saveChangeData(data) {
-        //var url = this.getApiUrl;
-        //var formMode = this.formMode;
-        //if (formMode == 1) {
-        //    callAjax(url, "Post", data, function (res) {
-        //        if (res.MISACode == Enum.StatusResponse.Success) {
-        //            showAlertWarring("Cất dữ liệu thành công!")
-        //        }
-        //    });
-        //}
-        //else if (formMode == 2) {
-        //    callAjax(url, "Put", data, function (res) {
-        //        if (res.MISACode == Enum.StatusResponse.Success) {
-        //            showAlertWarring("Cất dữ liệu thành công!")
-        //        }
-        //    });
-        //}
         let me = this,
             jsCaller = me.jsCaller;
         var url = me.getApiUrl;
@@ -255,6 +249,40 @@ class baseForm {
 
             })
         }
+
+        //deprectation.push(data);
+        //me.closeForm();
+        //showMessengerSuccess("Thêm thành công!");
+        //jsCaller.loadData(deprectation);
+        //var url = me.getApiUrl;
+        //if (jsCaller.formMode == "Add") {
+        //    $.ajax({
+        //        url: url,
+        //        method: "POST",
+        //        data: JSON.stringify(data),
+        //        contentType: 'application/json'
+        //    }).done(function (res) {
+        //        me.closeForm();
+        //        me.jsCaller.loadAjaxData(me.getApiUrl);
+        //        $('.loading').hide();
+        //    }).fail(function (res) {
+        //        $('.loading').hide();
+        //    })
+        //} else if (jsCaller.formMode == "edit") {
+        //    var idSelected = me.jsCaller.grid.find(".selected-row").data("recordId");
+        //    $.ajax({
+        //        url: url + '/' + idSelected,
+        //        method: "PUT",
+        //        data: JSON.stringify(data),
+        //        contentType: 'application/json'
+        //    }).done(function (res) {
+        //        me.closeForm();
+        //        me.jsCaller.loadAjaxData(me.getApiUrl);
+        //        $('.loading').hide();
+        //    }).fail(function (res) {
+        //        $('.loading').hide();
+        //    })
+        //}
     }
 
     /**
@@ -266,8 +294,10 @@ class baseForm {
 
         if (value) {
             switch (dataType) {
-                case "Date":
-                    value += " 00:00:00";
+                case "date":
+
+                    value = formatDate(value, "MM-DD-YYYY");
+                    //value += " 00:00:00";
                     break;
                 case "Number":
                     value = parseInt(value);
@@ -298,7 +328,7 @@ class baseForm {
     getData() {
         var me = this;
         var data = {};
-        this.form.find("[fieldName], select").each(function () {
+        this.form.find("input[fieldName], textarea, select, table").each(function () {
             var fieldName = $(this).attr("fieldName"),
                 dataType = $(this).attr("DataType");
 
@@ -306,10 +336,13 @@ class baseForm {
             //    fieldName = $(this).attr("fieldValue");
 
             //}
-
-            data[fieldName] = me.getDataInput($(this), dataType);
             if (fieldName == me.jsCaller.entity + "Id") {
                 data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
+            }
+            if (dataType == "JSON") {
+                data[fieldName] = JSON.stringify(testVarJSON);
+            } else {
+                data[fieldName] = me.getDataInput($(this), dataType);
             }
         });
         return data;
@@ -323,8 +356,23 @@ class baseForm {
         var isValid = me.validateForm();
         if (isValid) {
             var data = me.getData();
+            console.log(data);
             me.saveChangeData(data);
-            
         }
     }
-}
+} 
+
+var testVarJSON = [{
+    "FixedAssetId": "57d426d2-7d83-11eb-ba81-6a929c950d9c",
+    "FixedAssetCode": "TS999",
+    "FixedAssetName": "âxaxa",
+    "Cost": 2828.0000,
+    "DepreciationRate": 12.0
+},
+{
+    "FixedAssetId": "5f7b48e5-16f9-2f2f-ecdc-845b5dcdad45",
+    "FixedAssetCode": "TS000",
+    "FixedAssetName": "tài sản thứ 2",
+    "Cost": 999.0000,
+    "DepreciationRate": 10.0
+}]

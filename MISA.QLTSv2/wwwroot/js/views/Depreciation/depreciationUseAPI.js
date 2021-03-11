@@ -1,15 +1,16 @@
 ﻿class depreciation extends BaseGrid {
-    constructor(gridId) {
-        super(gridId);
+    constructor(gridId, entity) {
+        super(gridId, entity);
         this.initEvents();
     }
+
     initEvents() {
         let me = this,
             count = 0;
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-        $('.content ').on('click','.btn-remove ,#btn-delete',function () {
+        $('.btn-remove').click(function () {
             $("#depreciation-grid tbody tr").each(function () {
                 if ($(this).hasClass("selected-row")) {
                     count++;
@@ -23,14 +24,28 @@
             }
         });
     }
+    /**
+     * set url để lên baseGrid có thể ghép url với id để thực thi ajax
+     * CreatedBY: BQDUY(11/03/2021)
+     * */
+    setUrl() {
+        this.url = 'https://localhost:44363/api/v1/RefDepreciations';
+    }
+
+    /**
+     * Hàm khởi tạo form của màn loại tài sản
+     * @param {any} formID id của form
+     * @param {any} width chiều ngang
+     * @param {any} height chiều cao
+     * CreatedBY: BQDUY(11/03/2021)
+     */
     createFormDetail(formID, width, height) {
         var me = this;
         this.formDetail = new depreciationForm(formID, width, height, me);
     }
 }
 
-
-var depreciationGrid = new depreciation('#depreciation-grid');
+var depreciationGrid = new depreciation('#depreciation-grid', 'RefDepreciation');
 
 // Biến config cho từng column trong bảng
 
@@ -60,7 +75,7 @@ var conFigColum = [
         Index: 4
     },
     {
-        DataType: "money",
+        DataType: "Money",
         FieldName: "AmountTotal",
         FieldText: "Số tiền",
         Index: 5
@@ -73,22 +88,11 @@ var conFigColum = [
     }
 ];
 //khởi tạo form ghi tăng tài sản
-depreciationGrid.createFormDetail("#dialog_depreciation", 800, 600);
+depreciationGrid.createFormDetail("#dialog_depreciation_use_API", 800, 600);
 
 // THiết lập config header
 depreciationGrid.setConFigColum(conFigColum);
 
 //Load dữ liệu grid
-depreciationGrid.loadData(deprectation);
+depreciationGrid.loadAjaxData('https://localhost:44363/api/v1/RefDepreciations');
 
-//bindingDataForInput() {
-//    //this.on(this.input, {
-//    //    select: function (event, ui) {
-//    //        alert(ui.item.value);
-//    //        ui.item.option.selected = true;
-//    //        this._trigger("select", event, {
-//    //            item: ui.item.option
-//    //        });
-//    //    }
-//    //})
-//}

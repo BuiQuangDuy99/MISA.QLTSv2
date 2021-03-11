@@ -11,8 +11,6 @@ class depreciationForm extends baseForm {
         });
         this.initEventDepreciationForm();
         showTooltipElement($('.depreciation-sub-grid th'));
-
-
     }
 
     /**
@@ -35,10 +33,12 @@ class depreciationForm extends baseForm {
         });
         me.formatTd();
 
-        $('input[fieldName="RefNo"]').off('keyup').keyup(function () {
-            this.value = this.value.toLocaleUpperCase();
+        $('.depreciation-sub-grid tbody tr').find("td input").eq(2).off('keyup').keyup(function () {
+            me.setDepreciation();
         });
-        $('#TestDate').datepicker().inputmask("99/99/9999", { placeholder: "__/__/____" });
+        $('.depreciation-sub-grid tbody tr').find("td input").eq(3).off('keyup').keyup(function () {
+            me.setDepreciation();
+        });
     }
 
     /**
@@ -50,9 +50,9 @@ class depreciationForm extends baseForm {
                         <td class="text-alight-center"></td>
                         <td><input type="text" class="input-depreciation-sub-grid"></td>
                         <td></td>
-                        <td class="text-alight-right"></td>
-                        <td class="text-alight-center"></td>
-                        <td class="text-alight-right"></td>
+                        <td class="text-alight-right" dataType="Money" ></td>
+                        <td class="text-alight-right dataType="Number" "></td>
+                        <td class="text-alight-right" dataType="Money"></td>
                         <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                     </tr>`);
 
@@ -75,7 +75,7 @@ class depreciationForm extends baseForm {
     }
 
     /**
-     * Hàm xóa một dòng khi nhấn click nút xóa trên dòng
+     * Hàm xóa một dòng khi nhấn click nút xóa trên dòng trong form
      * CreatedBy:NDTUNG (2/3/2021)
      */
     deleteRow(button) {
@@ -83,7 +83,7 @@ class depreciationForm extends baseForm {
     }
 
     /**
-     * Hàm xóa toàn bộ dòng
+     * Hàm xóa toàn bộ dòng trong form
      * CreatedBy:NDTUNG (2/3/2021)
      * */
     deleteAllRow() {
@@ -110,39 +110,99 @@ class depreciationForm extends baseForm {
      * CreatedBy:NDTUNG (2/3/2021)
      * */
     formatTd() {
-        $('.depreciation-sub-grid tbody tr td').each(function () {
-            let dataType = $(this).attr('dataType');
+        $('.depreciation-sub-grid tbody tr td input').each(function () {
+            let money,
+                dataType = $(this).attr('dataType');
             switch (dataType) {
-                case "Money":
-                    let money = parseInt($(this).prop("textContent"));
+                case "money":
+                    money = parseInt($(this).val());
                     $(this).addClass('text-alight-right');
                     $(this).empty();
                     $(this).append(formatMoney(money));
+                    break;
+                case "Number":
+                    money = parseInt($(this).val());
+                    $(this).addClass('text-alight-right');
                     break;
                 default:
             }
         })
     }
 
+    /**
+     * Hàm lấy dữ liệu trong Form của form
+     * CreatedBy:NDTUNG (9/3/2021)
+     * */
     getData() {
         let depreciation = {},
-            asset = {},
-            listAsset = [];
-        $('.depreciation-sub-grid tbody tr').each(function (index) {
-            $(this).find('td[fieldName]').each(function () {
-                let fieldNameAss = $(this).attr('fieldName');
-                asset[fieldNameAss] = $(this).prop("textContent");
+            sumMoney = 0,
+            listAsset = [],
+            list;
+        $('.depreciation-sub-grid tbody tr ').each(function () {
+            let asset = {},
+                fieldNameAss,
+                dataType;
+            $(this).find('[fieldName]').each(function () {
+
+                fieldNameAss = $(this).attr('fieldName');
+                dataType = $(this).attr("dataType");
+
+                if (dataType == "Number" || dataType == "Money") {
+                    asset[fieldNameAss] = parseInt($(this).val().split(".").join(""));
+                }
+                else {
+                    asset[fieldNameAss] = $(this).val();
+                }
+                //if (fieldNameAss == "AmountTotal") {
+                //    let AmountTotal = asset['Cost'] / 100 * asset['DepreciationRate'];
+                //    asset[fieldNameAss] = AmountTotal;
+                //}
             })
             listAsset.push(asset);
+            list = JSON.stringify(listAsset);
         })
+
+        $('input[fieldName="AmountTotal"]').each(function () {
+            sumMoney += parseInt($(this).val().split(".").join(""));
+        })
+        console.log(sumMoney);
+
         $('input[fieldName],textarea[fieldName],table[fieldName]').each(function () {
+
             let fieldName = $(this).attr('fieldName');
+
             if (fieldName == "RefDetail") {
-                depreciation[fieldName] = listAsset;
+                depreciation[fieldName] = list;
             }
-            else
+            else if (fieldName == "PostedDate") {
                 depreciation[fieldName] = $(this).val();
+            }
+            else if (fieldName == "RefNo" || fieldName == "JournalMemo") {
+                depreciation[fieldName] = $(this).val();
+            }
+
+            depreciation['Id'] = createGuid();
+            depreciation['AmountTotal'] = sumMoney;
         });
-        console.log(depreciation);
+        return depreciation;
     }
+
+    setDepreciation() {
+        let cost,
+            depreciationRate,
+            amountTotal;
+        $('.depreciation-sub-grid tbody tr').each(function () {
+            // Mai tách hàm(1 hàm hiển thị , 1 hàm cất) Note: Không biết có làm được không ???
+            cost = parseInt($(this).find("td input").eq(2).val().split(".").join(""));
+            depreciationRate = parseInt($(this).find("td input").eq(3).val().split(".").join(""));
+            amountTotal = roundToTwo(cost / 100 * depreciationRate).toFixed(2);
+            amountTotal = amountTotal.toString().replace(".", ",");
+            amountTotal = formatMoney(parseInt(amountTotal.split(",")[0])).toString() + "," + parseInt(amountTotal.split(",")[1]).toString();
+            amountTotal = parseFloat(amountTotal.replace(",",".")); 
+            $(this).find("td input").eq(4).val(amountTotal);
+        })
+    };
+
+
 }
+

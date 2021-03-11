@@ -290,38 +290,38 @@ var deprectation  =
     [
         {
             "STT": 1,
-            "Id": "93e6c1b2-87de-45a1-aa61-f6389ef803a9",
-            "DateTime": "04-12-2021",
-            "depreciation_no": "TS85462",
-            "Explain": "Đây là ghi chú tự động",
-            "Price": 352342444,
+            "Id": "60a75784-1161-4041-89d6-26bed3643256",
+            "PostedDate": new Date('5-16-2021'),
+            "RefNo": "TS85462",
+            "JournalMemo": "Đây là ghi chú tự động",
+            "AmountTotal": 352342444,
             "Function": ""
         },
         {
             "STT": 2,
-            "Id": "93e6c1b2-87de-45a1-aa61-f6389ef803a9",
-            "DateTime": "04-14-2021",
-            "depreciation_no": "TS85462",
-            "Explain": "Đây là ghi chú tự động",
-            "Price": 352342444,
+            "Id": "fb8aed61-7497-4dc0-b484-1964b56c5dfa",
+            "PostedDate": new Date('5-10-2021'),
+            "RefNo": "TS85462",
+            "JournalMemo": "Đây là ghi chú tự động",
+            "AmountTotal": 352342444,
             "Function": ""
         },
         {
             "STT": 3,
-            "Id": "93e6c1b2-87de-45a1-aa61-f6389ef803a9",
-            "DateTime": "04-31-2021",
-            "depreciation_no": "TS85462",
-            "Explain": "Đây là ghi chú tự động",
-            "Price": 352342444,
+            "Id": "0940ccd0-870b-4c45-872d-109eaaf3c72c",
+            "PostedDate": new Date(),
+            "RefNo": "TS85462",
+            "JournalMemo": "Đây là ghi chú tự động",
+            "AmountTotal": 352342444,
             "Function": ""
         },
         {
             "STT": 4,
-            "Id": "93e6c1b2-87de-45a1-aa61-f6389ef803a9",
-            "DateTime": "04-04-2021",
-            "depreciation_no": "TS85462",
-            "Explain": "Đây là ghi chú tự động",
-            "Price": 352342444,
+            "Id": "9909ee03-420b-46e9-b807-8aa7bcd1fd1b",
+            "PostedDate": new Date(),
+            "RefNo": "TS85462",
+            "JournalMemo": "Đây là ghi chú tự động",
+            "AmountTotal": 352342444,
             "Function": ""
         }
     ]

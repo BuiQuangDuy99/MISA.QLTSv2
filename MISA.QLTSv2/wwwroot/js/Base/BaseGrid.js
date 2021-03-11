@@ -41,6 +41,8 @@ class BaseGrid extends Grid {
                 case "Save":
                     me.save();
                     break;
+                case "Refresh":
+                    break;
                 default:
                     break;
             }
@@ -48,7 +50,7 @@ class BaseGrid extends Grid {
 
         $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
         $('#btn-yes-warring').off('click').click(function () {
-            me.delete()
+            me.delete(me.listData)
         });
     }
 
@@ -79,6 +81,8 @@ class BaseGrid extends Grid {
      * CreatedBY: BQDUY(26/02/2021)
      * */
     delete() {
+        closeWarring();
+        $('.loading').show();
         let me = this;
         let selectedRow = me.grid.find(".selected-row");
         //if (selectedRow.length>0) {
@@ -91,15 +95,21 @@ class BaseGrid extends Grid {
         var url = me.url;
         $.ajax({
             url: url + "/" + selectedRow.data("recordId"),
-            method: "DELETE"
+            method: "DELETE",
+            async: true
         }).done(function (res) {
+            closeWarring();
             if (res > 0) {
-                showAlertWarring("Xóa thành công");
                 me.loadAjaxData(url);
             }
+            $('.loading').hide();
         }).fail(function (res) {
             alert("ko xóa được");
+            closeWarring();
+            $('.loading').hide();
         })
+       
+
     }
 
 
@@ -115,18 +125,20 @@ class BaseGrid extends Grid {
     }
 
     /**
-     * Hàm lấy dữ liệu từ server và render vào grid(tạm thời dùng biến fake data)
+     * Hàm lấy dữ liệu từ server và render vào grid
      * CreatedBy: BQDUY(25/02/2021)
      * */
     loadAjaxData(url) {
+
         var me = this;
 
         $.ajax({
             url: url,
-            method: "GET"
+            method: "GET",
+            async: false
         }).done(function (res) {
-            if (res) {
-                me.loadData(res);
+            if (res.Data) {
+                me.loadData(res.Data);
             }
         }).fail(function (res) {
 
