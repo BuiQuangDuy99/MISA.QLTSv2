@@ -53,9 +53,9 @@
             }
 
             this.value = propertyValue;
-
-            if (propertyName == "RefDetail") {
-                propertyValue = JSON.parse(propertyName);
+            
+            if (propertyName == "RefDetail" && propertyValue != "") {
+                propertyValue = JSON.parse(propertyValue);
                 let gridDetail = new BaseGrid('#depreciation-sub-grid', 'FixedAsset');
 
                 gridDetail.loadData(propertyValue);
