@@ -1,4 +1,5 @@
 
+
 //-----------------Form-----------------------------
 class baseForm {
     ///constructor
@@ -296,7 +297,7 @@ class baseForm {
             switch (dataType) {
                 case "date":
 
-                    value = formatDate(value, "MM-DD-YYYY");
+                    value = formatDatePicker(value);
                     //value += " 00:00:00";
                     break;
                 case "Number":

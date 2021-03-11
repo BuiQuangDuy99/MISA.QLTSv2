@@ -43,10 +43,8 @@ function formatDate(date, formatDate) {
         if (!date) {
             return "";
         } else {
-            var type = typeof(moment(date, ["DD-MM-YYYY", "MM-DD-YYYY"]));
-            var date = new Date(moment(date, ["DD-MM-YYYY", "MM-DD-YYYY"]).format(formatDate || "DD-MM-YYYY"));
-            console.log(type);
-            return date.getMonth();
+            var date = moment(date).format("DD/MM/YYYY");
+            return date;
         }
     } catch (e) {
         console.log(e);
@@ -61,11 +59,8 @@ function formatDatePicker(date) {
         if (!date) {
             return "";
         } else {
-            date = date.toString();
-            let day = date.split("/")[0];
-            let month = date.split("/")[1];
-            let year = date.split("/")[2];
-            return month + "/" + day + "/" + year;
+            var date = new Date(moment(date, "DD-MM-YYYY"));
+            return date;
         }
     } catch (e) {
         console.log(e);
