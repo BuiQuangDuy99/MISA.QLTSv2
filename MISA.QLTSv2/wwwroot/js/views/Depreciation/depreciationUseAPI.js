@@ -11,7 +11,7 @@
         showTooltipElement($('button'));
         showTooltipElement($('td'));
         $('.btn-remove').click(function () {
-            $("#depreciation-grid tbody tr").each(function () {
+            $("#depreciation-grid-api tbody tr").each(function () {
                 if ($(this).hasClass("selected-row")) {
                     count++;
                 }
@@ -45,7 +45,7 @@
     }
 }
 
-var depreciationGrid = new depreciation('#depreciation-grid', 'RefDepreciation');
+var depreciationGrid = new depreciation('#depreciation-grid-api', 'RefDepreciation');
 
 // Biến config cho từng column trong bảng
 
