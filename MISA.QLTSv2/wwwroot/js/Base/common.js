@@ -212,9 +212,9 @@ function createGuid() {
  */
 function showMessengerSuccess(msg) {
     $('.success_content').text(msg);
-    $('.success').show(2000, async function () {
+    $('.success').show(1, async function () {
         await setTimeout(async function () {
-            await $('.success').hide(2000);
+            await $('.success').hide(1);
         }, 2500);
     });
     $('.success').css('display', 'flex');
