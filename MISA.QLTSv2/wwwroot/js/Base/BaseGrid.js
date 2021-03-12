@@ -99,7 +99,6 @@ class BaseGrid extends Grid {
         let me = this;
         closeWarring();
         $('.loading').show();
-        let me = this;
         let selectedRow = me.getListId();
         //if (selectedRow.length>0) {
         //    data = data.filter(item => item["FixedAssetCategoryId"] !== selectedRow.data("recordId"));
