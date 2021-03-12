@@ -227,6 +227,7 @@ class baseForm {
     saveChangeData(data) {
         let me = this,
             jsCaller = me.jsCaller;
+
         var url = me.getApiUrl;
         if (jsCaller.formMode == "Add") {
             $.ajax({
@@ -256,7 +257,13 @@ class baseForm {
 
             })
         }
+        if (jsCaller.formMode == "Add") {
+            showMessengerSuccess("Thêm thành công!");
 
+        } else {
+            showMessengerSuccess("Sửa thành công!");
+
+        }
     }
 
     /**

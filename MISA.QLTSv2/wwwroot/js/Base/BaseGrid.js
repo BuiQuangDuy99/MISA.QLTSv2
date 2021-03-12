@@ -42,6 +42,7 @@ class BaseGrid extends Grid {
                     me.save();
                     break;
                 case "Refresh":
+                    me.refresh();
                     break;
                 default:
                     break;
@@ -74,6 +75,13 @@ class BaseGrid extends Grid {
         }
     }
 
+
+    refresh() {
+        let me = this;
+        $(me.grid).find('tbody').empty();
+        me.loadAjaxData(me.url);
+    }
+
     /**
      * Lấy ra câu thông báo khi nhấn nút Xóa
      * Author: Nguyen Dang Tung(3/2/2021)
@@ -91,11 +99,20 @@ class BaseGrid extends Grid {
         let me = this;
         closeWarring();
         $('.loading').show();
-        let selectedRow = me.grid.find(".selected-row");
+        let selectedRow = me.getListId();
+        //if (selectedRow.length>0) {
+        //    data = data.filter(item => item["FixedAssetCategoryId"] !== selectedRow.data("recordId"));
+        //    me.grid.find("tbody").empty();
+        //    me.loadData(data);
+        //} else {
+        //    alert("Vui lòng chọn bản ghi để xóa!");
+        //}
         var url = me.url;
         $.ajax({
-            url: url + "/" + selectedRow.data("recordId"),
+            url: url,
             method: "DELETE",
+            data: JSON.stringify(selectedRow),
+            contentType: 'application/json',
             async: true
         }).done(function (res) {
             closeWarring();
@@ -108,8 +125,8 @@ class BaseGrid extends Grid {
             closeWarring();
             $('.loading').hide();
         })
-       
 
+        showMessengerSuccess("Xóa thành công!");
     }
 
 
@@ -129,17 +146,17 @@ class BaseGrid extends Grid {
      * CreatedBy: BQDUY(25/02/2021)
      * */
     loadAjaxData(url) {
-
         var me = this;
-
+        $('.loading').show();
         $.ajax({
             url: url,
             method: "GET",
-            async: false
+            async: true
         }).done(function (res) {
             if (res.Data) {
                 me.loadData(res.Data);
             }
+            $('.loading').hide();
         }).fail(function (res) {
 
         })
