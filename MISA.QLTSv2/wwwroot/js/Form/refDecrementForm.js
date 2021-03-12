@@ -18,6 +18,7 @@
     setApiUrl() {
         this.getApiUrl = 'https://localhost:44363/api/RefDecrements';
     }
+
     /**
      * Hàm xử lý sự kiện thay đổi selection
      * CretedBY: DVVUONG(26/02/2021)

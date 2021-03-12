@@ -171,3 +171,10 @@ textarea {
     background-size: contain;
     background-position: center;
 }
+
+#refDecrement-sub-grid tbody td{
+    padding-left: 13px;
+}
+#refDecrement-sub-grid tbody td:first-child{
+    padding: inherit;
+}
