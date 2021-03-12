@@ -71,7 +71,7 @@
                         Ngày ghi giảm
                     </div>
                     <div>
-                        <input fieldName="PostedDate" class="input-date input-asset" dataType="Date" placeholder="__/__/____" required />
+                        <input id="PostedDate" fieldName="PostedDate" class="input-date input-asset" dataType="date" placeholder="__/__/____" required />
                         <div class="icon_PostDate"></div>
                     </div>
                 </div>
@@ -104,15 +104,15 @@
         </div>
         <div class="row m-row-content">
             <div class=" col-12" style="height:212px;overflow-y: auto">
-                <table fieldName="RefDetail" id="refDecrement-sub-grid" class="depreciation-sub-grid">
+                <table fieldName="RefDetail" id="refDecrement-sub-grid" class="depreciation-sub-grid" dataType="JSON">
                     <thead>
                         <tr>
-                            <th style="width:40px" class="text-alight-center" title="Số thứ tự">STT</th>
-                            <th style="width:89px">Mã tài sản</th>
-                            <th style="width:221px">Tên tài sản</th>
-                            <th style="width:121px">Nguyên giá</th>
-                            <th style="width:121px" title="Tỉ lệ hao mòn năm">HM lũy kế</th>
-                            <th style="width:132px">Giá trị còn lại</th>
+                            <th style="width:40px" class="text-alight-center" title="Số thứ tự" fieldName="STT">STT</th>
+                            <th style="width:89px" fieldName="FixedAssetCode">Mã tài sản</th>
+                            <th style="width:221px" fieldName="FixedAssetName">Tên tài sản</th>
+                            <th style="width:121px" fieldName="Cost">Nguyên giá</th>
+                            <th style="width:121px" title="Tỉ lệ hao mòn năm" fieldName="AccumulatedDepreciation">HM lũy kế</th>
+                            <th style="width:132px" fieldName="CostRemainder">Giá trị còn lại</th>
                             <th style="width:35px"></th>
                         </tr>
                     </thead>
