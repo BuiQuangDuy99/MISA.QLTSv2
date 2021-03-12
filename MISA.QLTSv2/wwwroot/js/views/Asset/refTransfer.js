@@ -52,7 +52,7 @@ var conFigColum = [
     },
     {
         DataType: "text",
-        FieldName: "RefDetail",
+        FieldName: "JournalMemo",
         FieldText: "Lý do điều chuyển",
         Index: 4
     },

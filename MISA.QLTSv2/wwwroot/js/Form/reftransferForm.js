@@ -3,7 +3,7 @@
     constructor(formId, width, height, jsCaller) {
         super(formId, jsCaller);
         //Định nghĩa Dialog
-        this.assetIncreasedForm = $(formId).dialog({
+        this.reftransferForm = $(formId).dialog({
             autoOpen: false,
             height: height,
             width: width,
@@ -13,7 +13,7 @@
 
     initEvent() {
         super.initEvent();
-
+        $('#TestDate').datepicker({ dateFormat: "dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
 
     }
 
@@ -32,15 +32,43 @@
         let me = this;
         if (data) {
             me.bindingData(data);
-            me.assetIncreasedForm.dialog('open');
+            me.reftransferForm.dialog('open');
         }
-        me.assetIncreasedForm.dialog('open');
+        me.reftransferForm.dialog('open');
+    }
+
+
+    bindingData(data) {
+        let me = this;
+        me.form.find("[fieldName]").each(function () {
+            var propertyName = $(this).attr('fieldName');
+            var propertyValue = data[0][propertyName];
+
+            if ($(this).attr('dataType') == 'date') {
+                propertyValue = formatDate(propertyValue, "DD-MM-YYYY");
+            }
+            else if ($(this).attr('dataType') == "Money") {
+                var money = formatMoney(propertyValue);
+                propertyValue = money;
+            }
+
+            this.value = propertyValue;
+
+            if (propertyName == "RefDetail" && propertyValue != null) {
+                propertyValue = JSON.parse(propertyValue);
+                let gridDetail = new BaseGrid('#depreciation-sub-grid', 'FixedAsset');
+
+                gridDetail.loadData(propertyValue);
+            }
+        });
     }
 
     closeForm() {
         let me = this;
         me.resetForm();
-        me.assetIncreasedForm.dialog('close');
+        var refTransferGrid = new refTransfer('#reftransfer-grid', "RefTransfer");
+        refTransferGrid.createFormDetail("#dialog_reftransfer", 800, 600);
+        me.reftransferForm.dialog('close');
     }
 
 }

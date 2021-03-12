@@ -156,13 +156,12 @@ class Grid {
      * CreatedBY: BQDUY(25/02/2021)
      */
     loadData(data) {
-        let me = this,
-            grid = this.grid;
+        let me = this;
 
-        $(grid).find('tbody').empty();
+        $(me.grid).find('tbody').empty();
         if (data) {
             $.each(data, function (index, obj) {
-                $(grid).find('tbody').append(me.renderBody(index, obj));
+                $(me.grid).find('tbody').append(me.renderBody(index, obj));
             })
 
         }
@@ -184,8 +183,8 @@ class Grid {
                 td;
 
             row = $(`<tr></tr>`);
-            //$(row).data('recordId', object[me.entity + 'Id']);
-            $(row).data('recordId', object['Id']);
+            $(row).data('recordId', object[me.entity + 'Id']);
+            //$(row).data('recordId', object['Id']);
 
             // Binding cột số thứ tự riêng, index chính là value
             object["STT"] = index + 1;

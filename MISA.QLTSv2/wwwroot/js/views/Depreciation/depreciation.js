@@ -4,7 +4,8 @@
         this.initEvents();
     }
     initEvents() {
-        let me = this;
+        let me = this,
+            count = 0;
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));

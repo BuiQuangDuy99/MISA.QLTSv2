@@ -13,6 +13,7 @@ namespace MISA.QLTSv2.Model.Entities
     /// createBy:NVTUYEN(01/03/2021)
     public class MappingProfile: Profile
     {
+
         public MappingProfile()
         {
             SourceMemberNamingConvention = new LowerUnderscoreNamingConvention();
@@ -36,5 +37,6 @@ namespace MISA.QLTSv2.Model.Entities
             CreateMap<ref_decrement, RefDecrement>();
             CreateMap<RefDecrement, ref_decrement>();
         }
+
     }
 }

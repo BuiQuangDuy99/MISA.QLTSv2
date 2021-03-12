@@ -1,4 +1,5 @@
 
+
 //-----------------Form-----------------------------
 class baseForm {
     ///constructor
@@ -33,7 +34,7 @@ class baseForm {
             $(this).attr("title", "");
         });
 
-        this.form.on("keypress", "input[dataType='money'],input[dataType='Number']", function () {
+        this.form.find("input[dataType='money'],input[dataType='Number']").on("keypress", function () {
             if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
                 event.preventDefault();
             }
@@ -44,10 +45,10 @@ class baseForm {
             }
         });
 
-        this.form.find("input[dataType='Date']").datepicker({ dateFormat:"dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
+        this.form.find("input[dataType='date']").datepicker({ dateFormat: "dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
 
         this.form.find(".icon_PostDate").off('click').click(function () {
-            $('input[dataType="Date"]').focus();
+            $('input[dataType="date"]').focus();
         });
     }
 
@@ -162,6 +163,9 @@ class baseForm {
     resetForm() {
         this.form.find("[fieldName]").each(function () {
             $(this).val("");
+            if ($(this).attr("dataType") == "JSON") {
+                $(this).find('tbody').empty();
+            }
         });
         this.form.find(".border-red").removeClass("border-red");
     }
@@ -182,11 +186,12 @@ class baseForm {
     * CreatedBy : NDTUNG (3/2/2021)
     */
     bindingData(data) {
+
         this.form.find("[fieldName]").each(function () {
             var propertyName = $(this).attr('fieldName');
             var propertyValue = data[0][propertyName];
             if ($(this).attr('dataType') == 'date') {
-                propertyValue = formatDate(propertyValue, "YYYY-MM-DD");
+                propertyValue = formatDate(propertyValue, "DD-MM-YYYY");
             }
             else if ($(this).attr('dataType') == "Money") {
                 var money = formatMoney(propertyValue);
@@ -252,10 +257,6 @@ class baseForm {
             })
         }
 
-        //deprectation.push(data);
-        //me.closeForm();
-        //showMessengerSuccess("Thêm thành công!");
-        //jsCaller.loadData(deprectation);
     }
 
     /**
@@ -267,8 +268,10 @@ class baseForm {
 
         if (value) {
             switch (dataType) {
-                case "Date":
-                    value += " 00:00:00";
+                case "date":
+
+                    value = formatDatePicker(value);
+                    //value += " 00:00:00";
                     break;
                 case "Number":
                     value = parseInt(value);
@@ -299,12 +302,23 @@ class baseForm {
     getData() {
         var me = this;
         var data = {};
-        this.form.find("[fieldName], select").each(function () {
+        this.form.find("input[fieldName], textarea, select, table").each(function () {
             var fieldName = $(this).attr("fieldName"),
                 dataType = $(this).attr("DataType");
-            data[fieldName] = me.getDataInput($(this), dataType);
-            if (fieldName == me.jsCaller.entity + "Id") {
-                data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
+
+            //if (dataType == "Combobox") {
+            //    fieldName = $(this).attr("fieldValue");
+
+            //}
+            if (me.jsCaller.formMode == "edit") {
+                //data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
+                data[me.jsCaller.entity + "Id"] = me.jsCaller.grid.find(".selected-row").data("recordId");
+            }
+            if (dataType == "JSON") {
+                data[fieldName] = JSON.stringify(testVarJSON);
+            } else {
+                data[fieldName] = me.getDataInput($(this), dataType);
+                
             }
         });
         return data;
@@ -318,7 +332,23 @@ class baseForm {
         var isValid = me.validateForm();
         if (isValid) {
             var data = me.getData();
+            console.log(data);
             me.saveChangeData(data);
         }
     }
-}
+} 
+
+var testVarJSON = [{
+    "FixedAssetId": "57d426d2-7d83-11eb-ba81-6a929c950d9c",
+    "FixedAssetCode": "TS999",
+    "FixedAssetName": "âxaxa",
+    "Cost": 2828.0000,
+    "DepreciationRate": 12.0
+},
+{
+    "FixedAssetId": "5f7b48e5-16f9-2f2f-ecdc-845b5dcdad45",
+    "FixedAssetCode": "TS000",
+    "FixedAssetName": "tài sản thứ 2",
+    "Cost": 999.0000,
+    "DepreciationRate": 10.0
+}]

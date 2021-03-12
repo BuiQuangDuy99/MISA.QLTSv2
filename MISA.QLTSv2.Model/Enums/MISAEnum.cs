@@ -40,7 +40,7 @@ namespace MISA.QLTSv2.Model.Enums
         /// <summary>
         /// Có exception
         /// </summary>
-        Exception = 900
+        Exception = 500
     }
 
     /// <summary>
