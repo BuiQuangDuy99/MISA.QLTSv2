@@ -257,7 +257,13 @@ class baseForm {
 
             })
         }
+        if (jsCaller.formMode == "Add") {
+            showMessengerSuccess("Thêm thành công!");
 
+        } else {
+            showMessengerSuccess("Sửa thành công!");
+
+        }
     }
 
     /**

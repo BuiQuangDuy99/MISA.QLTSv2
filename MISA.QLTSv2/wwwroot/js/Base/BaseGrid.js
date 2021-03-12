@@ -117,7 +117,7 @@ class BaseGrid extends Grid {
             $('.loading').hide();
         })
 
-
+        showMessengerSuccess("Xóa thành công!");
     }
 
 
