@@ -5,6 +5,7 @@ using MISA.QLTSv2.BL.Services;
 using MISA.QLTSv2.Model.Entities;
 using MISA.QLTSv2.Model.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace MISA.QLTSv2.API
 {
@@ -65,12 +66,20 @@ namespace MISA.QLTSv2.API
         /// </summary>
         /// <returns>Số bản ghi bị xóa</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        [HttpDelete("{entityId}")]
-        public ServiceResult DeleteRefTransfer(Guid entityId)
+        [HttpDelete]
+        public ServiceResult DeleteRefTransfer([FromBody] List<Guid> entityId)
         {
             try
             {
-                return _refTransferBL.DeleteRefTransfer(entityId);
+                int count = 0;
+                foreach (var item in entityId)
+                {
+                    _refTransferBL.DeleteRefTransfer(item);
+                    count++;
+                }
+                _serviceResult.Data = count;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                return _serviceResult;
             }
             catch (Exception ex)
             {
