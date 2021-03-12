@@ -175,6 +175,6 @@ textarea {
 #refDecrement-sub-grid tbody td{
     padding-left: 13px;
 }
-#refDecrement-sub-grid tbody td:first-child{
-    padding: inherit;
-}
+    #refDecrement-sub-grid tbody td:first-child, #refDecrement-sub-grid tbody td:last-child {
+        padding: inherit;
+    }
