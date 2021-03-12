@@ -100,13 +100,6 @@ class BaseGrid extends Grid {
         closeWarring();
         $('.loading').show();
         let selectedRow = me.getListId();
-        //if (selectedRow.length>0) {
-        //    data = data.filter(item => item["FixedAssetCategoryId"] !== selectedRow.data("recordId"));
-        //    me.grid.find("tbody").empty();
-        //    me.loadData(data);
-        //} else {
-        //    alert("Vui lòng chọn bản ghi để xóa!");
-        //}
         var url = me.url;
         $.ajax({
             url: url,
