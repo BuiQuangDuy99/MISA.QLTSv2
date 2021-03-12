@@ -59,8 +59,8 @@ function formatDatePicker(date) {
         if (!date) {
             return "";
         } else {
-            var date = new Date(moment(date, "DD-MM-YYYY"));
-            return date;
+            //var date = new Date(moment(date, "DD-MM-YYYY"));
+            return moment(date, "DD-MM-YYYY").format("MM/DD/YYYY");
         }
     } catch (e) {
         console.log(e);

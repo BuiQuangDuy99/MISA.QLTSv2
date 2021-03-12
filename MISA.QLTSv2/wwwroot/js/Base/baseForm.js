@@ -257,39 +257,6 @@ class baseForm {
             })
         }
 
-        //deprectation.push(data);
-        //me.closeForm();
-        //showMessengerSuccess("Thêm thành công!");
-        //jsCaller.loadData(deprectation);
-        //var url = me.getApiUrl;
-        //if (jsCaller.formMode == "Add") {
-        //    $.ajax({
-        //        url: url,
-        //        method: "POST",
-        //        data: JSON.stringify(data),
-        //        contentType: 'application/json'
-        //    }).done(function (res) {
-        //        me.closeForm();
-        //        me.jsCaller.loadAjaxData(me.getApiUrl);
-        //        $('.loading').hide();
-        //    }).fail(function (res) {
-        //        $('.loading').hide();
-        //    })
-        //} else if (jsCaller.formMode == "edit") {
-        //    var idSelected = me.jsCaller.grid.find(".selected-row").data("recordId");
-        //    $.ajax({
-        //        url: url + '/' + idSelected,
-        //        method: "PUT",
-        //        data: JSON.stringify(data),
-        //        contentType: 'application/json'
-        //    }).done(function (res) {
-        //        me.closeForm();
-        //        me.jsCaller.loadAjaxData(me.getApiUrl);
-        //        $('.loading').hide();
-        //    }).fail(function (res) {
-        //        $('.loading').hide();
-        //    })
-        //}
     }
 
     /**
@@ -343,13 +310,15 @@ class baseForm {
             //    fieldName = $(this).attr("fieldValue");
 
             //}
-            if (fieldName == me.jsCaller.entity + "Id") {
-                data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
+            if (me.jsCaller.formMode == "edit") {
+                //data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
+                data[me.jsCaller.entity + "Id"] = me.jsCaller.grid.find(".selected-row").data("recordId");
             }
             if (dataType == "JSON") {
                 data[fieldName] = JSON.stringify(testVarJSON);
             } else {
                 data[fieldName] = me.getDataInput($(this), dataType);
+                
             }
         });
         return data;

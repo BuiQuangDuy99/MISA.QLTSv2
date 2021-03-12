@@ -50,15 +50,15 @@ class BaseGrid extends Grid {
 
         $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
         $('#btn-yes-warring').off('click').click(function () {
-            me.delete(me.listData)
+            me.delete();
         });
-        $('#btn-delete').on("click", function () {
-            me.confirmDelete();
-            $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
-            $('#btn-yes-warring').off('click').click(function () {
-                me.delete()
-            });
-        })
+        //$('#btn-delete').on("click", function () {
+        //    me.confirmDelete();
+        //    $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
+        //    $('#btn-yes-warring').off('click').click(function () {
+        //        me.delete()
+        //    });
+        //})
     }
 
     //Hàm thực hiện data-command
@@ -88,17 +88,10 @@ class BaseGrid extends Grid {
      * CreatedBY: BQDUY(26/02/2021)
      * */
     delete() {
+        let me = this;
         closeWarring();
         $('.loading').show();
-        let me = this;
         let selectedRow = me.grid.find(".selected-row");
-        //if (selectedRow.length>0) {
-        //    data = data.filter(item => item["FixedAssetCategoryId"] !== selectedRow.data("recordId"));
-        //    me.grid.find("tbody").empty();
-        //    me.loadData(data);
-        //} else {
-        //    alert("Vui lòng chọn bản ghi để xóa!");
-        //}
         var url = me.url;
         $.ajax({
             url: url + "/" + selectedRow.data("recordId"),
