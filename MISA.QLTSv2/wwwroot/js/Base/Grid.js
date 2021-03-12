@@ -148,8 +148,7 @@ class Grid {
      * CreatedBY: BQDUY(25/02/2021)
      */
     loadData(data) {
-        let me = this
-            /*grid = this.grid*/;
+        let me = this;
 
         $(me.grid).find('tbody').empty();
         if (data) {

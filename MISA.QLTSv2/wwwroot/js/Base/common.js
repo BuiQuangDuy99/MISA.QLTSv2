@@ -43,9 +43,8 @@ function formatDate(date, formatDate) {
         if (!date) {
             return "";
         } else {
-            date = date.toString().substring(0, 10);
-            //date = moment(date, ["DD-MM-YYYY", "MM-DD-YYYY", "DD-MMM-YYYY", "MMM-DD-YYYY"]).format("YYYY-MM-DD");
-            return moment(date).format(formatDate || "DD-MM-YYYY");
+            var date = moment(date).format("DD/MM/YYYY");
+            return date;
         }
     } catch (e) {
         console.log(e);
@@ -60,11 +59,8 @@ function formatDatePicker(date) {
         if (!date) {
             return "";
         } else {
-            date = date.toString();
-            let day = date.split("/")[0];
-            let month = date.split("/")[1];
-            let year = date.split("/")[2];
-            return month + "/" + day + "/" + year;
+            var date = new Date(moment(date, "DD-MM-YYYY"));
+            return date;
         }
     } catch (e) {
         console.log(e);
