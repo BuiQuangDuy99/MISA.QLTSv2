@@ -3,6 +3,7 @@ class BaseGrid extends Grid {
         super(gridId, entity);
 
         this.formDetail = null;
+        this.cacheData = [];
         this.formMode = null;
         this.listData = [];
         this.url = null;
@@ -87,8 +88,9 @@ class BaseGrid extends Grid {
      * Author: Nguyen Dang Tung(3/2/2021)
      * */
     confirmDelete() {
-        var msg = "Bạn có chắc chắn muốn xóa không?";
-        showAlertConfirm(msg);
+        if (formDelete) {
+            formDelete.excute(this);
+        }
     }
 
     /**
@@ -97,16 +99,10 @@ class BaseGrid extends Grid {
      * */
     delete() {
         let me = this;
-        closeWarring();
+
         $('.loading').show();
+
         let selectedRow = me.getListId();
-        //if (selectedRow.length>0) {
-        //    data = data.filter(item => item["FixedAssetCategoryId"] !== selectedRow.data("recordId"));
-        //    me.grid.find("tbody").empty();
-        //    me.loadData(data);
-        //} else {
-        //    alert("Vui lòng chọn bản ghi để xóa!");
-        //}
         var url = me.url;
         $.ajax({
             url: url,
@@ -116,19 +112,16 @@ class BaseGrid extends Grid {
             async: true
         }).done(function (res) {
             closeWarring();
+            showMessengerSuccess("Xóa thành công!");
             if (res.Data > 0) {
                 me.loadAjaxData(url);
             }
             $('.loading').hide();
         }).fail(function (res) {
-            alert("ko xóa được");
             closeWarring();
             $('.loading').hide();
         })
-
-        showMessengerSuccess("Xóa thành công!");
     }
-
 
     /**
      * Hàm xử lý sự kiện khi double click vào một hàng trong grid
@@ -148,17 +141,11 @@ class BaseGrid extends Grid {
     loadAjaxData(url) {
         var me = this;
         $('.loading').show();
-        $.ajax({
-            url: url,
-            method: "GET",
-            async: true
-        }).done(function (res) {
+        callAjax(url, "GET", null, function (res) {
             if (res.Data) {
                 me.loadData(res.Data);
             }
             $('.loading').hide();
-        }).fail(function (res) {
-
         })
     }
 
@@ -177,7 +164,15 @@ class BaseGrid extends Grid {
      * CreatedBY: BQDUY(25/02/2021)
      */
     loadData(data) {
-        super.loadData(data);
-        this.listData = data;
+        if (data) {
+            this.listData = data;
+            this.cacheData = data;
+        }
+
+        this.filterData();
+        super.loadData(this.listData);
+    }
+
+    filterData() {
     }
 }

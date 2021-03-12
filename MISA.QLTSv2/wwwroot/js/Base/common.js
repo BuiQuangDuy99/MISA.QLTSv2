@@ -32,7 +32,6 @@ var callAjax = function (url, method, data, functionCallBack, async = true) {
 }
 
 
-
 /**
  * Format dữ liệu ngày tháng sang ngày/tháng/năm
  * @param {any} date tham số có kiểu dữ liệu bất kỳ

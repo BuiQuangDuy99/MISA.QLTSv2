@@ -61,30 +61,6 @@ namespace MISA.QLTSv2.API
                 return _serviceResult;
             }
         }
-
-        /// <summary>
-        /// lấy ra danh sách nhân viên theo điều kiện
-        /// </summary>
-        /// <param name="specs"></param>
-        /// <param name="departmentId"></param>
-        /// <param name="positionId"></param>
-        /// <returns>List nhân viên</returns>
-        /// CreatedBy:NVTUYEN(21/01/2021)
-        [HttpGet("filter")]
-        public ServiceResult GetRefTransferFilter([FromQuery] string specs)
-        {
-            try
-            {
-                return _refTransferBL.GetRefTransferFilter(specs);
-            }
-            catch (Exception ex)
-            {
-                _serviceResult.Messenger = ex.Message.ToString();
-                _serviceResult.HttpCode = HttpCodeResult.Exception;
-                return _serviceResult;
-            }
-        }
-
         /// <summary>
         /// Xóa Một bản ghi
         /// </summary>

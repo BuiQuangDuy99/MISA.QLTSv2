@@ -124,21 +124,6 @@ namespace MISA.QLTSv2.DL
             }
             return parameters;
         }
-        /// <summary>
-        /// lấy ra danh sách chứng tù
-        /// </summary>
-        /// <param name="specs"></param>
-        /// <returns>List chứng từ</returns>
-        /// CreatedBy:NVTUYEN(21/01/2021)
-        public List<RefTransfer> GetRefTransferFilter(string specs)
-        {
-            //Build tham số đầu vào cho store:
-            var inputs = specs != null ? specs : string.Empty;
-            var parameters = new DynamicParameters();
-            parameters.Add("$RefNo", inputs, DbType.String);
-            var res = _dbConnection.Query<ref_transfer>("Proc_GetEmployeeFilter", parameters, commandType: CommandType.StoredProcedure).ToList();
-            return _mapper.Map<List<RefTransfer>>(res);
-        }
 
         /// <summary>
         /// lấy ra bản ghi theo property

@@ -44,27 +44,6 @@ namespace MISA.QLTSv2.BL.Services
 
             return _serviceResult;
         }
-
-        public ServiceResult GetRefTransferFilter(string specs)
-        {
-            var res = _refTransferDL.GetRefTransferFilter(specs);
-
-            if (res != null)
-            {
-                _serviceResult.Data = res;
-                _serviceResult.HttpCode = HttpCodeResult.Success;
-                _serviceResult.Messenger = Resources.Msg_GetSuccess;
-            }
-            else
-            {
-                _serviceResult.Data = res;
-                _serviceResult.HttpCode = HttpCodeResult.Fail;
-                _serviceResult.Messenger = Resources.Msg_GetFail;
-            }
-
-            return _serviceResult;
-        }
-
         /// <summary>
         /// Lấy ra một bản ghi theo ID
         /// </summary>
