@@ -101,6 +101,14 @@ class Grid {
                 return element;
             }
 
+            switch (fieldName) {
+                case "RefNo":
+                    element.addClass("width-refno");
+                    break;
+                default:
+                    break;
+            }
+
             switch (dataType) {
                 case "STT":
                     element.addClass("width-stt");

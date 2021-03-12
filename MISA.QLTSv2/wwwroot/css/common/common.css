@@ -36,7 +36,7 @@ form .form-control:focus {
 .width-stt {
     width: 40px !important;
 }
-.width-datetime{
+.width-datetime, .width-refno {
     width: 107px !important;
 }
 .width-price{

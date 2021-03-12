@@ -7,6 +7,8 @@
 }
 
 @section Links{
+    <link href="~/css/Form/asset.css" rel="stylesheet" />
+    <link href="~/css/Form/refDecrement.css" rel="stylesheet" />
 }
 
 <div class="tool-bar" id="tbGrdRefDecrement">
@@ -43,3 +45,162 @@
         </table>
     </div>
 </div>
+<div id="dialog_refdecrement" class="dialog_reftransfer" title="Thêm chứng từ điều chuyển tài sản">
+    <div class="container-fluid">
+        <div class="row dialog-header">
+            <div class="col-8">
+                Thêm chứng từ ghi giảm
+            </div>
+            <div class="col-4 header-toolbar">
+                <button class="btn-help button">
+                    <div class="icon-help">
+
+                    </div>
+                </button>
+                <button class="btn-close button" id="btn-close">
+                    <div class="icon-close">
+
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col col-12 content-items" style="display:flex">
+                <div>
+                    <div class="text-header">
+                        Ngày ghi giảm
+                    </div>
+                    <div>
+                        <input fieldName="PostedDate" class="input-date input-asset" dataType="Date" placeholder="__/__/____" required />
+                        <div class="icon_PostDate"></div>
+                    </div>
+                </div>
+                <div class="ml-4">
+                    <div class="text-header">
+                        Số chứng từ
+                    </div>
+                    <div>
+                        <input fieldName="RefNo" class="input-text input-asset RefNo " maxlength="50" dataType="Text" required />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class=" col-12">
+
+                <div class="text-header">
+                    Lý do ghi giảm
+                </div>
+                <div>
+                    <textarea fieldName="JournalMemo" class="input-detail input-dictionary" rows="2" dataType="Text"></textarea>
+                </div>
+
+            </div>
+        </div>
+        <div class="row depreciation-header">
+            <div class="col-8">
+                Danh sách tài sản
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class=" col-12" style="height:212px;overflow-y: auto">
+                <table fieldName="RefDetail" id="depreciation-sub-grid" class="depreciation-sub-grid">
+                    <thead>
+                        <tr>
+                            <th style="width:40px" class="text-alight-center" title="Số thứ tự">STT</th>
+                            <th style="width:89px">Mã tài sản</th>
+                            <th style="width:221px">Tên tài sản</th>
+                            <th style="width:121px">Nguyên giá</th>
+                            <th style="width:121px" title="Tỉ lệ hao mòn năm">HM lũy kế</th>
+                            <th style="width:132px">Giá trị còn lại</th>
+                            <th style="width:35px"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-alight-center">1</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+                        </tr>
+                        <tr>
+                            <td class="text-alight-center">2</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+                        </tr>
+                        <tr>
+                            <td class="text-alight-center">3</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+                        </tr>
+                        <tr>
+                            <td class="text-alight-center">4</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+                        </tr>
+                        <tr>
+                            <td class="text-alight-center">5</td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class=" col-12">
+                <div style="display:flex; padding-top:10px">
+                    <button class="button button-depreciation btn-add-row">
+                        <div class="button-depreciation-icon btn-add-row-icon"></div>
+                        <div class="btn-content">Thêm dòng</div>
+                    </button>
+                    <button class="button button-depreciation btn-delete-all-row ml-4">
+                        <div class="button-depreciation-icon btn-delete-all-row-icon"></div>
+                        <div class="btn-content">Xóa hết dòng</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <input fieldName="RefTransferId" style="display:none" />
+    </div>
+    <div class="dialog-footer">
+        <div class="footer-left">
+            <button class="button btn-cancel" id="btn-cancel">Hủy</button>
+        </div>
+        <div class="footer-right">
+            <button id="btn-save" class="button btn-add">Lưu</button>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script src="~/js/Form/refDecrementForm.js"></script>
+    <script src="~/js/views/Asset/refDecrement.js"></script>
+}
+

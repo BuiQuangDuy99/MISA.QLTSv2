@@ -23,11 +23,11 @@ class refDecrement extends BaseGrid {
 
     createFormDetail(formID, width, height) {
         var me = this;
-        this.formDetail = new reftransferForm(formID, width, height, me);
+        this.formDetail = new refDecrementForm(formID, width, height, me);
     }
 }
 
-var refTransferGrid = new refTransfer('#refdecrement-grid', "RefDecrement");
+var refDecrementGrid = new refDecrement('#refdecrement-grid', "RefDecrement");
 
 // Biến config cho từng column trong bảng
 
@@ -58,7 +58,7 @@ var conFigColum = [
     },
     {
         DataType: "money",
-        FieldName: "RefDetail",
+        FieldName: "CostRemainder",
         FieldText: "Giá trị còn lại",
         Index: 5
     },
@@ -71,10 +71,10 @@ var conFigColum = [
 ];
 
 //khởi tạo form ghi tăng tài sản
-//refTransferGrid.createFormDetail("#dialog_reftransfer", 800, 600);
+refDecrementGrid.createFormDetail("#dialog_refdecrement", 800, 600);
 
 // THiết lập config header
-refTransferGrid.setConFigColum(conFigColum);
+refDecrementGrid.setConFigColum(conFigColum);
 
 // Load dữ liệu grid
-refTransferGrid.loadAjaxData('https://localhost:44363/api/refdecrements');
+refDecrementGrid.loadAjaxData('https://localhost:44363/api/refdecrements');

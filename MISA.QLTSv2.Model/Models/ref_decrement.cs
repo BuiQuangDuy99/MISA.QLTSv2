@@ -57,6 +57,11 @@ namespace MISA.QLTSv2.Model.Models
         public int? tracked_year { get; set; }
 
         /// <summary>
+        /// Giá trị còn lại
+        /// </summary>
+        public decimal? cost_remainder { get; set; }
+
+        /// <summary>
         /// Tổng nguyên giá
         /// </summary>
         public decimal? cost_total { get; set; }
