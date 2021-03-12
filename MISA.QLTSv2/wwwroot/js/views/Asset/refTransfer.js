@@ -19,17 +19,13 @@ class refTransfer extends BaseGrid {
         $('.btn-remove').click(function () {
             $("#reftransfer-grid tbody tr").each(function () {
                 if ($(this).hasClass("selected-row")) {
-                    count++;
+                    showAlertConfirm("Bạn có chắc chắn muốn xóa không?")
                 }
-            })
-            if (count == 0) {
-                showAlertWarring("Vui lòng chọn chứng từ cần xóa!")
-            }
-            else {
-                showAlertConfirm("Bạn có chắc chắn muốn xóa không?")
-            }
-        });
-            
+                else {
+                    showAlertWarring("Vui lòng chọn chứng từ cần xóa!")
+                }
+            });
+        })
 }
     setUrl() {
         this.url = 'https://localhost:44363/api/RefTransfer';

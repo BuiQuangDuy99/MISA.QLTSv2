@@ -42,6 +42,7 @@ class BaseGrid extends Grid {
                     me.save();
                     break;
                 case "Refresh":
+                    me.refresh();
                     break;
                 default:
                     break;
@@ -72,6 +73,13 @@ class BaseGrid extends Grid {
         if (me.formDetail) {
             me.formDetail.show();
         }
+    }
+
+
+    refresh() {
+        let me = this;
+        $(me.grid).find('tbody').empty();
+        me.loadAjaxData(me.url);
     }
 
     /**
@@ -108,7 +116,7 @@ class BaseGrid extends Grid {
             closeWarring();
             $('.loading').hide();
         })
-       
+
 
     }
 
@@ -129,17 +137,17 @@ class BaseGrid extends Grid {
      * CreatedBy: BQDUY(25/02/2021)
      * */
     loadAjaxData(url) {
-
         var me = this;
-
+        $('.loading').show();
         $.ajax({
             url: url,
             method: "GET",
-            async: false
+            async: true
         }).done(function (res) {
             if (res.Data) {
                 me.loadData(res.Data);
             }
+            $('.loading').hide();
         }).fail(function (res) {
 
         })

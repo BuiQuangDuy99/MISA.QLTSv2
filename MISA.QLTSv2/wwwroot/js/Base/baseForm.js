@@ -227,6 +227,7 @@ class baseForm {
     saveChangeData(data) {
         let me = this,
             jsCaller = me.jsCaller;
+
         var url = me.getApiUrl;
         if (jsCaller.formMode == "Add") {
             $.ajax({
