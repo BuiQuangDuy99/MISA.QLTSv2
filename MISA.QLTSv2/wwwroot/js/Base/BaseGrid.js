@@ -84,7 +84,7 @@ class BaseGrid extends Grid {
         closeWarring();
         $('.loading').show();
         let me = this;
-        let selectedRow = me.grid.find(".selected-row");
+        let selectedRow = me.getListId();
         //if (selectedRow.length>0) {
         //    data = data.filter(item => item["FixedAssetCategoryId"] !== selectedRow.data("recordId"));
         //    me.grid.find("tbody").empty();
@@ -94,12 +94,14 @@ class BaseGrid extends Grid {
         //}
         var url = me.url;
         $.ajax({
-            url: url + "/" + selectedRow.data("recordId"),
+            url: url,
             method: "DELETE",
+            data: JSON.stringify(selectedRow),
+            contentType: 'application/json',
             async: true
         }).done(function (res) {
             closeWarring();
-            if (res > 0) {
+            if (res.Data > 0) {
                 me.loadAjaxData(url);
             }
             $('.loading').hide();

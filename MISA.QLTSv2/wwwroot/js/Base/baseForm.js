@@ -337,8 +337,8 @@ class baseForm {
             //    fieldName = $(this).attr("fieldValue");
 
             //}
-            if (fieldName == me.jsCaller.entity + "Id") {
-                data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
+            if (me.jsCaller.formMode == "edit") {
+                data[me.jsCaller.entity + "Id"] = me.jsCaller.grid.find(".selected-row").data("recordId");
             }
             if (dataType == "JSON") {
                 data[fieldName] = JSON.stringify(testVarJSON);

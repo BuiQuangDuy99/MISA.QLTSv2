@@ -15,6 +15,8 @@ class Grid {
 
         me.entity = entity;
 
+        me.listId = [];
+
         // Khởi tạo các sự kiện cho grid
         me.initEvents();
     }
@@ -46,6 +48,7 @@ class Grid {
                 $(this).removeClass('selected-row');
             } else {
                 $(this).addClass('selected-row');
+
                 console.log($(this).data('recordId'));
             }
         } else {
@@ -53,6 +56,16 @@ class Grid {
             console.log($(this).data('recordId'));
             $(this).siblings().removeClass('selected-row');
         }
+    }
+
+    getListId() {
+        var me = this;
+        $(me.grid).find('tbody tr').each(function () {
+            if ($(this).hasClass("selected-row")) {
+                me.listId.push($(this).data('recordId'));
+            }
+        });
+        return me.listId;
     }
 
     /**
@@ -221,13 +234,13 @@ class Grid {
      */
     addClassFormat(element, dataType) {
         switch (dataType) {
-            case "number":
+            case "STT":
                 element.addClass("text-center");
                 break;
             case "datetime":
                 element.addClass("text-center");
                 break;
-            case "money":
+            case "Money":
                 element.addClass("text-right");
                 break;
             case 'percent':
@@ -267,12 +280,12 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
-            case "money":
+            case "Money":
                 value = formatMoney(value);
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
-            case "number":
+            case "STT":
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
