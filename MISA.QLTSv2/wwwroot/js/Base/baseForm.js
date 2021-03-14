@@ -238,6 +238,7 @@ class baseForm {
             }).done(function (res) {
                 me.closeForm();
                 me.jsCaller.loadAjaxData(me.getApiUrl);
+                showMessengerSuccess("Thêm thành công!");
 
             }).fail(function (res) {
 
@@ -252,17 +253,11 @@ class baseForm {
             }).done(function (res) {
                 me.closeForm();
                 me.jsCaller.loadAjaxData(me.getApiUrl);
+                showMessengerSuccess("Sửa thành công!");
 
             }).fail(function (res) {
 
             })
-        }
-        if (jsCaller.formMode == "Add") {
-            showMessengerSuccess("Thêm thành công!");
-
-        } else {
-            showMessengerSuccess("Sửa thành công!");
-
         }
     }
 

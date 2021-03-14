@@ -60,6 +60,7 @@ class Grid {
 
     getListId() {
         var me = this;
+        me.listId = [];
         $(me.grid).find('tbody tr').each(function () {
             if ($(this).hasClass("selected-row")) {
                 me.listId.push($(this).data('recordId'));

@@ -11,21 +11,19 @@ class refTransfer extends BaseGrid {
     }
 
     initEvents() {
-        let me = this,
-            count = 0;
+        let me = this;
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-        $('.btn-remove').click(function () {
-            $("#reftransfer-grid tbody tr").each(function () {
-                if ($(this).hasClass("selected-row")) {
-                    showAlertConfirm("Bạn có chắc chắn muốn xóa không?")
-                }
-                else {
-                    showAlertWarring("Vui lòng chọn chứng từ cần xóa!")
-                }
-            });
-        })
+
+        $('#txtsearch').keyup(function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                
+
+                me.loadData();
+            } 
+        });
 }
     setUrl() {
         this.url = 'https://localhost:44363/api/RefTransfer';
@@ -34,6 +32,15 @@ class refTransfer extends BaseGrid {
     createFormDetail(formID, width, height) {
         var me = this;
         this.formDetail = new reftransferForm(formID, width, height, me);
+    }
+
+    filterData() {
+        var me = this,
+            value = $('#txtsearch').val();
+
+        me.listData = me.cacheData.filter(function (item) {
+            return item["RefNo"].includes(value);
+        });
     }
 }
 
