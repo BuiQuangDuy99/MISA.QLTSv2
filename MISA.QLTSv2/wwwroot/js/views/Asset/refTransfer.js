@@ -11,12 +11,22 @@ class refTransfer extends BaseGrid {
     }
 
     initEvents() {
-        let me = this;
+        let me = this,
+            count = 0;
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-    }
-
+        $('.btn-remove').click(function () {
+            $("#reftransfer-grid tbody tr").each(function () {
+                if ($(this).hasClass("selected-row")) {
+                    showAlertConfirm("Bạn có chắc chắn muốn xóa không?")
+                }
+                else {
+                    showAlertWarring("Vui lòng chọn chứng từ cần xóa!")
+                }
+            });
+        })
+}
     setUrl() {
         this.url = 'https://localhost:44363/api/RefTransfer';
     }
@@ -52,7 +62,7 @@ var conFigColum = [
     },
     {
         DataType: "text",
-        FieldName: "RefDetail",
+        FieldName: "JournalMemo",
         FieldText: "Lý do điều chuyển",
         Index: 4
     },

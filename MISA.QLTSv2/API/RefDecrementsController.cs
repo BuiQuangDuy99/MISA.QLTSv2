@@ -86,11 +86,19 @@ namespace MISA.QLTSv2.API
         /// <returns>số bản ghi xóa thành công</returns>
         /// Author: DVVUONG (10/03/2021)
         [HttpDelete("{entityId}")]
-        public ServiceResult DeleteRefDecrement(Guid entityId)
+        public ServiceResult DeleteRefDecrement([FromBody]List<Guid> entityId)
         {
             try
             {
-                return _refDecrementBL.DeleteRefDecrement(entityId);
+                int count = 1;
+                foreach (var item in entityId)
+                {
+                    _refDecrementBL.DeleteRefDecrement(item);
+                    count++;
+                }
+                _serviceResult.Data = count;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                return _serviceResult;
             }
             catch (Exception e)
             {

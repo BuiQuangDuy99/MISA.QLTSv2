@@ -179,8 +179,6 @@ function genMask(opts) {
 				mask += radixPointDef + decimalDef + "{" + opts.digits + "}";
 			}
 		}
-	} else {
-		opts.inputmode = "numeric";
 	}
 	mask += autoEscape(opts.suffix, opts);
 	mask += "[-]";
@@ -319,7 +317,7 @@ Inputmask.extendAliases({
 
 				return isNegative !== false ? {
 					remove: isNegative,
-					caret: initPos - opts.negationSymbol.back.length
+					caret: initPos - opts.negationSymbol.front.length
 				} : {
 					insert: [
 						{pos: findValidator("+", maskset), c: opts.negationSymbol.front, fromIsValid: true},

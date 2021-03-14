@@ -23,7 +23,7 @@ class refDecrement extends BaseGrid {
 
     createFormDetail(formID, width, height) {
         var me = this;
-        this.formDetail = new reftransferForm(formID, width, height, me);
+        this.formDetail = new refDecrementForm(formID, width, height, me);
     }
 }
 
@@ -58,7 +58,7 @@ var conFigColum = [
     },
     {
         DataType: "money",
-        FieldName: "RefDetail",
+        FieldName: "CostRemainder",
         FieldText: "Giá trị còn lại",
         Index: 5
     },
@@ -71,7 +71,7 @@ var conFigColum = [
 ];
 
 //khởi tạo form ghi tăng tài sản
-//refTransferGrid.createFormDetail("#dialog_reftransfer", 800, 600);
+refDecrementGrid.createFormDetail("#dialog_refdecrement", 800, 600);
 
 // THiết lập config header
 refDecrementGrid.setConFigColum(conFigColum);

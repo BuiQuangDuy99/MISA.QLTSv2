@@ -15,6 +15,8 @@ class Grid {
 
         me.entity = entity;
 
+        me.listId = [];
+
         // Khởi tạo các sự kiện cho grid
         me.initEvents();
     }
@@ -46,6 +48,7 @@ class Grid {
                 $(this).removeClass('selected-row');
             } else {
                 $(this).addClass('selected-row');
+
                 console.log($(this).data('recordId'));
             }
         } else {
@@ -53,6 +56,16 @@ class Grid {
             console.log($(this).data('recordId'));
             $(this).siblings().removeClass('selected-row');
         }
+    }
+
+    getListId() {
+        var me = this;
+        $(me.grid).find('tbody tr').each(function () {
+            if ($(this).hasClass("selected-row")) {
+                me.listId.push($(this).data('recordId'));
+            }
+        });
+        return me.listId;
     }
 
     /**
@@ -99,6 +112,14 @@ class Grid {
             if (String(fieldName).includes(strEqual) && dataType == "text") {
                 element.addClass("width-code");
                 return element;
+            }
+
+            switch (fieldName) {
+                case "RefNo":
+                    element.addClass("width-refno");
+                    break;
+                default:
+                    break;
             }
 
             switch (dataType) {
@@ -148,13 +169,12 @@ class Grid {
      * CreatedBY: BQDUY(25/02/2021)
      */
     loadData(data) {
-        let me = this,
-            grid = this.grid;
+        let me = this;
 
-        $(grid).find('tbody').empty();
+        $(me.grid).find('tbody').empty();
         if (data) {
             $.each(data, function (index, obj) {
-                $(grid).find('tbody').append(me.renderBody(index, obj));
+                $(me.grid).find('tbody').append(me.renderBody(index, obj));
             })
 
         }
@@ -176,8 +196,8 @@ class Grid {
                 td;
 
             row = $(`<tr></tr>`);
-            //$(row).data('recordId', object[me.entity + 'Id']);
-            $(row).data('recordId', object['Id']);
+            $(row).data('recordId', object[me.entity + 'Id']);
+            //$(row).data('recordId', object['Id']);
 
             // Binding cột số thứ tự riêng, index chính là value
             object["STT"] = index + 1;
@@ -222,13 +242,13 @@ class Grid {
      */
     addClassFormat(element, dataType) {
         switch (dataType) {
-            case "number":
+            case "STT":
                 element.addClass("text-center");
                 break;
             case "datetime":
                 element.addClass("text-center");
                 break;
-            case "money":
+            case "Money":
                 element.addClass("text-right");
                 break;
             case 'percent':
@@ -268,12 +288,12 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
-            case "money":
+            case "Money":
                 value = formatMoney(value);
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
-            case "number":
+            case "STT":
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;

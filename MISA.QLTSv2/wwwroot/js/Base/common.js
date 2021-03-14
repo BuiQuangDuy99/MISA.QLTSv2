@@ -43,35 +43,27 @@ function formatDate(date, formatDate) {
         if (!date) {
             return "";
         } else {
-            date = moment(date, ["DD-MM-YYYY", "MM-DD-YYYY", "DD-MMM-YYYY", "MMM-DD-YYYY"]).format("YYYY-MM-DD");
-            return moment(date).format(formatDate || "DD-MM-YYYY");
+            var date = moment(date).format("DD/MM/YYYY");
+            return date;
         }
     } catch (e) {
         console.log(e);
     }
 }
-
 /**
- * Chuyển đổi dữ liệu từ dd/mm/yyyy lên form
- * CreatBy: NDTUNG (4/2/2021)
-*/
-function formatStringDate(date) {
-    if (!date) {
-        return "";
-    }
-    else {
-        var date = new Date(date);
-
-        day = date.getDate();
-        month = date.getMonth() + 1;
-        year = date.getFullYear();
-        if (day < 10) {
-            day = '0' + day;
+ * Hàm format lại ngày tháng từ date picker để lưu lên db
+ * CreateBy: BQDUY(11/03/2021)
+ * */
+function formatDatePicker(date) {
+    try {
+        if (!date) {
+            return "";
+        } else {
+            //var date = new Date(moment(date, "DD-MM-YYYY"));
+            return moment(date, "DD-MM-YYYY").format("MM/DD/YYYY");
         }
-        if (month < 10) {
-            month = '0' + month;
-        }
-        return year + "-" + month + "-" + day;
+    } catch (e) {
+        console.log(e);
     }
 }
 

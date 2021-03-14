@@ -51,7 +51,7 @@ textarea {
 
 .depreciation-sub-grid tbody tr td {
     height: 35px !important;
-    padding: 0 0 0 0;
+    /* padding: 0 0 0 0; */
     border: #e0e0e0 solid 1px !important;
 }
 
@@ -171,3 +171,6 @@ textarea {
     background-size: contain;
     background-position: center;
 }
+/*.date-picker{
+    position:relative;
+}*/
