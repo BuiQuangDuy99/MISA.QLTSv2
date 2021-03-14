@@ -26,14 +26,32 @@ class assetIncreased extends BaseGrid {
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
+        
+        $('#txtsearch').keyup(function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                me.loadData();
+            }
+        });
     }
+
     setUrl() {
         this.url = 'https://localhost:44363/api/FixedAsset';
     }
+
     createFormDetail(formID, width, height) {
         var me = this;
         this.formDetail = new assetIncreasedForm(formID, width, height, me);
     }
+
+    //filterData() {
+    //    var me = this,
+    //        value = $('#txtsearch').val();
+
+    //    me.listData = me.cacheData.filter(function (item) {
+    //        return item["FixedAssetCode"].includes(value);
+    //    });
+    //}
 
 }
 

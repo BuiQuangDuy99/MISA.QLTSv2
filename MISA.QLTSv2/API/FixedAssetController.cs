@@ -71,12 +71,20 @@ namespace MISA.QLTSv2.API
         /// </summary>
         /// <returns>Số bản ghi bị xóa</returns>
         /// CreatedBy:NVTUYEN(02/03/2021)
-        [HttpDelete("{entityId}")]
-        public ServiceResult DeleteFixedAsset(Guid entityId)
+        [HttpDelete]
+        public ServiceResult DeleteFixedAsset([FromBody] List<Guid> entityId)
         {
             try
             {
-                return _fixedAssetBL.DeleteFixedAsset(entityId);
+                int count = 0;
+                foreach (var item in entityId)
+                {
+                    _fixedAssetBL.DeleteFixedAsset(item);
+                    count++;
+                }
+                _serviceResult.Data = count;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                return _serviceResult;
             }
             catch (Exception ex)
             {
