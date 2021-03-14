@@ -41,7 +41,7 @@
     }
 
     showFormWarning() {
-        var msg = "Không được xóa...?";
+        var msg = "Bạn cần chọn chứng từ để xóa!!!";
 
         showAlertWarring(msg);
     }

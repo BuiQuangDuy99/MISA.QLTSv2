@@ -7,7 +7,7 @@ class refTransfer extends BaseGrid {
 
     constructor(gridId, entity) {
         super(gridId, entity);
-        this.initEvents();
+        //this.initEvents();
     }
 
     initEvents() {
@@ -19,7 +19,7 @@ class refTransfer extends BaseGrid {
         $('#txtsearch').keyup(function (e) {
             if (e.key === "Enter") {
                 e.preventDefault();
-                
+                console.log("xuan co cho");
 
                 me.loadData();
             } 

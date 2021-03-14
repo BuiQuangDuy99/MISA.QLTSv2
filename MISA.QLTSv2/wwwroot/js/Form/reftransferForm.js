@@ -66,8 +66,6 @@
     closeForm() {
         let me = this;
         me.resetForm();
-        var refTransferGrid = new refTransfer('#reftransfer-grid', "RefTransfer");
-        refTransferGrid.createFormDetail("#dialog_reftransfer", 800, 600);
         me.reftransferForm.dialog('close');
     }
 
