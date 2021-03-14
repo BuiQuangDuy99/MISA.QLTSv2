@@ -10,19 +10,7 @@
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-        $('.btn-remove').click(function () {
-            $("#depreciation-grid-api tbody tr").each(function () {
-                if ($(this).hasClass("selected-row")) {
-                    count++;
-                }
-            })
-            if (count == 0) {
-                showAlertWarring("Vui lòng chọn chứng từ cần xóa!")
-            }
-            else {
-                showAlertConfirm("Bạn có chắc chắn muốn xóa không?")
-            }
-        });
+        
     }
     /**
      * set url để lên baseGrid có thể ghép url với id để thực thi ajax
