@@ -20,11 +20,15 @@
         });
     }
 
+    /**
+     * 
+     * @param {any} target
+     */
     excute(target) {
         var me = this;
 
         me.target = target;
-
+        debugger
         let selectedRow = target.getListId();
 
         if (selectedRow.length > 0) {
