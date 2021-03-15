@@ -14,7 +14,6 @@
     initEvent() {
         super.initEvent();
         $('#TestDate').datepicker({ dateFormat: "dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
-
     }
 
     setApiUrl() {
