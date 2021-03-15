@@ -3,7 +3,7 @@
         super(formId, jsCaller);
 
         this.FormAdd = $(formId).dialog({
-            autoOpen: true,
+            autoOpen: false,
             height: height,
             width: width,
             modal: true,
@@ -22,6 +22,6 @@
     closeForm() {
         let me = this;
         me.resetForm();
-        me.FromAdd.dialog('close');
+        me.FormAdd.dialog('close');
     }
 }

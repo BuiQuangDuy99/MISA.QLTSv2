@@ -174,3 +174,10 @@ textarea {
 /*.date-picker{
     position:relative;
 }*/
+
+.m-col-6-left{
+    padding-right:15px;
+}
+.m-col-6-right{
+    padding-left:15px;
+}

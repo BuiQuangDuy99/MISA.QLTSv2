@@ -14,10 +14,13 @@
     }
 
     initEventpopup() {
+        var me = this;
         super.initEvent();
         $('#TestDate').datepicker({ dateFormat: "dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
-        $('#btn_addcolum').off("click").on("click", this.addColum.bind(this));
-
+        me.createFormDetail('#dialog_addcolum', 500, 300);
+        $('#btn_addcolum').off('click').click(function () {
+            me.addColum();
+        });
     }
 
     setApiUrl() {
@@ -34,7 +37,6 @@
     addColum() {
         let me = this;
         me.formMode = "Add";
-        me.createFormDetail('#dialog_add', 500, 500);
         if (me.popup) {
             debugger
             me.popup.show();
