@@ -22,17 +22,20 @@ class refTransfer extends BaseGrid {
                 console.log("xuan co cho");
 
                 me.loadData();
-            } 
+            }
         });
-}
+    }
     setUrl() {
         this.url = 'https://localhost:44363/api/RefTransfer';
     }
 
     createFormDetail(formID, width, height) {
         var me = this;
+        debugger
         this.formDetail = new reftransferForm(formID, width, height, me);
     }
+
+
 
     filterData() {
         var me = this,

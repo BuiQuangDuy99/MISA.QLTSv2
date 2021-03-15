@@ -9,11 +9,14 @@
             width: width,
             modal: true,
         });
+        this.popup = null;
+        this.initEventpopup();
     }
 
-    initEvent() {
+    initEventpopup() {
         super.initEvent();
         $('#TestDate').datepicker({ dateFormat: "dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
+        $('#btn_addcolum').off("click").on("click", this.addColum.bind(this));
 
     }
 
@@ -26,6 +29,16 @@
      * */
     changeValueSelection() {
 
+    }
+
+    addColum() {
+        let me = this;
+        me.formMode = "Add";
+        me.createFormDetail('#dialog_add', 500, 500);
+        if (me.popup) {
+            debugger
+            me.popup.show();
+        }
     }
 
     show(data) {
@@ -63,6 +76,11 @@
         });
     }
 
+    createFormDetail(formID, width, height) {
+        var me = this;
+        me.popup = new FormAdd(formID, width, height, me);
+    }
+
     closeForm() {
         let me = this;
         me.resetForm();
@@ -70,3 +88,4 @@
     }
 
 }
+

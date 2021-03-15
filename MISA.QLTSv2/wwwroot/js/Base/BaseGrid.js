@@ -72,6 +72,7 @@ class BaseGrid extends Grid {
         let me = this;
         me.formMode = "Add";
         if (me.formDetail) {
+            debugger
             me.formDetail.show();
         }
     }

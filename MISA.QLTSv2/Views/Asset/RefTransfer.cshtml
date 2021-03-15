@@ -166,7 +166,7 @@
         <div class="row m-row-content">
             <div class=" col-12">
                 <div style="display:flex; padding-top:10px">
-                    <button class="button button-depreciation btn-add-row">
+                    <button id="btn_addcolum" class="button button-depreciation btn-add-row">
                         <div class="button-depreciation-icon btn-add-row-icon"></div>
                         <div class="btn-content">Thêm dòng</div>
                     </button>
@@ -188,7 +188,7 @@
     </div>
 </div>
 
-@*<div div id="dialog_reftransfer" class="dialog_reftransfer" title="Thêm chứng từ điều chuyển tài sản">
+<div id="dialog_add" class="dialog_add" title="Thêm chứng từ điều chuyển tài sản">
     <div class="container-fluid">
         <div class="row dialog-header">
             <div class="col-8">
@@ -208,18 +208,23 @@
             </div>
         </div>
 
-        <div class="dialog-footer">
-            <div class="footer-left">
-                <button class="button btn-cancel" id="btn-cancel">Hủy</button>
-            </div>
-            <div class="footer-right">
-                <button id="btn-save" class="button btn-add">Lưu</button>
-            </div>
+
+    </div>
+    <div class="dialog-footer">
+        <div class="footer-left">
+            <button class="button btn-cancel" id="btn-cancel">Hủy</button>
+        </div>
+        <div class="footer-right">
+            <button id="btn-save" class="button btn-add">Lưu</button>
         </div>
     </div>
-</div>*@
+</div>
+
+
+
 
 @section scripts{
     <script src="~/js/Form/reftransferForm.js"></script>
+    <script src="~/js/Form/addcolumForm.js"></script>
     <script src="~/js/views/Asset/refTransfer.js"></script>
 }
