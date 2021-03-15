@@ -49,11 +49,6 @@ class BaseGrid extends Grid {
                     break;
             }
         });
-
-        $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
-        $('#btn-yes-warring').off('click').click(function () {
-            me.delete();
-        });
         //$('#btn-delete').on("click", function () {
         //    me.confirmDelete();
         //    $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
@@ -72,7 +67,6 @@ class BaseGrid extends Grid {
         let me = this;
         me.formMode = "Add";
         if (me.formDetail) {
-            debugger
             me.formDetail.show();
         }
     }

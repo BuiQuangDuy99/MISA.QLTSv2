@@ -85,8 +85,8 @@ namespace MISA.QLTSv2.API
         /// <param name="entityId">khóa chính bản ghi cần xóa</param>
         /// <returns>số bản ghi xóa thành công</returns>
         /// Author: DVVUONG (10/03/2021)
-        [HttpDelete("{entityId}")]
-        public ServiceResult DeleteRefDecrement([FromBody]List<Guid> entityId)
+        [HttpDelete]
+        public ServiceResult DeleteRefDecrement([FromBody] List<Guid> entityId)
         {
             try
             {

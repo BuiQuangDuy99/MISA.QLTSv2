@@ -7,7 +7,7 @@ class refDecrement extends BaseGrid {
 
     constructor(gridId, entity) {
         super(gridId, entity);
-        this.initEvents();
+        //this.initEvents();
     }
 
     initEvents() {
@@ -15,6 +15,13 @@ class refDecrement extends BaseGrid {
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
+
+        $('#txtsearch').keyup(function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                me.loadData();
+            }
+        });
     }
 
     setUrl() {
@@ -24,6 +31,15 @@ class refDecrement extends BaseGrid {
     createFormDetail(formID, width, height) {
         var me = this;
         this.formDetail = new refDecrementForm(formID, width, height, me);
+    }
+
+    filterData() {
+        var me = this,
+            value = $('#txtsearch').val();
+
+        me.listData = me.cacheData.filter(function (item) {
+            return item["RefNo"].includes(value);
+        });
     }
 }
 

@@ -9,12 +9,21 @@
             width: width,
             modal: true,
         });
+        this.popup = null;
+        this.initEvent();
+
     }
 
     initEvent() {
+        var me = this;
         super.initEvent();
         $('#PostedDate').datepicker({ dateFormat: "dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
+        me.createFormDetail('#dialog_addcolum', 500, 350);
+        $('#btn_addcolum').off('click').click(function () {
+            me.addColum();
+        });
     }
+
 
     setApiUrl() {
         this.getApiUrl = 'https://localhost:44363/api/RefDecrements';
@@ -26,6 +35,14 @@
      * */
     changeValueSelection() {
 
+    }
+
+    addColum() {
+        let me = this;
+        me.formMode = "Add";
+        if (me.popup) {
+            me.popup.show();
+        }
     }
 
     show(data) {
@@ -61,12 +78,15 @@
         });
     }
 
+    createFormDetail(formID, width, height) {
+        var me = this;
+        me.popup = new FormAdd(formID, width, height, me);
+    }
+
 
     closeForm() {
         let me = this;
         me.resetForm();
-        var refDecrementGrid = new refDecrement('#refdecrement-grid', "RefDecrement");
-        refDecrementGrid.createFormDetail("#dialog_refdecrement", 800, 600);
         me.refDecrementForm.dialog('close');
     }
 

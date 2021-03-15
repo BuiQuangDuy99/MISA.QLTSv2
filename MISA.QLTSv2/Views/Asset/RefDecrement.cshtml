@@ -118,24 +118,14 @@
                     </thead>
                     <tbody>
                         @*<tr>
-                            <td class="text-alight-center">1</td>
-                            <td>TS1</td>
-                            <td>Ô tô Camry</td>
-                            <td>156000000</td>
-                            <td></td>
-                            <td></td>
-                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
-                        </tr>
-                        <tr>
-                            <td class="text-alight-center">2</td>
-                            <td>TS2</td>
-                            <td>Xe máy Honda</td>
-                            <td>23000000</td>
-                            <td></td>
-                            <td></td>
-                            <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
-                        </tr>*@
-                       
+                                <td class="text-alight-center">1</td>
+                                <td>TS1</td>
+                                <td>Ô tô Camry</td>
+                                <td>156000000</td>
+                                <td></td>
+                                <td></td>
+                                <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+                            </tr>*@
                     </tbody>
                 </table>
             </div>
@@ -143,7 +133,7 @@
         <div class="row m-row-content">
             <div class=" col-12">
                 <div style="display:flex; padding-top:10px">
-                    <button class="button button-depreciation btn-add-row">
+                    <button id="btn_addcolum" class="button button-depreciation btn-add-row">
                         <div class="button-depreciation-icon btn-add-row-icon"></div>
                         <div class="btn-content">Thêm dòng</div>
                     </button>
@@ -166,9 +156,98 @@
     </div>
 </div>
 
+<div id="dialog_addcolum" class="dialog_add" title="Thêm chứng từ điều chuyển tài sản">
+    <div class="container-fluid">
+        <div class="row dialog-header">
+            <div class="col-8">
+                Thêm ghi giảm tài sản
+            </div>
+            <div class="col-4 header-toolbar">
+                <button class="btn-help button">
+                    <div class="icon-help">
+
+                    </div>
+                </button>
+                <button class="btn-close button" id="btn-close">
+                    <div class="icon-close">
+
+                    </div>
+                </button>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-6 m-col-6-left">
+                <div class="content-items">
+                    <div class="text-header">
+                        Mã tài sản
+                    </div>
+                    <div>
+                        <input fieldName="FixedAssetCode" class="input-text input-asset" required />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 m-col-6-right">
+                <div class="content-items">
+                    <div class="text-header">
+                        Tên tài sản
+                    </div>
+                    <div>
+                        <input fieldName="FixedAssetName" class="input-text input-asset" required />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row m-row-content">
+            <div class="col-6 m-col-6-left">
+                <div class="content-items">
+                    <div class="text-header">
+                        Nguyên giá
+                    </div>
+                    <div>
+                        <input fieldName="Cost" class="input-text input-asset" required />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 m-col-6-right">
+                <div class="content-items">
+                    <div class="text-header">
+                        Hao mòn lũy kế
+                    </div>
+                    <div>
+                        <input fieldName="AccumulatedDepreciation" class="input-text input-asset" required />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-6 m-col-6-left">
+                <div class="content-items">
+                    <div class="text-header">
+                        Nguyên giá
+                    </div>
+                    <div>
+                        <input fieldName="Cost" class="input-text input-asset" required />
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="dialog-footer">
+            <div class="footer-left">
+                <button class="button btn-cancel" id="btn-cancel">Hủy</button>
+            </div>
+            <div class="footer-right">
+                <button id="btn-save" class="button btn-add">Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 @section scripts{
+    <script src="~/js/Form/addcolumForm.js"></script>
     <script src="~/js/Form/refDecrementForm.js"></script>
     <script src="~/js/views/Asset/refDecrement.js"></script>
 }
