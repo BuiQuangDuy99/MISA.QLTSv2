@@ -185,8 +185,8 @@ class baseForm {
         this.form.find("[fieldName]").each(function () {
             var propertyName = $(this).attr('fieldName');
             var propertyValue = data[0][propertyName];
-            if ($(this).attr('dataType') == 'date') {
-                propertyValue = formatDate(propertyValue, "YYYY-MM-DD");
+            if ($(this).attr('dataType') == 'Date') {
+                propertyValue = formatDate(propertyValue, "DD/MM/YYYY");
             }
             else if ($(this).attr('dataType') == "Money") {
                 var money = formatMoney(propertyValue);
@@ -268,7 +268,7 @@ class baseForm {
         if (value) {
             switch (dataType) {
                 case "Date":
-                    value += " 00:00:00";
+                    value = input.datepicker("getDate");
                     break;
                 case "Number":
                     value = parseInt(value);

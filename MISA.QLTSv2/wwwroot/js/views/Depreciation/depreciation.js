@@ -18,12 +18,33 @@
             }
         });
 
-  //  });
-}
-createFormDetail(formID, width, height) {
-    var me = this;
-    this.formDetail = new depreciationForm(formID, width, height, me);
-}
+        $('#txtsearch').keypress(function (e) {
+            if (e.which == 13) {
+                me.loadData();
+            }
+        });
+
+        
+    }
+    filterData() {
+        var me = this,
+            value = $('#txtsearch').val();
+        me.listData = me.cacheData.filter(function (item) {
+            return item["RefNo"].includes(value);
+        });
+    }
+
+    /**
+     * Khởi tạo form tính hao mòn
+     * CreatedBy: NDTUNG(26/2/2021)
+     * @param {any} formID
+     * @param {any} width
+     * @param {any} height
+     */
+    createFormDetail(formID, width, height) {
+        var me = this;
+        this.formDetail = new depreciationForm(formID, width, height, me);
+    }
 }
 
 
@@ -69,7 +90,8 @@ var conFigColum = [
         Index: 6
     }
 ];
-//khởi tạo form ghi tăng tài sản
+
+//khởi tạo form tính hao mòn
 depreciationGrid.createFormDetail("#dialog_depreciation", 800, 600);
 
 // THiết lập config header
@@ -78,14 +100,3 @@ depreciationGrid.setConFigColum(conFigColum);
 //Load dữ liệu grid
 depreciationGrid.loadData(deprectation);
 
-//bindingDataForInput() {
-//    //this.on(this.input, {
-//    //    select: function (event, ui) {
-//    //        alert(ui.item.value);
-//    //        ui.item.option.selected = true;
-//    //        this._trigger("select", event, {
-//    //            item: ui.item.option
-//    //        });
-//    //    }
-//    //})
-//}

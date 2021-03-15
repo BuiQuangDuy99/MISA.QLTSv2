@@ -32,8 +32,8 @@ function formatDate(date, formatDate) {
         if (!date) {
             return "";
         } else {
-            date = moment(date, ["DD-MM-YYYY", "MM-DD-YYYY", "DD-MMM-YYYY", "MMM-DD-YYYY"]).format("YYYY-MM-DD");
-            return moment(date).format(formatDate || "DD-MM-YYYY");
+            var date = moment(date).format("DD/MM/YYYY");
+            return date;
         }
     } catch (e) {
         console.log(e);

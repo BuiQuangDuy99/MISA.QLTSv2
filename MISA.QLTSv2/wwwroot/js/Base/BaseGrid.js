@@ -1,3 +1,4 @@
+
 class BaseGrid extends Grid {
     constructor(gridId, entity) {
         super(gridId, entity);
@@ -41,6 +42,9 @@ class BaseGrid extends Grid {
                 case "Save":
                     me.save();
                     break;
+                case "Refresh":
+                    me.loadData(me.listData);
+                    break;
                 default:
                     break;
             }
@@ -81,13 +85,15 @@ class BaseGrid extends Grid {
     delete(data) {
         let me = this;
         let selectedRow = me.grid.find(".selected-row");
-        if (selectedRow.length>0) {
+        if (selectedRow.length > 0) {
             data = data.filter(item => item["Id"] !== selectedRow.data("recordId"));
             me.grid.find("tbody").empty();
-            me.loadData(data);
+            me.listData = data;
+            deprectation = me.listData;
+            me.loadData(deprectation);
             closeWarring();
             showMessengerSuccess("Xóa thành công!");
-            
+
         }
         //var url = me.url;
         //$.ajax({
@@ -149,7 +155,14 @@ class BaseGrid extends Grid {
      * CreatedBY: BQDUY(25/02/2021)
      */
     loadData(data) {
-        super.loadData(data);
-        this.listData = data;
+        if (data) {
+            this.listData = data;
+            this.cacheData = data;
+        }
+        this.filterData();
+        super.loadData(this.listData);
+    }
+
+    filterData() {
     }
 }

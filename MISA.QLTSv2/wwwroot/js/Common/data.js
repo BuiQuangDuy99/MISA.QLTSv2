@@ -292,7 +292,7 @@ var deprectation  =
             "STT": 1,
             "Id": "60a75784-1161-4041-89d6-26bed3643256",
             "PostedDate": new Date('5-16-2021'),
-            "RefNo": "TS85462",
+            "RefNo": "TS001",
             "JournalMemo": "Đây là ghi chú tự động",
             "AmountTotal": 352342444,
             "Function": ""
@@ -301,7 +301,7 @@ var deprectation  =
             "STT": 2,
             "Id": "fb8aed61-7497-4dc0-b484-1964b56c5dfa",
             "PostedDate": new Date('5-10-2021'),
-            "RefNo": "TS85462",
+            "RefNo": "TS002",
             "JournalMemo": "Đây là ghi chú tự động",
             "AmountTotal": 352342444,
             "Function": ""
@@ -310,7 +310,7 @@ var deprectation  =
             "STT": 3,
             "Id": "0940ccd0-870b-4c45-872d-109eaaf3c72c",
             "PostedDate": new Date(),
-            "RefNo": "TS85462",
+            "RefNo": "TS003",
             "JournalMemo": "Đây là ghi chú tự động",
             "AmountTotal": 352342444,
             "Function": ""
@@ -319,7 +319,7 @@ var deprectation  =
             "STT": 4,
             "Id": "9909ee03-420b-46e9-b807-8aa7bcd1fd1b",
             "PostedDate": new Date(),
-            "RefNo": "TS85462",
+            "RefNo": "TS004",
             "JournalMemo": "Đây là ghi chú tự động",
             "AmountTotal": 352342444,
             "Function": ""

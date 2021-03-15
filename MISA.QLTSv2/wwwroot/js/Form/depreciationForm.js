@@ -19,31 +19,42 @@ class depreciationForm extends baseForm {
     initEventDepreciationForm() {
         var me = this;
         super.initEvent();
-
+        //Sự kiện nhấn thêm dòng trong form
         $('.btn-add-row').off('click').click(function () {
             me.addRow();
         });
 
+        //Sự kiện nhấn xóa dòng trong form
         $('.depreciation-sub-grid').off('click').on('click', 'tr td button', (function () {
             me.deleteRow($(this));
         }));
 
+        //Sự kiện nhấn xóa toàn bộ dòng trong form
         $('.btn-delete-all-row').off('click').click(function () {
             me.deleteAllRow();
         });
+
+        //Format td trong form
         me.formatTd();
 
         //$('.depreciation-sub-grid tbody tr').each(function () {
 
         //}).find("td input").eq(2).off('keyup').keyup(function () {
         //    me.setDepreciation();
-        $('.depreciation-sub-grid tbody ').off('keyup').on('keyup', 'tr', function () {
+        $('.depreciation-sub-grid tbody').off('keyup').on('keyup', 'tr ', function () {
             me.setDepreciation($(this));
         });
+
+        $('.depreciation-sub-grid tbody').off('blur').on('blur', 'input[dataType="Percent"]', function () {
+            me.checkPercent($(this));
+        });
+
+
     }
 
     /**
      * Hàm tạo một dòng khi nhấn click "Thêm dòng"
+     * CreatedBy:NDTUNG (2/3/2021)
      */
     addRow() {
         let me = this,
@@ -52,7 +63,7 @@ class depreciationForm extends baseForm {
                             <td ><input fieldName="FixedAssetCode" type="text" class="input-depreciation-sub-grid" /></td>
                             <td ><input fieldName="FixedAssetName" type="text" class="input-depreciation-sub-grid" /></td>
                             <td><input fieldName="Cost" type="text" class="input-depreciation-sub-grid text-alight-right" dataType="money"/></td>
-                            <td><input fieldName="DepreciationRate" type="text" dataType="Number" class="input-depreciation-sub-grid text-alight-right" /></td>
+                            <td><input fieldName="DepreciationRate" type="text" dataType="Percent" class="input-depreciation-sub-grid text-alight-right" /></td>
                             <td><input fieldName="AmountTotal" type="text" class="input-depreciation-sub-grid text-alight-right" disabled /></td>
                         <td><button class=" btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                     </tr>`);
@@ -81,6 +92,7 @@ class depreciationForm extends baseForm {
      */
     deleteRow(button) {
         $(button).parents('tr').remove();
+        this.bindingSTT();
     }
 
     /**
@@ -121,7 +133,7 @@ class depreciationForm extends baseForm {
                     $(this).empty();
                     $(this).append(formatMoney(money));
                     break;
-                case "Number":
+                case "Percent":
                     money = parseInt($(this).val());
                     $(this).addClass('text-alight-right');
                     break;
@@ -135,7 +147,7 @@ class depreciationForm extends baseForm {
      * CreatedBy:NDTUNG (9/3/2021)
      * */
     getData() {
-        let me=this,
+        let me = this,
             depreciation = {},
             sumMoney = 0,
             listAsset = [],
@@ -165,7 +177,7 @@ class depreciationForm extends baseForm {
 
         $('input[fieldName="AmountTotal"]').each(function () {
             if ($(this).val() != "") {
-            sumMoney += parseFloat(me.getDepreciationForm($(this)));
+                sumMoney += parseFloat(me.getDepreciationForm($(this)));
             }
         })
 
@@ -177,7 +189,7 @@ class depreciationForm extends baseForm {
                 depreciation[fieldName] = list;
             }
             else if (fieldName == "PostedDate") {
-                depreciation[fieldName] = $(this).val();
+                depreciation[fieldName] = $(this).datepicker("getDate");
             }
             else if (fieldName == "RefNo") {
                 depreciation[fieldName] = $(this).val().toUpperCase();
@@ -235,6 +247,22 @@ class depreciationForm extends baseForm {
         value = value.split(",").join(".");
 
         return value;
+    }
+
+    /**
+     * Hàm kiểm tra nhập phần trăm
+     */
+    checkPercent(td) {
+        let percent = td.val(),
+            x = parseFloat(percent);
+        if (x > 0 || x < 100 || percent == "") {
+            td.removeClass("border-red");
+            td.removeAttr("title");
+        }
+        else if (isNaN(x) || x < 0 || x > 100) {
+            td.addClass("border-red");
+            td.attr("title", "Vui lòng nhập đúng định dạng phần trăm!");
+        }
     }
 }
 
