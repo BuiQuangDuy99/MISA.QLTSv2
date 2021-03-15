@@ -9,14 +9,9 @@ class depreciationForm extends baseForm {
             width: width,
             modal: true,
         });
-        this.popup = null;
+        this.subGrid = subGrid;
         this.initEventDepreciationForm();
         showTooltipElement($('.depreciation-sub-grid th'));
-    }
-
-    createPopup(formID, width, height) {
-        var me = this;
-        me.popup = new depreciationSubGridForm(formID, width, height, me);
     }
 
     /**
@@ -58,21 +53,20 @@ class depreciationForm extends baseForm {
      * CreatedBY: BQDUY(15/03/2021)
      */
     addRow() {
-        let me = this,
-            tr = $(`<tr>
-                        <td class="text-alight-center"></td>
-                        <td><input type="text" class="input-depreciation-sub-grid"></td>
-                        <td></td>
-                        <td class="text-alight-right" dataType="Money" ></td>
-                        <td class="text-alight-right dataType="Number" "></td>
-                        <td class="text-alight-right" dataType="Money"></td>
-                        <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
-                    </tr>`);
-        me.createPopup('#DialogSubGridDetail', 500, 500);
-        me.popup.show();
-        $('#depreciation-sub-grid tbody').append(tr);
-        me.bindingSTT();
-        showTooltipElement($('.depreciation-sub-grid button'));
+        let me = this;
+        //    tr = $(`<tr>
+        //                <td class="text-alight-center"></td>
+        //                <td><input type="text" class="input-depreciation-sub-grid"></td>
+        //                <td></td>
+        //                <td class="text-alight-right" dataType="Money" ></td>
+        //                <td class="text-alight-right dataType="Number" "></td>
+        //                <td class="text-alight-right" dataType="Money"></td>
+        //                <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
+        //            </tr>`);
+        this.subGrid.formDetail.show();
+        //$('#depreciation-sub-grid tbody').append(tr);
+        //me.bindingSTT();
+        //showTooltipElement($('.depreciation-sub-grid button'));
     }
 
     /**
@@ -183,52 +177,5 @@ class depreciationForm extends baseForm {
             }
         })
     }
-
-    //getData() {
-    //    super.getData();
-    //    let depreciation = {},
-    //        sumMoney = 0,
-    //        listAsset = [];
-    //    $('.depreciation-sub-grid tbody tr').each(function () {
-    //        let asset = {},
-    //            fieldNameAss,
-    //            dataType;
-    //        $(this).find('td[fieldName]').each(function () {
-
-    //            fieldNameAss = $(this).attr('fieldName');
-    //            dataType = $(this).attr("dataType");
-
-    //            if (dataType == "Number" || dataType == "Money") {
-    //                asset[fieldNameAss] = parseInt($(this).prop("textContent").split(".").join(""));
-    //            }
-    //            else {
-    //                asset[fieldNameAss] = $(this).prop("textContent");
-    //            }
-    //            if (fieldNameAss == "AmountTotal") {
-    //                let AmountTotal = asset['Cost'] / 100 * asset['DepreciationRate'];
-    //                asset[fieldNameAss] = AmountTotal;
-    //                //$(this).append(AmountTotal);
-    //            }
-    //        })
-    //        listAsset.push(asset);
-    //    })
-
-    //    $('td[fieldName="AmountTotal"]').each(function () {
-    //        sumMoney += parseInt($(this).prop("textContent").split(".").join(""));
-    //    })
-    //    console.log(sumMoney);
-
-    //    $('input[fieldName],textarea[fieldName],table[fieldName]').each(function () {
-    //        let fieldName = $(this).attr('fieldName');
-    //        if (fieldName == "RefDetail") {
-    //            depreciation[fieldName] = listAsset;
-    //        }
-    //        else {
-    //            depreciation[fieldName] = $(this).val();
-    //        }
-    //        depreciation['AmountTotal'] = sumMoney;
-    //    });
-    //    console.log(depreciation);
-    //}
-
 }
+var subGrid = new depreciationSubGrid("#depreciation-sub-grid", "FixedAsset");

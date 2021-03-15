@@ -21,10 +21,8 @@ class depreciationSubGridForm extends baseForm {
      * */
     closeForm() {
         let me = this;
-        me.resetForm();
-        //var depreciationGrid = new depreciation('#depreciation-grid-api', 'RefDepreciation');
-        //depreciationGrid.createFormDetail("#dialog_depreciation_use_API", 800, 600);
 
+        me.resetForm();
         me.depreciationForm.dialog('close');
     }
 }

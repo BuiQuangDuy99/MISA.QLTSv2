@@ -6,6 +6,7 @@
 
 @section Links{
     <link href="~/css/Form/depreciation.css" rel="stylesheet" />
+    <link href="~/css/Form/asset.css" rel="stylesheet" />
 }
 
 <div class="tool-bar" id="tbGrdDepreciationAPI">
@@ -166,8 +167,61 @@
                 </button>
             </div>
         </div>
-        <div class="row">
-
+        <div class="row m-row-content">
+            <div class="col-6 m-col-6-left">
+                <div class="content-items">
+                    <div class="text-header">
+                        Mã tài sản
+                    </div>
+                    <div>
+                        <input fieldName="FixedAssetCode" class="input-text input-asset" maxlength="50" dataType="Text" required />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 m-col-6-right">
+                <div class="content-items">
+                    <div class="text-header">
+                        Tên tài sản
+                    </div>
+                    <div>
+                        <input fieldName="FixedAssetName" class="input-text input-asset" maxlength="50" dataType="Text" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-6 m-col-6-left">
+                <div class="content-items">
+                    <div class="text-header">
+                        Nguyên giá
+                    </div>
+                    <div>
+                        <input fieldName="Cost" class="input-text input-asset" maxlength="50" dataType="Text" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 m-col-6-right">
+                <div class="content-items">
+                    <div class="text-header">
+                        Tỷ lệ hao mòn năm (%)
+                    </div>
+                    <div>
+                        <input fieldName="DepreciationRate" class="input-text input-asset" maxlength="50" dataType="Text" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-row-content">
+            <div class="col-6 m-col-6-left">
+                <div class="content-items">
+                    <div class="text-header">
+                        Giá tiền
+                    </div>
+                    <div>
+                        <input fieldName="Amount" class="input-text input-asset" maxlength="50" dataType="Text" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="dialog-footer">
@@ -181,7 +235,8 @@
 </div>
 
 @section scripts{
+    <script src="~/js/Form/formSubGridDepreciation.js"></script>
     <script src="~/js/Form/depreciationUseAPIForm.js"></script>
     <script src="~/js/views/Depreciation/depreciationUseAPI.js"></script>
-    <script src="~/js/Form/formSubGridDepreciation.js"></script>
+    <script src="~/js/views/Depreciation/depreciationSubGrid.js"></script>
 }

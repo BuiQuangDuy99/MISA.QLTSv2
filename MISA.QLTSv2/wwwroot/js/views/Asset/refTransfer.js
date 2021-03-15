@@ -19,7 +19,6 @@ class refTransfer extends BaseGrid {
         $('#txtsearch').keyup(function (e) {
             if (e.key === "Enter") {
                 e.preventDefault();
-                console.log("xuan co cho");
 
                 me.loadData();
             } 
