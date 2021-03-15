@@ -10,19 +10,7 @@
         super.initEvents();
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-        $('.btn-remove').click(function () {
-            $("#depreciation-grid-api tbody tr").each(function () {
-                if ($(this).hasClass("selected-row")) {
-                    count++;
-                }
-            })
-            if (count == 0) {
-                showAlertWarring("Vui lòng chọn chứng từ cần xóa!")
-            }
-            else {
-                showAlertConfirm("Bạn có chắc chắn muốn xóa không?")
-            }
-        });
+        
     }
     /**
      * set url để lên baseGrid có thể ghép url với id để thực thi ajax
@@ -42,6 +30,19 @@
     createFormDetail(formID, width, height) {
         var me = this;
         this.formDetail = new depreciationForm(formID, width, height, me);
+    }
+
+    /**
+     * Hàm xử lý tìm kiếm
+     * CreatedBY: BQDUY(15/03/2021)
+     * */
+    filterData() {
+        var me = this,
+            value = $('#txtsearch').val();
+
+        me.listData = me.cacheData.filter(function (item) {
+            return item["RefNo"].includes(value);
+        });
     }
 }
 

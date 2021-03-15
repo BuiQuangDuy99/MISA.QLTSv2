@@ -270,9 +270,8 @@ class baseForm {
         if (value) {
             switch (dataType) {
                 case "date":
-
-                    value = formatDatePicker(value);
-                    //value += " 00:00:00";
+                    value = input.datepicker("getDate");
+                    debugger
                     break;
                 case "Number":
                     value = parseInt(value);

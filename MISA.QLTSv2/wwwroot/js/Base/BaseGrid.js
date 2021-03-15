@@ -104,6 +104,13 @@ class BaseGrid extends Grid {
         $('.loading').show();
 
         let selectedRow = me.getListId();
+        // Xử lý biến thành chuỗi để ném vào store
+        //let ids = "'"
+        //if (selectedRow) {
+        //    for ()
+        //        "'1','2'"
+        //}
+        //return
         var url = me.url;
         $.ajax({
             url: url,
