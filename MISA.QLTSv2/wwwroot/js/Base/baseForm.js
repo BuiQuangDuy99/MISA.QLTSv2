@@ -33,6 +33,17 @@ class baseForm {
             $(this).attr("title", "");
         });
 
+        this.form.find('input[dataType="Number"]').keyup(function () {
+            if (me.checkInputNumber() == true) {
+                $(this).removeClass("border-red");
+                $(this).removeAttr("title");
+            }
+            else {
+                $(this).addClass("border-red");
+                $(this).attr("title", "Cần nhập đúng định dạng số!");
+            }
+        });
+
         this.form.on("keypress", "input[dataType='money']", function () {
             if (event.which != 8 && isNaN(String.fromCharCode(event.which))) {
                 event.preventDefault();
@@ -67,7 +78,7 @@ class baseForm {
             $(this).attr("title", "Trường này không được để trống?");
         } else {
             $(this).removeClass("border-red");
-            $(this).attr("title", "");
+            $(this).removeAttr("title");
         }
     }
 
@@ -116,13 +127,13 @@ class baseForm {
      */
     checkInputNumber() {
         var isValid = true;
-        this.form.find("input[DataType='Number']").each(function () {
+        this.form.find("input[dataType='Number']").each(function () {
             var val = $(this).val().trim();
             if (val != "") {
-                var test = /^[0-9]?[.]?[0-9]+$/i;
+                var test =/^((0|[1-9]\d?)(\.\d{1,2})?|100(\.00?)?)$/i;
                 if (!test.test(val)) {
                     $(this).addClass('border-red');
-                    $(this).attr('title', 'Càn nhập đúng định dạng số!');
+                    $(this).attr('title', 'Cần nhập đúng định dạng số!');
                     isValid = false;
                 }
                 else {

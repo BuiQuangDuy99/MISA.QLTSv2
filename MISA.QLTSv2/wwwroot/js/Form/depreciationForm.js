@@ -41,13 +41,13 @@ class depreciationForm extends baseForm {
 
         //}).find("td input").eq(2).off('keyup').keyup(function () {
         //    me.setDepreciation();
-        $('.depreciation-sub-grid tbody').off('keyup').on('keyup', 'tr ', function () {
+        $('.depreciation-sub-grid tbody').off('blur').on('blur', 'tr ', function () {
             me.setDepreciation($(this));
         });
 
-        $('.depreciation-sub-grid tbody').off('blur').on('blur', 'input[dataType="Percent"]', function () {
-            me.checkPercent($(this));
-        });
+        //$('.depreciation-sub-grid tbody').off('blur').on('blur', 'input[dataType="Percent"]', function () {
+        //    me.checkPercent($(this));
+        //});
 
 
     }
@@ -133,7 +133,7 @@ class depreciationForm extends baseForm {
                     $(this).empty();
                     $(this).append(formatMoney(money));
                     break;
-                case "Percent":
+                case "Number":
                     money = parseInt($(this).val());
                     $(this).addClass('text-alight-right');
                     break;
@@ -205,6 +205,9 @@ class depreciationForm extends baseForm {
         return depreciation;
     }
 
+    //bindingData(data) {
+    //}
+
     setDepreciation(tr) {
         let me = this,
             cost,
@@ -215,7 +218,7 @@ class depreciationForm extends baseForm {
         cost = parseInt(tr.find('input[fieldName="Cost"]').val().split(".").join(""));
         depreciationRate = parseFloat(tr.find('input[fieldName="DepreciationRate"]').val());
         if (!isNaN(cost) && !isNaN(depreciationRate)) {
-            amountTotal = roundToTwo(cost / 100 * depreciationRate).toFixed(2);
+            amountTotal = roundToTwo(cost / 100 * depreciationRate);
         }
 
         tr.find('input[fieldName="AmountTotal"]').val(me.showDepreciation(amountTotal));
@@ -229,8 +232,8 @@ class depreciationForm extends baseForm {
      */
     showDepreciation(amountTotal) {
         if (!isNaN(amountTotal)) {
-            amountTotal = amountTotal.toString().replace(".", ",");
-            amountTotal = formatMoney(parseInt(amountTotal.split(",")[0])).toString() + "," + (amountTotal.split(",")[1]);
+            amountTotal = amountTotal.toString();
+            amountTotal = formatMoney(parseInt(amountTotal));
             return amountTotal;
         }
     }
@@ -264,5 +267,6 @@ class depreciationForm extends baseForm {
             td.attr("title", "Vui lòng nhập đúng định dạng phần trăm!");
         }
     }
+
 }
 
