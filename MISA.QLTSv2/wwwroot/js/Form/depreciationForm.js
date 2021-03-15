@@ -63,7 +63,7 @@ class depreciationForm extends baseForm {
                             <td ><input fieldName="FixedAssetCode" type="text" class="input-depreciation-sub-grid" /></td>
                             <td ><input fieldName="FixedAssetName" type="text" class="input-depreciation-sub-grid" /></td>
                             <td><input fieldName="Cost" type="text" class="input-depreciation-sub-grid text-alight-right" dataType="money"/></td>
-                            <td><input fieldName="DepreciationRate" type="text" dataType="Percent" class="input-depreciation-sub-grid text-alight-right" /></td>
+                            <td><input fieldName="DepreciationRate" type="text" dataType="Number" class="input-depreciation-sub-grid text-alight-right" /></td>
                             <td><input fieldName="AmountTotal" type="text" class="input-depreciation-sub-grid text-alight-right" disabled /></td>
                         <td><button class=" btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                     </tr>`);
@@ -154,22 +154,12 @@ class depreciationForm extends baseForm {
             list;
         $('.depreciation-sub-grid tbody tr ').each(function () {
             let asset = {},
-                fieldNameAss,
-                dataType;
+                fieldNameAss;
             $(this).find('[fieldName]').each(function () {
 
                 fieldNameAss = $(this).attr('fieldName');
-                dataType = $(this).attr("dataType");
+                asset[fieldNameAss] = $(this).val();
 
-                if (dataType == "money") {
-                    asset[fieldNameAss] = parseInt($(this).val().split(".").join(""));
-                }
-                else if (dataType == "Number") {
-                    asset[fieldNameAss] = parseFloat($(this).val());
-                }
-                else {
-                    asset[fieldNameAss] = $(this).val();
-                }
             })
             listAsset.push(asset);
             list = JSON.stringify(listAsset);
@@ -205,8 +195,44 @@ class depreciationForm extends baseForm {
         return depreciation;
     }
 
-    //bindingData(data) {
-    //}
+    bindingData(data) {
+        $('input[fieldName],textarea[fieldName],table[fieldName]').each(function () {
+
+            let fieldName = $(this).attr('fieldName'),
+                propertyValue = data[0][fieldName];;
+
+            if (fieldName == "RefDetail") {
+                propertyValue = JSON.parse(propertyValue);
+                $('.depreciation-sub-grid tbody tr ').each(function (index, obj) {
+                    $(this).find('[fieldName]').each(function () {
+
+                        let fieldNameAss = $(this).attr('fieldName'),
+                            value = propertyValue[index][fieldNameAss];
+                        $(this).val(value)
+
+                        //if (dataType == "money") {
+                        //    asset[fieldNameAss] = parseInt($(this).val().split(".").join(""));
+                        //}
+                        //else if (dataType == "Number") {
+                        //    asset[fieldNameAss] = parseFloat($(this).val());
+                        //}
+                        //else {
+                        //    asset[fieldNameAss] = $(this).val();
+                        //}
+                    })
+                })
+            }
+            else if (fieldName == "PostedDate") {
+                $(this).val(formatDate(propertyValue))
+            }
+            else if (fieldName == "RefNo") {
+                $(this).val(propertyValue);
+            }
+            else if (fieldName == "JournalMemo") {
+                $(this).val(propertyValue);
+            }
+        });
+    }
 
     setDepreciation(tr) {
         let me = this,

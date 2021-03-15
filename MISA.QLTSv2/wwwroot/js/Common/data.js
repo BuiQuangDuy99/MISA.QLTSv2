@@ -294,6 +294,7 @@ var deprectation  =
             "PostedDate": new Date('5-16-2021'),
             "RefNo": "TS001",
             "JournalMemo": "Đây là ghi chú tự động",
+            "RefDetail":"",
             "AmountTotal": 352342444,
             "Function": ""
         },
@@ -303,6 +304,7 @@ var deprectation  =
             "PostedDate": new Date('5-10-2021'),
             "RefNo": "TS002",
             "JournalMemo": "Đây là ghi chú tự động",
+            "RefDetail": "",
             "AmountTotal": 352342444,
             "Function": ""
         },
@@ -312,6 +314,7 @@ var deprectation  =
             "PostedDate": new Date(),
             "RefNo": "TS003",
             "JournalMemo": "Đây là ghi chú tự động",
+            "RefDetail": "[]",
             "AmountTotal": 352342444,
             "Function": ""
         },
@@ -321,6 +324,7 @@ var deprectation  =
             "PostedDate": new Date(),
             "RefNo": "TS004",
             "JournalMemo": "Đây là ghi chú tự động",
+            "RefDetail":"[]",
             "AmountTotal": 352342444,
             "Function": ""
         }

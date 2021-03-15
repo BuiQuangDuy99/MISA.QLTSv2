@@ -1,4 +1,5 @@
-﻿class depreciation extends BaseGrid {
+﻿
+class depreciation extends BaseGrid {
     constructor(gridId) {
         super(gridId);
         this.initEvents();
@@ -9,13 +10,16 @@
         showTooltipElement($('button'));
         showTooltipElement($('td'));
         $('.content ').on('click', '.btn-remove ,#btn-delete', function () {
-            //         $("#depreciation-grid tbody tr").each(function () {
             if ($('#depreciation-grid tbody tr').hasClass("selected-row")) {
                 showAlertConfirm("Bạn có chắc chắn muốn xóa không?")
             }
             else {
                 showAlertWarring("Vui lòng chọn chứng từ cần xóa!")
             }
+        });
+
+        $('#depreciation-grid').off('click').on('click', '#btn-change', function () {
+            alert(1);
         });
 
         $('#txtsearch').keypress(function (e) {
