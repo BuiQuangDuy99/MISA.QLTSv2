@@ -37,9 +37,36 @@
         me.refDecrementForm.dialog('open');
     }
 
+    bindingData(data) {
+        let me = this;
+        me.form.find("[fieldName]").each(function () {
+            var propertyName = $(this).attr('fieldName');
+            var propertyValue = data[0][propertyName];
+
+            if ($(this).attr('dataType') == 'date') {
+                propertyValue = formatDate(propertyValue, "DD-MM-YYYY");
+            }
+            else if ($(this).attr('dataType') == "Money") {
+                var money = formatMoney(propertyValue);
+                propertyValue = money;
+            }
+
+            this.value = propertyValue;
+
+            if (propertyName == "RefDetail" && propertyValue != null) {
+                propertyValue = JSON.parse(propertyValue);
+                let gridDetail = new BaseGrid('#refDecrement-sub-grid', 'FixedAsset');
+                gridDetail.loadData(propertyValue);
+            }
+        });
+    }
+
+
     closeForm() {
         let me = this;
         me.resetForm();
+        var refDecrementGrid = new refDecrement('#refdecrement-grid', "RefDecrement");
+        refDecrementGrid.createFormDetail("#dialog_refdecrement", 800, 600);
         me.refDecrementForm.dialog('close');
     }
 
