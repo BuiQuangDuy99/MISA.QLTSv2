@@ -9,13 +9,19 @@ class depreciationForm extends baseForm {
             width: width,
             modal: true,
         });
+        this.popup = null;
         this.initEventDepreciationForm();
         showTooltipElement($('.depreciation-sub-grid th'));
     }
 
+    createPopup(formID, width, height) {
+        var me = this;
+        me.popup = new depreciationSubGridForm(formID, width, height, me);
+    }
+
     /**
-     * 
-     * 
+     * Hàm khởi tạo url để thực hiện ajax
+     * CreatedBY: BQDUY(15/03/2021)
      * */
     setApiUrl() {
         this.getApiUrl = 'https://localhost:44363/api/v1/RefDepreciations';
@@ -23,6 +29,7 @@ class depreciationForm extends baseForm {
 
     /**
      * Hàm tạo sự kiện trên form Depreciation
+     * CreatedBY: BQDUY(15/03/2021)
      * */
     initEventDepreciationForm() {
         var me = this;
@@ -48,6 +55,7 @@ class depreciationForm extends baseForm {
 
     /**
      * Hàm tạo một dòng khi nhấn click "Thêm dòng"
+     * CreatedBY: BQDUY(15/03/2021)
      */
     addRow() {
         let me = this,
@@ -60,7 +68,8 @@ class depreciationForm extends baseForm {
                         <td class="text-alight-right" dataType="Money"></td>
                         <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
                     </tr>`);
-
+        me.createPopup('#DialogSubGridDetail', 500, 500);
+        me.popup.show();
         $('#depreciation-sub-grid tbody').append(tr);
         me.bindingSTT();
         showTooltipElement($('.depreciation-sub-grid button'));
@@ -138,6 +147,10 @@ class depreciationForm extends baseForm {
         });
     }
 
+    /**
+     * Hàm xử lý khi form đóng
+     * CreatedBY: BQDUY(15/03/2021)
+     * */
     closeForm() {
         let me = this;
         me.resetForm();

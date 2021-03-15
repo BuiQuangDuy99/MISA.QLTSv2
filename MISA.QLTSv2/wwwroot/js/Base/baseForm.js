@@ -22,7 +22,6 @@ class baseForm {
         //var data = this.getJson();
         this.form.find("#btn-cancel").off("click");
         this.form.find("#btn-save").off("click");
-
         //this.form.find("#btn-save").on("click", this.getJson());
         this.form.find("#btn-cancel,#btn-close").on("click", this.closeForm.bind(this));
         this.form.find("#btn-save").on("click", this.saveData.bind(this));
@@ -111,7 +110,7 @@ class baseForm {
         return isValid;
 
     }
-    /**
+    /**   
      * Validate các ô nhập số 
      * CreatedBy : NDTUNG (4/2/2021)
      */
@@ -238,6 +237,7 @@ class baseForm {
             }).done(function (res) {
                 me.closeForm();
                 me.jsCaller.loadAjaxData(me.getApiUrl);
+                showMessengerSuccess("Thêm thành công!");
 
             }).fail(function (res) {
 
@@ -252,17 +252,11 @@ class baseForm {
             }).done(function (res) {
                 me.closeForm();
                 me.jsCaller.loadAjaxData(me.getApiUrl);
+                showMessengerSuccess("Sửa thành công!");
 
             }).fail(function (res) {
 
             })
-        }
-        if (jsCaller.formMode == "Add") {
-            showMessengerSuccess("Thêm thành công!");
-
-        } else {
-            showMessengerSuccess("Sửa thành công!");
-
         }
     }
 
@@ -276,9 +270,8 @@ class baseForm {
         if (value) {
             switch (dataType) {
                 case "date":
-
-                    value = formatDatePicker(value);
-                    //value += " 00:00:00";
+                    value = input.datepicker("getDate");
+                    debugger
                     break;
                 case "Number":
                     value = parseInt(value);
