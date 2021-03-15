@@ -1,4 +1,4 @@
-﻿class reftransferForm extends baseForm {
+class reftransferForm extends baseForm {
 
     constructor(formId, width, height, jsCaller) {
         super(formId, jsCaller);
@@ -38,7 +38,6 @@
         let me = this;
         me.formMode = "Add";
         if (me.popup) {
-            debugger
             me.popup.show();
         }
     }
@@ -77,6 +76,8 @@
             }
         });
     }
+
+
 
     createFormDetail(formID, width, height) {
         var me = this;

@@ -271,7 +271,7 @@ class baseForm {
             switch (dataType) {
                 case "date":
                     value = input.datepicker("getDate");
-                    debugger
+             
                     break;
                 case "Number":
                     value = parseInt(value);
