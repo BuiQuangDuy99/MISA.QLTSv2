@@ -31,6 +31,19 @@
         var me = this;
         this.formDetail = new depreciationForm(formID, width, height, me);
     }
+
+    /**
+     * Hàm xử lý tìm kiếm
+     * CreatedBY: BQDUY(15/03/2021)
+     * */
+    filterData() {
+        var me = this,
+            value = $('#txtsearch').val();
+
+        me.listData = me.cacheData.filter(function (item) {
+            return item["RefNo"].includes(value);
+        });
+    }
 }
 
 var depreciationGrid = new depreciation('#depreciation-grid-api', 'RefDepreciation');
