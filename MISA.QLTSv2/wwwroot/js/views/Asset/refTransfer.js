@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
 
 })
 
@@ -7,7 +7,7 @@ class refTransfer extends BaseGrid {
 
     constructor(gridId, entity) {
         super(gridId, entity);
-        //this.initEvents();
+        this.initEvents();
     }
 
     initEvents() {
@@ -20,9 +20,9 @@ class refTransfer extends BaseGrid {
             if (e.key === "Enter") {
                 e.preventDefault();
                 me.loadData();
-            } 
+            }
         });
-}
+    }
     setUrl() {
         this.url = 'https://localhost:44363/api/RefTransfer';
     }
@@ -31,6 +31,8 @@ class refTransfer extends BaseGrid {
         var me = this;
         this.formDetail = new reftransferForm(formID, width, height, me);
     }
+
+
 
     filterData() {
         var me = this,

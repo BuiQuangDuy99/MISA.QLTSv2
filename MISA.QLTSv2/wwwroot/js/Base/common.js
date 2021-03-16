@@ -49,22 +49,6 @@ function formatDate(date, formatDate) {
         console.log(e);
     }
 }
-/**
- * Hàm format lại ngày tháng từ date picker để lưu lên db
- * CreateBy: BQDUY(11/03/2021)
- * */
-function formatDatePicker(date) {
-    try {
-        if (!date) {
-            return "";
-        } else {
-            //var date = new Date(moment(date, "DD-MM-YYYY"));
-            return moment(date, "DD-MM-YYYY").format("MM/DD/YYYY");
-        }
-    } catch (e) {
-        console.log(e);
-    }
-}
 
 /**-----------------------------------------------------
  *Hàm định dạng số thành tiền
@@ -76,7 +60,6 @@ function formatMoney(number) {
         return "";
     }
     else {
-
         try {
             if (number != null) {
                 return number.toString().replace(/(\d)(?=(\d{3})+\b)/g, '$1.');

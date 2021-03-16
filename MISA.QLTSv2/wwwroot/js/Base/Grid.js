@@ -194,8 +194,6 @@ class Grid {
 
             // Binding cột số thứ tự riêng, index chính là value
             object["STT"] = index + 1;
-
-
             // Binding Cells
             column.each(function () {
                 dataType = $(this).attr('dataType');

@@ -114,51 +114,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @*<tr>
-                                <td class="text-alight-center">1</td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                </td>
-                                <td></td>
-                                <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
-                            </tr>
-                            <tr>
-                                <td class="text-alight-center">2</td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                </td>
-                                <td></td>
-                                <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
-                            </tr>
-                            <tr>
-                                <td class="text-alight-center">3</td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                </td>
-                                <td></td>
-                                <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
-                            </tr>
-                            <tr>
-                                <td class="text-alight-center">4</td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                </td>
-                                <td></td>
-                                <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
-                            </tr>
-                            <tr>
-                                <td class="text-alight-center">5</td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                </td>
-                                <td></td>
-                                <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
-                            </tr>*@
                     </tbody>
                 </table>
             </div>
@@ -166,7 +121,7 @@
         <div class="row m-row-content">
             <div class=" col-12">
                 <div style="display:flex; padding-top:10px">
-                    <button class="button button-depreciation btn-add-row">
+                    <button id="btn_addcolum" class="button button-depreciation btn-add-row">
                         <div class="button-depreciation-icon btn-add-row-icon"></div>
                         <div class="btn-content">Thêm dòng</div>
                     </button>
@@ -188,7 +143,7 @@
     </div>
 </div>
 
-@*<div div id="dialog_reftransfer" class="dialog_reftransfer" title="Thêm chứng từ điều chuyển tài sản">
+<div id="dialog_addcolum" class="dialog_add" title="Thêm chứng từ điều chuyển tài sản">
     <div class="container-fluid">
         <div class="row dialog-header">
             <div class="col-8">
@@ -207,7 +162,51 @@
                 </button>
             </div>
         </div>
+        <div class="row m-row-content">
+            <div class="col-6 m-col-6-left">
+                <div class="content-items">
+                    <div class="text-header">
+                        Mã tài sản(*)
+                    </div>
+                    <div>
+                        <input id="txtreftranfer" fieldName="FixedAssetCode" class="input-text input-asset" required />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 m-col-6-right">
+                <div class="content-items">
+                    <div class="text-header">
+                        Tên tào sản
+                    </div>
+                    <div>
+                        <input fieldName="FixedAssetName" class="input-text input-asset" required />
+                    </div>
+                </div>
+            </div>
 
+        </div>
+        <div class="row m-row-content">
+            <div class="col-6 m-col-6-left">
+                <div class="content-items">
+                    <div class="text-header">
+                        Phòng ban
+                    </div>
+                    <div>
+                        <input fieldName="Department2" class="input-text input-asset" required />
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 m-col-6-right">
+                <div class="content-items">
+                    <div class="text-header">
+                        Chuyển tới
+                    </div>
+                    <div>
+                        <input fieldName="Department1" class="input-text input-asset" required />
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="dialog-footer">
             <div class="footer-left">
                 <button class="button btn-cancel" id="btn-cancel">Hủy</button>
@@ -217,9 +216,13 @@
             </div>
         </div>
     </div>
-</div>*@
+</div>
+
+
+
 
 @section scripts{
+    <script src="~/js/Form/addcolumForm.js"></script>
     <script src="~/js/Form/reftransferForm.js"></script>
     <script src="~/js/views/Asset/refTransfer.js"></script>
 }

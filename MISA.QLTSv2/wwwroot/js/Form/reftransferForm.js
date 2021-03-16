@@ -1,4 +1,4 @@
-﻿class reftransferForm extends baseForm {
+class reftransferForm extends baseForm {
 
     constructor(formId, width, height, jsCaller) {
         super(formId, jsCaller);
@@ -9,12 +9,18 @@
             width: width,
             modal: true,
         });
+        this.popup = null;
+        this.initEventpopup();
     }
 
-    initEvent() {
+    initEventpopup() {
+        var me = this;
         super.initEvent();
         $('#TestDate').datepicker({ dateFormat: "dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
-
+        me.createFormDetail('#dialog_addcolum', 500, 300);
+        $('#btn_addcolum').off('click').click(function () {
+            me.addColum();
+        });
     }
 
     setApiUrl() {
@@ -26,6 +32,14 @@
      * */
     changeValueSelection() {
 
+    }
+
+    addColum() {
+        let me = this;
+        me.formMode = "Add";
+        if (me.popup) {
+            me.popup.show();
+        }
     }
 
     show(data) {
@@ -63,6 +77,13 @@
         });
     }
 
+
+
+    createFormDetail(formID, width, height) {
+        var me = this;
+        me.popup = new FormAdd(formID, width, height, me);
+    }
+
     closeForm() {
         let me = this;
         me.resetForm();
@@ -70,3 +91,4 @@
     }
 
 }
+
