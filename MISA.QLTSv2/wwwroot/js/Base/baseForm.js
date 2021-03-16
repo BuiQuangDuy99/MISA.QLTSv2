@@ -10,7 +10,6 @@ class baseForm {
         this.getApiUrl = null;
         this.setApiUrl();
         this.initEvent();
-        this.getData(); 
     };
 
     /**
@@ -274,7 +273,7 @@ class baseForm {
                     value = input.datepicker("getDate");
                     break;
                 case "Number":
-                    value = parseInt(value);
+                    value = parseFloat(value);
                     break;
                 case "money":
                     value = parseInt(value.split(".").join(""));
@@ -314,12 +313,13 @@ class baseForm {
                 //data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
                 data[me.jsCaller.entity + "Id"] = me.jsCaller.grid.find(".selected-row").data("recordId");
             }
-            if (dataType == "JSON") {
-                data[fieldName] = JSON.stringify(testVarJSON);
+            if (dataType == "JSON" && (me.subGrid.listSubGrid != null)) {
+                data[fieldName] = JSON.stringify(me.subGrid.listSubGrid);
             } else {
                 data[fieldName] = me.getDataInput($(this), dataType);
                 
             }
+            
         });
         return data;
     }
