@@ -155,6 +155,7 @@ class BaseGrid extends Grid {
         $('.loading').show();
         callAjax(url, "GET", null, function (res) {
             if (res.Data) {
+
                 me.loadData(res.Data);
             }
             $('.loading').hide();

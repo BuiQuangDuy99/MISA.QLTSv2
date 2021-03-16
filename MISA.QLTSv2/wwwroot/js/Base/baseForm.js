@@ -228,6 +228,7 @@ class baseForm {
             jsCaller = me.jsCaller;
 
         var url = me.getApiUrl;
+        $('.loading').show();
         if (jsCaller.formMode == "Add") {
             $.ajax({
                 url: url,
@@ -238,7 +239,7 @@ class baseForm {
                 me.closeForm();
                 me.jsCaller.loadAjaxData(me.getApiUrl);
                 showMessengerSuccess("Thêm thành công!");
-
+                $('.loading').hide();
             }).fail(function (res) {
 
             })
@@ -253,7 +254,7 @@ class baseForm {
                 me.closeForm();
                 me.jsCaller.loadAjaxData(me.getApiUrl);
                 showMessengerSuccess("Sửa thành công!");
-
+                $('.loading').hide();
             }).fail(function (res) {
 
             })
