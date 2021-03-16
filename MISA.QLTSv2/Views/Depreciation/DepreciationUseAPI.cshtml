@@ -113,7 +113,7 @@
                             <th style="width:140px" fieldName="Cost" dataType="Money" class="text-alight-right">Nguyên giá</th>
                             <th style="width:121px" fieldName="DepreciationRate" class="text-alight-right" dataType="percent" title="Tỉ lệ hao mòn năm">Tỉ lệ HM năm (%)</th>
                             <th style="width:120px" fieldName="Amount" dataType="Money" class="text-alight-right">Số tiền</th>
-                            <th style="width:40px" fieldName="Function"></th>
+                            <th style="width:40px" fieldName="Function_SubGrid" dataType="Function_SubGrid"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -196,7 +196,7 @@
                         Nguyên giá
                     </div>
                     <div>
-                        <input fieldName="Cost" class="input-text input-asset" maxlength="50" dataType="Text" />
+                        <input fieldName="Cost" class="input-text input-asset input-right" maxlength="50" dataType="money" />
                     </div>
                 </div>
             </div>
@@ -218,7 +218,7 @@
                         Giá tiền
                     </div>
                     <div>
-                        <input fieldName="Amount" class="input-text input-asset" maxlength="50" dataType="Text" />
+                        <input fieldName="Amount" class="input-text input-asset input-right" maxlength="50" dataType="money" />
                     </div>
                 </div>
             </div>
@@ -236,7 +236,7 @@
 
 @section scripts{
     <script src="~/js/Form/formSubGridDepreciation.js"></script>
+    <script src="~/js/views/Depreciation/depreciationSubGrid.js"></script>
     <script src="~/js/Form/depreciationUseAPIForm.js"></script>
     <script src="~/js/views/Depreciation/depreciationUseAPI.js"></script>
-    <script src="~/js/views/Depreciation/depreciationSubGrid.js"></script>
 }

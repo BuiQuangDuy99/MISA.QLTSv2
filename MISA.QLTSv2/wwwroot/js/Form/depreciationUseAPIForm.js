@@ -9,7 +9,8 @@ class depreciationForm extends baseForm {
             width: width,
             modal: true,
         });
-        this.subGrid = subGrid;
+        this.subGrid = new depreciationSubGrid("#depreciation-sub-grid", "FixedAsset");
+
         this.initEventDepreciationForm();
         showTooltipElement($('.depreciation-sub-grid th'));
     }
@@ -178,4 +179,4 @@ class depreciationForm extends baseForm {
         })
     }
 }
-var subGrid = new depreciationSubGrid("#depreciation-sub-grid", "FixedAsset");
+//var subGrid = new depreciationSubGrid("#depreciation-sub-grid", "FixedAsset");

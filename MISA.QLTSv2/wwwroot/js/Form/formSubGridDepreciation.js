@@ -21,8 +21,14 @@ class depreciationSubGridForm extends baseForm {
      * */
     closeForm() {
         let me = this;
-
         me.resetForm();
         me.depreciationForm.dialog('close');
+    }
+
+    saveChangeData(data) {
+        let me = this,
+            jsCaller = me.jsCaller;
+        jsCaller.loadData(data);
+        me.closeForm();
     }
 }
