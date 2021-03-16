@@ -51,27 +51,26 @@ class FormAdd extends baseForm {
         me.FormAdd.dialog('open');
     }
 
+
+    /**
+     * Hàm xử lý khi form đóng
+     * CreatedBY: NVTUYEN(15/03/2021)
+     * */
     closeForm() {
         let me = this;
         me.resetForm();
         me.FormAdd.dialog('close');
     }
+    /**
+     * Hàm sử lý khi thực hiện lưu
+     * @param {any} data
+     * CreatedBy:NVTUYEN(15/03/2021)
+     */
 
     saveChangeData(data) {
-        debugger
         let me = this,
-            grid = this.jsCaller.jsCaller.grid;
-        //    column = $(grid).find('th'),
-        //    row,
-        //    dataType,
-        //    fieldName,
-        //    value,
-        //    td;
-        //column = row = $(`<tr></tr>`);
-        //$(row).data('recordId', object[me.entity + 'Id']);
-
-        //object["STT"] = index + 1;
-        me.jsCaller.renderBody(data);
-
+            jsCaller = me.jsCaller;
+        jsCaller.loadData(data);
+        me.closeForm();
     }
 }

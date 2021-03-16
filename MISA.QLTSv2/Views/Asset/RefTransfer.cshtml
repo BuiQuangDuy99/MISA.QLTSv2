@@ -102,7 +102,7 @@
         </div>
         <div class="row m-row-content">
             <div class=" col-12" style="height:212px;overflow-y: auto">
-                <table fieldName="RefDetail" id="depreciation-sub-grid" class="depreciation-sub-grid" dataType="JSON">
+                <table fieldName="RefDetail" id="reftransfer-sub-grid" class="reftransfer-sub-grid" dataType="JSON">
                     <thead>
                         <tr>
                             <th style="width:40px" class="text-alight-center" dataType="STT" title="Số thứ tự" fieldName="STT">STT</th>
@@ -110,7 +110,7 @@
                             <th style="width:125px" fieldName="FixedAssetName">Tên tài sản</th>
                             <th style="width:140px" fieldName="Department1">Từ phòng ban</th>
                             <th style="width:121px" fieldName="Department2">Chuyển tới</th>
-                            <th style="width:40px"></th>
+                            <th style="width:30px" fieldName="Function_SubGrid" dataType="Function_SubGrid"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -176,10 +176,10 @@
             <div class="col-6 m-col-6-right">
                 <div class="content-items">
                     <div class="text-header">
-                        Tên tào sản
+                        Tên tài sản
                     </div>
                     <div>
-                        <input fieldName="FixedAssetName" class="input-text input-asset" required />
+                        <input fieldName="FixedAssetName" class="input-text input-asset" />
                     </div>
                 </div>
             </div>
@@ -192,7 +192,7 @@
                         Phòng ban
                     </div>
                     <div>
-                        <input fieldName="Department2" class="input-text input-asset" required />
+                        <input fieldName="Department1" class="input-text input-asset" />
                     </div>
                 </div>
             </div>
@@ -202,7 +202,12 @@
                         Chuyển tới
                     </div>
                     <div>
-                        <input fieldName="Department1" class="input-text input-asset" required />
+                        @*<input fieldName="Department2" class="input-text input-asset" required />*@
+                        <select fieldName="Department2" class="input-text input-asset">
+                            <option value="Phòng hành chính">Phòng hành chính</option>
+                            <option value="Phòng kế toán">Phòng kế toán</option>
+                            <option value="Phòng công nghệ">Phòng công nghệ</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -224,5 +229,6 @@
 @section scripts{
     <script src="~/js/Form/addcolumForm.js"></script>
     <script src="~/js/Form/reftransferForm.js"></script>
+    <script src="~/js/views/Asset/refTransferDetail.js"></script>
     <script src="~/js/views/Asset/refTransfer.js"></script>
 }

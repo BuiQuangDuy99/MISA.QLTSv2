@@ -9,15 +9,15 @@ class reftransferForm extends baseForm {
             width: width,
             modal: true,
         });
-        this.popup = null;
+        this.subGrid = new ReftranferDetail("#reftransfer-sub-grid","FixedAsset");
         this.initEventpopup();
+        showTooltipElement($('.reftransfer-sub-grid th'));
     }
 
     initEventpopup() {
         var me = this;
         super.initEvent();
         $('#TestDate').datepicker({ dateFormat: "dd/mm/yy" }).inputmask("99/99/9999", { placeholder: "__/__/____" });
-        me.createFormDetail('#dialog_addcolum', 500, 300);
         $('#btn_addcolum').off('click').click(function () {
             me.addColum();
         });
@@ -37,8 +37,8 @@ class reftransferForm extends baseForm {
     addColum() {
         let me = this;
         me.formMode = "Add";
-        if (me.popup) {
-            me.popup.show();
+        if (me.subGrid) {
+            me.subGrid.formDetail.show();
         }
     }
 
@@ -70,7 +70,7 @@ class reftransferForm extends baseForm {
 
             if (propertyName == "RefDetail" && propertyValue != null) {
                 propertyValue = JSON.parse(propertyValue);
-                let gridDetail = new BaseGrid('#depreciation-sub-grid', 'FixedAsset');
+                let gridDetail = new BaseGrid('#reftransfer-sub-grid', 'FixedAsset');
 
                 gridDetail.loadData(propertyValue);
             }
@@ -78,15 +78,11 @@ class reftransferForm extends baseForm {
     }
 
 
-
-    createFormDetail(formID, width, height) {
-        var me = this;
-        me.popup = new FormAdd(formID, width, height, me);
-    }
-
     closeForm() {
         let me = this;
         me.resetForm();
+        var refTransferGrid = new refTransfer('#reftransfer-grid', "RefTransfer");
+        refTransferGrid.createFormDetail("#dialog_reftransfer", 800, 600);
         me.reftransferForm.dialog('close');
     }
 

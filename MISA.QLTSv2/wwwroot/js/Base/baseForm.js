@@ -10,7 +10,6 @@ class baseForm {
         this.getApiUrl = null;
         this.setApiUrl();
         this.initEvent();
-        this.getData(); 
     };
 
     /**
@@ -314,8 +313,8 @@ class baseForm {
                 //data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
                 data[me.jsCaller.entity + "Id"] = me.jsCaller.grid.find(".selected-row").data("recordId");
             }
-            if (dataType == "JSON") {
-                data[fieldName] = JSON.stringify(testVarJSON);
+            if (dataType == "JSON" && (me.subGrid.listSubGrid != null)) {
+                data[fieldName] = JSON.stringify(me.subGrid.listSubGrid);
             } else {
                 data[fieldName] = me.getDataInput($(this), dataType);
                 
