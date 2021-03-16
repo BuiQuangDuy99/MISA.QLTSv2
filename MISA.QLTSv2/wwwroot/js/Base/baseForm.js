@@ -26,8 +26,8 @@ class baseForm {
         this.form.find("#btn-cancel,#btn-close").on("click", this.closeForm.bind(this));
         this.form.find("#btn-save").on("click", this.saveData.bind(this));
         this.form.find('input').click(function () { $(this).select(); });
-        this.form.find("[required]").blur(this.checkStatusInput);
-        //this.form.find("[required]").keyup(this.checkStatusInput);
+        //this.form.find("[required]").blur(this.checkStatusInput);
+        this.form.find("[required]").keyup(this.checkStatusInput);
         this.form.find("[required]").focus(function () {
             $(this).removeClass("border-red");
             $(this).attr("title", "");

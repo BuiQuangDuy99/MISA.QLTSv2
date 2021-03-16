@@ -111,31 +111,23 @@ namespace MISA.QLTSv2.API
         }
 
         /// <summary>
-        /// Xóa bản ghi
+        /// Xóa một hoặc nhiều bản ghi
         /// </summary>
-        /// <param name="entityId">khóa chính bản ghi cần xóa</param>
+        /// <param name="entityId">danh sach khóa chính bản ghi cần xóa</param>
         /// <returns>số bản ghi xóa thành công</returns>
         /// CreatedBY: BQDUY (05/03/2021)
         [HttpDelete]
-        public ServiceResult Delete([FromBody]List<Guid> entityId)
+        public IActionResult Delete([FromQuery] string ids)
         {
             try
             {
-                int count = 1;
-                foreach (var item in entityId)
-                {
-                     _refDepreciationBL.Delete(item);
-                    count++;
-                }
-                _serviceResult.Data = count;
-                _serviceResult.HttpCode = HttpCodeResult.Success;
-                return _serviceResult;
+                return Ok(_refDepreciationBL.Delete(ids));
             }
             catch (Exception ex)
             {
                 _serviceResult.Messenger = ex.Message.ToString();
                 _serviceResult.HttpCode = HttpCodeResult.Exception;
-                return _serviceResult;
+                return Ok(_serviceResult);
             }
         }
     }

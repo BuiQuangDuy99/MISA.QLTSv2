@@ -165,11 +165,13 @@ class Grid {
         let me = this;
 
         $(me.grid).find('tbody').empty();
+        if (!Array.isArray(data)) {
+            $(me.grid).find('tbody').append(me.renderBody(0, data));
+        }
         if (data) {
             $.each(data, function (index, obj) {
                 $(me.grid).find('tbody').append(me.renderBody(index, obj));
-            })
-
+            });
         }
     }
 
@@ -252,6 +254,8 @@ class Grid {
                 element.addClass("function-content");
             case 'STT':
                 element.addClass("text-center");
+            case 'Function_SubGrid':
+                element.addClass("text-center");
             default:
                 break;
         }
@@ -308,6 +312,10 @@ class Grid {
                         </button>
                         </button>`
                     + `</td>`);
+                td = me.addClassFormat(td, dataType);
+                break;
+            case "Function_SubGrid":
+                td = $(`<td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
             default:

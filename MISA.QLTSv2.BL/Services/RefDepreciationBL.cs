@@ -29,7 +29,7 @@ namespace MISA.QLTSv2.BL.Services
         /// <param name="entityId">id của đối tượng cần xóa</param>
         /// <returns>Service result gồm dữ liệu, mã kết quả, message thông báo</returns>
         /// CreatedBY: BQDUY(05/03/2021)
-        public ServiceResult Delete(Guid entityId)
+        public ServiceResult Delete(String entityId)
         {
             var res = _refDepreciationDL.Delete(entityId);
 

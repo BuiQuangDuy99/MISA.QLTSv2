@@ -1,3 +1,4 @@
+
 class BaseGrid extends Grid {
     constructor(gridId, entity) {
         super(gridId, entity);
@@ -12,6 +13,10 @@ class BaseGrid extends Grid {
 
     setUrl() {
 
+    }
+
+    returnFormDetail() {
+        return formCon = this.formDetail;
     }
 
     /**
@@ -103,18 +108,18 @@ class BaseGrid extends Grid {
         $('.loading').show();
 
         let selectedRow = me.getListId();
-        // Xử lý biến thành chuỗi để ném vào store
-        //let ids = "'"
-        //if (selectedRow) {
-        //    for ()
-        //        "'1','2'"
-        //}
-        //return
+        // Xử lý biến thành chuỗi để ném vào store ['','',''] , "'id1','id2','id3'"
+        let ids = "";
+        if (selectedRow) {
+            $.each(selectedRow, function (index, id) {
+                ids += "'" + String(id) + "',";
+            });
+            ids = ids.slice(0, -1);
+        }
         var url = me.url;
         $.ajax({
-            url: url,
+            url: `${url}?ids=${ids}`,
             method: "DELETE",
-            data: JSON.stringify(selectedRow),
             contentType: 'application/json',
             async: true
         }).done(function (res) {
