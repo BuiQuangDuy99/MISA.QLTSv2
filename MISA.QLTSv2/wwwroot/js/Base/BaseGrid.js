@@ -54,18 +54,6 @@ class BaseGrid extends Grid {
                     break;
             }
         });
-
-        $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
-        $('#btn-yes-warring').off('click').click(function () {
-            me.delete();
-        });
-        //$('#btn-delete').on("click", function () {
-        //    me.confirmDelete();
-        //    $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
-        //    $('#btn-yes-warring').off('click').click(function () {
-        //        me.delete()
-        //    });
-        //})
     }
 
     //Hàm thực hiện data-command
@@ -93,6 +81,7 @@ class BaseGrid extends Grid {
      * Author: Nguyen Dang Tung(3/2/2021)
      * */
     confirmDelete() {
+        debugger
         if (formDelete) {
             formDelete.excute(this);
         }
