@@ -17,6 +17,8 @@ class Grid {
 
         me.listId = [];
 
+        me.listSubGrid = [];
+
         // Khởi tạo các sự kiện cho grid
         me.initEvents();
     }
@@ -165,10 +167,13 @@ class Grid {
         let me = this;
 
         $(me.grid).find('tbody').empty();
-        if (!Array.isArray(data)) {
-            $(me.grid).find('tbody').append(me.renderBody(0, data));
-        }
-        if (data) {
+        if (!Array.isArray(data)) {          
+            me.listSubGrid.push(data);
+            $.each(me.listSubGrid, function (index, obj) {
+                $(me.grid).find('tbody').append(me.renderBody(index, obj));
+            });
+            //$(me.grid).find('tbody').append(me.renderBody(0, data));
+        } else if (data) {
             $.each(data, function (index, obj) {
                 $(me.grid).find('tbody').append(me.renderBody(index, obj));
             });
@@ -243,7 +248,7 @@ class Grid {
             case "datetime":
                 element.addClass("text-center");
                 break;
-            case "Money":
+            case "money":
                 element.addClass("text-right");
                 break;
             case 'percent':
@@ -285,7 +290,7 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
-            case "Money":
+            case "money":
                 value = formatMoney(value);
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);

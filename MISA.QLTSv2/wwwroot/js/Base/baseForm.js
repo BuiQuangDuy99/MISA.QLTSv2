@@ -276,7 +276,7 @@ class baseForm {
                 case "Number":
                     value = parseInt(value);
                     break;
-                case "Money":
+                case "money":
                     value = parseInt(value.split(".").join(""));
                     break;
                 case "Combobox":

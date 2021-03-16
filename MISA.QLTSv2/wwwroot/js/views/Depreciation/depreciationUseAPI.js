@@ -76,7 +76,7 @@ var conFigColum = [
         Index: 4
     },
     {
-        DataType: "Money",
+        DataType: "money",
         FieldName: "AmountTotal",
         FieldText: "Số tiền",
         Index: 5
