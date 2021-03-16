@@ -32,6 +32,7 @@
     }
 
 textarea{
+    width: 100%;
     resize:none !important;
 }
 .depreciation-sub-grid thead {
@@ -147,4 +148,12 @@ textarea{
     left: 150px;
     background-size: contain;
     background-position: center;
+}
+
+.m-col-6-left{
+    padding-right: 16px;
+}
+
+.m-col-6-right{
+    padding-left: 16px;
 }

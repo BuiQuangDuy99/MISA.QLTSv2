@@ -17,6 +17,8 @@ class Grid {
 
         me.listId = [];
 
+        me.listSubGrid = [];
+
         // Khởi tạo các sự kiện cho grid
         me.initEvents();
     }
@@ -165,11 +167,16 @@ class Grid {
         let me = this;
 
         $(me.grid).find('tbody').empty();
-        if (data) {
+        if (!Array.isArray(data)) {          
+            me.listSubGrid.push(data);
+            $.each(me.listSubGrid, function (index, obj) {
+                $(me.grid).find('tbody').append(me.renderBody(index, obj));
+            });
+            //$(me.grid).find('tbody').append(me.renderBody(0, data));
+        } else if (data) {
             $.each(data, function (index, obj) {
                 $(me.grid).find('tbody').append(me.renderBody(index, obj));
-            })
-
+            });
         }
     }
 
@@ -239,7 +246,7 @@ class Grid {
             case "datetime":
                 element.addClass("text-center");
                 break;
-            case "Money":
+            case "money":
                 element.addClass("text-right");
                 break;
             case 'percent':
@@ -251,6 +258,8 @@ class Grid {
             case 'function':
                 element.addClass("function-content");
             case 'STT':
+                element.addClass("text-center");
+            case 'Function_SubGrid':
                 element.addClass("text-center");
             default:
                 break;
@@ -279,7 +288,7 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
-            case "Money":
+            case "money":
                 value = formatMoney(value);
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
@@ -308,6 +317,10 @@ class Grid {
                         </button>
                         </button>`
                     + `</td>`);
+                td = me.addClassFormat(td, dataType);
+                break;
+            case "Function_SubGrid":
+                td = $(`<td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
             default:

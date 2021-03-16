@@ -28,7 +28,6 @@
         var me = this;
 
         me.target = target;
-        debugger
         let selectedRow = target.getListId();
 
         if (selectedRow.length > 0) {
