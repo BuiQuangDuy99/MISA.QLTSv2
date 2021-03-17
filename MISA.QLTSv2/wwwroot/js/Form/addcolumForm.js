@@ -45,7 +45,8 @@ class FormAdd extends baseForm {
                 source: arr,
                 select: function (event, ui) {
                     $('#txtfixedassetname').val(ui.item.FixedAssetName);
-
+                    $('#txtdepartmentnow').val(ui.item.DepartmentName);
+                    
                 }
             });
         }).fail(function (data) {
