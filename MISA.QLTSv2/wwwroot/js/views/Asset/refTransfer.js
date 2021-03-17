@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+$(document).ready(function () {
 
 })
 
@@ -7,7 +7,7 @@ class refTransfer extends BaseGrid {
 
     constructor(gridId, entity) {
         super(gridId, entity);
-        //this.initEvents();
+        this.initEvents();
     }
 
     initEvents() {
@@ -19,11 +19,10 @@ class refTransfer extends BaseGrid {
         $('#txtsearch').keyup(function (e) {
             if (e.key === "Enter") {
                 e.preventDefault();
-
                 me.loadData();
-            } 
+            }
         });
-}
+    }
     setUrl() {
         this.url = 'https://localhost:44363/api/RefTransfer';
     }
@@ -32,6 +31,8 @@ class refTransfer extends BaseGrid {
         var me = this;
         this.formDetail = new reftransferForm(formID, width, height, me);
     }
+
+
 
     filterData() {
         var me = this,
@@ -42,8 +43,6 @@ class refTransfer extends BaseGrid {
         });
     }
 }
-
-var refTransferGrid = new refTransfer('#reftransfer-grid', "RefTransfer");
 
 // Biến config cho từng column trong bảng
 
@@ -79,6 +78,8 @@ var conFigColum = [
         Index: 5
     }
 ];
+
+var refTransferGrid = new refTransfer('#reftransfer-grid', "RefTransfer");
 
 //khởi tạo form ghi tăng tài sản
 refTransferGrid.createFormDetail("#dialog_reftransfer", 800, 600);

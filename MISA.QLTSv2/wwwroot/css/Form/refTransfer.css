@@ -174,3 +174,32 @@ textarea {
 /*.date-picker{
     position:relative;
 }*/
+
+.m-col-6-left{
+    padding-right:15px;
+}
+.m-col-6-right{
+    padding-left:15px;
+}
+
+.btn-depr-delete {
+    padding: 0px;
+    outline: none !important;
+    border: none;
+    height: auto;
+    background-color: #f0f8ff;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.icon-delete-row {
+    background-image: url(/icon/trash.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 6px 0 0 14px;
+    width: 14px;
+    height: 20px;
+}

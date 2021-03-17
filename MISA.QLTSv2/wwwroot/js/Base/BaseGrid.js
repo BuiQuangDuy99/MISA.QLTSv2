@@ -54,15 +54,6 @@ class BaseGrid extends Grid {
                     break;
             }
         });
-
-      
-        //$('#btn-delete').on("click", function () {
-        //    me.confirmDelete();
-        //    $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
-        //    $('#btn-yes-warring').off('click').click(function () {
-        //        me.delete()
-        //    });
-        //})
     }
 
     //Hàm thực hiện data-command
@@ -105,6 +96,7 @@ class BaseGrid extends Grid {
         $('.loading').show();
 
         let selectedRow = me.getListId();
+        
         var url = me.url;
         $.ajax({
             url: url,

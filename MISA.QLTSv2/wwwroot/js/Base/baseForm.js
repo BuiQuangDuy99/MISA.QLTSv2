@@ -21,7 +21,6 @@ class baseForm {
         //var data = this.getJson();
         this.form.find("#btn-cancel").off("click");
         this.form.find("#btn-save").off("click");
-
         //this.form.find("#btn-save").on("click", this.getJson());
         this.form.find("#btn-cancel,#btn-close").on("click", this.closeForm.bind(this));
         this.form.find("#btn-save").on("click", this.saveData.bind(this));
@@ -110,7 +109,7 @@ class baseForm {
         return isValid;
 
     }
-    /**
+    /**   
      * Validate các ô nhập số 
      * CreatedBy : NDTUNG (4/2/2021)
      */
@@ -272,6 +271,7 @@ class baseForm {
             switch (dataType) {
                 case "date":
                     value = input.datepicker("getDate");
+             
                     break;
                 case "Number":
                     value = parseFloat(value);
