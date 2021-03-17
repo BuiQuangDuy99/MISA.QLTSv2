@@ -4,4 +4,10 @@
         this.initEvents();
     }
 
+    createFormDetail(formID, width, height) {
+        var me = this;
+        this.formDetail = new ReftranferDetail(formID, width, height, me);
+
+    }
+
 }
