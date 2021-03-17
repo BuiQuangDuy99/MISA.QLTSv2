@@ -59,7 +59,7 @@ class baseForm {
         this.form.find("input[dataType='Date']").datepicker({ dateFormat: "dd/mm/yy"}).inputmask("99/99/9999", { placeholder: "__/__/____" });
 
         this.form.find(".icon_PostDate").off('click').click(function () {
-            $('input[dataType="date"]').focus();
+            $('input[dataType="Date"]').focus();
         });
     }
 

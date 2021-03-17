@@ -31,12 +31,13 @@ class depreciation extends BaseGrid {
 
         
     }
+
     filterData() {
-        var me = this,
-            value = $('#txtsearch').val();
-        me.listData = me.cacheData.filter(function (item) {
-            return item["RefNo"].includes(value);
-        });
+        //var me = this,
+        //    value = $('#txtsearch').val();
+        //    me.listData = me.cacheData.filter(function (item) {
+        //    return item["RefNo"].includes(value);
+        //});
     }
 
     /**
@@ -49,6 +50,10 @@ class depreciation extends BaseGrid {
     createFormDetail(formID, width, height) {
         var me = this;
         this.formDetail = new depreciationForm(formID, width, height, me);
+    }
+
+    setUrl() {
+        this.url = 'https://localhost:44363/api/v1/RefDepreciations';
     }
 }
 
@@ -103,5 +108,5 @@ depreciationGrid.createFormDetail("#dialog_depreciation", 800, 600);
 depreciationGrid.setConFigColum(conFigColum);
 
 //Load dữ liệu grid
-depreciationGrid.loadData(deprectation);
+depreciationGrid.loadAjaxData('https://localhost:44363/api/v1/RefDepreciations');
 

@@ -94,7 +94,7 @@ class BaseGrid extends Grid {
      * Hàm thực hiện xóa một hàng trong bảng
      * CreatedBY: BQDUY(26/02/2021)
      * */
-    delete() {
+    delete(data) {
         let me = this;
         let selectedRow = me.grid.find(".selected-row");
         if (selectedRow.length > 0) {
@@ -171,6 +171,10 @@ class BaseGrid extends Grid {
         super.loadData(this.listData);
     }
 
+    /**
+     *  Ham tim kiem
+     *
+     */
     filterData() {
     }
 }

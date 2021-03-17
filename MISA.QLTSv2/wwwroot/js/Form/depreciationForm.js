@@ -49,7 +49,35 @@ class depreciationForm extends baseForm {
         //    me.checkPercent($(this));
         //});
 
+        me.autocomplete();
 
+
+    }
+
+    autocomplete() {
+        $.ajax({
+            url: 'https://localhost:44363/api/FixedAsset',
+            method: "GET"
+        }).done(function (data) {
+            var arr = [];
+            $.each(data.Data, function (index, object) {
+                object["label"] = object["FixedAssetCode"];
+                object["value"] = object["FixedAssetCode"];
+                arr.push(object);
+            })
+            $('input[fieldName="FixedAssetCode"').autocomplete({
+                delay: 0,
+                source: arr,
+                select: function (event, ui) {
+                    $('input[fieldName="FixedAssetName"]').val(ui.item.FixedAssetName);
+                }
+            }).autocomplete("instance")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append($("<div>").text(item.label + " - " + item.FixedAssetName))
+                    .appendTo(ul);
+            };
+        }).fail(function (data) {
+        })
     }
 
     /**
