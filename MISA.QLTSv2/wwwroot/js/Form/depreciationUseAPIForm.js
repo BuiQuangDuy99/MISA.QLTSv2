@@ -65,6 +65,7 @@ class depreciationForm extends baseForm {
         //                <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
         //            </tr>`);
         this.subGrid.formDetail.show();
+        this.subGrid.formDetail.autocomplete();
         //$('#depreciation-sub-grid tbody').append(tr);
         //me.bindingSTT();
         //showTooltipElement($('.depreciation-sub-grid button'));

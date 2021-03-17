@@ -131,9 +131,15 @@
 }
 
 .ui-widget.ui-widget-content {
-    height: 32px;
+    height: auto;
     background-color: #fff;
     border: 1px solid #e0e0e0;
+    width: auto;
+}
+
+.ui-menu{
+    height: 150px !important;
+    overflow-y: scroll;
 }
 
 .custom-combobox {
