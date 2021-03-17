@@ -9,38 +9,50 @@ class FormAdd extends baseForm {
             width: width,
             modal: true,
         })
-        $('#txtreftranfer').autocomplete({
-            minLength: 0,
-            source: function (request, response) {
-                $.ajax({
-                    url: "https://localhost:44363/api/FixedAsset",
-                    dataType: "json",
-                    data: {
-                        q: request.term
-                    },
-                    success: function (data) {
-                        response(data);
-                    }
-                });
-            },
-            focus: function (event, ui) {
-                $("#txtreftranfer").val(ui.item.label);
-                return false;
-            },
-            select: function (event, ui) {
-                $("#txtreftranfer").val(ui.item.name);
-                $("#project-id").val(ui.item.email);
-
-                return false;
-            }
-        })
-            .data("ui-autocomplete")._renderItem = function (ul, item) {
-                return $("<li>")
-                    .data("ui-autocomplete-item", item)
-                    .append("<a> " + item.name + "<br>" + item.email + "</a>")
-                    .appendTo(ul);
-            };
+        this.autocomplete();
     }
+
+    autocomplete() {
+        $.ajax({
+            url: 'https://localhost:44363/api/FixedAsset',
+            method: "GET"
+        }).done(function (data) {
+            var arr = [];
+
+            //$.widget("custom.catcomplete", $.ui.autocomplete, {
+            //    _renderMenu: function (ul, items) {
+            //        var self = this,
+            //            currentCategory = "";
+            //        debugger
+            //        $.each(items, function (index, item) {
+            //            //if (item.FixedAssetCode != currentCategory) {
+            //            //    ul.append("<li class='ui-autocomplete-category'>" + item.FixedAssetCode + "</li>");
+            //            //    currentCategory = item.FixedAssetCode;
+            //            //}
+            //            self._renderItem(ul, item);
+                        
+            //        });
+            //    },
+            //});
+            $.each(data.Data, function (index, object) {
+                object["label"] = object["FixedAssetCode"];
+                object["value"] = object["FixedAssetCode"];
+                arr.push(object);
+                
+            })
+            $('#txtreftranfer').autocomplete({
+                delay: 0,
+                source: arr,
+                select: function (event, ui) {
+                    $('#txtfixedassetname').val(ui.item.FixedAssetName);
+
+                }
+            });
+        }).fail(function (data) {
+
+        })
+    }
+
 
     show(data) {
         let me = this;

@@ -8,4 +8,4 @@
         this.formDetail = new FormAdd(formID, width, height, me);
 
     }
-}
+} 
