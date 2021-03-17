@@ -44,8 +44,6 @@ class refTransfer extends BaseGrid {
     }
 }
 
-var refTransferGrid = new refTransfer('#reftransfer-grid', "RefTransfer");
-
 // Biến config cho từng column trong bảng
 
 var conFigColum = [
@@ -80,6 +78,8 @@ var conFigColum = [
         Index: 5
     }
 ];
+
+var refTransferGrid = new refTransfer('#reftransfer-grid', "RefTransfer");
 
 //khởi tạo form ghi tăng tài sản
 refTransferGrid.createFormDetail("#dialog_reftransfer", 800, 600);

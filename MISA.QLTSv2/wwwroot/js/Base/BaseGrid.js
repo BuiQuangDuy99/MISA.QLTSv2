@@ -54,18 +54,6 @@ class BaseGrid extends Grid {
                     break;
             }
         });
-
-        $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
-        $('#btn-yes-warring').off('click').click(function () {
-            me.delete();
-        });
-        //$('#btn-delete').on("click", function () {
-        //    me.confirmDelete();
-        //    $('.close, #btn-no-warring,#btn-ok-warring').off('click').click(closeWarring);
-        //    $('#btn-yes-warring').off('click').click(function () {
-        //        me.delete()
-        //    });
-        //})
     }
 
     //Hàm thực hiện data-command
@@ -93,6 +81,7 @@ class BaseGrid extends Grid {
      * Author: Nguyen Dang Tung(3/2/2021)
      * */
     confirmDelete() {
+        debugger
         if (formDelete) {
             formDelete.excute(this);
         }
@@ -108,18 +97,12 @@ class BaseGrid extends Grid {
         $('.loading').show();
 
         let selectedRow = me.getListId();
-        // Xử lý biến thành chuỗi để ném vào store ['','',''] , "'id1','id2','id3'"
-        let ids = "";
-        if (selectedRow) {
-            $.each(selectedRow, function (index, id) {
-                ids += "'" + String(id) + "',";
-            });
-            ids = ids.slice(0, -1);
-        }
+        
         var url = me.url;
         $.ajax({
-            url: `${url}?ids=${ids}`,
+            url: url,
             method: "DELETE",
+            data: JSON.stringify(selectedRow),
             contentType: 'application/json',
             async: true
         }).done(function (res) {
