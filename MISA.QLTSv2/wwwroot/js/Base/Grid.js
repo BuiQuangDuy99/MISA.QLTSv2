@@ -1,4 +1,5 @@
-﻿// Lớp dùng để render ra các bảng
+﻿
+// Lớp dùng để render ra các bảng
 class Grid {
 
     // Hàm khởi tạo, truyền vào id của bảng
@@ -30,7 +31,7 @@ class Grid {
     initEvents() {
         var me = this,
             grid = me.grid;
-
+        debugger
         // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit, và binding dữ liệu của row lên form
         grid.find('tbody').off('dblclick', 'tr');
         grid.find('tbody').on('dblclick', 'tr', me.dbClickRow.bind(this));

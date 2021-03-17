@@ -1,14 +1,27 @@
 ﻿class ReftranferDetail extends BaseGrid {
     constructor(gridId, entity) {
         super(gridId, entity);
-        this.createFormDetail("#dialog_addcolum", 500, 300);
+        this.initEvents();
     }
 
-
-    createFormDetail(formID, width, height) {
-        var me = this;
-        this.formDetail = new ReftranferDetail(formID, width, height, me);
-
+    initEvents() {
+        this.grid.find('tbody').off('click', 'tr');
+        this.grid.find('tbody').on('click', 'tr', this.gridRowOnClick);
     }
 
+    gridRowOnClick(event) {
+        if (event.ctrlKey) {
+            if ($(this).hasClass('selected-row')) {
+                $(this).removeClass('selected-row');
+            } else {
+                $(this).addClass('selected-row');
+
+                console.log($(this).data('recordId'));
+            }
+        } else {
+            $(this).addClass('selected-row');
+            console.log($(this).data('recordId'));
+            $(this).siblings().removeClass('selected-row');
+        }
+    }
 }

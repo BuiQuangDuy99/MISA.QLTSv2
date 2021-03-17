@@ -83,7 +83,7 @@ class FormAdd extends baseForm {
     saveChangeData(data) {
         let me = this,
             jsCaller = me.jsCaller;
-        jsCaller.loadData(data);
+        jsCaller.subGrid.loadData(data);
         me.closeForm();
     }
 }

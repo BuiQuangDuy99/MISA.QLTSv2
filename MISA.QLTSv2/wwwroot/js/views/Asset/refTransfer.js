@@ -7,7 +7,7 @@ class refTransfer extends BaseGrid {
 
     constructor(gridId, entity) {
         super(gridId, entity);
-        this.initEvents();
+        // this.initEvents();
     }
 
     initEvents() {
@@ -31,7 +31,6 @@ class refTransfer extends BaseGrid {
         var me = this;
         this.formDetail = new reftransferForm(formID, width, height, me);
     }
-
 
 
     filterData() {
