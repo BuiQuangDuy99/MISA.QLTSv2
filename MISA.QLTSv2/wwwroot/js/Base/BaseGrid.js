@@ -4,6 +4,7 @@ class BaseGrid extends Grid {
         super(gridId, entity);
 
         this.formDetail = null;
+        this.cacheData = [];
         this.formMode = null;
         this.listData = [];
         this.url = null;
@@ -12,6 +13,10 @@ class BaseGrid extends Grid {
 
     setUrl() {
 
+    }
+
+    returnFormDetail() {
+        return formCon = this.formDetail;
     }
 
     /**
@@ -69,6 +74,13 @@ class BaseGrid extends Grid {
         }
     }
 
+
+    refresh() {
+        let me = this;
+        $(me.grid).find('tbody').empty();
+        me.loadAjaxData(me.url);
+    }
+
     /**
      * Lấy ra câu thông báo khi nhấn nút Xóa
      * Author: Nguyen Dang Tung(3/2/2021)
@@ -82,7 +94,7 @@ class BaseGrid extends Grid {
      * Hàm thực hiện xóa một hàng trong bảng
      * CreatedBY: BQDUY(26/02/2021)
      * */
-    delete(data) {
+    delete() {
         let me = this;
         let selectedRow = me.grid.find(".selected-row");
         if (selectedRow.length > 0) {
@@ -109,7 +121,6 @@ class BaseGrid extends Grid {
         //})
     }
 
-
     /**
      * Hàm xử lý sự kiện khi double click vào một hàng trong grid
      * CreatedBy: BQDUY(25/02/2021)
@@ -122,21 +133,18 @@ class BaseGrid extends Grid {
     }
 
     /**
-     * Hàm lấy dữ liệu từ server và render vào grid(tạm thời dùng biến fake data)
+     * Hàm lấy dữ liệu từ server và render vào grid
      * CreatedBy: BQDUY(25/02/2021)
      * */
     loadAjaxData(url) {
         var me = this;
+        $('.loading').show();
+        callAjax(url, "GET", null, function (res) {
+            if (res.Data) {
 
-        $.ajax({
-            url: url,
-            method: "GET"
-        }).done(function (res) {
-            if (res) {
-                me.loadData(res);
+                me.loadData(res.Data);
             }
-        }).fail(function (res) {
-
+            $('.loading').hide();
         })
     }
 

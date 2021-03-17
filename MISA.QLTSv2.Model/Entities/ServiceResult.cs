@@ -19,14 +19,14 @@ namespace MISA.QLTSv2.Model.Entities
         public object Data { get; set; }
 
         /// <summary>
-        /// Lời thông báo
+        /// Lời thông báo cho user
         /// </summary>
         public string Messenger { get; set; } = "";
 
         /// <summary>
-        /// MISACode của kết quả truy vấn
+        /// HttpCode của kết quả truy vấn, cho dev
         /// </summary>
-        public MISACode MISACode { get; set; } = MISACode.Success;
+        public HttpCodeResult HttpCode { get; set; } = HttpCodeResult.Success;
         #endregion
     }
 }

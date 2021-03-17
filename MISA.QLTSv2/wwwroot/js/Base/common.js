@@ -1,4 +1,15 @@
-﻿
+﻿/**
+ * Hàm sinh id kiểu Guid
+ * CreatedBY: BQDUY(09/03/2021)
+ * */
+function createGuid() {
+    function S4() {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    }
+    var guid = (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+    return guid;
+}  
+
 /**
  * Hàm Ajax dùng chung
  * CreatBy: BQDUY (4/2/2021)
@@ -21,7 +32,6 @@ var callAjax = function (url, method, data, functionCallBack, async = true) {
 }
 
 
-
 /**
  * Format dữ liệu ngày tháng sang ngày/tháng/năm
  * @param {any} date tham số có kiểu dữ liệu bất kỳ
@@ -40,30 +50,6 @@ function formatDate(date, formatDate) {
     }
 }
 
-/**
- * Chuyển đổi dữ liệu từ dd/mm/yyyy lên form
- * CreatBy: NDTUNG (4/2/2021)
-*/
-function formatStringDate(date) {
-    if (!date) {
-        return "";
-    }
-    else {
-        var date = new Date(date);
-
-        day = date.getDate();
-        month = date.getMonth() + 1;
-        year = date.getFullYear();
-        if (day < 10) {
-            day = '0' + day;
-        }
-        if (month < 10) {
-            month = '0' + month;
-        }
-        return year + "-" + month + "-" + day;
-    }
-}
-
 /**-----------------------------------------------------
  *Hàm định dạng số thành tiền
  *CreatedBy: NDTUNG(4/2/2021)
@@ -74,7 +60,6 @@ function formatMoney(number) {
         return "";
     }
     else {
-
         try {
             if (number != null) {
                 return number.toString().replace(/(\d)(?=(\d{3})+\b)/g, '$1.');

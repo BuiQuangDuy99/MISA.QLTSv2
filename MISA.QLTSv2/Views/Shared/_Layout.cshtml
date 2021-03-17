@@ -18,13 +18,11 @@
     <link href="~/css/common/input.css" rel="stylesheet" />
     <link href="~/css/common/layout.css" rel="stylesheet" />
     <link href="~/css/common/toolbar.css" rel="stylesheet" />
+    <link href="~/css/common/loading.css" rel="stylesheet" />
     <link href="~/css/common/responsive.css" rel="stylesheet" />
-    <link href="~/css/custom/department.css" rel="stylesheet" />
-    <link href="~/css/Form/dictionaryForm.css" rel="stylesheet" />
-    <link href="~/css/Form/depreciation.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link href="~/css/asset.css" rel="stylesheet" />
     <link href="~/css/common/warring.css" rel="stylesheet" />
+    @RenderSection("Links", required: false)
 </head>
 <body>
     <div class="wrapper container-fluid h-100">
@@ -53,7 +51,7 @@
                             </div>
                             <ul class="submenu">
                                 <li><a href="/Asset/AssetIncreased">Ghi tăng</a></li>
-                                <li><a href="#">Điều chuyển</a></li>
+                                <li><a href="/Asset/RefTransfer">Điều chuyển</a></li>
                                 <li><a href="/Depreciation">Tính hao mòn</a></li>
                                 <li><a href="#">Ghi giảm</a></li>
                             </ul>
@@ -154,13 +152,21 @@
         <button class="success_button" type="submit"></button>
     </div>
 
+    <div class="loading">
+        <div class="loading-modal"></div>
+        <div class="loading-icon"></div>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+
     <script src="~/lib/Inputmask-5.x/dist/bindings/inputmask.binding.js"></script>
     <script src="~/lib/Inputmask-5.x/dist/inputmask.js"></script>
     <script src="~/lib/Inputmask-5.x/dist/jquery.inputmask.js"></script>
+
     @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/decimal.js"></script>
     @*Script dùng chung*@
     <script src="~/js/Common/data.js"></script>
     <script src="~/js/Base/common.js"></script>
@@ -170,6 +176,7 @@
     <script src="~/js/Base/baseForm.js"></script>
     @*Script render dữ liệu vào bảng*@
     <script src="~/js/Base/Grid.js"></script>
+    <script src="~/js/Form/deleteConfirm.js"></script>
     <script src="~/js/Base/BaseGrid.js"></script>
     <script src="~/js/navigation.js"></script>
     <script src="~/js/Form/test.js"></script>

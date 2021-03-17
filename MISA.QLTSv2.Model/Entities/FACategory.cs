@@ -44,11 +44,19 @@ namespace MISA.QLTSv2.Model.Entities
         /// <summary>
         /// ID loại tài sản cha
         /// </summary>
-        public Guid ParentId { get; set; }
+        public Guid? ParentId { get; set; }
         /// <summary>
         /// Loại tài sản này thuộc loại tài sản lớn hơn nào
         /// </summary>
         public string ParentName { get; set; }
+        /// <summary>
+        /// ID nhóm loại tài sản
+        /// </summary>
+        public Guid? FACategoryGroupId { get; set; }
+        /// <summary>
+        /// Tên nhóm loại tài sản
+        /// </summary>
+        public string FACategoryGroupName { get; set; }
         /// <summary>
         /// Id của đơn vị
         /// </summary>

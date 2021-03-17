@@ -1,6 +1,6 @@
 
 //Lớp form chi tiết của bảng ở màn department
-class departmentForm extends baseForm {
+class departmentFormTung extends baseForm {
                
     constructor(formId, width, height, jsCaller) {
         super(formId, jsCaller);
@@ -15,7 +15,7 @@ class departmentForm extends baseForm {
 
 
     setApiUrl() {
-        this.getApiUrl = 'https://localhost:44363/api/v1/department';
+        this.getApiUrl = 'https://localhost:44363/api/departments';
     }
 
     /**

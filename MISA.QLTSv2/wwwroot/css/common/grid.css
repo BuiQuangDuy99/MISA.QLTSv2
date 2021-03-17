@@ -59,8 +59,9 @@ table {
     }
 
         table tr:hover {
-            background-color: #F0F8FF
+            background-color: #f0f8ff;
         }
+
 
 th:after,
 th:before {
@@ -69,21 +70,23 @@ th:before {
     left: 0;
     width: 100%;
 }
+
 /*th:before {
     top: -1px;
-    border-top: 1px solid #BBBBBB;
+    border-top: 1px solid #bbbbbb;
 }*/
+
 th:after {
     bottom: 0px;
-    border-bottom: 1px solid #BBBBBB;
+    border-bottom: 1px solid #bbbbbb;
 }
 
 .selected-row {
-    background-color: #F0F8FF !important;
+    background-color: #f0f8ff !important;
 }
 
     .selected-row:hover {
-        background-color: #F0F8FF !important;
+        background-color: #f0f8ff !important;
     }
 /*::-webkit-scrollbar{
     width:5px;
@@ -91,6 +94,8 @@ th:after {
 ::-webkit-scrollbar-thumb{
     background-color:#454545;
 }*/
+
+
 /*css cho context menu*/
 .menu {
     background: #fff;

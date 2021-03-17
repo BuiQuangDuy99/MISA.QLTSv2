@@ -32,6 +32,7 @@
     }
 
 textarea{
+    width: 100%;
     resize:none !important;
 }
 .depreciation-sub-grid thead {
@@ -73,7 +74,7 @@ textarea{
     padding: 0px;
     outline: none !important;
     border: none;
-    height: 0;
+    height: auto;
 }
 .icon-delete-row {
     background-image: url('/icon/trash.svg');
@@ -147,4 +148,12 @@ textarea{
     left: 150px;
     background-size: contain;
     background-position: center;
+}
+
+.m-col-6-left{
+    padding-right: 16px;
+}
+
+.m-col-6-right{
+    padding-left: 16px;
 }

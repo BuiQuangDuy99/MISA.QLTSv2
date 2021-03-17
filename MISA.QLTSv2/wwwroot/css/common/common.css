@@ -66,3 +66,7 @@ select, textarea{
     resize: none;
     font-family: Roboto !important;
 }
+
+.text-red{
+    color: red !important;
+}

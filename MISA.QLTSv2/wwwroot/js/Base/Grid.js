@@ -15,6 +15,10 @@ class Grid {
 
         me.entity = entity;
 
+        me.listId = [];
+
+        me.listSubGrid = [];
+
         // Khởi tạo các sự kiện cho grid
         me.initEvents();
     }
@@ -46,6 +50,7 @@ class Grid {
                 $(this).removeClass('selected-row');
             } else {
                 $(this).addClass('selected-row');
+
                 console.log($(this).data('recordId'));
             }
         } else {
@@ -53,6 +58,17 @@ class Grid {
             console.log($(this).data('recordId'));
             $(this).siblings().removeClass('selected-row');
         }
+    }
+
+    getListId() {
+        var me = this;
+        me.listId = [];
+        $(me.grid).find('tbody tr').each(function () {
+            if ($(this).hasClass("selected-row")) {
+                me.listId.push($(this).data('recordId'));
+            }
+        });
+        return me.listId;
     }
 
     /**
@@ -71,7 +87,7 @@ class Grid {
 
         // Build thẻ th
         $.each(me.conFigColum, function (index, col) {
-            th = $(`<th>` + col.FieldText + `</th>`);
+            th = $(`<th>` + col.FieldText + `</th> <hr>`);
             th = me.addAttribute(th, 'fieldName', col.FieldName);
             th = me.addAttribute(th, 'dataType', col.DataType);
             th = me.addClassFormat(th, col.DataType);
@@ -148,15 +164,19 @@ class Grid {
      * CreatedBY: BQDUY(25/02/2021)
      */
     loadData(data) {
-        let me = this,
-            grid = this.grid;
+        let me = this;
 
-        $(grid).find('tbody').empty();
-        if (data) {
+        $(me.grid).find('tbody').empty();
+        if (!Array.isArray(data)) {          
+            me.listSubGrid.push(data);
+            $.each(me.listSubGrid, function (index, obj) {
+                $(me.grid).find('tbody').append(me.renderBody(index, obj));
+            });
+            //$(me.grid).find('tbody').append(me.renderBody(0, data));
+        } else if (data) {
             $.each(data, function (index, obj) {
-                $(grid).find('tbody').append(me.renderBody(index, obj));
-            })
-
+                $(me.grid).find('tbody').append(me.renderBody(index, obj));
+            });
         }
     }
 
@@ -176,8 +196,8 @@ class Grid {
                 td;
 
             row = $(`<tr></tr>`);
-            //$(row).data('recordId', object[me.entity + 'Id']);
-            $(row).data('recordId', object['Id']);
+            $(row).data('recordId', object[me.entity + 'Id']);
+            //$(row).data('recordId', object['Id']);
 
             // Binding cột số thứ tự riêng, index chính là value
             object["STT"] = index + 1;
@@ -222,7 +242,7 @@ class Grid {
      */
     addClassFormat(element, dataType) {
         switch (dataType) {
-            case "number":
+            case "STT":
                 element.addClass("text-center");
                 break;
             case "datetime":
@@ -240,6 +260,8 @@ class Grid {
             case 'function':
                 element.addClass("function-content");
             case 'STT':
+                element.addClass("text-center");
+            case 'Function_SubGrid':
                 element.addClass("text-center");
             default:
                 break;
@@ -273,7 +295,7 @@ class Grid {
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
-            case "number":
+            case "STT":
                 td = $(`<td>` + value + `</td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
@@ -297,6 +319,10 @@ class Grid {
                         </button>
                         </button>`
                     + `</td>`);
+                td = me.addClassFormat(td, dataType);
+                break;
+            case "Function_SubGrid":
+                td = $(`<td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
             default:
