@@ -9,34 +9,6 @@ class depreciationSubGridForm extends baseForm {
             width: width,
             modal: true,
         });
-        this.list = [];
-        this.autocomplete();
-    }
-
-    initEvent() {
-        super.initEvent();
-
-        $('#txtFixedAssetCode').focus(function () {
-            $('#txtFixedAssetCode').autocomplete({
-                delay: 0,
-                source: this.list,
-                select: function (event, ui) {
-                    $.each($("#DialogSubGridDetail input[fieldName]"), function (index, input) {
-                        if (!$(input).val()) {
-                            let field = $(input).attr("fieldName");
-                            $(input).val(ui.item[field]);
-
-                        }
-                    })
-                    //$('#txtFixedAssetName').val(ui.item.FixedAssetName);
-
-                }
-            }).autocomplete("instance")._renderItem = function (ul, item) {
-                return $("<li>")
-                    .append($("<div>").text(item.label + " - " + item.FixedAssetName))
-                    .appendTo(ul);
-            };
-        })
     }
 
     autocomplete() {
@@ -52,7 +24,25 @@ class depreciationSubGridForm extends baseForm {
                 arr.push(object);
 
             })
-            this.list = arr;
+            $('#txtFixedAssetCode').autocomplete({
+                delay: 0,
+                source: arr,
+                select: function (event, ui) {
+                    //$.each($("#DialogSubGridDetail input[fieldName]"), function (index, input) {
+                    //    if (!$(input).val()) {
+                    //        let field = $(input).attr("fieldName");
+                    //        $(input).val(ui.item[field]);
+
+                    //    }
+                    //})
+                    $('#txtFixedAssetName').val(ui.item.FixedAssetName);
+
+                }
+            }).autocomplete("instance")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append($("<div>").text(item.label + " - " + item.FixedAssetName))
+                    .appendTo(ul);
+            };
             
         }).fail(function (data) {
 
