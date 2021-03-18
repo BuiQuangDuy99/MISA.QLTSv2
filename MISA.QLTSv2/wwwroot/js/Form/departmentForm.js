@@ -1,6 +1,6 @@
 
 //Lớp form chi tiết của bảng ở màn department
-class departmentForm extends baseForm {
+class departmentFormTung extends baseForm {
                
     constructor(formId, width, height, jsCaller) {
         super(formId, jsCaller);

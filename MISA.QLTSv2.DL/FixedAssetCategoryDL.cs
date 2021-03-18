@@ -143,8 +143,8 @@ namespace MISA.QLTSv2.DL
             if(entity.EntityState == EntityState.Insert)
             {
                 var parameters = new DynamicParameters();
-                parameters.Add($"FixedAssetCategoryId", keyValue, DbType.String);
-                var entityReturn = _dbConnection.Query<fixed_asset_category>($"Proc_SelectFACategoryById", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                parameters.Add($"$FACategoryCode", propertyValue);
+                var entityReturn = _dbConnection.Query<fixed_asset_category>($"Proc_CheckDuplicateFACategoryCodeInsert", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
                 return _mapper.Map<FACategory>(entityReturn);
             } 
             else if (entity.EntityState == EntityState.Update)

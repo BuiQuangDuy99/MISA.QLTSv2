@@ -117,17 +117,25 @@ namespace MISA.QLTSv2.API
         /// <returns>số bản ghi xóa thành công</returns>
         /// CreatedBY: BQDUY (05/03/2021)
         [HttpDelete]
-        public IActionResult Delete([FromQuery] string ids)
+        public ServiceResult DeleteRefTransfer([FromBody] List<Guid> entityId)
         {
             try
             {
-                return Ok(_refDepreciationBL.Delete(ids));
+                int count = 0;
+                foreach (var item in entityId)
+                {
+                    _refDepreciationBL.Delete(item);
+                    count++;
+                }
+                _serviceResult.Data = count;
+                _serviceResult.HttpCode = HttpCodeResult.Success;
+                return _serviceResult;
             }
             catch (Exception ex)
             {
                 _serviceResult.Messenger = ex.Message.ToString();
                 _serviceResult.HttpCode = HttpCodeResult.Exception;
-                return Ok(_serviceResult);
+                return _serviceResult;
             }
         }
     }

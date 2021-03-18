@@ -10,7 +10,7 @@ class depreciationForm extends baseForm {
             modal: true,
         });
         this.subGrid = new depreciationSubGrid("#depreciation-sub-grid", "FixedAsset");
-
+        this.subGrid.createFormDetail("#DialogSubGridDetail", 500, 375);
         this.initEventDepreciationForm();
         showTooltipElement($('.depreciation-sub-grid th'));
     }
@@ -65,6 +65,7 @@ class depreciationForm extends baseForm {
         //                <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
         //            </tr>`);
         this.subGrid.formDetail.show();
+        this.subGrid.formDetail.autocomplete();
         //$('#depreciation-sub-grid tbody').append(tr);
         //me.bindingSTT();
         //showTooltipElement($('.depreciation-sub-grid button'));
@@ -178,5 +179,6 @@ class depreciationForm extends baseForm {
             }
         })
     }
+
 }
 //var subGrid = new depreciationSubGrid("#depreciation-sub-grid", "FixedAsset");

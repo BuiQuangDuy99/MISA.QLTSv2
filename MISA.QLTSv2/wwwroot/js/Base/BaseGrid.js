@@ -80,7 +80,6 @@ class BaseGrid extends Grid {
      * Author: Nguyen Dang Tung(3/2/2021)
      * */
     confirmDelete() {
-        debugger
         if (formDelete) {
             formDelete.excute(this);
         }
@@ -138,6 +137,7 @@ class BaseGrid extends Grid {
         $('.loading').show();
         callAjax(url, "GET", null, function (res) {
             if (res.Data) {
+
                 me.loadData(res.Data);
             }
             $('.loading').hide();

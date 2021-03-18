@@ -49,11 +49,11 @@ namespace MISA.QLTSv2.DL
         /// </summary>
         /// <param name="entityId"></param>
         /// <returns></returns>
-        public int Delete(String entityId)
+        public int Delete(Guid entityId)
         {
             var parameterEntityId = new DynamicParameters();
             // Add param id của bảng cần xóa:
-            parameterEntityId.Add($"ids", entityId);
+            parameterEntityId.Add($"$RefDepreciationId", entityId);
             // Thực thi commandText:
             var res = _dbConnection.Execute($"Proc_DeleteRefDepreciation", parameterEntityId, commandType: CommandType.StoredProcedure);
             // Trả về dữ liệu: 
