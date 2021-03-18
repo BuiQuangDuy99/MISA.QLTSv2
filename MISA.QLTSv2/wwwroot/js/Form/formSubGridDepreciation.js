@@ -9,6 +9,13 @@ class depreciationSubGridForm extends baseForm {
             width: width,
             modal: true,
         });
+        this.initEventSubForm();
+    }
+
+    initEventSubForm() {
+        $('#DialogSubGridDetail input[fieldName="Cost"], input[fieldName="DepreciationRate"]').off('blur').on('blur', function () {
+            $('input[fieldName="Amount"]').val(formatMoney(Math.round(parseFloat($('input[fieldName="Cost"]').val().split(".").join("")) * parseFloat($('input[fieldName="DepreciationRate"]').val().split(".").join("")) / 100)));
+        });
     }
 
     autocomplete() {
@@ -22,21 +29,21 @@ class depreciationSubGridForm extends baseForm {
                 object["label"] = object["FixedAssetCode"];
                 object["value"] = object["FixedAssetCode"];
                 arr.push(object);
-
             })
             $('#txtFixedAssetCode').autocomplete({
                 delay: 0,
                 source: arr,
                 select: function (event, ui) {
-                    //$.each($("#DialogSubGridDetail input[fieldName]"), function (index, input) {
-                    //    if (!$(input).val()) {
-                    //        let field = $(input).attr("fieldName");
-                    //        $(input).val(ui.item[field]);
-
-                    //    }
-                    //})
-                    $('#txtFixedAssetName').val(ui.item.FixedAssetName);
-
+                    $.each($("#DialogSubGridDetail input[fieldName]"), function (index, input) {                       
+                        let field = $(input).attr("fieldName");
+                        if ($(input).attr("dataType") == "money") {
+                            $(input).val(formatMoney(parseFloat(ui.item[field])));
+                        }
+                        $(input).val(ui.item[field]);
+                        if (field == "Amount") {
+                            $(input).val(formatMoney(Math.round(parseFloat($('input[fieldName="Cost"]').val().split(".").join("")) * parseFloat($('input[fieldName="DepreciationRate"]').val().split(".").join("")) / 100)));
+                        }
+                    })
                 }
             }).autocomplete("instance")._renderItem = function (ul, item) {
                 return $("<li>")
