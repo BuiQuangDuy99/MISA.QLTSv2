@@ -87,7 +87,6 @@ class reftransferForm extends baseForm {
 
             if (propertyName == "RefDetail" && propertyValue != null) {
                 propertyValue = JSON.parse(propertyValue);
-                //let gridDetail = new BaseGrid('#reftransfer-sub-grid', 'FixedAsset');
                 me.subGrid.loadData(propertyValue);
                 me.subGrid.listSubGrid = propertyValue;
             }
@@ -98,8 +97,6 @@ class reftransferForm extends baseForm {
     closeForm() {
         let me = this;
         me.resetForm();
-        //var refTransferGrid = new refTransfer('#reftransfer-grid', "RefTransfer");
-        //refTransferGrid.createFormDetail("#dialog_reftransfer", 800, 600);
         me.reftransferForm.dialog('close');
     }
 

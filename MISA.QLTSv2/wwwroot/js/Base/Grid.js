@@ -20,7 +20,6 @@ class Grid {
 
         me.listSubGrid = [];
 
-        // Khởi tạo các sự kiện cho grid
     }
 
     /**

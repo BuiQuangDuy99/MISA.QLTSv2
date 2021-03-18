@@ -329,12 +329,7 @@ class baseForm {
             var fieldName = $(this).attr("fieldName"),
                 dataType = $(this).attr("DataType");
 
-            //if (dataType == "Combobox") {
-            //    fieldName = $(this).attr("fieldValue");
-
-            //}
             if (me.jsCaller.formMode == "edit") {
-                //data[fieldName] = me.jsCaller.grid.find(".selected-row").data("recordId");
                 data[me.jsCaller.entity + "Id"] = me.jsCaller.grid.find(".selected-row").data("recordId");
             }
             if (dataType == "JSON" && (me.subGrid.listSubGrid != null)) {

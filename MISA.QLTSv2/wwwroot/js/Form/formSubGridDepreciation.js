@@ -2,6 +2,7 @@
 class depreciationSubGridForm extends baseForm {
     constructor(formId, width, height, jsCaller) {
         super(formId, jsCaller);
+
         //Định nghĩa Dialog
         this.depreciationForm = $(formId).dialog({
             autoOpen: false,
@@ -9,15 +10,22 @@ class depreciationSubGridForm extends baseForm {
             width: width,
             modal: true,
         });
+
         this.initEventSubForm();
     }
-
+    /**
+     * Hàm khởi tạo sự kiện cho form của subGid
+     * CreatedBY: BQDUY(18/03/2021)
+     * */
     initEventSubForm() {
         $('#DialogSubGridDetail input[fieldName="Cost"], input[fieldName="DepreciationRate"]').off('blur').on('blur', function () {
             $('input[fieldName="Amount"]').val(formatMoney(Math.round(parseFloat($('input[fieldName="Cost"]').val().split(".").join("")) * parseFloat($('input[fieldName="DepreciationRate"]').val().split(".").join("")) / 100)));
         });
     }
-
+    /**
+     * Hàm xử lý sự kiện cho combobox autocomplete
+     * CreatedBY: BQDUY(18/03/2021)
+     * */
     autocomplete() {
         $.ajax({
             url: 'https://localhost:44363/api/FixedAsset',
@@ -29,7 +37,8 @@ class depreciationSubGridForm extends baseForm {
                 object["label"] = object["FixedAssetCode"];
                 object["value"] = object["FixedAssetCode"];
                 arr.push(object);
-            })
+            });
+
             $('#txtFixedAssetCode').autocomplete({
                 delay: 0,
                 source: arr,
@@ -55,10 +64,18 @@ class depreciationSubGridForm extends baseForm {
 
         })
     }
+    /**
+     * Hàm hiển thị form khi click
+     * CreatedBY: BQDUY(18/03/2021)
+     * */
+    show(data) {
+        let me = this;
 
-
-    show() {
-        this.depreciationForm.dialog('open');
+        if (data) {
+            me.bindingData(data);
+            me.depreciationForm.dialog('open');
+        }
+        me.depreciationForm.dialog('open');
     }
 
     /**
@@ -67,14 +84,60 @@ class depreciationSubGridForm extends baseForm {
      * */
     closeForm() {
         let me = this;
+
         me.resetForm();
         me.depreciationForm.dialog('close');
     }
 
+    /**
+     * Hàm lấy data từ form và chuyển thành string
+     * CreatedBY: BQDUY(18/03/2021)
+     */
+    getData() {
+        var me = this;
+        var data = {};
+
+        this.form.find("input[fieldName], textarea, select, table").each(function () {
+            var fieldName = $(this).attr("fieldName"),
+                dataType = $(this).attr("DataType");
+
+            if (dataType == "JSON" && (me.subGrid.listSubGrid != null)) {
+                data[fieldName] = JSON.stringify(me.subGrid.listSubGrid);
+            } else {
+                data[fieldName] = me.getDataInput($(this), dataType);
+
+            }
+
+        });
+        return data;
+    }
+
+    /**
+     * Hàm xử lý khi cất hoặc thêm mới
+     * @param {any} data dữ liệu để cất
+     * CreatedBY: BQDUY(18/03/2021)
+     */
     saveChangeData(data) {
         let me = this,
             jsCaller = me.jsCaller;
-        jsCaller.loadData(data);
-        me.closeForm();
+
+        if (me.jsCaller.formMode == "Add") {
+
+            jsCaller.subGrid.loadData(data);
+            me.closeForm();
+
+        } else if (me.jsCaller.formMode == "edit") {
+
+            var listDataGrid = me.jsCaller.subGrid.listSubGrid;
+
+            $.each(listDataGrid, function (index, obj) {
+                if (obj["FixedAssetId"] === $(me.jsCaller.subGrid.grid).find(".selected-row").data("recordId")) {
+                    Object.assign(obj, data);
+                }
+            })
+
+            jsCaller.subGrid.loadData(listDataGrid);
+            me.closeForm();
+        }
     }
 }

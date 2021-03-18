@@ -18,12 +18,13 @@ class FormAdd extends baseForm {
             method: "GET"
         }).done(function (data) {
             var arr = [];
+
             $.each(data.Data, function (index, object) {
                 object["label"] = object["FixedAssetCode"];
                 object["value"] = object["FixedAssetCode"];
                 arr.push(object);
-                
-            })
+            });
+
             $('#txtreftranfer').autocomplete({
                 delay: 0,
                 source: arr,
@@ -42,9 +43,9 @@ class FormAdd extends baseForm {
         })
     }
 
-
     show(data) {
         let me = this;
+
         if (data) {
             me.bindingData(data);
             me.FormAdd.dialog('open');
@@ -52,13 +53,13 @@ class FormAdd extends baseForm {
         me.FormAdd.dialog('open');
     }
 
-
     /**
      * Hàm xử lý khi form đóng
      * CreatedBY: NVTUYEN(15/03/2021)
      * */
     closeForm() {
         let me = this;
+
         me.resetForm();
         me.FormAdd.dialog('close');
     }
@@ -67,10 +68,10 @@ class FormAdd extends baseForm {
      * @param {any} data
      * CreatedBy:NVTUYEN(15/03/2021)
      */
-
     getData() {
         var me = this;
         var data = {};
+
         this.form.find("input[fieldName], textarea, select, table").each(function () {
             var fieldName = $(this).attr("fieldName"),
                 dataType = $(this).attr("DataType");
@@ -89,19 +90,22 @@ class FormAdd extends baseForm {
     saveChangeData(data) {
         let me = this,
             jsCaller = me.jsCaller;
+
         if (me.jsCaller.formMode == "Add") {
-            debugger
+
             jsCaller.subGrid.loadData(data);
             me.closeForm();
 
         } else if (me.jsCaller.formMode == "edit") {
+
             var listDataGrid = me.jsCaller.subGrid.listSubGrid;
+
             $.each(listDataGrid, function (index, obj) {
                 if (obj["FixedAssetId"] === $(me.jsCaller.subGrid.grid).find(".selected-row").data("recordId")) {
                     Object.assign(obj,data);
                 }
             })
-            debugger
+
             jsCaller.subGrid.loadData(listDataGrid);
             me.closeForm();
         }
