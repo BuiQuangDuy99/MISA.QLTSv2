@@ -18,22 +18,6 @@ class FormAdd extends baseForm {
             method: "GET"
         }).done(function (data) {
             var arr = [];
-
-            //$.widget("custom.catcomplete", $.ui.autocomplete, {
-            //    _renderMenu: function (ul, items) {
-            //        var self = this,
-            //            currentCategory = "";
-            //        debugger
-            //        $.each(items, function (index, item) {
-            //            //if (item.FixedAssetCode != currentCategory) {
-            //            //    ul.append("<li class='ui-autocomplete-category'>" + item.FixedAssetCode + "</li>");
-            //            //    currentCategory = item.FixedAssetCode;
-            //            //}
-            //            self._renderItem(ul, item);
-                        
-            //        });
-            //    },
-            //});
             $.each(data.Data, function (index, object) {
                 object["label"] = object["FixedAssetCode"];
                 object["value"] = object["FixedAssetCode"];
@@ -48,7 +32,11 @@ class FormAdd extends baseForm {
                     $('#txtdepartmentnow').val(ui.item.DepartmentName);
                     
                 }
-            });
+            }).autocomplete("instance")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append($("<div>").text(item.label + " - " + item.FixedAssetName))
+                    .appendTo(ul);
+            };
         }).fail(function (data) {
 
         })

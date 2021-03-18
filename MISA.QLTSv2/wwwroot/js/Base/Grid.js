@@ -261,7 +261,7 @@ class Grid {
             case 'STT':
                 element.addClass("text-center");
             case 'Function_SubGrid':
-                element.addClass("text-center");
+                element.addClass("function-grid-content");
             default:
                 break;
         }
@@ -321,7 +321,10 @@ class Grid {
                 td = me.addClassFormat(td, dataType);
                 break;
             case "Function_SubGrid":
-                td = $(`<td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>`);
+                td = $(`<td><button id="btn-delete" class="btn-function hide" title="Xóa">
+                            <div class="icon-remove-function">
+                            </div>
+                        </button></td>`);
                 td = me.addClassFormat(td, dataType);
                 break;
             default:
