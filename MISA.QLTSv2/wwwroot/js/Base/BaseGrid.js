@@ -121,10 +121,14 @@ class BaseGrid extends Grid {
      * CreatedBy: BQDUY(25/02/2021)
      * */
     dbClickRow() {
-        var data = this.getDataSelected();
-        debugger
+        var me = this,
+            data = this.getDataSelected();
+
         console.log(data);
-        this.formDetail.show(data);
+        if (me.formDetail) {
+            me.formDetail.show(data);
+        }
+        
         this.formMode = "edit";
     }
 
@@ -166,6 +170,7 @@ class BaseGrid extends Grid {
 
         this.filterData();
         super.loadData(this.listData);
+
     }
 
     filterData() {

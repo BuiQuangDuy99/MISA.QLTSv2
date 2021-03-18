@@ -1,4 +1,4 @@
-﻿
+
 class FormAdd extends baseForm {
     constructor(formId, width, height, jsCaller) {
         super(formId, jsCaller);
@@ -90,6 +90,7 @@ class FormAdd extends baseForm {
         let me = this,
             jsCaller = me.jsCaller;
         if (me.jsCaller.formMode == "Add") {
+            debugger
             jsCaller.subGrid.loadData(data);
             me.closeForm();
 

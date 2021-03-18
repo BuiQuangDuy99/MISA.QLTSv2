@@ -7,9 +7,10 @@ class ReftranferDetail extends BaseGrid {
 
     initEvents() {
         var me = this;
-        this.grid.find('tbody').off('click', 'tr');
-        this.grid.find('tbody').on('click', 'tr', this.gridRowOnClick);
-        $('#btn-delete-subGrid').on('click', function (event) {
+
+        this.grid.find('tbody').off('click', 'tr').on('click', 'tr', this.gridRowOnClick);
+
+        this.grid.find('tbody').on('click','.btn-delete', function (event) {
             event.stopPropagation();
             console.log("a");
             me.deleteRow();
