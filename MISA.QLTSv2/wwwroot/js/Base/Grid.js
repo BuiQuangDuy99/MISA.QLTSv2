@@ -323,7 +323,7 @@ class Grid {
                 td = me.addClassFormat(td, dataType);
                 break;
             case "Function_SubGrid":
-                td = $(`<td><button id="btn-delete-subGrid" class="btn-function hide" title="Xóa">
+                td = $(`<td><button id="btn-delete-subGrid" class="btn-function hide btn-delete" title="Xóa">
                             <div class="icon-remove-function">
                             </div>
                         </button></td>`);
