@@ -7,7 +7,7 @@ class refTransfer extends BaseGrid {
 
     constructor(gridId, entity) {
         super(gridId, entity);
-        // this.initEvents();
+        this.initEvents();
     }
 
     initEvents() {

@@ -139,11 +139,11 @@ namespace MISA.QLTSv2.DL
             var query = string.Empty;
             if (entity.EntityState == EntityState.Insert)
             {
-                query = $"SELECT * FROM ref_transfer WHERE ref_transfer_code = '{propertyValue}'";
+                query = $"SELECT * FROM ref_transfer WHERE ref_no = '{propertyValue}'";
             }
             else if (entity.EntityState == EntityState.Update)
             {
-                query = $"SELECT * FROM ref_transfer WHERE ref_transfer_code = '{propertyValue}' AND ref_transfer_id <> '{keyValue}'";
+                query = $"SELECT * FROM ref_transfer WHERE ref_no = '{propertyValue}' AND ref_transfer_id <> '{keyValue}'";
             }
             else
             {

@@ -21,7 +21,6 @@ class Grid {
         me.listSubGrid = [];
 
         // Khởi tạo các sự kiện cho grid
-        me.initEvents();
     }
 
     /**
@@ -258,10 +257,13 @@ class Grid {
                 break;
             case 'function':
                 element.addClass("function-content");
+                break;
             case 'STT':
                 element.addClass("text-center");
+                break;
             case 'Function_SubGrid':
                 element.addClass("function-grid-content");
+                break;
             default:
                 break;
         }
@@ -321,7 +323,7 @@ class Grid {
                 td = me.addClassFormat(td, dataType);
                 break;
             case "Function_SubGrid":
-                td = $(`<td><button id="btn-delete" class="btn-function hide" title="Xóa">
+                td = $(`<td><button id="btn-delete-subGrid" class="btn-function hide" title="Xóa">
                             <div class="icon-remove-function">
                             </div>
                         </button></td>`);
@@ -368,7 +370,7 @@ class Grid {
      * Hàm lấy toàn bộ data các dòng của bảng
      *CreatedBY: BQDUY(26/2/2021) 
      * */
-    getAllRecord() {
+    getAllRecord() { 
         let data = [];
         this.grid.find("tbody tr").each(function () {
             let item = $(this).data("value");

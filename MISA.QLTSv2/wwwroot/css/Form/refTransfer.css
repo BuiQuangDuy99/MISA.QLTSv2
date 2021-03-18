@@ -205,7 +205,7 @@ textarea {
 }
 
 .function-grid-content {
-    text-align: center;
     justify-content: center;
-    width: 40px;
+    width: 30px;
+    padding: 8px 16px;
 }

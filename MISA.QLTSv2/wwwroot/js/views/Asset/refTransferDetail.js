@@ -1,12 +1,19 @@
-﻿class ReftranferDetail extends BaseGrid {
+﻿
+class ReftranferDetail extends BaseGrid {
     constructor(gridId, entity) {
         super(gridId, entity);
         this.initEvents();
     }
 
     initEvents() {
+        var me = this;
         this.grid.find('tbody').off('click', 'tr');
         this.grid.find('tbody').on('click', 'tr', this.gridRowOnClick);
+        $('#btn-delete-subGrid').on('click', function (event) {
+            event.stopPropagation();
+            console.log("a");
+            me.deleteRow();
+        })
     }
 
     gridRowOnClick(event) {
@@ -21,7 +28,21 @@
         } else {
             $(this).addClass('selected-row');
             console.log($(this).data('recordId'));
+            console.log("b");
             $(this).siblings().removeClass('selected-row');
         }
     }
+
+    dbClickRow() {
+        var data = this.subGrid.getDataSelected();
+
+        this.formSubDetail.show(data);
+        this.formMode = "edit";
+    }
+
+    deleteRow() {
+        var me = this;
+        debugger
+    }
+
 }

@@ -27,19 +27,15 @@ class reftransferForm extends baseForm {
         $('#btn_addcolum').off('click').click(function () {
             me.addColum();
         });
-        debugger
         // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit, và binding dữ liệu của row lên form
         this.form.find('tbody').off('dblclick', 'tr');
-        this.form.find('tbody').on('dblclick', 'tr', me.dbClickRow.bind(this));
+        this.form.find('tbody').on('dblclick', 'tr', me.subGrid.dbClickRow.bind(this));
+
+
+        
     }
 
-    dbClickRow() {
-        var data = this.subGrid.getDataSelected();
-        debugger
-
-        this.formSubDetail.show(data);
-        this.formMode = "edit";
-    }
+    
 
     setApiUrl() {
         this.getApiUrl = 'https://localhost:44363/api/RefTransfer';
