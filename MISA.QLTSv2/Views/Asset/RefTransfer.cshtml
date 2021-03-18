@@ -110,7 +110,7 @@
                             <th style="width:125px" fieldName="FixedAssetName">Tên tài sản</th>
                             <th style="width:140px" fieldName="Department1">Từ phòng ban</th>
                             <th style="width:121px" fieldName="Department2">Chuyển tới</th>
-                            <th style="width:30px" fieldName="Function_SubGrid" dataType="Function_SubGrid"></th>
+                            <th style="width:20px" fieldName="Function_SubGrid" dataType="Function_SubGrid"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -192,7 +192,7 @@
                         Phòng ban
                     </div>
                     <div>
-                        <input fieldName="Department1" class="input-text input-asset" />
+                        <input id="txtdepartmentnow" fieldName="Department1" class="input-text input-asset" />
                     </div>
                 </div>
             </div>
@@ -211,6 +211,7 @@
                     </div>
                 </div>
             </div>
+            <input id="txtFixedAssetId" fieldName="FixedAssetId" style="display:none" />
         </div>
         <div class="dialog-footer">
             <div class="footer-left">

@@ -246,10 +246,16 @@ class baseForm {
                 data: JSON.stringify(data),
                 contentType: 'application/json'
             }).done(function (res) {
-                me.closeForm();
-                me.jsCaller.loadAjaxData(me.getApiUrl);
-                showMessengerSuccess("Thêm thành công!");
-                $('.loading').hide();
+                if (res.HttpCode == 200) {
+                    me.closeForm();
+                    me.jsCaller.loadAjaxData(me.getApiUrl);
+                    showMessengerSuccess("Thêm thành công!");
+                    $('.loading').hide();
+                } else {
+                    $('.loading').hide();
+                    showAlertWarring(res.Data);
+                }
+               
             }).fail(function (res) {
 
             })
@@ -261,10 +267,16 @@ class baseForm {
                 data: JSON.stringify(data),
                 contentType: 'application/json'
             }).done(function (res) {
-                me.closeForm();
-                me.jsCaller.loadAjaxData(me.getApiUrl);
-                showMessengerSuccess("Sửa thành công!");
-                $('.loading').hide();
+                if (res.HttpCode == 200) {
+                    me.closeForm();
+                    me.jsCaller.loadAjaxData(me.getApiUrl);
+                    showMessengerSuccess("Sửa thành công!");
+                    $('.loading').hide();
+
+                } else {
+                    $('.loading').hide();
+                    showAlertWarring(res.Data);
+                }
             }).fail(function (res) {
 
             })

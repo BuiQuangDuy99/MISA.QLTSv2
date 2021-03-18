@@ -18,22 +18,6 @@ class FormAdd extends baseForm {
             method: "GET"
         }).done(function (data) {
             var arr = [];
-
-            //$.widget("custom.catcomplete", $.ui.autocomplete, {
-            //    _renderMenu: function (ul, items) {
-            //        var self = this,
-            //            currentCategory = "";
-            //        debugger
-            //        $.each(items, function (index, item) {
-            //            //if (item.FixedAssetCode != currentCategory) {
-            //            //    ul.append("<li class='ui-autocomplete-category'>" + item.FixedAssetCode + "</li>");
-            //            //    currentCategory = item.FixedAssetCode;
-            //            //}
-            //            self._renderItem(ul, item);
-                        
-            //        });
-            //    },
-            //});
             $.each(data.Data, function (index, object) {
                 object["label"] = object["FixedAssetCode"];
                 object["value"] = object["FixedAssetCode"];
@@ -45,9 +29,14 @@ class FormAdd extends baseForm {
                 source: arr,
                 select: function (event, ui) {
                     $('#txtfixedassetname').val(ui.item.FixedAssetName);
-
+                    $('#txtdepartmentnow').val(ui.item.DepartmentName);
+                    $('#txtFixedAssetId').val(ui.item.FixedAssetId);
                 }
-            });
+            }).autocomplete("instance")._renderItem = function (ul, item) {
+                return $("<li>")
+                    .append($("<div>").text(item.label + " - " + item.FixedAssetName))
+                    .appendTo(ul);
+            };
         }).fail(function (data) {
 
         })
@@ -79,10 +68,41 @@ class FormAdd extends baseForm {
      * CreatedBy:NVTUYEN(15/03/2021)
      */
 
+    getData() {
+        var me = this;
+        var data = {};
+        this.form.find("input[fieldName], textarea, select, table").each(function () {
+            var fieldName = $(this).attr("fieldName"),
+                dataType = $(this).attr("DataType");
+
+            if (dataType == "JSON" && (me.subGrid.listSubGrid != null)) {
+                data[fieldName] = JSON.stringify(me.subGrid.listSubGrid);
+            } else {
+                data[fieldName] = me.getDataInput($(this), dataType);
+
+            }
+
+        });
+        return data;
+    }
+
     saveChangeData(data) {
         let me = this,
             jsCaller = me.jsCaller;
-        jsCaller.loadData(data);
-        me.closeForm();
+        if (me.jsCaller.formMode == "Add") {
+            jsCaller.subGrid.loadData(data);
+            me.closeForm();
+
+        } else if (me.jsCaller.formMode == "edit") {
+            var listDataGrid = me.jsCaller.subGrid.listSubGrid;
+            $.each(listDataGrid, function (index, obj) {
+                if (obj["FixedAssetId"] === $(me.jsCaller.subGrid.grid).find(".selected-row").data("recordId")) {
+                    Object.assign(obj,data);
+                }
+            })
+            debugger
+            jsCaller.subGrid.loadData(listDataGrid);
+            me.closeForm();
+        }
     }
 }

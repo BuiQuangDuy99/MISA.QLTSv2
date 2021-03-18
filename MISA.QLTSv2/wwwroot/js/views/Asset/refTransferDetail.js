@@ -1,11 +1,48 @@
-﻿class ReftranferDetail extends BaseGrid {
+﻿
+class ReftranferDetail extends BaseGrid {
     constructor(gridId, entity) {
         super(gridId, entity);
-        this.createFormDetail("#dialog_addcolum", 500, 300);
+        this.initEvents();
     }
-    createFormDetail(formID, width, height) {
-        var me = this;
-        this.formDetail = new FormAdd(formID, width, height, me);
 
+    initEvents() {
+        var me = this;
+        this.grid.find('tbody').off('click', 'tr');
+        this.grid.find('tbody').on('click', 'tr', this.gridRowOnClick);
+        $('#btn-delete-subGrid').on('click', function (event) {
+            event.stopPropagation();
+            console.log("a");
+            me.deleteRow();
+        })
     }
-} 
+
+    gridRowOnClick(event) {
+        if (event.ctrlKey) {
+            if ($(this).hasClass('selected-row')) {
+                $(this).removeClass('selected-row');
+            } else {
+                $(this).addClass('selected-row');
+
+                console.log($(this).data('recordId'));
+            }
+        } else {
+            $(this).addClass('selected-row');
+            console.log($(this).data('recordId'));
+            console.log("b");
+            $(this).siblings().removeClass('selected-row');
+        }
+    }
+
+    dbClickRow() {
+        var data = this.subGrid.getDataSelected();
+
+        this.formSubDetail.show(data);
+        this.formMode = "edit";
+    }
+
+    deleteRow() {
+        var me = this;
+        debugger
+    }
+
+}

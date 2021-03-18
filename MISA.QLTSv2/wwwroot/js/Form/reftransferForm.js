@@ -1,3 +1,5 @@
+
+
 class reftransferForm extends baseForm {
 
     constructor(formId, width, height, jsCaller) {
@@ -9,9 +11,13 @@ class reftransferForm extends baseForm {
             width: width,
             modal: true,
         });
-        this.subGrid = new ReftranferDetail("#reftransfer-sub-grid","FixedAsset");
+
+        this.formSubDetail = new FormAdd("#dialog_addcolum", 500, 300, this);
+
+        this.subGrid = new ReftranferDetail("#reftransfer-sub-grid", "FixedAsset");
+
         this.initEventpopup();
-        showTooltipElement($('.reftransfer-sub-grid th'));
+        //showTooltipElement($('.reftransfer-sub-grid th'));
     }
 
     initEventpopup() {
@@ -21,7 +27,15 @@ class reftransferForm extends baseForm {
         $('#btn_addcolum').off('click').click(function () {
             me.addColum();
         });
+        // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit, và binding dữ liệu của row lên form
+        this.form.find('tbody').off('dblclick', 'tr');
+        this.form.find('tbody').on('dblclick', 'tr', me.subGrid.dbClickRow.bind(this));
+
+
+        
     }
+
+    
 
     setApiUrl() {
         this.getApiUrl = 'https://localhost:44363/api/RefTransfer';
@@ -37,8 +51,8 @@ class reftransferForm extends baseForm {
     addColum() {
         let me = this;
         me.formMode = "Add";
-        if (me.subGrid) {
-            me.subGrid.formDetail.show();
+        if (me.formSubDetail) {
+            me.formSubDetail.show();
         }
     }
 
@@ -81,8 +95,8 @@ class reftransferForm extends baseForm {
     closeForm() {
         let me = this;
         me.resetForm();
-        var refTransferGrid = new refTransfer('#reftransfer-grid', "RefTransfer");
-        refTransferGrid.createFormDetail("#dialog_reftransfer", 800, 600);
+        //var refTransferGrid = new refTransfer('#reftransfer-grid', "RefTransfer");
+        //refTransferGrid.createFormDetail("#dialog_reftransfer", 800, 600);
         me.reftransferForm.dialog('close');
     }
 

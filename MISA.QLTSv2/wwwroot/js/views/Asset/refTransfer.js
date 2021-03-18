@@ -33,7 +33,6 @@ class refTransfer extends BaseGrid {
     }
 
 
-
     filterData() {
         var me = this,
             value = $('#txtsearch').val();

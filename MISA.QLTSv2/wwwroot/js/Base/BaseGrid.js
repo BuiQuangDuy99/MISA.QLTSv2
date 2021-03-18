@@ -3,7 +3,6 @@ class BaseGrid extends Grid {
     constructor(gridId, entity) {
         super(gridId, entity);
 
-        this.formDetail = null;
         this.cacheData = [];
         this.formMode = null;
         this.listData = [];
@@ -15,9 +14,9 @@ class BaseGrid extends Grid {
 
     }
 
-    returnFormDetail() {
-        return formCon = this.formDetail;
-    }
+    //returnFormDetail() {
+    //    return formCon = this.formDetail;
+    //}
 
     /**
      * Hàm sự kiện cho tác vụ thêm sửa xóa trong grid
@@ -123,6 +122,7 @@ class BaseGrid extends Grid {
      * */
     dbClickRow() {
         var data = this.getDataSelected();
+        debugger
         console.log(data);
         this.formDetail.show(data);
         this.formMode = "edit";

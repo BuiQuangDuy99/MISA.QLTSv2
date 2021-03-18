@@ -203,3 +203,9 @@ textarea {
     width: 14px;
     height: 20px;
 }
+
+.function-grid-content {
+    justify-content: center;
+    width: 30px;
+    padding: 8px 16px;
+}
