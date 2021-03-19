@@ -361,18 +361,3 @@ class baseForm {
         }
     }
 } 
-
-var testVarJSON = [{
-    "FixedAssetId": "57d426d2-7d83-11eb-ba81-6a929c950d9c",
-    "FixedAssetCode": "TS999",
-    "FixedAssetName": "âxaxa",
-    "Cost": 2828.0000,
-    "DepreciationRate": 12.0
-},
-{
-    "FixedAssetId": "5f7b48e5-16f9-2f2f-ecdc-845b5dcdad45",
-    "FixedAssetCode": "TS000",
-    "FixedAssetName": "tài sản thứ 2",
-    "Cost": 999.0000,
-    "DepreciationRate": 10.0
-}]

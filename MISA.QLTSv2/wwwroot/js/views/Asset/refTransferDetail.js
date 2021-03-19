@@ -7,12 +7,11 @@ class ReftranferDetail extends BaseGrid {
 
     initEvents() {
         var me = this;
-
         this.grid.find('tbody').off('click', 'tr').on('click', 'tr', this.gridRowOnClick);
 
-        this.grid.find('tbody').on('click','.btn-delete', function (event) {
+        this.grid.find('tbody').on('click','#btn-delete-subGrid', function (event) {
             event.stopPropagation();
-            console.log("a");
+            $(this).parents('tr').addClass('selected-row');
             me.deleteRow();
         })
     }
@@ -43,7 +42,10 @@ class ReftranferDetail extends BaseGrid {
 
     deleteRow() {
         var me = this;
-        debugger
+        var listDataGrid = me.listSubGrid;
+        listDataGrid = listDataGrid.filter((item) => item["FixedAssetId"] !== $(me.grid).find('.selected-row').data('recordId'));
+        me.listSubGrid = listDataGrid;
+        me.loadData(me.listSubGrid);
     }
 
 }

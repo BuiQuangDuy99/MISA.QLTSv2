@@ -10,8 +10,12 @@ class FormAdd extends baseForm {
             modal: true,
         })
         this.autocomplete();
+        this.autocompleteDepartment();
     }
-
+    /**
+     *Hàm load autocomplete cho input mã tài sản
+     * createdBy:NVTUYEN(19/03/2021)
+     * */
     autocomplete() {
         $.ajax({
             url: 'https://localhost:44363/api/FixedAsset',
@@ -37,6 +41,32 @@ class FormAdd extends baseForm {
                     .append($("<div>").text(item.label + " - " + item.FixedAssetName))
                     .appendTo(ul);
             };
+        }).fail(function (data) {
+
+        })
+    }
+    /**
+     * Hàm load autocomplete cho input phòng ban
+     * CreatedBy:NVTUYEN(19/03/2021)
+     * */
+    autocompleteDepartment() {
+        $.ajax({
+            url: 'https://localhost:44363/api/Departments',
+            method: "GET"
+        }).done(function (data) {
+            var array = [];
+            $.each(data, function (index, object) {
+                object["label"] = object["DepartmentName"];
+                object["value"] = object["DepartmentName"];
+                array.push(object);
+            })
+            $('#txtDepartmentTransfer').autocomplete({
+                delay: 0,
+                source: array,
+                select: function (event, ui) {
+
+                }
+            })
         }).fail(function (data) {
 
         })
@@ -90,7 +120,6 @@ class FormAdd extends baseForm {
         let me = this,
             jsCaller = me.jsCaller;
         if (me.jsCaller.formMode == "Add") {
-            debugger
             jsCaller.subGrid.loadData(data);
             me.closeForm();
 
@@ -101,7 +130,6 @@ class FormAdd extends baseForm {
                     Object.assign(obj,data);
                 }
             })
-            debugger
             jsCaller.subGrid.loadData(listDataGrid);
             me.closeForm();
         }

@@ -30,9 +30,10 @@ class reftransferForm extends baseForm {
         // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit, và binding dữ liệu của row lên form
         this.form.find('tbody').off('dblclick', 'tr');
         this.form.find('tbody').on('dblclick', 'tr', me.subGrid.dbClickRow.bind(this));
-
-
-        
+        // sự kiện khi kịch vào xóa nhiều 
+        $('#btn-deleteAll').off('click').on('click', function () {
+            me.deleteAll()
+        })
     }
 
     
@@ -54,6 +55,13 @@ class reftransferForm extends baseForm {
         if (me.formSubDetail) {
             me.formSubDetail.show();
         }
+    }
+
+    deleteAll() {
+        let me = this;
+        debugger
+        me.subGrid.listSubGrid = [];
+        me.subGrid.loadData(me.subGrid.listSubGrid);
     }
 
     show(data) {
@@ -87,7 +95,6 @@ class reftransferForm extends baseForm {
 
             if (propertyName == "RefDetail" && propertyValue != null) {
                 propertyValue = JSON.parse(propertyValue);
-                //let gridDetail = new BaseGrid('#reftransfer-sub-grid', 'FixedAsset');
                 me.subGrid.loadData(propertyValue);
                 me.subGrid.listSubGrid = propertyValue;
             }
@@ -98,8 +105,6 @@ class reftransferForm extends baseForm {
     closeForm() {
         let me = this;
         me.resetForm();
-        //var refTransferGrid = new refTransfer('#reftransfer-grid', "RefTransfer");
-        //refTransferGrid.createFormDetail("#dialog_reftransfer", 800, 600);
         me.reftransferForm.dialog('close');
     }
 
