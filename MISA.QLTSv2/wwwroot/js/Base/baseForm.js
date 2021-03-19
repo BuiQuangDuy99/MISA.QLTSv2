@@ -352,19 +352,30 @@ class baseForm {
         if (me.subGrid) {
             if (me.subGrid.listSubGrid.length == 0) {
                 showAlertWarring("Vui lòng chọn tài sản để hoàn thành chứng từ!");
-                isValid = false;
             } else {
-                isValid = me.validateForm();
+                if (isValid) {
+
+
+                    var data = me.getData();
+                    console.log(data);
+
+                    me.saveChangeData(data);
+                }
+            }
+
+        } else {
+
+            if (isValid) {
+
+
+                var data = me.getData();
+                console.log(data);
+                debugger
+                me.saveChangeData(data);
             }
         }
-        if (isValid) {
 
 
-            var data = me.getData();
-            console.log(data);
-
-            me.saveChangeData(data);
-        }
     }
 }
 

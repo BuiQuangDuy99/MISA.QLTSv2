@@ -19,6 +19,8 @@ namespace MISA.QLTSv2.Model.Entities
         /// <summary>
         /// Số chứng từ
         /// </summary>
+        [CheckDuplicate]
+        [DisplayName("Số chứng từ")]
         public string RefNo { get; set; }
 
         /// <summary>
