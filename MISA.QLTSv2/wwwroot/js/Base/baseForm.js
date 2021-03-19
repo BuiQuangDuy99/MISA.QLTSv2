@@ -132,7 +132,7 @@ class baseForm {
                 var test = /^((0|[1-9]\d?)(\.\d{1,2})?|100(\.00?)?)$/i;
                 if (!test.test(val)) {
                     $(this).addClass('border-red');
-                    $(this).attr('title', 'Càn nhập đúng định dạng số!');
+                    $(this).attr('title', 'Cần nhập đúng định dạng số!');
                     isValid = false;
                 }
                 else {

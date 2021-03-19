@@ -22,16 +22,14 @@ class depreciationSubGridForm extends baseForm {
         $('#DialogSubGridDetail input[fieldName="Cost"], input[fieldName="DepreciationRate"]').off('blur').on('blur', function () {
             $('input[fieldName="Amount"]').val(formatMoney(Math.round(parseFloat($('input[fieldName="Cost"]').val().split(".").join("")) * parseFloat($('input[fieldName="DepreciationRate"]').val().split(".").join("")) / 100)));
         });
-
-        $('#txtFixedAssetCode').focus(function () {
-            $(this).val(" ");
-        });
     }
     /**
      * Hàm xử lý sự kiện cho combobox autocomplete
      * CreatedBY: BQDUY(18/03/2021)
      * */
     autocomplete() {
+        var me = this;
+
         $.ajax({
             url: 'https://localhost:44363/api/FixedAsset',
             method: "GET"
@@ -43,34 +41,49 @@ class depreciationSubGridForm extends baseForm {
                 object["value"] = object["FixedAssetCode"];
                 arr.push(object);
             });
-
+            // Thêm sự kiện focus ô input thì sẽ bắn menu, dùng sự kiện search của autocomplte jueryui
             $('#txtFixedAssetCode').autocomplete({
                 delay: 0,
                 minLength: 0,
                 source: arr,
                 select: function (event, ui) {
-                    $.each($("#DialogSubGridDetail input[fieldName]"), function (index, input) {                       
-                        let field = $(input).attr("fieldName");
-                        if ($(input).attr("dataType") == "money") {
-                            $(input).val(formatMoney(parseFloat(ui.item[field])));
-                        }
-                        $(input).val(ui.item[field]);
-                        if (field == "Amount") {
-                            $(input).val(formatMoney(Math.round(parseFloat($('input[fieldName="Cost"]').val().split(".").join("")) * parseFloat($('input[fieldName="DepreciationRate"]').val().split(".").join("")) / 100)));
-                        }
-                    })
+                    me.bindingDataForm(ui.item);
                 }
+            }).on("focus", function () {
+                $(this).autocomplete("search", '');
             }).autocomplete("instance")._renderItem = function (ul, item) {
                 return $("<li>")
                     .append($("<div>").text(item.label + " - " + item.FixedAssetName))
                     .appendTo(ul);
-                };
-            
-            
+            };
+
+
         }).fail(function (data) {
 
         })
     }
+
+    bindingDataForm(data) {
+
+        data["Amount"] = data["Cost"] * data["DepreciationRate"] * 0.01;
+
+        $.each($("#DialogSubGridDetail input[fieldName]"), function (index, input) {
+            let field = $(input).attr("fieldName"),
+                dataType = $(input).attr("dataType"),
+                value = data[field];
+
+            if (dataType == "money") {
+                if (!isNaN(value)) {
+                    $(input).val(formatMoney(value));
+                } else {
+                    $(input).val("");
+                }
+            } else {
+                $(input).val(value);
+            }
+        })
+    }
+
     /**
      * Hàm hiển thị form khi click
      * CreatedBY: BQDUY(18/03/2021)
