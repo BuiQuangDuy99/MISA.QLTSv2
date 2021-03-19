@@ -5,12 +5,39 @@
     }
 
     initEvents() {
-        let me = this,
-            count = 0;
+        let me = this;
         super.initEvents();
+
         showTooltipElement($('button'));
         showTooltipElement($('td'));
-        
+
+        // Khởi tạo sự kiện cho ô tìm kiếm
+        $('#txtsearch').keyup(function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                me.loadData();
+            }
+        });
+
+        // Sự kiện xóa trong cột chức năng
+        me.grid.find('tbody').on('click', '#btn-delete', function (event) {
+            event.stopPropagation();
+
+            console.log('sự kiện xóa của gird, k phải base');
+
+            $(this).parents('tr').addClass('selected-row');
+            if (formDelete) {
+                formDelete.excute(me);
+            }
+        })
+
+        // Sự kiện cho nút sửa trong cột chức năng
+        this.grid.find('tbody').on('click', '#btn-change', function (event) {
+            event.stopPropagation();
+            $(me.grid).find('tbody tr').siblings().removeClass('selected-row');
+            $(this).parents('tr').addClass('selected-row');
+            me.dbClickRow();
+        })
     }
     /**
      * set url để lên baseGrid có thể ghép url với id để thực thi ajax
@@ -28,8 +55,8 @@
      * CreatedBY: BQDUY(11/03/2021)
      */
     createFormDetail(formID, width, height) {
-        var me = this;
-        this.formDetail = new depreciationForm(formID, width, height, me);
+        let me = this;
+        me.formDetail = new depreciationForm(formID, width, height, me);
     }
 
     /**
@@ -37,19 +64,18 @@
      * CreatedBY: BQDUY(15/03/2021)
      * */
     filterData() {
-        var me = this,
+        let me = this,
             value = $('#txtsearch').val();
 
+        // tìm trong cacheData xong có chứa kí tự mà mình tìm kiếm không
         me.listData = me.cacheData.filter(function (item) {
             return item["RefNo"].includes(value);
         });
     }
 }
 
-var depreciationGrid = new depreciation('#depreciation-grid-api', 'RefDepreciation');
 
 // Biến config cho từng column trong bảng
-
 var conFigColum = [
     {
         DataType: "STT",
@@ -88,12 +114,17 @@ var conFigColum = [
         Index: 6
     }
 ];
-//khởi tạo form ghi tăng tài sản
+
+var depreciationGrid = new depreciation('#depreciation-grid-api', 'RefDepreciation');
+
+//khởi tạo form chi tiết chứng từ
 depreciationGrid.createFormDetail("#dialog_depreciation_use_API", 800, 600);
 
-// THiết lập config header
+// Thiết lập config header
 depreciationGrid.setConFigColum(conFigColum);
 
 //Load dữ liệu grid
 depreciationGrid.loadAjaxData('https://localhost:44363/api/v1/RefDepreciations');
+
+
 

@@ -87,10 +87,10 @@ class baseForm {
      */
     formatPrice(input) {
         try {
-                var value = input.val().split(".").join("");
-                var formated = formatMoney(value);
-                input.val(formated);
-            
+            var value = input.val().split(".").join("");
+            var formated = formatMoney(value);
+            input.val(formated);
+
         } catch (e) {
             alert(e);
         }
@@ -255,7 +255,7 @@ class baseForm {
                     $('.loading').hide();
                     showAlertWarring(res.Data);
                 }
-               
+
             }).fail(function (res) {
 
             })
@@ -294,7 +294,7 @@ class baseForm {
             switch (dataType) {
                 case "date":
                     value = input.datepicker("getDate");
-             
+
                     break;
                 case "Number":
                     value = parseFloat(value);
@@ -336,9 +336,9 @@ class baseForm {
                 data[fieldName] = JSON.stringify(me.subGrid.listSubGrid);
             } else {
                 data[fieldName] = me.getDataInput($(this), dataType);
-                
+
             }
-            
+
         });
         return data;
     }
@@ -349,13 +349,24 @@ class baseForm {
     saveData() {
         var me = this;
         var isValid = me.validateForm();
+        if (me.subGrid) {
+            if (me.subGrid.listSubGrid.length == 0) {
+                showAlertWarring("Vui lòng chọn tài sản để hoàn thành chứng từ!");
+                isValid = false;
+            } else {
+                isValid = me.validateForm();
+            }
+        }
         if (isValid) {
+
+
             var data = me.getData();
             console.log(data);
+
             me.saveChangeData(data);
         }
     }
-} 
+}
 
 var testVarJSON = [{
     "FixedAssetId": "57d426d2-7d83-11eb-ba81-6a929c950d9c",

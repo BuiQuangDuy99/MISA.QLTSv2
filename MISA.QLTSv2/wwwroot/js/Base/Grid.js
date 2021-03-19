@@ -29,7 +29,7 @@ class Grid {
     initEvents() {
         var me = this,
             grid = me.grid;
-        debugger
+
         // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit, và binding dữ liệu của row lên form
         grid.find('tbody').off('dblclick', 'tr');
         grid.find('tbody').on('dblclick', 'tr', me.dbClickRow.bind(this));
@@ -340,10 +340,11 @@ class Grid {
      * CreatedBY: BQDUY(06/02/2021)
      * */
     setConFigColum(conFigColum) {
-        this.conFigColum = conFigColum;
+        let me = this;
+        me.conFigColum = conFigColum;
 
-        if (this.conFigColum) {
-            this.renderColumn();
+        if (me.conFigColum) {
+            me.renderColumn();
         }
     };
 

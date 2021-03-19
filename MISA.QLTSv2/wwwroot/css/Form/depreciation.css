@@ -43,14 +43,12 @@ textarea{
     padding: 0 13px 0px 13px !important;
     box-sizing: border-box !important;
     height: 35px !important;
-    /* margin: auto; */
-    border: #e0e0e0 solid 1px !important;
     background-color: #e8e8e8;
+    border-right: 1px solid #e8e8e8;
 }
 .depreciation-sub-grid tbody tr td {
     height: 35px !important;
-    padding: 0 0 0 0;
-    border: #e0e0e0 solid 1px !important;
+    border: #e8e8e8 solid 1px !important;
 }
 .text-alight-center{
      text-align:center;
@@ -97,14 +95,14 @@ textarea{
     background-image: url('/icon/154313424_436685174069604_139532384885086985_n.png');
 }
 .btn-add-row {
-    border: 1.5px solid #00abfe;
+    border: 1.5px solid #e8e8e8;
     color: #00abfe;
 }
 .btn-add-row {
-    border: 1.5px solid #00abfe;
+    border: 1.5px solid #e8e8e8;
 }
 .btn-delete-all-row {
-    border: 1px solid #e2e2e2;
+    border: 1px solid #e8e8e8;
 }
 .btn-delete-all-row-icon {
     background-image: url('/icon/trash.svg');

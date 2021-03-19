@@ -43,19 +43,21 @@ table {
         font-size: 12px;
         font-weight: 600;
         background-color: #fff;
+
     }
 
     table td {
         font-size: 13px;
-        border-right: 1px solid #BBBBBB;
+        border-right: 1px solid #e8e8e8;
     }
 
         table td:last-child {
-            border: none;
+            border-right: none;
+            border-left: none;
         }
 
     table tr {
-        border-bottom: 1px solid #BBBBBB;
+        border-bottom: 1px solid #e8e8e8;
     }
 
         table tr:hover {
@@ -78,7 +80,7 @@ th:before {
 
 th:after {
     bottom: 0px;
-    border-bottom: 1px solid #bbbbbb;
+    border-bottom: 1px solid #e8e8e8;
 }
 
 .selected-row {

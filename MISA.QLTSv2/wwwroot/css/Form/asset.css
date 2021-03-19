@@ -217,6 +217,3 @@ a.ui-button:active {
     border: 1px solid #E0E0E0;
     background: #F6F6F6;
 }
-.ui-menu .ui-menu-item:last-child {
-    border-bottom: 1px solid #bbbbbb;
-}

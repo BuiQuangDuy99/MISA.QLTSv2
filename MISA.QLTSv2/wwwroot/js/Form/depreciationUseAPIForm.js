@@ -1,4 +1,4 @@
-﻿
+﻿// Class form chi tiết của bảng danh sách tính hao mòn
 class depreciationForm extends baseForm {
     constructor(formId, width, height, jsCaller) {
         super(formId, jsCaller);
@@ -9,9 +9,14 @@ class depreciationForm extends baseForm {
             width: width,
             modal: true,
         });
+
+        //Khởi tạo form chi tiết của bảng danh sách tài sản
+        this.formSubDetail = new depreciationSubGridForm("#DialogSubGridDetail", 500, 375, this);
+        // Khởi tạo bảng danh sách tài sản bên trong form chi tiết tính hao mòn
         this.subGrid = new depreciationSubGrid("#depreciation-sub-grid", "FixedAsset");
-        this.subGrid.createFormDetail("#DialogSubGridDetail", 500, 375);
+        // Khởi tạo sự kiện cho form
         this.initEventDepreciationForm();
+        // Hàm show tooltip cho những chỗ viết tắt trên th
         showTooltipElement($('.depreciation-sub-grid th'));
     }
 
@@ -30,23 +35,25 @@ class depreciationForm extends baseForm {
     initEventDepreciationForm() {
         var me = this;
         super.initEvent();
-
+        // Sự kiện khi ấn thêm dòng
         $('.btn-add-row').off('click').click(function () {
             me.addRow();
         });
 
-        $('.depreciation-sub-grid').on('click', 'tr td button', (function () {
-            me.deleteRow($(this));
-        }));
-
+        // Sự kiện khi ấn xóa toàn bộ dòng
         $('.btn-delete-all-row').off('click').click(function () {
             me.deleteAllRow();
         });
-        me.formatTd();
-
+        // Định dạng td cho bảng trong form
+        //me.formatTd();
+        // Up case cho trường số chứng từ
         $('input[fieldName="RefNo"]').off('keyup').keyup(function () {
             this.value = this.value.toLocaleUpperCase();
         });
+
+        // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit, và binding dữ liệu của row lên form
+        this.form.find('tbody').off('dblclick', 'tr');
+        this.form.find('tbody').on('dblclick', 'tr', me.subGrid.dbClickRow.bind(this));
     }
 
     /**
@@ -55,52 +62,35 @@ class depreciationForm extends baseForm {
      */
     addRow() {
         let me = this;
-        //    tr = $(`<tr>
-        //                <td class="text-alight-center"></td>
-        //                <td><input type="text" class="input-depreciation-sub-grid"></td>
-        //                <td></td>
-        //                <td class="text-alight-right" dataType="Money" ></td>
-        //                <td class="text-alight-right dataType="Number" "></td>
-        //                <td class="text-alight-right" dataType="Money"></td>
-        //                <td><button class="button btn-depr-delete hide" title="Xóa"><div class="icon-delete-row"></div></button></td>
-        //            </tr>`);
-        this.subGrid.formDetail.show();
-        this.subGrid.formDetail.autocomplete();
-        //$('#depreciation-sub-grid tbody').append(tr);
-        //me.bindingSTT();
-        //showTooltipElement($('.depreciation-sub-grid button'));
-    }
 
-    /**
-     * Hàm binding tự động STT
-     * CreatedBy:NDTUNG (2/3/2021)
-     * */
-    bindingSTT() {
-        $('.depreciation-sub-grid tbody tr').each(function (index) {
-            {
-                $(this).find("td").eq(0).text(index + 1);
-            }
-        });
-    }
-
-    /**
-     * Hàm xóa một dòng khi nhấn click nút xóa trên dòng
-     * CreatedBy:NDTUNG (2/3/2021)
-     */
-    deleteRow(button) {
-        $(button).parents('tr').remove();
+        me.formMode = "Add";
+        if (me.formSubDetail) {
+            me.formSubDetail.show();
+        }
     }
 
     /**
      * Hàm xóa toàn bộ dòng
-     * CreatedBy:NDTUNG (2/3/2021)
+     * CreatedBy:BQDUY (19/03/2021)
      * */
     deleteAllRow() {
+        let me = this;
         $('.depreciation-sub-grid tbody').empty();
+        me.subGrid.listSubGrid = [];
     }
 
+    /**
+     * Hiện thị form khi có dữ liệu thì binding dữ liệu vào form không thì mở form trắng
+     * @param {any} data dữ liệu được binding lên form\
+     * CreatedBY: BQDUY(11/03/2021)
+     */
     show(data) {
         let me = this;
+
+        // Làm rỗng mảng data của subgrid để không bị lưu cache nhập từ trước
+        if (me.subGrid) {
+            me.subGrid.listSubGrid = [];
+        }
         if (data) {
             me.bindingData(data);
             me.depreciationForm.dialog('open');
@@ -115,30 +105,29 @@ class depreciationForm extends baseForm {
      */
     bindingData(data) {
         let me = this;
+
         me.form.find("[fieldName]").each(function () {
+            // Lấy fieldName của ô input để map với các trường của data
             var propertyName = $(this).attr('fieldName');
+            // Lấy giá trị của các trường trong data
             var propertyValue = data[0][propertyName];
             
             if ($(this).attr('dataType') == 'date') {
                 propertyValue = formatDate(propertyValue, "DD-MM-YYYY");
             }
-            else if ($(this).attr('dataType') == "Money") {
+            else if ($(this).attr('dataType') == "money") {
                 var money = formatMoney(propertyValue);
                 propertyValue = money;
             }
 
             this.value = propertyValue;
 
+            // Nếu trường đấy cần bind ra bảng con, chuyển từ text sang JSON
             if (propertyName == "RefDetail") {
                 propertyValue = JSON.parse(propertyValue);
 
-                let gridDetail = new BaseGrid('#depreciation-sub-grid', 'FixedAsset');
-
-                gridDetail.loadData(propertyValue);
-
-                $('#depreciation-sub-grid tbody tr').each(function () {
-                    $(this).find('td').eq(5).prop("textContent", parseFloat($(this).find('td').eq(3).prop("textContent")) / 100 * parseFloat($(this).find('td').eq(4).prop("textContent")));
-                });
+                me.subGrid.loadData(propertyValue);
+                me.subGrid.listSubGrid = propertyValue;
             }
         });
     }
@@ -149,10 +138,8 @@ class depreciationForm extends baseForm {
      * */
     closeForm() {
         let me = this;
-        me.resetForm();
-        var depreciationGrid = new depreciation('#depreciation-grid-api', 'RefDepreciation');
-        depreciationGrid.createFormDetail("#dialog_depreciation_use_API", 800, 600);
 
+        me.resetForm();
         me.depreciationForm.dialog('close');
     }
 
@@ -160,25 +147,24 @@ class depreciationForm extends baseForm {
      * Hàm định dạng td của bảng trang form
      * CreatedBy:NDTUNG (2/3/2021)
      * */
-    formatTd() {
-        $('.depreciation-sub-grid tbody tr td input').each(function () {
-            let money,
-                dataType = $(this).attr('dataType');
-            switch (dataType) {
-                case "Money":
-                    money = parseInt($(this).val());
-                    $(this).addClass('text-alight-right');
-                    $(this).empty();
-                    $(this).append(formatMoney(money));
-                    break;
-                case "Number":
-                    money = parseInt($(this).val());
-                    $(this).addClass('text-alight-right');
-                    break;
-                default:
-            }
-        })
-    }
+    //formatTd() {
+    //    $('.depreciation-sub-grid tbody tr td input').each(function () {
+    //        let money,
+    //            dataType = $(this).attr('dataType');
+    //        switch (dataType) {
+    //            case "money":
+    //                money = parseInt($(this).val());
+    //                $(this).addClass('text-alight-right');
+    //                $(this).empty();
+    //                $(this).append(formatMoney(money));
+    //                break;
+    //            case "Number":
+    //                money = parseInt($(this).val());
+    //                $(this).addClass('text-alight-right');
+    //                break;
+    //            default:
+    //        }
+    //    })
+    //}
 
 }
-//var subGrid = new depreciationSubGrid("#depreciation-sub-grid", "FixedAsset");

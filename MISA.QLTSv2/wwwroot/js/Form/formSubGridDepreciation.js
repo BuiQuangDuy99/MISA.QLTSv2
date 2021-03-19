@@ -12,6 +12,7 @@ class depreciationSubGridForm extends baseForm {
         });
 
         this.initEventSubForm();
+        this.autocomplete();
     }
     /**
      * Hàm khởi tạo sự kiện cho form của subGid
@@ -20,6 +21,10 @@ class depreciationSubGridForm extends baseForm {
     initEventSubForm() {
         $('#DialogSubGridDetail input[fieldName="Cost"], input[fieldName="DepreciationRate"]').off('blur').on('blur', function () {
             $('input[fieldName="Amount"]').val(formatMoney(Math.round(parseFloat($('input[fieldName="Cost"]').val().split(".").join("")) * parseFloat($('input[fieldName="DepreciationRate"]').val().split(".").join("")) / 100)));
+        });
+
+        $('#txtFixedAssetCode').focus(function () {
+            $(this).val(" ");
         });
     }
     /**
@@ -41,6 +46,7 @@ class depreciationSubGridForm extends baseForm {
 
             $('#txtFixedAssetCode').autocomplete({
                 delay: 0,
+                minLength: 0,
                 source: arr,
                 select: function (event, ui) {
                     $.each($("#DialogSubGridDetail input[fieldName]"), function (index, input) {                       
@@ -58,7 +64,8 @@ class depreciationSubGridForm extends baseForm {
                 return $("<li>")
                     .append($("<div>").text(item.label + " - " + item.FixedAssetName))
                     .appendTo(ul);
-            };
+                };
+            
             
         }).fail(function (data) {
 
@@ -122,9 +129,21 @@ class depreciationSubGridForm extends baseForm {
             jsCaller = me.jsCaller;
 
         if (me.jsCaller.formMode == "Add") {
-
-            jsCaller.subGrid.loadData(data);
-            me.closeForm();
+            let listData = jsCaller.subGrid.listSubGrid,
+                isValid = true;
+            $.each(listData, function (index, obj) {
+                if (data['FixedAssetId'] == obj['FixedAssetId']) {
+                    isValid = false;
+                }
+            })
+            if (isValid) {
+                jsCaller.subGrid.loadData(data);
+                me.closeForm();
+            }
+            else {
+                showAlertWarring("Mã tài sản đã tồn tại");
+                $('input[fieldName="FixedAssetCode"]').focus();
+            }
 
         } else if (me.jsCaller.formMode == "edit") {
 
