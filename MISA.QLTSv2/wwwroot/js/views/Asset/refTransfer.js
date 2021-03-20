@@ -22,6 +22,23 @@ class refTransfer extends BaseGrid {
                 me.loadData();
             }
         });
+        //sự kiện cho nút xóa trong cột chức năng
+        this.grid.find('tbody').on('click', '#btn-delete', function (event) {
+            event.stopPropagation();
+            $(this).parents('tr').addClass('selected-row');
+            if (formDelete) {
+                formDelete.excute(me);
+            }
+        })
+
+        //sự kiện cho nút sửa trong cột chức năng
+        this.grid.find('tbody').on('click', '#btn-change', function (event) {
+            event.stopPropagation();
+            $(me.grid).find('tbody tr').siblings().removeClass('selected-row');
+            $(this).parents('tr').addClass('selected-row');
+            me.dbClickRow();
+        })
+
     }
     setUrl() {
         this.url = 'https://localhost:44363/api/RefTransfer';
@@ -44,7 +61,6 @@ class refTransfer extends BaseGrid {
 }
 
 // Biến config cho từng column trong bảng
-
 var conFigColum = [
     {
         DataType: "STT",
@@ -77,6 +93,7 @@ var conFigColum = [
         Index: 5
     }
 ];
+
 
 var refTransferGrid = new refTransfer('#reftransfer-grid', "RefTransfer");
 

@@ -127,7 +127,7 @@
                     </button>
                     <button class="button button-depreciation btn-delete-all-row ml-4">
                         <div class="button-depreciation-icon btn-delete-all-row-icon"></div>
-                        <div class="btn-content">Xóa hết dòng</div>
+                        <div id="btn-deleteAll" class="btn-content">Xóa hết dòng</div>
                     </button>
                 </div>
             </div>
@@ -202,12 +202,7 @@
                         Chuyển tới
                     </div>
                     <div>
-                        @*<input fieldName="Department2" class="input-text input-asset" required />*@
-                        <select fieldName="Department2" class="input-text input-asset">
-                            <option value="Phòng hành chính">Phòng hành chính</option>
-                            <option value="Phòng kế toán">Phòng kế toán</option>
-                            <option value="Phòng công nghệ">Phòng công nghệ</option>
-                        </select>
+                        <input id="txtDepartmentTransfer" fieldName="Department2" class="input-text input-asset" required />
                     </div>
                 </div>
             </div>
