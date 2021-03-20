@@ -25,7 +25,7 @@ class FormAdd extends baseForm {
             $.each(data.Data, function (index, object) {
                 object["label"] = object["FixedAssetCode"];
                 object["value"] = object["FixedAssetCode"];
-                arr.push(object);
+                arr.push(object); 
                 
             })
             $('#txtreftranfer').autocomplete({
