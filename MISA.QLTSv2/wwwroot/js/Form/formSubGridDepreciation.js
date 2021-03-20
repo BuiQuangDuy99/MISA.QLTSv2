@@ -20,7 +20,7 @@ class depreciationSubGridForm extends baseForm {
      * */
     initEventSubForm() {
         $('#DialogSubGridDetail input[fieldName="Cost"], input[fieldName="DepreciationRate"]').off('blur').on('blur', function () {
-            $('input[fieldName="Amount"]').val(formatMoney(Math.round(parseFloat($('input[fieldName="Cost"]').val().split(".").join("")) * parseFloat($('input[fieldName="DepreciationRate"]').val().split(".").join("")) / 100)));
+            $('input[fieldName="Amount"]').val(formatMoney(parseFloat($('input[fieldName="Cost"]').val().split(".").join("")) * parseFloat($('input[fieldName="DepreciationRate"]').val()) / 100));
         });
     }
     /**
@@ -56,8 +56,6 @@ class depreciationSubGridForm extends baseForm {
                     .append($("<div>").text(item.label + " - " + item.FixedAssetName))
                     .appendTo(ul);
             };
-
-
         }).fail(function (data) {
 
         })
@@ -90,11 +88,12 @@ class depreciationSubGridForm extends baseForm {
      * */
     show(data) {
         let me = this;
-
+        // Nếu có data từ đầu vào thì thực hiện binding data lên form để chỉnh sửa
         if (data) {
             me.bindingData(data);
             me.depreciationForm.dialog('open');
         }
+        // Mở form trắng
         me.depreciationForm.dialog('open');
     }
 
@@ -104,7 +103,7 @@ class depreciationSubGridForm extends baseForm {
      * */
     closeForm() {
         let me = this;
-
+        // Thực hiện xóa các trường trong form và đóng
         me.resetForm();
         me.depreciationForm.dialog('close');
     }
@@ -139,7 +138,9 @@ class depreciationSubGridForm extends baseForm {
      */
     saveChangeData(data) {
         let me = this,
-            jsCaller = me.jsCaller;
+            jsCaller = me.jsCaller,
+            form = $(jsCaller.form),
+            amountTotal = form.find('#txtAmountTotal').val();
 
         if (me.jsCaller.formMode == "Add") {
             let listData = jsCaller.subGrid.listSubGrid,
@@ -151,6 +152,7 @@ class depreciationSubGridForm extends baseForm {
             })
             if (isValid) {
                 jsCaller.subGrid.loadData(data);
+                
                 me.closeForm();
             }
             else {
@@ -169,6 +171,7 @@ class depreciationSubGridForm extends baseForm {
             })
 
             jsCaller.subGrid.loadData(listDataGrid);
+            
             me.closeForm();
         }
     }

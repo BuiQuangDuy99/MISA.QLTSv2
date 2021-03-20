@@ -178,17 +178,14 @@ class baseForm {
         });
         this.form.find(".border-red").removeClass("border-red");
     }
+
     /**
      * Đóng form
      * CreatedBy : NDTUNG (3/2/2021)
      */
     closeForm() {
-        //this.resetForm();
-        //dialog.dialog('close');
+
     }
-
-
-
 
     /**
     * Đổ dữ liệu vào trong form
@@ -288,9 +285,10 @@ class baseForm {
   * CreatedBy : NDTUNG (3/2/2021)
   */
     getDataInput(input, dataType) {
+        var me = this;
         let value = input.val();
 
-        if (value) {
+        if (value != null) {
             switch (dataType) {
                 case "date":
                     value = input.datepicker("getDate");
@@ -310,6 +308,11 @@ class baseForm {
                             value = $(option).prop("label");
                         }
                     })
+                    break;
+                case "Total":
+                    $.each(me.subGrid.listSubGrid, function (index, obj) {
+                        value += obj["Amount"];
+                    });
                     break;
                 default:
                     value = value.trim();
@@ -336,7 +339,6 @@ class baseForm {
                 data[fieldName] = JSON.stringify(me.subGrid.listSubGrid);
             } else {
                 data[fieldName] = me.getDataInput($(this), dataType);
-
             }
 
         });
@@ -349,47 +351,23 @@ class baseForm {
     saveData() {
         var me = this;
         var isValid = me.validateForm();
+        // Kiểm tra nếu form có bảng nhỏ thì check, nếu có bảng trong bảng chưa có thì chưa cho lưu
         if (me.subGrid) {
             if (me.subGrid.listSubGrid.length == 0) {
                 showAlertWarring("Vui lòng chọn tài sản để hoàn thành chứng từ!");
             } else {
                 if (isValid) {
-
-
                     var data = me.getData();
                     console.log(data);
-
                     me.saveChangeData(data);
                 }
             }
-
         } else {
-
             if (isValid) {
-
-
                 var data = me.getData();
                 console.log(data);
-                debugger
                 me.saveChangeData(data);
             }
         }
-
-
     }
 }
-
-var testVarJSON = [{
-    "FixedAssetId": "57d426d2-7d83-11eb-ba81-6a929c950d9c",
-    "FixedAssetCode": "TS999",
-    "FixedAssetName": "âxaxa",
-    "Cost": 2828.0000,
-    "DepreciationRate": 12.0
-},
-{
-    "FixedAssetId": "5f7b48e5-16f9-2f2f-ecdc-845b5dcdad45",
-    "FixedAssetCode": "TS000",
-    "FixedAssetName": "tài sản thứ 2",
-    "Cost": 999.0000,
-    "DepreciationRate": 10.0
-}]

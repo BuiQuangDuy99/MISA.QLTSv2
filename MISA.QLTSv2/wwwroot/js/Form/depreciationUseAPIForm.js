@@ -44,15 +44,14 @@ class depreciationForm extends baseForm {
         $('.btn-delete-all-row').off('click').click(function () {
             me.deleteAllRow();
         });
-        // Định dạng td cho bảng trong form
-        //me.formatTd();
+
         // Up case cho trường số chứng từ
         $('input[fieldName="RefNo"]').off('keyup').keyup(function () {
             this.value = this.value.toLocaleUpperCase();
         });
         // dùng regex để check định dạng nhập dd/mm/yyyy
         $('#TestDate').off('blur').on('blur', function () {
-            var formatDate = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
+            let formatDate = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
             let checkDate = $(this).val();
 
             if (!formatDate.test(checkDate)) {

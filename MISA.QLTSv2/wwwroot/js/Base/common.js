@@ -62,6 +62,9 @@ function formatMoney(number) {
     else {
         try {
             if (number != null) {
+                if (Number(number) === number && number % 1 !== 0) {
+                    number = Math.round(number);
+                }
                 return number.toString().replace(/(\d)(?=(\d{3})+\b)/g, '$1.');
             }
             return 0;
