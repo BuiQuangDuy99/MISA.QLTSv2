@@ -159,10 +159,7 @@ class baseForm {
         if (isValid) {
             isValid = me.checkInputNumber(); //Validate các ô nhập số
         }
-
         return isValid;
-
-
     }
 
     /**
