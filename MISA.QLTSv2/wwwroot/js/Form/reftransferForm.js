@@ -34,9 +34,29 @@ class reftransferForm extends baseForm {
         $('#btn-deleteAll').off('click').on('click', function () {
             me.deleteAll()
         })
+        // Up case cho trường số chứng từ
+        $('input[fieldName="RefNo"]').off('keyup').keyup(function () {
+            this.value = this.value.toLocaleUpperCase();
+        });
+        // dùng regex để check định dạng nhập dd/mm/yyyy
+        $('#TestDate').off('blur').on('blur', function () {
+            let formatDate = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
+            let checkDate = $(this).val();
+
+            if (!formatDate.test(checkDate)) {
+                $(this).addClass('border-red');
+                $(this).attr('title', 'Cần nhập đúng định dạng ngày/tháng/năm!');
+            } else {
+                $(this).removeClass('border-red');
+                $(this).removeAttr('title');
+            }
+        })
     }
 
-    
+    /**
+     * Hàm sét url cho form
+     * createdBy:NVTUYEN(15/03/2021)
+     * */
 
     setApiUrl() {
         this.getApiUrl = 'https://localhost:44363/api/RefTransfer';
@@ -49,6 +69,11 @@ class reftransferForm extends baseForm {
 
     }
 
+    /**
+     * Hàm xử lý khi thực hiện nút thêm dòng
+     * createdBy:NVTUYEN(15/03/2021)
+     * */
+
     addColum() {
         let me = this;
         me.formMode = "Add";
@@ -57,12 +82,23 @@ class reftransferForm extends baseForm {
         }
     }
 
+    /**
+     * Hàm xủa lý khi thực hiện nút xóa hết dòng
+     * createdBy:NVTUYEN(15/03/2021)
+     * */
+
     deleteAll() {
         let me = this;
         debugger
         me.subGrid.listSubGrid = [];
         me.subGrid.loadData(me.subGrid.listSubGrid);
     }
+
+    /**
+     * Hàm xử lý khi show form
+     * @param {any} data
+     * createdBy:NVTUYEN(15/03/2021)
+     */
 
     show(data) {
         let me = this;
@@ -76,6 +112,11 @@ class reftransferForm extends baseForm {
         me.reftransferForm.dialog('open');
     }
 
+    /**
+     * Hàm xử lý thực hiện binding dữ liệu vào form
+     * @param {any} data
+     * createdBy:NVTUYEN(15/03/2021)
+     */
 
     bindingData(data) {
         let me = this;
@@ -101,6 +142,10 @@ class reftransferForm extends baseForm {
         });
     }
 
+    /**
+     * Hàm xử lý khi thực hiện đóng form
+     * createdBy:NVTUYEN(15/03/2021)
+     * */
 
     closeForm() {
         let me = this;

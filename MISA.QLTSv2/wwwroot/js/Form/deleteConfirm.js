@@ -37,11 +37,21 @@
         }
     }
 
+    /**
+     * Hàm xử lý form confirm
+     * createdBy:NVTUYEN(15/03/2021)
+     * */
+
     showFormConfirm() {
         var msg = "Bạn có chắc chắn muốn xóa không?";
 
         showAlertConfirm(msg);
     }
+
+    /**
+    * Hàm xử lý form cảnh báo người dùng
+    * createdBy:NVTUYEN(15/03/2021)
+    * */
 
     showFormWarning() {
         var msg = "Bạn cần chọn chứng từ để xóa!!!";
@@ -50,5 +60,5 @@
     }
 }
 
-
+//khởi tạo form delete
 var formDelete = new FormDelete();

@@ -16,6 +16,11 @@ class ReftranferDetail extends BaseGrid {
         })
     }
 
+    /**
+     * Hàm xử lý khi click vào một dòng thì bôi đen
+     * @param {any} event
+     */
+
     gridRowOnClick(event) {
         if (event.ctrlKey) {
             if ($(this).hasClass('selected-row')) {
@@ -33,12 +38,22 @@ class ReftranferDetail extends BaseGrid {
         }
     }
 
+    /**
+     * Hàm xử lý khi dbclick vào một dòng
+     * createdBy:NVTUYEN(15/03/2021)
+     * */
+
     dbClickRow() {
         var data = this.subGrid.getDataSelected();
 
         this.formSubDetail.show(data);
         this.formMode = "edit";
     }
+
+    /**
+     * Hàm thực hiện khi click vào nút xóa trên form
+     * CreatedBy:NVTUYEN(15/03/2021)
+     * */
 
     deleteRow() {
         var me = this;
