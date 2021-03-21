@@ -18,10 +18,8 @@ class baseForm {
      */
     initEvent() {
         let me = this;
-        //var data = this.getJson();
         this.form.find("#btn-cancel").off("click");
         this.form.find("#btn-save").off("click");
-        //this.form.find("#btn-save").on("click", this.getJson());
         this.form.find("#btn-cancel,#btn-close").on("click", this.closeForm.bind(this));
         this.form.find("#btn-save").on("click", this.saveData.bind(this));
         this.form.find('input').click(function () { $(this).select(); });
@@ -309,6 +307,7 @@ class baseForm {
                 case "Total":
                     $.each(me.subGrid.listSubGrid, function (index, obj) {
                         value += obj["Amount"];
+                        value = parseFloat(value);
                     });
                     break;
                 default:
