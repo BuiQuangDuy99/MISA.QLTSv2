@@ -49,19 +49,6 @@ class depreciationForm extends baseForm {
         $('input[fieldName="RefNo"]').off('keyup').keyup(function () {
             this.value = this.value.toLocaleUpperCase();
         });
-        // dùng regex để check định dạng nhập dd/mm/yyyy
-        $('#TestDate').off('blur').on('blur', function () {
-            let formatDate = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
-            let checkDate = $(this).val();
-
-            if (!formatDate.test(checkDate)) {
-                $(this).addClass('border-red');
-                $(this).attr('title', 'Cần nhập đúng định dạng ngày/tháng/năm!');
-            } else {
-                $(this).removeClass('border-red');
-                $(this).removeAttr('title');
-            }
-        })
 
         // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit, và binding dữ liệu của row lên form
         this.form.find('tbody').off('dblclick', 'tr');

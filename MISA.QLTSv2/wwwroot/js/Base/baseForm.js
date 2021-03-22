@@ -152,11 +152,46 @@ class baseForm {
     validateForm() {
         var me = this;
 
-        var isValid = me.checkInputRequired(); //Validate các trường Required
+        var isValid;
+        isValid = me.checkInputRequired();
+        if (!isValid) {
+            showAlertWarring('Cần nhập đủ thông tin các trường!');
+        } else {
+            isValid = me.checkInputDatepicker();
 
-        if (isValid) {
-            isValid = me.checkInputNumber(); //Validate các ô nhập số
+            if (isValid) {
+                isValid = me.checkInputNumber();
+
+            }
         }
+        
+        return isValid;
+    }
+
+    /**
+     * Validate check định dạng ngày tháng năm;
+     * CreatedBY: BQDUY(22/03/2021)
+     * */
+    checkInputDatepicker() {
+        var isValid = true;
+        this.form.find("input[DataType='date']").each(function () {
+            var val = $(this).val().trim();
+            if (val != "") {
+                let formatDate = /^(((0[1-9]|[12]\d|3[01])\/(0[13578]|1[02])\/((19|[2-9]\d)\d{2}))|((0[1-9]|[12]\d|30)\/(0[13456789]|1[012])\/((19|[2-9]\d)\d{2}))|((0[1-9]|1\d|2[0-8])\/02\/((19|[2-9]\d)\d{2}))|(29\/02\/((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))))$/g;
+                let checkDate = $(this).val();
+                debugger
+                if (!formatDate.test(checkDate)) {
+                    showAlertWarring('Cần nhập đúng định dạng ngày/tháng/năm!');
+                    $(this).addClass('border-red');
+                    isValid = false;
+                } else {
+                    $(this).removeClass('border-red');
+                    isValid = true;
+                }
+            }
+        });
+        var inputRequire = this.form.find(".border-red");
+        inputRequire.first().focus();
         return isValid;
     }
 
@@ -348,9 +383,17 @@ class baseForm {
         var me = this;
         var isValid = me.validateForm();
         // Kiểm tra nếu form có bảng nhỏ thì check, nếu có bảng trong bảng chưa có thì chưa cho lưu
-        if (me.subGrid) {
-            if (me.subGrid.listSubGrid.length == 0) {
-                showAlertWarring("Vui lòng chọn tài sản để hoàn thành chứng từ!");
+        if (isValid) {
+            if (me.subGrid) {
+                if (me.subGrid.listSubGrid.length == 0) {
+                    showAlertWarring("Vui lòng chọn tài sản để hoàn thành chứng từ!");
+                } else {
+                    if (isValid) {
+                        var data = me.getData();
+                        console.log(data);
+                        me.saveChangeData(data);
+                    }
+                }
             } else {
                 if (isValid) {
                     var data = me.getData();
@@ -358,12 +401,6 @@ class baseForm {
                     me.saveChangeData(data);
                 }
             }
-        } else {
-            if (isValid) {
-                var data = me.getData();
-                console.log(data);
-                me.saveChangeData(data);
-            }
-        }
+        } 
     }
 }

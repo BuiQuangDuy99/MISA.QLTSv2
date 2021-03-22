@@ -72,6 +72,20 @@
             return item["RefNo"].includes(value);
         });
     }
+
+    loadData(data) {
+        super.loadData(data);
+        let refNoTotal = 0,
+            amountTotal = 0;
+        if (this.listData != null) {
+            $.each(this.listData, function (index, obj) {
+                refNoTotal = index + 1;
+                amountTotal += obj["AmountTotal"];
+            });
+            $('#lbRefNo').empty().append(refNoTotal);
+            $('#lbAmountTotal').empty().append(formatMoney(amountTotal));
+        }
+    }
 }
 
 

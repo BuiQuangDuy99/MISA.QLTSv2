@@ -170,7 +170,7 @@ class BaseGrid extends Grid {
 
         this.filterData();
         super.loadData(this.listData);
-
+        
     }
 
     filterData() {
