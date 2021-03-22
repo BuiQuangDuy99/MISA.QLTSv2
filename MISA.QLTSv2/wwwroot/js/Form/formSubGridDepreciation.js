@@ -23,6 +23,9 @@ class depreciationSubGridForm extends baseForm {
         $('#DialogSubGridDetail input[fieldName="Cost"], input[fieldName="DepreciationRate"]').off('blur').on('blur', function () {
             $('input[fieldName="Amount"]').val(formatMoney(parseFloat($('input[fieldName="Cost"]').val().split(".").join("")) * parseFloat($('input[fieldName="DepreciationRate"]').val()) / 100));
         });
+        $('#btnACInput').off('click').on('click', function () {
+            $('#txtFixedAssetCode').focus();
+        });
     }
     /**
      * Hàm xử lý sự kiện cho combobox autocomplete
@@ -54,6 +57,7 @@ class depreciationSubGridForm extends baseForm {
                 $(this).autocomplete("search", '');
             }).autocomplete("instance")._renderItem = function (ul, item) {
                 return $("<li>")
+                    .attr("title", item.label + " - " + item.FixedAssetName)
                     .append($("<div>").text(item.label + " - " + item.FixedAssetName))
                     .appendTo(ul);
             };

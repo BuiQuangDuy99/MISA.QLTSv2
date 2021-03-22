@@ -180,12 +180,12 @@
                     <div class="text-header">
                         Mã tài sản
                     </div>
-                    <div class="row m-row-content">
-                        <div class="col-8">
-                            <input id="txtFixedAssetCode" fieldName="FixedAssetCode" class="input-text input-asset" maxlength="100" dataType="Text" required />
+                    <div class="row ac-fixed-asset">
+                        <div class="col-10 ac-input">
+                            <input id="txtFixedAssetCode" fieldName="FixedAssetCode" class="input-text input-asset" maxlength="50" dataType="Text" required />
                         </div>
-                        <div class="col-4">
-                            <button>Open</button>
+                        <div class="col-2 ac-button">
+                            <button id="btnACInput"></button>
                         </div>
                     </div>
                 </div>
@@ -218,7 +218,7 @@
                         Tỷ lệ hao mòn năm (%)
                     </div>
                     <div>
-                        <input fieldName="DepreciationRate" class="input-text input-right input-asset" maxlength="19" dataType="Number" />
+                        <input fieldName="DepreciationRate" class="input-text input-right input-asset" maxlength="3" dataType="Number" />
                     </div>
                 </div>
             </div>

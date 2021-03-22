@@ -11,7 +11,22 @@ class FormAdd extends baseForm {
         })
         this.autocomplete(); // Hàm xử lý autocomplete tài sản
         this.autocompleteDepartment(); // Hàm xử lý autocomplete combox phòng ban điều chuyển
+        this.initEventSubForm();
     }
+
+    /**
+     * Khởi tạo sự kiện cho form của bảng tài sản
+     * CreatedBy: NVTUYEN(22/03/2021)
+     * */
+    initEventSubForm() {
+        $('#btnACInput').off('click').on('click', function () {
+            $('#txtreftranfer').focus();
+        });
+        $('#btnACCbx').off('click').on('click', function () {
+            $('#txtDepartmentTransfer').focus();
+        });
+    }
+
     /**
      *Hàm load autocomplete cho input mã tài sản
      * createdBy:NVTUYEN(19/03/2021)
