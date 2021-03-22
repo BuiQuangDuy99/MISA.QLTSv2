@@ -2,6 +2,7 @@ $(document).ready(function () {
 
 })
 
+//---------------------refTransferGrid-------------------------//
 
 class refTransfer extends BaseGrid {
 
@@ -13,6 +14,7 @@ class refTransfer extends BaseGrid {
     initEvents() {
         let me = this;
         super.initEvents();
+        //show content khi hover vào
         showTooltipElement($('button'));
         showTooltipElement($('td'));
 

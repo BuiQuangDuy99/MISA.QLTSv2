@@ -1,6 +1,6 @@
 
 
-//-----------------Form-----------------------------
+//---------------------Form-----------------------------
 class baseForm {
     ///constructor
     constructor(Idform, jsCaller) {
