@@ -20,7 +20,7 @@
 */
 table th, td {
     padding: 11px 16px;
-    text-align: left;
+    /* text-align: center; */
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

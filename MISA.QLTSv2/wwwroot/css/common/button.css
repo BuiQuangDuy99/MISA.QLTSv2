@@ -101,7 +101,7 @@
 
 .btn-function {
     display: flex;
-    justify-content: center;
+     justify-content: center; 
     outline: none !important;
     cursor: pointer;
     overflow: hidden;

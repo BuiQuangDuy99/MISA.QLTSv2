@@ -175,11 +175,12 @@ textarea {
     position:relative;
 }*/
 
-.m-col-6-left{
-    padding-right:15px;
+.m-col-6-left {
+    padding-right: 15px;
 }
-.m-col-6-right{
-    padding-left:15px;
+
+.m-col-6-right {
+    padding-left: 15px;
 }
 
 .btn-depr-delete {
@@ -206,8 +207,8 @@ textarea {
 
 .function-grid-content {
     justify-content: center;
-    width: 30px;
-    padding: 8px 16px;
+    width: 28px !important;
+    padding: 8px 6px;
 }
 
 .reftransfer-sub-grid th {
@@ -239,7 +240,7 @@ textarea {
     background-image: url('/icon/svg/fi-rr-caret-down.svg');
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 16px;
     background-color: #ffffff;
     border-radius: 2.5px;
     border: 1px solid #e0e0e0;
@@ -264,7 +265,7 @@ textarea {
         background-image: url('/icon/svg/fi-rr-caret-down.svg');
         background-position: center;
         background-repeat: no-repeat;
-        background-size: contain;
+        background-size: 16px;
         background-color: #ffffff;
         border-radius: 2.5px;
         border: 1px solid #e0e0e0;
@@ -275,9 +276,16 @@ textarea {
             background-color: #e9ebee;
             cursor: pointer;
         }
+
 .ui-menu-item-wrapper {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    width: 233px;
+    width: 170px;
+}
+
+.reftransfer-sub-grid tbody tr td {
+    height: 35px !important;
+    border: #E8E8E8 solid 1px !important;
+    max-width: 131px;
 }
