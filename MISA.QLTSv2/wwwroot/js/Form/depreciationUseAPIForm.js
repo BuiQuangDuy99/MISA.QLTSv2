@@ -110,7 +110,7 @@ class depreciationForm extends baseForm {
             var propertyName = $(this).attr('fieldName');
             // Lấy giá trị của các trường trong data
             var propertyValue = data[0][propertyName];
-            
+
             if ($(this).attr('dataType') == 'date') {
                 propertyValue = formatDate(propertyValue, "DD-MM-YYYY");
             }
@@ -119,7 +119,11 @@ class depreciationForm extends baseForm {
                 propertyValue = money;
             }
 
-            this.value = propertyValue;
+            if (propertyName == "AmountTotal") {
+                this.value = null;
+            } else {
+                this.value = propertyValue;
+            }
 
             // Nếu trường đấy cần bind ra bảng con, chuyển từ text sang JSON
             if (propertyName == "RefDetail") {

@@ -83,6 +83,16 @@ class refTransfer extends BaseGrid {
             return item["RefNo"].includes(value);
         });
     }
+    /**
+     * Override lại hàm loadata để thực hiện tác vụ riêng
+     * @param {any} data dữ liệu cần load
+     * CreatedBy:NVTUYEN(15/03/2021)
+     */
+    loadData(data) {
+        super.loadData(data);
+        let refNoTotal = this.listData.length;
+        $('#lbRefTransferNo').empty().append(refNoTotal);
+    }
 }
 
 // Biến config cho từng column trong bảng

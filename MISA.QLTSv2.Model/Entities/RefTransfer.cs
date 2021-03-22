@@ -22,6 +22,7 @@ namespace MISA.QLTSv2.Model.Entities
         /// Số chứng từ
         /// </summary>
         [CheckDuplicate]
+        [MaxLength(50)]
         [DisplayName("Số chứng từ")]
         public string RefNo { get; set; }
         /// <summary>
