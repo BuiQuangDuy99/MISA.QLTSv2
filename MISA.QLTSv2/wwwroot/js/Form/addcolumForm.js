@@ -66,10 +66,13 @@ class FormAdd extends baseForm {
             })
             $('#txtDepartmentTransfer').autocomplete({
                 delay: 0,
+                minLength: 0,
                 source: array,
                 select: function (event, ui) {
 
                 }
+            }).on("focus", function () {
+                $(this).autocomplete("search", '');
             })
         }).fail(function (data) {
 

@@ -7,8 +7,9 @@ class ReftranferDetail extends BaseGrid {
 
     initEvents() {
         var me = this;
+        //Sự kiện khi click vào một dong thì bôi đen
         this.grid.find('tbody').off('click', 'tr').on('click', 'tr', this.gridRowOnClick);
-
+        //sự kiện cho nút xóa trong grid detail
         this.grid.find('tbody').on('click','#btn-delete-subGrid', function (event) {
             event.stopPropagation();
             $(this).parents('tr').addClass('selected-row');
