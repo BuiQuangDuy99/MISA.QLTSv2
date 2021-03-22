@@ -7,15 +7,19 @@ class ReftranferDetail extends BaseGrid {
 
     initEvents() {
         var me = this;
-
         this.grid.find('tbody').off('click', 'tr').on('click', 'tr', this.gridRowOnClick);
 
-        this.grid.find('tbody').on('click','.btn-delete', function (event) {
+        this.grid.find('tbody').on('click','#btn-delete-subGrid', function (event) {
             event.stopPropagation();
-            console.log("a");
+            $(this).parents('tr').addClass('selected-row');
             me.deleteRow();
         })
     }
+
+    /**
+     * Hàm xử lý khi click vào một dòng thì bôi đen
+     * @param {any} event
+     */
 
     gridRowOnClick(event) {
         if (event.ctrlKey) {
@@ -34,6 +38,11 @@ class ReftranferDetail extends BaseGrid {
         }
     }
 
+    /**
+     * Hàm xử lý khi dbclick vào một dòng
+     * createdBy:NVTUYEN(15/03/2021)
+     * */
+
     dbClickRow() {
         var data = this.subGrid.getDataSelected();
 
@@ -41,9 +50,17 @@ class ReftranferDetail extends BaseGrid {
         this.formMode = "edit";
     }
 
+    /**
+     * Hàm thực hiện khi click vào nút xóa trên form
+     * CreatedBy:NVTUYEN(15/03/2021)
+     * */
+
     deleteRow() {
         var me = this;
-        debugger
+        var listDataGrid = me.listSubGrid;
+        listDataGrid = listDataGrid.filter((item) => item["FixedAssetId"] !== $(me.grid).find('.selected-row').data('recordId'));
+        me.listSubGrid = listDataGrid;
+        me.loadData(me.listSubGrid);
     }
 
 }

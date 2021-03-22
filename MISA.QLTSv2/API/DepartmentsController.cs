@@ -37,16 +37,7 @@ namespace MISA.QLTSv2.API
         [HttpGet]
         public IActionResult GetDepartments()
         {
-            try
-            {
                 return Ok(_departmentBL.GetDepartments());
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-
-           
         }
 
 
