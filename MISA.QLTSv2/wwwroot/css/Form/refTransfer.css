@@ -275,3 +275,9 @@ textarea {
             background-color: #e9ebee;
             cursor: pointer;
         }
+.ui-menu-item-wrapper {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 233px;
+}
