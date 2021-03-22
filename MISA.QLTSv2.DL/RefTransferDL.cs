@@ -136,21 +136,25 @@ namespace MISA.QLTSv2.DL
         {
             var propertyValue = property.GetValue(entity);
             var keyValue = entity.GetType().GetProperty($"RefTransferId").GetValue(entity);
-            var query = string.Empty;
             if (entity.EntityState == EntityState.Insert)
             {
-                query = $"SELECT * FROM ref_transfer WHERE ref_no = '{propertyValue}'";
+                var parameters = new DynamicParameters();
+                parameters.Add($"$RefNo", propertyValue);
+                var entityReturn = _dbConnection.Query<ref_transfer>($"Proc_CheckDuplicateRefTransferInsert", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return _mapper.Map<RefTransfer>(entityReturn);
             }
             else if (entity.EntityState == EntityState.Update)
             {
-                query = $"SELECT * FROM ref_transfer WHERE ref_no = '{propertyValue}' AND ref_transfer_id <> '{keyValue}'";
+                var parameters = new DynamicParameters();
+                parameters.Add($"$RefTransferId", keyValue, DbType.String);
+                parameters.Add($"$RefNo", propertyValue);
+                var entityReturn = _dbConnection.Query<ref_transfer>($"Proc_CheckDuplicateRefTransferUpdate", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                return _mapper.Map<RefTransfer>(entityReturn);
             }
             else
             {
                 return null;
             }
-            var entityReturn = _dbConnection.Query<ref_transfer>(query, commandType: CommandType.Text).FirstOrDefault();
-            return _mapper.Map<RefTransfer>(entityReturn);
         }
 
     }
