@@ -1,4 +1,4 @@
-﻿
+﻿// class form của bảng tài sản trong màn tính hao mòn
 class depreciationSubGridForm extends baseForm {
     constructor(formId, width, height, jsCaller) {
         super(formId, jsCaller);
@@ -12,13 +12,14 @@ class depreciationSubGridForm extends baseForm {
         });
 
         this.initEventSubForm();
-        this.autocomplete();
+        this.autocomplete(); // Khởi tạo sự kiện cho autocomplete thêm tài sản
     }
     /**
      * Hàm khởi tạo sự kiện cho form của subGid
      * CreatedBY: BQDUY(18/03/2021)
      * */
     initEventSubForm() {
+        // Tính lại giá tiền khi thay đổi giá trị nguyên giá hoặc tỷ lệ hao mòn
         $('#DialogSubGridDetail input[fieldName="Cost"], input[fieldName="DepreciationRate"]').off('blur').on('blur', function () {
             $('input[fieldName="Amount"]').val(formatMoney(parseFloat($('input[fieldName="Cost"]').val().split(".").join("")) * parseFloat($('input[fieldName="DepreciationRate"]').val()) / 100));
         });
@@ -29,13 +30,13 @@ class depreciationSubGridForm extends baseForm {
      * */
     autocomplete() {
         var me = this;
-
+        // Gọi ajax để lấy danh sách tài sản
         $.ajax({
             url: 'https://localhost:44363/api/FixedAsset',
             method: "GET"
         }).done(function (data) {
             var arr = [];
-
+            // Build lại danh sách tài sản để thực hiện được autocomplete
             $.each(data.Data, function (index, object) {
                 object["label"] = object["FixedAssetCode"];
                 object["value"] = object["FixedAssetCode"];
@@ -60,10 +61,14 @@ class depreciationSubGridForm extends baseForm {
 
         })
     }
-
+    /**
+     * Hàm bind dữ liệu lên từng trường trong form
+     * @param {any} data dữ liệu cần được bind lên
+     * CreatedBY: BQDUY(19/03/2021)
+     */
     bindingDataForm(data) {
 
-        data["Amount"] = data["Cost"] * data["DepreciationRate"] * 0.01;
+        data["Amount"] = data["Cost"] * data["DepreciationRate"] * 0.01; // Tính giá tiền theo nguyên giá và tỷ lệ hao mòn
 
         $.each($("#DialogSubGridDetail input[fieldName]"), function (index, input) {
             let field = $(input).attr("fieldName"),
@@ -124,9 +129,7 @@ class depreciationSubGridForm extends baseForm {
                 data[fieldName] = JSON.stringify(me.subGrid.listSubGrid);
             } else {
                 data[fieldName] = me.getDataInput($(this), dataType);
-
             }
-
         });
         return data;
     }
@@ -138,9 +141,7 @@ class depreciationSubGridForm extends baseForm {
      */
     saveChangeData(data) {
         let me = this,
-            jsCaller = me.jsCaller,
-            form = $(jsCaller.form),
-            amountTotal = form.find('#txtAmountTotal').val();
+            jsCaller = me.jsCaller;
 
         if (me.jsCaller.formMode == "Add") {
             let listData = jsCaller.subGrid.listSubGrid,
@@ -152,7 +153,6 @@ class depreciationSubGridForm extends baseForm {
             })
             if (isValid) {
                 jsCaller.subGrid.loadData(data);
-                
                 me.closeForm();
             }
             else {
@@ -169,9 +169,7 @@ class depreciationSubGridForm extends baseForm {
                     Object.assign(obj, data);
                 }
             })
-
             jsCaller.subGrid.loadData(listDataGrid);
-            
             me.closeForm();
         }
     }

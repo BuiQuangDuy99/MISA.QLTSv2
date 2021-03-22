@@ -20,12 +20,14 @@ namespace MISA.QLTSv2.Model.Entities
         /// Số chứng từ
         /// </summary>
         [CheckDuplicate]
+        [MaxLength(50)]
         [DisplayName("Số chứng từ")]
         public string RefNo { get; set; }
 
         /// <summary>
         /// Số tiền
         /// </summary>
+        [MaxLength(20)]
         public decimal AmountTotal { get; set; }
 
         /// <summary>

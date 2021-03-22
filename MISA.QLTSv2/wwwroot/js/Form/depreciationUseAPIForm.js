@@ -51,8 +51,7 @@ class depreciationForm extends baseForm {
         });
 
         // Sự kiện double click vào 1 row thì chuyển formMode thành dạng form Edit, và binding dữ liệu của row lên form
-        this.form.find('tbody').off('dblclick', 'tr');
-        this.form.find('tbody').on('dblclick', 'tr', me.subGrid.dbClickRow.bind(this));
+        this.form.find('tbody').off('dblclick', 'tr').on('dblclick', 'tr', me.subGrid.dbClickRow.bind(this));
     }
 
     /**
@@ -74,13 +73,14 @@ class depreciationForm extends baseForm {
      * */
     deleteAllRow() {
         let me = this;
+
         $('.depreciation-sub-grid tbody').empty();
         me.subGrid.listSubGrid = [];
     }
 
     /**
      * Hiện thị form khi có dữ liệu thì binding dữ liệu vào form không thì mở form trắng
-     * @param {any} data dữ liệu được binding lên form\
+     * @param {any} data dữ liệu được binding lên form
      * CreatedBY: BQDUY(11/03/2021)
      */
     show(data) {

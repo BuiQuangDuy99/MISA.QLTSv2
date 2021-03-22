@@ -180,7 +180,7 @@ function closeWarring() {
 }
 
 /**
- * Hàm tạo ID 
+ * Hàm tạo Guid ID 
  * Author: BQDUY(9/3/2021)
  * */
 function createGuid() {
@@ -205,6 +205,11 @@ function showMessengerSuccess(msg) {
     $('.success').css('display', 'flex');
 };
 
+/**
+ * Hàm làm tròn phần thập phân của số thực
+ * @param {any} num số cần làm tròn
+ * CreatedBY: BQDUY(22/03/2021)
+ */
 function roundToTwo(num) {
     return +(Math.round(num + "e+2") + "e-2");
 }

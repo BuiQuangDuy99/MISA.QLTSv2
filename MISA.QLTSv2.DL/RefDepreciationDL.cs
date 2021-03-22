@@ -154,7 +154,7 @@ namespace MISA.QLTSv2.DL
                 var parameters = new DynamicParameters();
                 parameters.Add($"$RefDepreciationId", keyValue, DbType.String);
                 parameters.Add($"$RefNo", propertyValue);
-                var entityReturn = _dbConnection.Query<ref_depreciation>($"Proc_CheckDuplicateRefDepreciationNo", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
+                var entityReturn = _dbConnection.Query<ref_depreciation>($"Proc_CheckDuplicateRefDepreciationNoUpdate", parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
                 return _mapper.Map<RefDepreciation>(entityReturn);
             }
             else

@@ -1,5 +1,4 @@
-﻿
-// Lớp dùng để render ra các bảng
+﻿// Lớp dùng để render ra các thành phần trong bảng
 class Grid {
 
     // Hàm khởi tạo, truyền vào id của bảng
@@ -11,15 +10,14 @@ class Grid {
 
         // Danh sách config cho các cột
         me.conFigColum = null;
-        
+        // Trạng thái của form chi tiết
         me.formDetail = null;
-
+        // Model đang hiển thị trong grid
         me.entity = entity;
-
+        // Danh sách các id của các row đang được chọn
         me.listId = [];
-
+        // Danh sách của bảng con khi form chi tiết có bảng con 
         me.listSubGrid = [];
-
     }
 
     /**
@@ -49,16 +47,17 @@ class Grid {
                 $(this).removeClass('selected-row');
             } else {
                 $(this).addClass('selected-row');
-
-                console.log($(this).data('recordId'));
             }
         } else {
             $(this).addClass('selected-row');
-            console.log($(this).data('recordId'));
             $(this).siblings().removeClass('selected-row');
         }
     }
 
+    /**
+     * Hàm lấy danh sách các row đang được chọn ở trong Grid
+     * CreatedBY: BQDUY(04/02/2021)
+     * */
     getListId() {
         var me = this;
         me.listId = [];
@@ -171,7 +170,6 @@ class Grid {
             $.each(me.listSubGrid, function (index, obj) {
                 $(me.grid).find('tbody').append(me.renderBody(index, obj));
             });
-            //$(me.grid).find('tbody').append(me.renderBody(0, data));
         } else if (data) {
             $.each(data, function (index, obj) {
                 $(me.grid).find('tbody').append(me.renderBody(index, obj));
@@ -196,7 +194,6 @@ class Grid {
 
             row = $(`<tr></tr>`);
             $(row).data('recordId', object[me.entity + 'Id']);
-            //$(row).data('recordId', object['Id']);
 
             // Binding cột số thứ tự riêng, index chính là value
             object["STT"] = index + 1;
@@ -355,8 +352,6 @@ class Grid {
     getDataSelected() {
         let data = [],
             id = this.grid.find(".selected-row").data('recordId');
-
-        console.log(id);
 
         this.grid.find(".selected-row").each(function () {
             let item = $(this).data("value");

@@ -1,13 +1,18 @@
-﻿class depreciation extends BaseGrid {
+﻿// class của màn tính hao mòn tài sản
+class depreciation extends BaseGrid {
     constructor(gridId, entity) {
         super(gridId, entity);
         this.initEvents();
     }
 
+    /**
+     * Override lại hàm initevent để xử lý một số sự kiện riêng 
+     * */
     initEvents() {
         let me = this;
         super.initEvents();
 
+        // Hiển thị tooltip cho các button, các phần tử viết tắt
         showTooltipElement($('button'));
         showTooltipElement($('td'));
 
@@ -23,8 +28,6 @@
         me.grid.find('tbody').on('click', '#btn-delete', function (event) {
             event.stopPropagation();
 
-            console.log('sự kiện xóa của gird, k phải base');
-
             $(this).parents('tr').addClass('selected-row');
             if (formDelete) {
                 formDelete.excute(me);
@@ -34,6 +37,7 @@
         // Sự kiện cho nút sửa trong cột chức năng
         this.grid.find('tbody').on('click', '#btn-change', function (event) {
             event.stopPropagation();
+
             $(me.grid).find('tbody tr').siblings().removeClass('selected-row');
             $(this).parents('tr').addClass('selected-row');
             me.dbClickRow();
@@ -73,10 +77,16 @@
         });
     }
 
+    /**
+     * Override lại từ lớp base để thực hiện tính tổng số chứng từ, và tổng số tiền
+     * @param {any} data dữ liệu đổ ra bảng
+     * CreatedBY: BQDUY(15/03/2021)
+     */
     loadData(data) {
         super.loadData(data);
         let refNoTotal = 0,
             amountTotal = 0;
+
         if (this.listData != null) {
             $.each(this.listData, function (index, obj) {
                 refNoTotal = index + 1;
@@ -84,6 +94,9 @@
             });
             $('#lbRefNo').empty().append(refNoTotal);
             $('#lbAmountTotal').empty().append(formatMoney(amountTotal));
+        } else {
+            $('#lbRefNo').empty().append(0);
+            $('#lbAmountTotal').empty().append(0);
         }
     }
 }

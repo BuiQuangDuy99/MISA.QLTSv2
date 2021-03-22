@@ -1,4 +1,4 @@
-
+// class form chi tiết của bảng tài sản trong màn điều chuyển
 class FormAdd extends baseForm {
     constructor(formId, width, height, jsCaller) {
         super(formId, jsCaller);
@@ -9,8 +9,8 @@ class FormAdd extends baseForm {
             width: width,
             modal: true,
         })
-        this.autocomplete();
-        this.autocompleteDepartment();
+        this.autocomplete(); // Hàm xử lý autocomplete tài sản
+        this.autocompleteDepartment(); // Hàm xử lý autocomplete combox phòng ban điều chuyển
     }
     /**
      *Hàm load autocomplete cho input mã tài sản
@@ -103,7 +103,7 @@ class FormAdd extends baseForm {
         me.FormAdd.dialog('close');
     }
     /**
-     * Hàm sử lý kaays dữ liêu của các input khi thực hiện nút lưu
+     * Hàm xử lý lấy dữ liêu của các input khi thực hiện nút lưu
      * @param {any} data
      * CreatedBy:NVTUYEN(15/03/2021)
      */

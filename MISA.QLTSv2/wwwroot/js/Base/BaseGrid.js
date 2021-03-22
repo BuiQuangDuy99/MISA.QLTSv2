@@ -1,22 +1,27 @@
-
+// Lớp base chung cho các grid
 class BaseGrid extends Grid {
     constructor(gridId, entity) {
         super(gridId, entity);
 
+        // Lưu lại dữ liệu liệu của bảng để khi có thay đổi data
         this.cacheData = [];
+        // Trạng thái form chi tiết của grid
         this.formMode = null;
+        // Danh sách dữ liệu dưới bảng
         this.listData = [];
+        // Url request dữ liệu cần đổ vào bảng
         this.url = null;
+        // Truyền tham số vào url
         this.setUrl();
     }
 
+    /**
+     * Hàm set url
+     * CreatedBY: BQDUY(25/2/2021)
+     * */
     setUrl() {
 
     }
-
-    //returnFormDetail() {
-    //    return formCon = this.formDetail;
-    //}
 
     /**
      * Hàm sự kiện cho tác vụ thêm sửa xóa trong grid
@@ -25,7 +30,7 @@ class BaseGrid extends Grid {
     initEvents() {
         super.initEvents();
         var me = this,
-            $toolbar = $(`${me.grid.data("toolbar")}`);
+            $toolbar = $(`${me.grid.data("toolbar")}`); // Là phần các button sự kiện dùng chung có trong các màn
 
         //find tất cả data-command cho từng button
         //Gán sự kiện chung cho từng button
@@ -68,7 +73,10 @@ class BaseGrid extends Grid {
         }
     }
 
-
+    /**
+     * Hàm xử lý khi ấn nút Refresh
+     * CreatedBY: BQDUY(02/03/2021)
+     * */
     refresh() {
         let me = this;
         $(me.grid).find('tbody').empty();
@@ -141,7 +149,6 @@ class BaseGrid extends Grid {
         $('.loading').show();
         callAjax(url, "GET", null, function (res) {
             if (res.Data) {
-
                 me.loadData(res.Data);
             }
             $('.loading').hide();
@@ -173,6 +180,10 @@ class BaseGrid extends Grid {
         
     }
 
+    /**
+     * Xử lý sự kiện tìm kiếm
+     * CreatedBY: BQDUY(02/03/2021)
+     * */
     filterData() {
     }
 }
