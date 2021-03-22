@@ -181,7 +181,8 @@ class baseForm {
      * CreatedBY: BQDUY(22/03/2021)
      * */
     checkInputDatepicker() {
-        var isValid = true;
+        var isValid = true,
+            now = new Date;
         this.form.find("input[DataType='date']").each(function () {
             var val = $(this).val().trim();
             if (val != "") {
@@ -193,8 +194,14 @@ class baseForm {
                     $(this).addClass('border-red');
                     isValid = false;
                 } else {
-                    $(this).removeClass('border-red');
-                    isValid = true;
+                    if ($(this).datepicker('getDate') > now) {
+                        showAlertWarring('Không được nhập ngày lớn hơn ngày hiện tại!');
+                        $(this).addClass('border-red');
+                        isValid = false;
+                    } else {
+                        $(this).removeClass('border-red');
+                        isValid = true;
+                    }
                 }
             }
         });
