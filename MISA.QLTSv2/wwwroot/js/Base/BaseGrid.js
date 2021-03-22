@@ -132,7 +132,6 @@ class BaseGrid extends Grid {
         var me = this,
             data = this.getDataSelected();
 
-        console.log(data);
         if (me.formDetail) {
             me.formDetail.show(data);
         }
