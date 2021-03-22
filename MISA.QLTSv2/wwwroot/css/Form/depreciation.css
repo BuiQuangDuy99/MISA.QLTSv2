@@ -49,6 +49,7 @@ textarea{
 .depreciation-sub-grid tbody tr td {
     height: 35px !important;
     border: #e8e8e8 solid 1px !important;
+    max-width: 175px;
 }
 .text-alight-center{
      text-align:center;

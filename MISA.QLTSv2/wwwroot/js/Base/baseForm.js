@@ -57,6 +57,14 @@ class baseForm {
                 $(this).attr("title", "Cần nhập đúng định dạng số!");
             }
         });
+
+        //$(this.form).off('keypress').on('keypress',function (event) {
+        //    if (event.which == 13) {
+        //        event.preventDefault();
+        //        alert('đang ấn enter');
+        //        me.saveData();
+        //    }
+        //});
     }
 
 
