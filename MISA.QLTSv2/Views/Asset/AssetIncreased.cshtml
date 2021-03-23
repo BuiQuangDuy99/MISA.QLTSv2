@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Links{
-    <link href="~/css/Form/asset.css" rel="stylesheet" />
+    <link href="~/css/Form/assetIncreased.css" rel="stylesheet" />
 }
 <div class="tool-bar" id="tbGrdFixedAsset">
     <div class="filter-bar">
@@ -80,7 +80,7 @@
                         Mã tài sản(*)
                     </div>
                     <div>
-                        <input fieldName="FixedAssetCode" class="input-text input-asset" required />
+                        <input fieldName="FixedAssetCode" class="input-text input-asset asset-code" required />
                     </div>
                 </div>
             </div>
@@ -101,13 +101,13 @@
                     <div class="text-header ">
                         Mã phòng ban
                     </div>
-                    <div>
-                        <select id="cbxdepartment" fieldName="DepartmentCode">
-                            <option value="Phòng công nghệ">PB567</option>
-                            <option value="Phòng hành chính">PB789</option>
-                            <option value="Phòng nhân sự">PB123</option>
-                            <option value="Phòng giám đốc">PB674</option>
-                        </select>
+                    <div class="row auto-input">
+                        <div class="col-10 ac-input">
+                            <input id="txtDepartment" fieldName="DepartmentCode" class="input-text input-asset" maxlength="50" dataType="Text" required />
+                        </div>
+                        <div class="col-2 ac-button">
+                            <button id="btnACInput"></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -117,7 +117,7 @@
                         Tên phòng ban
                     </div>
                     <div>
-                        <input id="txtdepartment" fieldName="DepartmentName" class="input-text input-asset2" disabled />
+                        <input id="txtDepartmentName" fieldName="DepartmentName" class="input-text input-asset2" disabled />
                     </div>
                 </div>
             </div>
@@ -128,12 +128,13 @@
                     <div class="text-header">
                         Mã loại tài sản
                     </div>
-                    <div>
-                        <select id="cbxassetcategory" fieldName="FixedAssetCategoryCode">
-                            <option value="Tài sản chung">TS878</option>
-                            <option value="Tài sản Riêng">TS7988</option>
-                            <option value="Tài sản nội vụ">TS67889098</option>
-                        </select>
+                    <div class="row auto-input">
+                        <div class="col-10 ac-input">
+                            <input id="txtFixedAssetCategoryCode" fieldName="FixedAssetCategoryCode" class="input-text input-asset" maxlength="50" dataType="Text" required />
+                        </div>
+                        <div class="col-2 ac-button">
+                            <button id="btnACInput"></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,7 +144,7 @@
                         Tên loại tài sản
                     </div>
                     <div>
-                        <input id="txtAssetGroupName" fieldName="FixedAssetCategoryName" class="input-text input-asset2" disabled />
+                        <input id="txtFixedAssetCategoryName" fieldName="FixedAssetCategoryName" class="input-text input-asset2" disabled />
                     </div>
                 </div>
             </div>
@@ -155,7 +156,8 @@
                         Ngày ghi tăng
                     </div>
                     <div>
-                        <input id="dtIncrementDate" dataType="date" fieldName="IncrementDate" class="input-date input-asset" type="text" data-mask="00/00/0000" />
+                        <input id="dtIncrementDate" fieldName="IncrementDate" class="input-date input-asset" placeholder="__/__/____" dataType="date" required />
+                        <div class="icon_PostDate"></div>
                     </div>
                 </div>
             </div>
@@ -168,7 +170,7 @@
                                     Thời gian sử dụng(Năm)
                                 </div>
                                 <div>
-                                    <input class="form-control input-text input-asset3 input-number" type="number" value="10" min="0" max="20" dataType="Number" fieldName="ProductionYear" />
+                                    <input class="form-control input-text input-asset3 input-number" type="number" value="0" min="0" max="20" dataType="Number" fieldName="ProductionYear" />
                                 </div>
                             </div>
                         </div>
@@ -178,7 +180,7 @@
                                     Tỷ lệ hao mòn(%)
                                 </div>
                                 <div>
-                                    <input class="form-control input-text input-asset3 input-number" type="number" value="10.5" min="0" max="20" dataType="Number" fieldName="DepreciationRate" />
+                                    <input class="form-control input-text input-asset3 input-number" type="number" value="0" min="0" max="100" dataType="Number" fieldName="DepreciationRate" />
                                 </div>
                             </div>
                         </div>
