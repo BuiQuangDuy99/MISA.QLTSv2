@@ -1,20 +1,3 @@
-$(document).ready(function () {
-    $('#cbxdepartment').combobox({
-        select: function (event, ui) {
-            debugger
-            $('#txtdepartment').val(ui.item);
-        }
-    });
-    $('#cbxassetcategory').combobox({
-        select: function (event, ui) {
-            debugger
-            $('#txtAssetGroupName').val(ui.item);
-
-        }
-    });
-
-    //$('#dtIncrementDate').mask("00/00/0000", { placeholder: "___/___/______" }).datepicker();
-})
 
 class assetIncreased extends BaseGrid {
     constructor(gridId, entity) {
@@ -27,12 +10,31 @@ class assetIncreased extends BaseGrid {
         showTooltipElement($('button'));
         showTooltipElement($('td'));
         
-        $('#txtsearch').keyup(function (e) {
+        $('#txtSearchAsset').keyup(function (e) {
             if (e.key === "Enter") {
                 e.preventDefault();
                 me.loadData();
             }
         });
+
+        // Sự kiện xóa trong cột chức năng
+        me.grid.find('tbody').on('click', '#btn-delete', function (event) {
+            event.stopPropagation();
+
+            $(this).parents('tr').addClass('selected-row');
+            if (formDelete) {
+                formDelete.excute(me);
+            }
+        })
+
+        // Sự kiện cho nút sửa trong cột chức năng
+        this.grid.find('tbody').on('click', '#btn-change', function (event) {
+            event.stopPropagation();
+
+            $(me.grid).find('tbody tr').siblings().removeClass('selected-row');
+            $(this).parents('tr').addClass('selected-row');
+            me.dbClickRow();
+        })
     }
 
     setUrl() {
@@ -44,14 +46,35 @@ class assetIncreased extends BaseGrid {
         this.formDetail = new assetIncreasedForm(formID, width, height, me);
     }
 
-    //filterData() {
-    //    var me = this,
-    //        value = $('#txtsearch').val();
+    loadData(data) {
+        super.loadData(data);
+        let assetNo = 0,
+            amountTotal = 0;
 
-    //    me.listData = me.cacheData.filter(function (item) {
-    //        return item["FixedAssetCode"].includes(value);
-    //    });
-    //}
+        if (this.listData != null) {
+            $.each(this.listData, function (index, obj) {
+                assetNo = index + 1;
+                amountTotal += obj["Cost"];
+            });
+            $('#lbAssetNo').empty().append(assetNo);
+            $('#lbAmountTotal').empty().append(formatMoney(amountTotal));
+        } else {
+            $('#lbAssetNo').empty().append(0);
+            $('#lbAmountTotal').empty().append(0);
+        }
+    }
+
+    filterData() {
+        var me = this,
+            value = $('#txtSearchAsset').val();
+
+        me.listData = me.cacheData.filter(function (item) {
+            //if (item["FixedAssetCode"].includes(value) || item["FixedAssetName"].includes(value)) {
+            //    return item;
+            //}
+            return item["FixedAssetCode"].includes(value) || item["FixedAssetName"].includes(value);
+        });
+    }
 
 }
 
